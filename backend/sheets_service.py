@@ -1,3 +1,5 @@
+import os
+import json
 import gspread, random, threading
 from google.oauth2.service_account import Credentials
 from config import Config
@@ -79,7 +81,11 @@ def _client():
     global _GC
     if _GC is not None:
         return _GC
-    creds = Credentials.from_service_account_file(Config.SERVICE_ACCOUNT_JSON, scopes=SCOPES)
+    service_account_info = json.loads(
+    os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"]
+    )
+
+    creds = Credentials.from_service_account_info(service_account_info)
     _GC = gspread.authorize(creds)
     return _GC
 
