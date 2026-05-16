@@ -66,7 +66,7 @@
 </div>
 
 <script>
-const API = 'http://localhost:5000/api';
+const API = 'https://fairtax-backend.onrender.com';
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 
@@ -130,7 +130,7 @@ $('#submitProof').addEventListener('click', async ()=>{
 <script>
 async function loadWinners() {
   try {
-    const r = await fetch('http://localhost:5000/api/winners');
+    const r = await fetch('https://fairtax-backend.onrender.com/api/winners');
     const j = await r.json();
     const list = document.getElementById('winnersList');
     list.innerHTML = '';

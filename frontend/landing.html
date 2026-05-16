@@ -256,7 +256,7 @@ fetch('components/footer.html')
   .then(html => document.getElementById('site-footer').innerHTML = html)
   .catch(e => console.error('Failed to load footer:', e));
 
-const API = 'http://localhost:5000/api';
+const API = 'https://fairtax-backend.onrender.com/api';
 async function loadWinners() {
   try {
     const r = await fetch(`${API}/winners`);
