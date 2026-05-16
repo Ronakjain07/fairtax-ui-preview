@@ -1,0 +1,31 @@
+# ENV
+.env
+.env.*
+*.env
+
+# PYTHON
+__pycache__/
+*.pyc
+
+.venv/
+venv/
+backend/.venv/
+backend/venv/
+
+# CLAUDE
+.claude/
+*.claude
+
+# NODE
+node_modules/
+
+# LOGS
+*.log
+logs/
+
+# BUILD
+dist/
+build/
+
+service_account.json
+backend/service_account.json
