@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Wallet — FairTax Referral Cashback</title>
+<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="css/shared-components.css?v=1">
+<style>
+.wallet-page { max-width: 600px; margin: 0 auto; padding: 24px 16px 48px; }
+.wallet-lookup { background: #fff; border-radius: 20px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,.07); margin-bottom: 24px; }
+.wallet-lookup h2 { color: #0B2545; margin-bottom: 6px; }
+.wallet-lookup p { color: #64748b; font-size: 14px; margin-bottom: 20px; }
+.lookup-btn { background: linear-gradient(135deg, #1A56DB, #1E40AF); color: #fff; border: none; font-weight: 700; border-radius: 12px; cursor: pointer; }
+.wallet-card { background: linear-gradient(135deg, #10B981, #059669); border-radius: 22px; padding: 32px; color: #fff; text-align: center; margin-bottom: 24px; display: none; animation: referral-glow 3s ease-in-out infinite; box-shadow: 0 0 24px rgba(16, 185, 129, 0.4); }
+.wallet-card.visible { display: block; animation: joker-in .4s cubic-bezier(0.34,1.56,0.64,1) both; }
+.wallet-greeting { font-size: 15px; color: #d1fae5; margin-bottom: 6px; }
+.wallet-balance-label { font-size: 13px; color: #d1fae5; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+.wallet-balance { font-size: 56px; font-weight: 900; color: #34D399; line-height: 1; margin: 8px 0 4px; }
+.wallet-refs { font-size: 13px; color: #93c5fd; margin-bottom: 20px; }
+.wallet-ref-code { font-size: 18px; font-weight: 800; letter-spacing: 3px; background: rgba(255,255,255,.1); border: 1px dashed #1A56DB; border-radius: 10px; padding: 8px 16px; display: inline-block; margin-bottom: 20px; }
+.withdraw-section { background: #fff; border-radius: 20px; padding: 28px; box-shadow: 0 4px 20px rgba(0,0,0,.07); display: none; }
+.withdraw-section.visible { display: block; }
+.withdraw-section h3 { color: #0B2545; margin-bottom: 16px; }
+.withdraw-btn { background: linear-gradient(135deg, #16a34a, #059669); color: #fff; border: none; font-weight: 800; border-radius: 12px; cursor: pointer; }
+.payout-note { background: #eff6ff; border: 1px solid #1A56DB; border-radius: 10px; padding: 12px 14px; font-size: 13px; color: #1e40af; margin-top: 14px; }
+.tier-progress { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 16px 0; }
+.tp-item { background: rgba(255,255,255,.1); border-radius: 10px; padding: 10px 12px; text-align: center; min-width: 72px; }
+.tp-item.reached { background: rgba(52,211,153,.2); border: 1px solid #34D399; }
+.tp-item .tp-count { font-size: 18px; font-weight: 900; color: #34D399; }
+.tp-item .tp-reward { font-size: 10px; color: #93c5fd; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="top-banner blink-cta">
+  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
+</div>
+<div class="top-banner blink-green">
+  <span>Referral payout released every Thursday 3:30 PM — Grab your cashback!</span>
+</div>
+<div class="help-bar">
+  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
+</div>
+
+<header id="site-header"></header>
+
+<main class="wallet-page">
+
+  <!-- Hero with Image -->
+  <div class="hero-with-image" style="max-width:1100px;margin:0 auto 40px;overflow:hidden">
+    <div class="hero-text-side">
+      <h1 style="font-size:42px;font-weight:900;color:#ffffff;text-shadow:0 2px 8px rgba(0,0,0,0.3);margin:0 0 16px">Referral Wallet</h1>
+      <p style="font-size:17px;color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,0.2);margin:0 0 24px;line-height:1.6">Track your referral earnings in real-time. Withdraw directly to your UPI every Thursday at 3:30 PM. No minimum balance — earn as you refer!</p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div style="flex:1;min-width:160px;background:linear-gradient(135deg,#f0fdf4,#d1fae5);border-radius:16px;padding:20px;text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">💰</div>
+          <div style="font-size:13px;color:#166534;font-weight:600;margin-bottom:6px">Earn Per Referral</div>
+          <div style="font-size:24px;font-weight:900;color:#059669">₹500+</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:20px;text-align:center">
+          <div style="font-size:28px;margin-bottom:8px">🎁</div>
+          <div style="font-size:13px;color:#1e40af;font-weight:600;margin-bottom:6px">Bonus at 5 Refs</div>
+          <div style="font-size:24px;font-weight:900;color:#1A56DB">₹5,000</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-side">
+      <img src="https://images.unsplash.com/photo-1444717512230-37799dba593d?w=800&q=80" alt="Person tracking earnings and money">
+      <div class="hero-image-overlay"></div>
+    </div>
+  </div>
+
+  <!-- Lookup card -->
+  <div class="wallet-lookup">
+    <h2>💰 Check Your Referral Wallet</h2>
+    <p>Enter your referral code to see your earnings and request a UPI payout.</p>
+    <label>Your Referral Code
+      <input id="codeInput" placeholder="e.g. RAJE_412" style="text-transform:uppercase;margin-top:6px">
+    </label>
+    <button class="lookup-btn" id="lookupBtn" style="margin-top:4px">Check Balance →</button>
+    <div id="lookupError" class="status error" style="display:none;margin-top:12px"></div>
+  </div>
+
+  <!-- Wallet card (shown after lookup) -->
+  <div class="wallet-card" id="walletCard">
+    <div class="wallet-greeting" id="walletGreeting">Hi there!</div>
+    <div class="wallet-balance-label">Your Referral Earnings</div>
+    <div class="wallet-balance" id="walletBalance">₹0</div>
+    <div class="wallet-refs" id="walletRefs">0 confirmed referrals</div>
+
+    <!-- Tier progress -->
+    <div class="tier-progress" id="tierProgress"></div>
+
+    <div class="wallet-balance-label" style="margin-top:12px">Your Referral Code</div>
+    <div class="wallet-ref-code" id="walletCode">—</div>
+
+    <button id="showWithdrawBtn" style="background:linear-gradient(135deg,#10B981,#059669);color:#fff;border:none;padding:13px 28px;border-radius:30px;font-weight:800;font-size:15px;cursor:pointer;margin-top:4px;width:auto;box-shadow:0 4px 16px rgba(16,185,129,.4)">
+      💸 Withdraw Earnings →
+    </button>
+  </div>
+
+  <!-- Withdraw form (shown when withdraw button clicked) -->
+  <div class="withdraw-section" id="withdrawSection">
+    <h3>💸 Request UPI Payout</h3>
+    <label>UPI / GPay ID
+      <input id="upiInput" placeholder="yourname@upi" style="margin-top:6px">
+    </label>
+    <label style="margin-top:4px">Amount to Withdraw (₹)
+      <input id="amountInput" type="number" min="1" placeholder="Enter amount" style="margin-top:6px">
+    </label>
+    <button class="withdraw-btn" id="withdrawBtn">Submit Withdrawal Request →</button>
+    <div class="payout-note">
+      ⏰ Payouts are processed every <strong>Thursday at 3:30 PM</strong>. You will receive confirmation on WhatsApp.
+    </div>
+    <div id="withdrawStatus" class="status" style="display:none;margin-top:12px"></div>
+  </div>
+
+</main>
+
+<footer id="site-footer"></footer>
+
+<!-- Freelancer floating CTA -->
+<a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
+  <span class="fl-star">⭐</span>
+  <span class="fl-text">Why not join us<br>as a Freelancer?</span>
+</a>
+
+<script>
+const API = 'http://localhost:5000/api';
+let currentCode = '';
+let currentBalance = 0;
+
+const TIERS = [
+  { count: 1,  reward: '₹250' },
+  { count: 3,  reward: '₹1,000' },
+  { count: 5,  reward: 'FREE+₹5K' },
+  { count: 10, reward: '₹15,000' },
+];
+
+document.getElementById('codeInput').addEventListener('input', function () {
+  this.value = this.value.toUpperCase();
+});
+
+document.getElementById('lookupBtn').addEventListener('click', async () => {
+  const code = document.getElementById('codeInput').value.trim();
+  if (!code) { showError('Please enter your referral code.'); return; }
+
+  const btn = document.getElementById('lookupBtn');
+  btn.textContent = 'Loading...';
+  btn.disabled = true;
+
+  try {
+    const r = await fetch(`${API}/wallet/${encodeURIComponent(code)}`);
+    const j = await r.json();
+
+    if (!j.success) {
+      showError(j.error || 'Referral code not found. Please check and try again.');
+      return;
+    }
+
+    currentCode = j.referral_code;
+    currentBalance = j.wallet_balance;
+
+    document.getElementById('walletGreeting').textContent = `Hi ${j.name || 'there'}! 👋`;
+    document.getElementById('walletBalance').textContent = `₹${Number(j.wallet_balance).toLocaleString('en-IN')}`;
+    document.getElementById('walletRefs').textContent = `${j.referral_count} confirmed referral${j.referral_count !== 1 ? 's' : ''}`;
+    document.getElementById('walletCode').textContent = j.referral_code;
+    if (j.upi_id) document.getElementById('upiInput').value = j.upi_id;
+    document.getElementById('amountInput').value = j.wallet_balance > 0 ? j.wallet_balance : '';
+
+    // Render tier progress
+    const tp = document.getElementById('tierProgress');
+    tp.innerHTML = TIERS.map(t => `
+      <div class="tp-item${j.referral_count >= t.count ? ' reached' : ''}">
+        <div class="tp-count">${t.count}</div>
+        <div class="tp-reward">${t.reward}</div>
+      </div>`).join('');
+
+    document.getElementById('lookupError').style.display = 'none';
+    document.getElementById('walletCard').classList.add('visible');
+
+  } catch (e) {
+    showError('Network error — please try again.');
+  } finally {
+    btn.textContent = 'Check Balance →';
+    btn.disabled = false;
+  }
+});
+
+function showError(msg) {
+  const el = document.getElementById('lookupError');
+  el.style.display = 'block';
+  el.textContent = '❌ ' + msg;
+}
+
+document.getElementById('showWithdrawBtn').addEventListener('click', () => {
+  document.getElementById('withdrawSection').classList.add('visible');
+  document.getElementById('withdrawSection').scrollIntoView({ behavior: 'smooth' });
+});
+
+document.getElementById('withdrawBtn').addEventListener('click', async () => {
+  const upi = document.getElementById('upiInput').value.trim();
+  const amount = parseFloat(document.getElementById('amountInput').value);
+  const status = document.getElementById('withdrawStatus');
+
+  if (!upi) { alert('Please enter your UPI ID.'); return; }
+  if (!amount || amount <= 0) { alert('Please enter a valid amount.'); return; }
+  if (amount > currentBalance) { alert(`You cannot withdraw more than your balance (₹${currentBalance}).`); return; }
+
+  const btn = document.getElementById('withdrawBtn');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  try {
+    const r = await fetch(`${API}/withdraw`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ referral_code: currentCode, upi_id: upi, amount })
+    });
+    const j = await r.json();
+
+    status.style.display = 'block';
+    if (j.success) {
+      status.className = 'status success';
+      status.textContent = '✅ ' + j.message;
+      btn.style.display = 'none';
+    } else {
+      status.className = 'status error';
+      status.textContent = '❌ ' + (j.error || 'Something went wrong.');
+    }
+  } catch (e) {
+    status.style.display = 'block';
+    status.className = 'status error';
+    status.textContent = '❌ Network error: ' + e.message;
+  } finally {
+    btn.textContent = 'Submit Withdrawal Request →';
+    btn.disabled = false;
+  }
+});
+</script>
+
+<!-- Winners widget -->
+<div id="winnersWidget" class="winners-widget">
+  <h4>Weekly Winners</h4>
+  <ul id="winnersList"><li>Loading...</li></ul>
+  <a href="referral-offer.html">See all</a>
+</div>
+
+<script>
+async function loadWinners() {
+  try {
+    const r = await fetch('http://localhost:5000/api/winners');
+    const j = await r.json();
+    const list = document.getElementById('winnersList');
+    list.innerHTML = '';
+    (j.winners || []).forEach(w => {
+      const li = document.createElement('li');
+      li.textContent = `${w.name} — ${w.reward}`;
+      list.appendChild(li);
+    });
+  } catch (e) { /* ignore */ }
+}
+loadWinners();
+
+// Load header and footer components
+fetch('components/header.html')
+  .then(r => r.text())
+  .then(html => document.getElementById('site-header').innerHTML = html)
+  .catch(e => console.error('Failed to load header:', e));
+
+fetch('components/footer.html')
+  .then(r => r.text())
+  .then(html => document.getElementById('site-footer').innerHTML = html)
+  .catch(e => console.error('Failed to load footer:', e));
+</script>
+
+<script>
+  (function(){
+    function updateHeaderSpacing(){
+      try{
+        var header=document.querySelector('header');
+        var nav=document.querySelector('.site-nav');
+        var topOffset=0;
+        if(header) topOffset+=header.offsetHeight;
+        if(nav) topOffset+=nav.offsetHeight;
+        document.documentElement.style.setProperty('--site-top-offset', topOffset+'px');
+        document.documentElement.style.setProperty('--main-top-offset', (topOffset+12)+'px');
+      }catch(e){}
+    }
+    if(document.readyState==='loading'){window.addEventListener('DOMContentLoaded',updateHeaderSpacing);}else{updateHeaderSpacing();}
+    window.addEventListener('resize',updateHeaderSpacing);
+  })();
+</script>
+
+</body>
+</html>

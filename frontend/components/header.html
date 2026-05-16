@@ -1,0 +1,101 @@
+<header class="site-header">
+  <div class="header-container">
+    <div class="header-left">
+      <a href="landing.html" class="logo" style="gap:8px">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,#1A56DB,#1E40AF);border-radius:8px;color:#fff;font-size:16px;font-weight:900;box-shadow:0 4px 12px rgba(26,86,219,0.3)">&#10003;</span>
+        <span style="color:#0B2545;font-weight:900;letter-spacing:-0.5px">FAIRTAX</span>
+        <span style="color:#1A56DB;font-weight:400;font-size:14px">ADVISORS</span>
+      </a>
+      <span class="tag">Your Taxes. Our Expertise.</span>
+    </div>
+
+    <!-- Hamburger menu button (mobile only) -->
+    <button class="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Navigation (desktop) -->
+    <nav class="site-nav desktop-nav">
+      <a href="landing.html" class="nav-link">🏠 Home</a>
+      <a href="index.html" class="nav-link">📝 File Returns</a>
+      <a href="referral-offer.html" class="nav-link">🎁 Referral Offer</a>
+      <a href="training.html" class="nav-link">🎓 Training</a>
+      <a href="wallet.html" class="nav-link">💰 Wallet</a>
+      <a href="status.html" class="nav-link">📊 Status</a>
+      <a href="proofs.html" class="nav-link">📎 Proofs</a>
+      <a href="about.html" class="nav-link">ℹ️ About</a>
+    </nav>
+  </div>
+
+  <!-- Mobile navigation menu (hidden by default) -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="landing.html" class="mobile-nav-link">🏠 Home</a>
+    <a href="index.html" class="mobile-nav-link">📝 File Returns</a>
+    <a href="referral-offer.html" class="mobile-nav-link">🎁 Referral Offer</a>
+    <a href="training.html" class="mobile-nav-link">🎓 Training</a>
+    <a href="wallet.html" class="mobile-nav-link">💰 Wallet</a>
+    <a href="status.html" class="mobile-nav-link">📊 Status</a>
+    <a href="proofs.html" class="mobile-nav-link">📎 Proofs</a>
+    <a href="about.html" class="mobile-nav-link">ℹ️ About</a>
+    <a href="contact.html" class="mobile-nav-link">📞 Contact</a>
+    <a href="faqs.html" class="mobile-nav-link">❓ FAQs</a>
+  </nav>
+</header>
+
+<script>
+  // Mobile hamburger menu functionality
+  (function() {
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    const mobileNav = document.getElementById('mobileNav');
+
+    if (!hamburgerBtn || !mobileNav) return;
+
+    // Toggle menu on hamburger click
+    hamburgerBtn.addEventListener('click', function() {
+      const isOpen = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+      hamburgerBtn.setAttribute('aria-expanded', !isOpen);
+      mobileNav.classList.toggle('open');
+      document.body.classList.toggle('nav-open');
+    });
+
+    // Close menu when a link is clicked
+    const navLinks = mobileNav.querySelectorAll('.mobile-nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        mobileNav.classList.remove('open');
+        document.body.classList.remove('nav-open');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const isClickInside = mobileNav.contains(event.target) || hamburgerBtn.contains(event.target);
+      if (!isClickInside && mobileNav.classList.contains('open')) {
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        mobileNav.classList.remove('open');
+        document.body.classList.remove('nav-open');
+      }
+    });
+
+    // Mark active nav link based on current page
+    const currentPage = window.location.pathname.split('/').pop() || 'landing.html';
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPage || (currentPage === '' && href === 'landing.html')) {
+        link.classList.add('active');
+      }
+    });
+
+    // Also mark desktop nav
+    const desktopNavLinks = document.querySelectorAll('.desktop-nav .nav-link');
+    desktopNavLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPage || (currentPage === '' && href === 'landing.html')) {
+        link.classList.add('active');
+      }
+    });
+  })();
+</script>

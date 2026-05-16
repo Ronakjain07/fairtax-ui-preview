@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FairTax — Choose Your Filing Type</title>
+<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="css/shared-components.css?v=1">
+</head>
+<body>
+<div class="top-banner blink-cta">
+  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
+</div>
+<div class="top-banner blink-green">
+  <span>Referral offer — payouts released Thursdays, 3:30 PM</span>
+</div>
+<div class="help-bar">
+  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
+</div>
+
+<header id="site-header"></header>
+
+<main style="max-width:900px;padding:48px 16px">
+  <div style="text-align:center;margin-bottom:48px">
+    <h1 style="font-size:32px;font-weight:800;color:#0B2545;margin-bottom:12px">Choose Your Filing Type</h1>
+    <p style="font-size:16px;color:#6b7280">Select how you'd like to file your ITR</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px">
+    <!-- Regular Tax Filing -->
+    <a href="index.html" style="text-decoration:none;color:inherit">
+      <div style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:2px solid #1A56DB;border-radius:16px;padding:32px;text-align:center;cursor:pointer;transition:all 0.3s ease">
+        <div style="font-size:48px;margin-bottom:16px">💼</div>
+        <h2 style="font-size:24px;font-weight:800;color:#0B2545;margin-bottom:8px">Regular Tax</h2>
+        <p style="font-size:14px;color:#4b5563;line-height:1.6">
+          File your ITR directly with your income and deductions. Pay our filing fee based on your refund amount.
+        </p>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(26,86,219,0.2)">
+          <span style="display:inline-block;background:linear-gradient(135deg,#1A56DB,#1E40AF);color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;font-size:13px">
+            Start Filing &rarr;
+          </span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Free Tax with Referrals -->
+    <a href="referral-filing.html" style="text-decoration:none;color:inherit">
+      <div class="referral-glow-card" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:2px solid #10b981;border-radius:16px;padding:32px;text-align:center;cursor:pointer;transition:all 0.3s ease;position:relative">
+        <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;box-shadow:0 4px 12px rgba(16,185,129,0.3)">POPULAR</div>
+        <div style="font-size:48px;margin-bottom:16px">🎁</div>
+        <h2 style="font-size:24px;font-weight:800;color:#065f46;margin-bottom:8px">Free Tax (Refer 5)</h2>
+        <p style="font-size:14px;color:#4b5563;line-height:1.6">
+          Refer 5 friends and get your ITR filing completely FREE. Plus earn up to ₹15,000 in rewards!
+        </p>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid #a7f3d0">
+          <span style="display:inline-block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;font-size:13px">
+            Start Free Filing &rarr;
+          </span>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div style="background:#eff6ff;border:1px solid rgba(26,86,219,0.15);border-radius:12px;padding:20px;text-align:center">
+    <p style="margin:0;font-size:14px;color:#1e40af">
+      <strong>💡 Tip:</strong> You can switch between options anytime during the process.
+    </p>
+  </div>
+
+  <footer id="site-footer" style="margin-top:80px"></footer>
+</main>
+
+<!-- Freelancer floating CTA -->
+<a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
+  <span class="fl-star">&#11088;</span>
+  <span class="fl-text">Why not join us<br>as a Freelancer?</span>
+</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const headerResp = await fetch('components/header.html');
+  document.getElementById('site-header').innerHTML = await headerResp.text();
+
+  const footerResp = await fetch('components/footer.html');
+  document.getElementById('site-footer').innerHTML = await footerResp.text();
+});
+</script>
+</body>
+</html>

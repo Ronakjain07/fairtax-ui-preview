@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FairTax — File ITR in 5 Minutes</title>
+<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="css/shared-components.css?v=1">
+</head>
+<body>
+<div class="top-banner blink-cta">
+  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
+</div>
+<div class="top-banner blink-green">
+  <span>Referral offer — payouts released Thursdays, 3:30 PM</span>
+</div>
+<div class="help-bar">
+  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
+</div>
+
+<header id="site-header"></header>
+
+<main>
+  <!-- REFERRAL HERO TEASER (Only Element on Page) -->
+  <div class="referral-hero-teaser referral-glow-card" id="referralTeaser" style="margin-bottom:48px;animation:slideInDown 0.6s ease-out;background:linear-gradient(135deg,#ecfdf5,#d1fae5,#f0fdf4);margin-top:48px">
+    <div class="teaser-content">
+      <div class="teaser-grid">
+        <div class="teaser-left">
+          <h2 class="teaser-title">File ITR & Earn Free Filing</h2>
+          <p class="teaser-subtitle">Refer 5 friends, get your taxes done completely free. Plus earn up to ₹15,000 in rewards.</p>
+          <div class="teaser-stats">
+            <div class="stat-item">
+              <span class="stat-label">Referrals Needed</span>
+              <span class="stat-value" id="referralsNeeded">5</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Your Rewards</span>
+              <span class="stat-value">₹15K</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Filed This Year</span>
+              <span class="stat-value" id="filingStatus">—</span>
+            </div>
+          </div>
+          <a href="choice.html" class="teaser-cta" style="display:inline-block;text-decoration:none;color:inherit">Get Started Now</a>
+          <div class="trust-badges-container">
+            <div class="trust-badge">
+              <span class="trust-badge-icon">🔒</span>
+              <div class="trust-badge-label">Secure</div>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-badge-icon">✓</span>
+              <div class="trust-badge-label">Compliant</div>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-badge-icon">⚡</span>
+              <div class="trust-badge-label">Fast</div>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-badge-icon">🎯</span>
+              <div class="trust-badge-label">Accurate</div>
+            </div>
+          </div>
+        </div>
+        <div class="teaser-right">
+          <div class="teaser-image-placeholder" style="position:relative">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80" alt="AI Tax Assistant helping with ITR filing">
+            <div class="ai-chat-bubble" style="top:20px;right:20px;z-index:2">
+              <div class="bubble-label">AI Tax Assistant</div>
+              <div>Here are deductions you can claim:</div>
+              <ul class="bubble-list">
+                <li><span class="bubble-check">&#10003;</span> Business Expenses</li>
+                <li><span class="bubble-check">&#10003;</span> Section 80D</li>
+                <li><span class="bubble-check">&#10003;</span> Section 80C</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="site-footer" style="margin-top:80px"></footer>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const headerResp = await fetch('components/header.html');
+  document.getElementById('site-header').innerHTML = await headerResp.text();
+  
+  const footerResp = await fetch('components/footer.html');
+  document.getElementById('site-footer').innerHTML = await footerResp.text();
+});
+</script>
+</body>
+</html>

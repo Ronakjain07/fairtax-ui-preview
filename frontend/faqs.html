@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQs — FairTax ITR Filing Questions Answered</title>
+  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="css/shared-components.css?v=1">
+  <style>
+    .faq-search {
+      max-width: 600px;
+      margin: 0 auto 32px;
+      position: relative;
+    }
+
+    .faq-search input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 14px;
+      transition: border-color 0.2s ease;
+    }
+
+    .faq-search input:focus {
+      outline: none;
+      border-color: #1A56DB;
+      box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+    }
+
+    .faq-category {
+      margin-bottom: 40px;
+    }
+
+    .faq-category-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    .faq-item {
+      margin-bottom: 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .faq-item:hover {
+      border-color: #1A56DB;
+      box-shadow: 0 4px 12px rgba(26, 86, 219, 0.08);
+    }
+
+    .faq-question {
+      background: #f8fafc;
+      padding: 16px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #0f172a;
+      user-select: none;
+      transition: background 0.2s ease;
+    }
+
+    .faq-question:hover {
+      background: #f1f5f9;
+    }
+
+    .faq-item.open .faq-question {
+      background: linear-gradient(135deg, #1A56DB, #1E40AF);
+      color: #fff;
+    }
+
+    .faq-toggle {
+      font-size: 18px;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+
+    .faq-item.open .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 16px;
+      max-height: 0;
+      overflow: hidden;
+      background: #fff;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+      padding: 16px;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .faq-answer p {
+      margin: 0 0 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #475569;
+    }
+
+    .faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+
+    .faq-answer ul {
+      margin: 12px 0;
+      padding-left: 20px;
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.8;
+    }
+
+    .faq-answer a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+
+    .faq-answer a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="top-banner blink-cta">
+  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
+</div>
+<div class="top-banner blink-green">
+  <span>Grab your Referral Offer — Referral payout released every Thursday 3:30 PM</span>
+</div>
+<div class="help-bar">
+  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
+</div>
+
+  <header id="site-header"></header>
+
+  <main class="landing-main">
+    <!-- Hero with Image -->
+    <div class="hero-with-image" style="max-width:1100px;margin:0 auto 40px">
+      <div class="hero-text-side">
+        <h1>Frequently Asked <span class="text-green">Questions</span></h1>
+        <p>Most questions about ITR filing, refunds, and FairTax answered below. Can't find what you're looking for? <a href="contact.html" style="color:#34D399;font-weight:600;text-decoration:none">Contact us</a>.</p>
+        <a href="#faqSearch" class="hero-cta-primary">Search FAQs &darr;</a>
+      </div>
+      <div class="hero-image-side">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Tax professional answering questions">
+        <div class="hero-image-overlay"></div>
+      </div>
+    </div>
+
+    <!-- Search Box -->
+    <div class="faq-search" style="max-width: 1000px; margin: 0 auto 32px; padding: 0 16px;">
+      <input type="text" id="faqSearch" placeholder="Search FAQs... (e.g., 'refund', 'documents', 'fees')" style="width: 100%;">
+    </div>
+
+    <!-- FAQs Container -->
+    <div style="max-width: 900px; margin: 0 auto; padding: 0 16px;">
+
+      <!-- Category 1: Filing Process -->
+      <div class="faq-category">
+        <h2 class="faq-category-title">📝 Filing Process</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How long does it take to file my ITR with FairTax?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Most returns are filed within <strong>5 minutes</strong> of uploading documents. The AI reads your documents instantly, and expert review typically takes a few hours. You'll receive your quote within 24 hours, ready to approve and file.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What documents do I need to upload?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>At minimum, you need:</p>
+            <ul>
+              <li><strong>Form 16</strong> (if salaried) OR <strong>Payslips</strong> (if self-employed)</li>
+              <li>Any investment/deduction proofs (home loan certificate, insurance receipts, school fees, etc.)</li>
+            </ul>
+            <p>We also accept:</p>
+            <ul>
+              <li>NPS statements</li>
+              <li>Donation receipts (80G)</li>
+              <li>Bank statements (for additional income)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I upload documents on mobile phone?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! Our platform is 100% mobile-friendly. You can:</p>
+            <ul>
+              <li>Take photos directly from your phone camera</li>
+              <li>Upload PDF files</li>
+              <li>Upload scanned documents</li>
+            </ul>
+            <p>For best results, ensure documents are clear and properly oriented.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Is my data secure on FairTax?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. We use:</p>
+            <ul>
+              <li><strong>256-bit encryption</strong> for all data in transit and at rest</li>
+              <li><strong>HTTPS/SSL</strong> for secure connections</li>
+              <li><strong>Regular security audits</strong> by third-party experts</li>
+              <li><strong>No data sharing</strong> with third parties (except required tax authorities)</li>
+            </ul>
+            <p>Your documents are deleted after filing is complete, unless you choose to keep them.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2: Refunds & Taxes -->
+      <div class="faq-category">
+        <h2 class="faq-category-title">💰 Refunds & Taxes</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How much tax refund will I get?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Your refund depends on:</p>
+            <ul>
+              <li>Your total income and tax paid</li>
+              <li>Deductions you claim (HRA, investments, charitable donations, etc.)</li>
+              <li>Old Regime vs New Regime comparison</li>
+            </ul>
+            <p>FairTax analyzes both regimes and recommends the one that maximizes your refund. On average, customers save ₹15,000-₹50,000 by switching regimes.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How long will I receive my refund after filing?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Refunds typically arrive in <strong>7-10 working days</strong> after filing (standard processing). </p>
+            <p>If you opt for our <strong>Fast Track option</strong>, we guarantee expedited processing, and refunds usually come in <strong>3-5 working days</strong> (small fee applies).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What if I owe tax instead of getting a refund?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>If your income is higher than TDS deducted, you may owe tax. FairTax will clearly show this in your quote. You'll know exactly how much to pay before filing. We help you arrange payment through the income tax portal.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I claim exemptions for HRA, LTA, etc.?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! FairTax automatically identifies and claims:</p>
+            <ul>
+              <li><strong>HRA (House Rent Allowance)</strong> — up to 50% of basic salary</li>
+              <li><strong>LTA (Leave Travel Allowance)</strong> — automatic</li>
+              <li><strong>Standard Deduction</strong> — ₹50,000 (salaried)</li>
+              <li><strong>Section 80C deductions</strong> — insurance, investments, tuition fees, etc.</li>
+              <li><strong>Section 80D</strong> — health insurance premiums</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: Fees & Pricing -->
+      <div class="faq-category">
+        <h2 class="faq-category-title">💳 Fees & Pricing</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How much does FairTax charge?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p><strong>₹499</strong> for regular ITR filing (split into 50% upfront + 50% after refund is credited).</p>
+            <p>However, filing is <strong>completely FREE</strong> if you:</p>
+            <ul>
+              <li>Qualify as senior citizen (60+ years)</li>
+              <li>Are a widow/widower</li>
+              <li>Are a single parent</li>
+              <li>Are differently-abled</li>
+              <li>Refer 5 friends to us</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do you have hidden charges?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p><strong>No hidden charges.</strong> You see the exact fee upfront in your quote before filing. The fee covers:</p>
+            <ul>
+              <li>AI document reading</li>
+              <li>Expert CA review</li>
+              <li>ITR filing</li>
+              <li>WhatsApp support</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What does the "Fast Track" refund option cost?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Fast Track refund processing costs <strong>₹500 extra</strong> and guarantees your refund within 3-5 working days (vs. standard 7-10 days). This is completely optional — you can choose standard processing and save ₹500.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 4: Referrals & Offers -->
+      <div class="faq-category">
+        <h2 class="faq-category-title">🎁 Referrals & Offers</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do I earn money by referring friends?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>For each friend you refer who files their ITR with FairTax:</p>
+            <ul>
+              <li><strong>1 referral:</strong> ₹250</li>
+              <li><strong>3 referrals:</strong> ₹1,000 + your free filing</li>
+              <li><strong>5 referrals:</strong> ₹5,000 + your free filing</li>
+              <li><strong>10+ referrals:</strong> Up to ₹15,000</li>
+            </ul>
+            <p>Referral payments are released every Thursday at 3:30 PM via your preferred UPI/bank transfer.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can my spouse also file ITR with FairTax?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! We offer a <strong>20% Family Package discount</strong> for spouses filing together. So if your filing costs ₹499, your spouse pays only ₹399. <a href="index.html" style="color: #2563eb; font-weight: 600;">Start filing</a> and you'll see this option at the end.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 5: Technical & Support -->
+      <div class="faq-category">
+        <h2 class="faq-category-title">🛠️ Technical & Support</h2>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What file formats do you accept?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>We accept:</p>
+            <ul>
+              <li><strong>PDF</strong> documents (scanned or digital)</li>
+              <li><strong>JPG/JPEG</strong> images</li>
+              <li><strong>PNG</strong> images</li>
+              <li><strong>BMP</strong> images</li>
+              <li><strong>TIFF</strong> images</li>
+            </ul>
+            <p>File size limit: 25 MB per document. Multi-page PDFs are fully supported.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What if the AI fails to extract my document?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>If the AI cannot read your document, we'll let you know immediately with a reason (e.g., "Image too blurry", "Text not readable"). You can then:</p>
+            <ul>
+              <li>Re-scan/re-photograph the document at higher quality</li>
+              <li>Manually enter the data</li>
+              <li>Contact our support team for help</li>
+            </ul>
+            <p>For best results: use clear, well-lit scans with straight orientation (not rotated).</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I save my progress and come back later?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! Your progress is automatically saved in your browser. You'll get a submission ID at the start which you can use to resume anytime. <strong>Note:</strong> Clear your browser cache and your submission will be lost, so save your ID!</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Who should I contact for support?</span>
+            <span class="faq-toggle">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>We're available 24/7 via:</p>
+            <ul>
+              <li><strong>WhatsApp:</strong> <a href="https://wa.me/917397510254" target="_blank" style="color: #2563eb; font-weight: 600;">+91 7397 510 254</a> (fastest response)</li>
+              <li><strong>Email:</strong> <a href="mailto:fairtaxadvisors@gmail.com" style="color: #2563eb; font-weight: 600;">fairtaxadvisors@gmail.com</a> (2-hour response)</li>
+              <li><strong>Call:</strong> +91 7397 510 254 (9 AM - 9 PM)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Still Have Questions CTA -->
+    <div style="background: linear-gradient(135deg, #0B2545, #1A56DB); border-radius: 16px; padding: 40px 20px; text-align: center; margin: 48px auto; max-width: 800px; color: #fff; position:relative;overflow:hidden">
+      <div class="sparkle-container"><div class="sparkle-dot" style="background:#34D399"></div><div class="sparkle-dot" style="background:#34D399"></div><div class="sparkle-dot" style="background:#34D399"></div></div>
+      <h2 style="color: #fff; margin-bottom: 12px; text-shadow:none">Still Have Questions?</h2>
+      <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 24px; font-size: 15px;">
+        Our tax experts are here to help. Get in touch via WhatsApp, email, or phone.
+      </p>
+      <a href="contact.html" class="hero-cta-primary" style="display:inline-block;text-decoration:none">
+        Contact Support &rarr;
+      </a>
+    </div>
+
+  </main>
+
+  <footer id="site-footer"></footer>
+
+<!-- Freelancer floating CTA -->
+<a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
+  <span class="fl-star">&#11088;</span>
+  <span class="fl-text">Why not join us<br>as a Freelancer?</span>
+</a>
+
+<!-- Winners widget -->
+<div id="winnersWidget" class="winners-widget">
+  <h4>Weekly Winners</h4>
+  <ul id="winnersList"><li>Loading...</li></ul>
+  <a href="referral-offer.html" id="seeAllWinners">See all</a>
+</div>
+
+  <script>
+    const API = 'http://localhost:5000/api';
+    fetch('components/header.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('site-header').innerHTML = html)
+      .catch(e => console.error('Failed to load header:', e));
+
+    fetch('components/footer.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('site-footer').innerHTML = html)
+      .catch(e => console.error('Failed to load footer:', e));
+
+    async function loadWinners() {
+      try {
+        const r = await fetch(`${API}/winners`);
+        const j = await r.json();
+        const list = document.getElementById('winnersList');
+        list.innerHTML = '';
+        (j.winners || []).forEach(w => {
+          const li = document.createElement('li');
+          li.textContent = `${w.name} — ${w.reward}`;
+          list.appendChild(li);
+        });
+      } catch (e) { console.warn('winners load failed', e); }
+    }
+    loadWinners();
+
+    // FAQ accordion functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        item.classList.toggle('open');
+      });
+    });
+
+    // FAQ search functionality
+    const searchInput = document.getElementById('faqSearch');
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question span:first-child').textContent.toLowerCase();
+        const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+        const matches = question.includes(searchTerm) || answer.includes(searchTerm);
+
+        if (searchTerm === '') {
+          item.style.display = 'block';
+        } else {
+          item.style.display = matches ? 'block' : 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

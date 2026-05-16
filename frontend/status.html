@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filing Status — FairTax</title>
+<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="css/shared-components.css?v=1">
+</head>
+<body>
+<div class="top-banner blink-cta">
+  <a class="banner-link" href="proofs.html">🚨 Free File Eligibility — Click to check now!</a>
+</div>
+<div class="top-banner blink-green">
+  <span>Referral payout released every Thursday 3:30 PM — Grab your cashback!</span>
+</div>
+<div class="help-bar">
+  Queries? WhatsApp us at +91 7397 510 254 — we reply instantly.
+</div>
+
+<header id="site-header"></header>
+
+<main class="status-page">
+
+  <!-- Hero with Image -->
+  <div class="hero-with-image" style="max-width:1100px;margin:0 auto 40px;overflow:hidden">
+    <div class="hero-text-side">
+      <h1 style="font-size:42px;font-weight:900;color:#ffffff;text-shadow:0 2px 8px rgba(0,0,0,0.3);margin:0 0 16px">Track Your Filing</h1>
+      <p style="font-size:17px;color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,0.2);margin:0 0 24px;line-height:1.6">Get real-time updates on your ITR filing status. Track from submission to completion with live progress notifications on WhatsApp.</p>
+      <div style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:20px;margin:0">
+        <div style="font-size:13px;color:#1e40af;font-weight:600;margin-bottom:8px">📊 What You Can Track:</div>
+        <ul style="margin:0;padding-left:20px;color:#1e40af;font-size:14px;line-height:1.8;font-weight:500">
+          <li>Expert review progress</li>
+          <li>Quote preparation status</li>
+          <li>Payment milestones</li>
+          <li>Filing completion</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero-image-side">
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" alt="Real-time filing status tracking">
+      <div class="hero-image-overlay"></div>
+    </div>
+  </div>
+
+  <div class="status-lookup-card">
+    <h2>📊 Track Your ITR Filing</h2>
+    <p class="hint" style="margin-bottom:20px">Enter your Submission ID to check real-time status of your filing.</p>
+    <label>Submission ID
+      <input id="sidInput" placeholder="e.g. 3f2a4b1c-…" style="margin-top:6px;font-family:monospace">
+    </label>
+    <button class="status-lookup-btn" id="checkStatusBtn" style="margin-top:4px">Check Status →</button>
+    <div id="statusError" class="status error" style="display:none;margin-top:12px"></div>
+  </div>
+
+  <div id="statusResult" style="display:none">
+
+    <!-- Client info bar -->
+    <div id="clientBar" style="background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:20px;display:flex;align-items:center;gap:16px">
+      <div style="font-size:32px">👤</div>
+      <div>
+        <div id="clientName" style="font-size:17px;font-weight:800;color:#0f172a"></div>
+        <div id="clientSid" style="font-size:12px;color:#64748b;font-family:monospace"></div>
+      </div>
+      <div id="stageBadge" style="margin-left:auto;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700"></div>
+    </div>
+
+    <!-- Timeline -->
+    <div style="background:#fff;border-radius:18px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,.07)">
+      <h3 style="color:#0f172a;margin-bottom:22px;font-size:16px">Filing Progress</h3>
+      <div class="timeline" id="timeline"></div>
+
+      <!-- Auditor notes if any -->
+      <div id="auditNotes" style="display:none;margin-top:20px;background:#fef3c7;border:1px solid #f59e0b;border-radius:10px;padding:12px 14px;font-size:13px;color:#78350f"></div>
+
+      <!-- Payment Status Section -->
+      <div id="paymentSection" style="display:none;margin-top:24px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #6ee7b7;border-radius:14px;padding:20px">
+        <h3 style="color:#166534;margin-bottom:12px">💳 Payment Status</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+          <div style="background:#fff;border-radius:8px;padding:12px">
+            <div style="font-size:11px;color:#94a3b8;font-weight:600;margin-bottom:4px">TOTAL FEE</div>
+            <div id="totalFee" style="font-size:20px;font-weight:900;color:#166534">—</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:12px">
+            <div style="font-size:11px;color:#94a3b8;font-weight:600;margin-bottom:4px">UPFRONT (50%)</div>
+            <div id="uptrontAmount" style="font-size:20px;font-weight:900;color:#166534">—</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:12px">
+            <div style="font-size:11px;color:#94a3b8;font-weight:600;margin-bottom:4px">BALANCE DUE</div>
+            <div id="balanceDue" style="font-size:20px;font-weight:900;color:#166534">—</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:12px">
+            <div style="font-size:11px;color:#94a3b8;font-weight:600;margin-bottom:4px">STATUS</div>
+            <div id="paymentStatus" style="font-size:16px;font-weight:900;color:#f97316">PENDING</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Payment Proof -->
+      <div id="paymentProofSection" style="display:none;margin-top:24px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px">
+        <h3 style="color:#0f172a;margin-bottom:12px">📸 Upload Payment Proof</h3>
+        <p style="color:#64748b;font-size:13px;margin-bottom:16px">Upload a screenshot of your UPI transaction / bank transfer to confirm payment.</p>
+        <label class="file" style="border:2px dashed #2563eb;border-radius:10px;padding:20px;text-align:center;cursor:pointer">
+          <span style="font-weight:700;color:#2563eb">📄 Choose Payment Proof</span>
+          <input type="file" id="paymentProofInput" accept="image/*,.pdf" multiple style="display:none">
+        </label>
+        <button onclick="uploadPaymentProof()" style="background:#2563eb;color:#fff;width:100%;padding:12px;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-top:12px;font-size:14px">✓ Submit Proof</button>
+        <div id="paymentProofStatus" class="status" style="display:none;margin-top:12px"></div>
+      </div>
+
+      <!-- Action area -->
+      <div id="actionArea" style="margin-top:24px"></div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer id="site-footer"></footer>
+
+<!-- Freelancer floating CTA -->
+<a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
+  <span class="fl-star">&#11088;</span>
+  <span class="fl-text">Why not join us<br>as a Freelancer?</span>
+</a>
+
+<!-- Winners widget -->
+<div id="winnersWidget" class="winners-widget">
+  <h4>Weekly Winners</h4>
+  <ul id="winnersList"><li>Loading...</li></ul>
+  <a href="referral-offer.html" id="seeAllWinners">See all</a>
+</div>
+
+<script>
+const API = 'http://localhost:5000/api';
+
+const STAGES = [
+  { id: 'SUBMITTED',     label: 'Application Submitted',  desc: 'We received your ITR filing request.' },
+  { id: 'QUOTE_SENT',    label: 'Expert Review Complete',  desc: 'Your quote has been prepared and sent on WhatsApp.' },
+  { id: 'OPTION_CHOSEN', label: 'Plan Selected',           desc: 'You have chosen your filing plan.' },
+  { id: 'PAID_HALF',     label: '50% Payment Received',   desc: 'Upfront payment confirmed — filing in progress!' },
+  { id: 'PAID_FULL',     label: 'Full Payment Received',  desc: 'Both payments received. Thank you!' },
+  { id: 'FILING',        label: 'Filing In Progress',      desc: 'Our expert is filing your ITR on the portal.' },
+  { id: 'FILED',         label: 'Return Filed ✓',         desc: 'Your ITR has been successfully filed! Acknowledgement will be sent on WhatsApp.' },
+];
+
+const STAGE_ORDER = STAGES.map(s => s.id);
+
+const STAGE_COLORS = {
+  SUBMITTED: '#1A56DB', QUOTE_SENT: '#1E40AF', OPTION_CHOSEN: '#0B2545',
+  PAID_HALF: '#059669', PAID_FULL: '#059669', FILING: '#10B981', FILED: '#16a34a',
+};
+
+function buildTimeline(currentStage) {
+  const currentIdx = STAGE_ORDER.indexOf(currentStage);
+  return STAGES.map((s, i) => {
+    let cls = 'pending';
+    let dotContent = '○';
+    if (i < currentIdx) { cls = 'done'; dotContent = '✓'; }
+    if (i === currentIdx) { cls = 'active'; dotContent = '●'; }
+    return `
+      <div class="t-step ${cls}">
+        <div class="t-dot">${dotContent}</div>
+        <div class="t-content">
+          <h4>${s.label}</h4>
+          <p>${s.desc}</p>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function buildActionArea(rec) {
+  const stage = rec.stage;
+  const sid = rec.submission_id;
+  const waBase = 'https://wa.me/917397510254?text=';
+
+  if (stage === 'SUBMITTED') {
+    return `<div class="milestone-hint">⏳ Your application is under expert review. You'll receive a WhatsApp notification once your quote is ready (usually within 24 hours).</div>`;
+  }
+  if (stage === 'QUOTE_SENT') {
+    return `
+      <div style="text-align:center">
+        <p style="color:#475569;font-size:14px;margin-bottom:16px">Your quote has been prepared by our experts. For confidentiality, the detailed quote and the secured PDF are sent only via WhatsApp.</p>
+        <p style="color:#6b7280;font-size:13px;margin-top:6px">Please check the WhatsApp number you provided. If you didn't receive it, contact our support on WhatsApp.</p>
+        <div style="margin-top:12px">
+          <a href="https://wa.me/917397510254?text=Hi+FairTax,+I+haven't+received+my+quote+(ID:+${sid})" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#1A56DB,#1E40AF);color:#fff;padding:10px 22px;border-radius:18px;font-weight:700;text-decoration:none">📱 Contact Support on WhatsApp</a>
+        </div>
+      </div>`;
+  }
+  if (stage === 'OPTION_CHOSEN') {
+    const waMsg = encodeURIComponent(`Hi FairTax! I have selected my plan (ID: ${sid}). Please share payment details.`);
+    return `
+      <div style="text-align:center">
+        <p style="color:#475569;font-size:14px;margin-bottom:16px">Plan selected! Please complete your 50% upfront payment to begin filing.</p>
+        <a href="${waBase}${waMsg}" target="_blank" class="payment-wa-btn">📱 WhatsApp Us for Payment Details →</a>
+      </div>`;
+  }
+  if (stage === 'PAID_HALF' || stage === 'FILING') {
+    return `<div class="milestone-hint" style="background:#f0fdf4;border-color:#16a34a;color:#166534">🚀 <b>Filing is in progress!</b> Our expert is working on your return. You'll be notified on WhatsApp once filed.</div>`;
+  }
+  if (stage === 'FILED') {
+    const waMsg = encodeURIComponent(`Hi FairTax! My ITR is filed (ID: ${sid}). Please share the acknowledgement.`);
+    return `
+      <div style="text-align:center">
+        <div style="font-size:48px;margin-bottom:10px">🎉</div>
+        <h3 style="color:#16a34a;margin-bottom:8px">Your ITR has been filed successfully!</h3>
+        <p style="color:#475569;font-size:14px;margin-bottom:16px">Acknowledgement (ITR-V) will be shared on WhatsApp. Check your email from income-tax.gov.in.</p>
+        <a href="${waBase}${waMsg}" target="_blank" class="payment-wa-btn">📱 Request Acknowledgement on WhatsApp</a>
+      </div>`;
+  }
+  return '';
+}
+
+async function checkStatus(sid) {
+  document.getElementById('statusError').style.display = 'none';
+  const btn = document.getElementById('checkStatusBtn');
+  btn.textContent = 'Checking...';
+  btn.disabled = true;
+
+  try {
+    const r = await fetch(`${API}/status/${encodeURIComponent(sid)}`);
+    const j = await r.json();
+
+    if (!j.success) {
+      document.getElementById('statusError').style.display = 'block';
+      document.getElementById('statusError').textContent = '❌ ' + (j.error || 'Submission ID not found.');
+      return;
+    }
+
+    // Client bar
+    document.getElementById('clientName').textContent = j.name || 'Your Filing';
+    document.getElementById('clientSid').textContent = 'ID: ' + j.submission_id;
+    const badge = document.getElementById('stageBadge');
+    const stageLabel = STAGES.find(s => s.id === j.stage)?.label || j.stage;
+    badge.textContent = stageLabel;
+    badge.style.background = (STAGE_COLORS[j.stage] || '#2563eb') + '22';
+    badge.style.color = STAGE_COLORS[j.stage] || '#2563eb';
+
+    // Timeline
+    document.getElementById('timeline').innerHTML = buildTimeline(j.stage);
+
+    // Auditor notes
+    if (j.auditor_notes) {
+      const el = document.getElementById('auditNotes');
+      el.style.display = 'block';
+      el.textContent = '📝 Auditor notes: ' + j.auditor_notes;
+    }
+
+    // Action area
+    document.getElementById('actionArea').innerHTML = buildActionArea(j);
+
+    document.getElementById('statusResult').style.display = 'block';
+    document.getElementById('statusResult').scrollIntoView({ behavior: 'smooth' });
+
+  } catch (e) {
+    document.getElementById('statusError').style.display = 'block';
+    document.getElementById('statusError').textContent = '❌ Network error: ' + e.message;
+  } finally {
+    btn.textContent = 'Check Status →';
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('checkStatusBtn').addEventListener('click', () => {
+  const sid = document.getElementById('sidInput').value.trim();
+  if (!sid) { alert('Please enter your Submission ID.'); return; }
+  checkStatus(sid);
+});
+
+// Payment proof upload
+async function uploadPaymentProof() {
+  const sidInput = document.getElementById('sidInput').value.trim();
+  const fileInput = document.getElementById('paymentProofInput');
+
+  if (!sidInput) {
+    alert('Please check your submission status first.');
+    return;
+  }
+
+  if (!fileInput.files.length) {
+    alert('Please select a file.');
+    return;
+  }
+
+  const fd = new FormData();
+  fd.append('submission_id', sidInput);
+  [...fileInput.files].forEach(f => fd.append('proof', f));
+
+  const statusEl = document.getElementById('paymentProofStatus');
+  statusEl.style.display = 'block';
+  statusEl.className = 'status loading';
+  statusEl.textContent = '📤 Uploading payment proof...';
+
+  try {
+    const r = await fetch(`${API}/upload-payment-proof`, { method: 'POST', body: fd });
+    const j = await r.json();
+
+    if (j.success) {
+      statusEl.className = 'status success';
+      statusEl.textContent = '✅ ' + j.message;
+      fileInput.value = '';
+      // Reload status after 2 seconds
+      setTimeout(() => checkStatus(sidInput), 2000);
+    } else {
+      statusEl.className = 'status error';
+      statusEl.textContent = '❌ ' + (j.error || 'Upload failed');
+    }
+  } catch (e) {
+    statusEl.className = 'status error';
+    statusEl.textContent = '❌ ' + e.message;
+  }
+}
+
+// File input click
+document.querySelector('.file')?.addEventListener('click', () => {
+  document.getElementById('paymentProofInput').click();
+});
+
+document.getElementById('paymentProofInput')?.addEventListener('change', () => {
+  const fileNames = Array.from(document.getElementById('paymentProofInput').files)
+    .map(f => f.name)
+    .join(', ');
+  if (fileNames) {
+    const label = document.querySelector('.file span');
+    if (label) label.textContent = '✓ ' + fileNames;
+  }
+});
+
+// Enhanced checkStatus to show payment section
+const originalCheckStatus = checkStatus;
+async function enhancedCheckStatus(sid) {
+  document.getElementById('statusError').style.display = 'none';
+  const btn = document.getElementById('checkStatusBtn');
+  btn.textContent = 'Checking...';
+  btn.disabled = true;
+
+  try {
+    const r = await fetch(`${API}/status/${encodeURIComponent(sid)}`);
+    const j = await r.json();
+
+    if (!j.success) {
+      document.getElementById('statusError').style.display = 'block';
+      document.getElementById('statusError').textContent = '❌ ' + (j.error || 'Submission ID not found.');
+      return;
+    }
+
+    // Call original logic
+    document.getElementById('clientName').textContent = j.name || 'Your Filing';
+    document.getElementById('clientSid').textContent = 'ID: ' + j.submission_id;
+    const badge = document.getElementById('stageBadge');
+    const stageLabel = STAGES.find(s => s.id === j.stage)?.label || j.stage;
+    badge.textContent = stageLabel;
+    badge.style.background = (STAGE_COLORS[j.stage] || '#2563eb') + '22';
+    badge.style.color = STAGE_COLORS[j.stage] || '#2563eb';
+
+    document.getElementById('timeline').innerHTML = buildTimeline(j.stage);
+
+    if (j.auditor_notes) {
+      const el = document.getElementById('auditNotes');
+      el.style.display = 'block';
+      el.textContent = '📝 Auditor notes: ' + j.auditor_notes;
+    }
+
+    // Show payment section for stages after quote sent
+    if (['OPTION_CHOSEN', 'PAID_HALF', 'PAID_FULL', 'FILING', 'FILED'].includes(j.stage)) {
+      const paymentSec = document.getElementById('paymentSection');
+      paymentSec.style.display = 'block';
+
+      try {
+        const pr = await fetch(`${API}/payment-status/${sid}`);
+        const pj = await pr.json();
+
+        if (pj.success) {
+          const fmt = (n) => '₹' + Number(n).toLocaleString('en-IN');
+          document.getElementById('totalFee').textContent = fmt(pj.total_fee);
+          document.getElementById('uptrontAmount').textContent = fmt(pj.upfront_due);
+          document.getElementById('balanceDue').textContent = fmt(pj.balance_due);
+
+          const payStatus = document.getElementById('paymentStatus');
+          payStatus.textContent = pj.payment_status || 'PENDING';
+          if (pj.payment_status === 'PAID') {
+            payStatus.style.color = '#16a34a';
+          }
+
+          // Show proof upload if payment not yet confirmed
+          if (pj.payment_status !== 'PAID' && ['OPTION_CHOSEN', 'PAID_HALF'].includes(j.stage)) {
+            document.getElementById('paymentProofSection').style.display = 'block';
+          }
+        }
+      } catch (e) {
+        console.warn('Could not fetch payment status:', e);
+      }
+    }
+
+    document.getElementById('actionArea').innerHTML = buildActionArea(j);
+    document.getElementById('statusResult').style.display = 'block';
+    document.getElementById('statusResult').scrollIntoView({ behavior: 'smooth' });
+
+  } catch (e) {
+    document.getElementById('statusError').style.display = 'block';
+    document.getElementById('statusError').textContent = '❌ Network error: ' + e.message;
+  } finally {
+    btn.textContent = 'Check Status →';
+    btn.disabled = false;
+  }
+}
+
+// Override checkStatus
+window.checkStatus = enhancedCheckStatus;
+
+document.getElementById('checkStatusBtn').addEventListener('click', () => {
+  const sid = document.getElementById('sidInput').value.trim();
+  if (!sid) { alert('Please enter your Submission ID.'); return; }
+  checkStatus(sid);
+});
+
+// Auto-load from query param ?id=xxx
+const urlId = new URLSearchParams(location.search).get('id');
+if (urlId) {
+  document.getElementById('sidInput').value = urlId;
+  checkStatus(urlId);
+}
+
+// Load header and footer components
+fetch('components/header.html')
+  .then(r => r.text())
+  .then(html => document.getElementById('site-header').innerHTML = html)
+  .catch(e => console.error('Failed to load header:', e));
+
+fetch('components/footer.html')
+  .then(r => r.text())
+  .then(html => document.getElementById('site-footer').innerHTML = html)
+  .catch(e => console.error('Failed to load footer:', e));
+
+// Header spacing update
+(function(){
+  function updateHeaderSpacing(){
+    try{
+      var header=document.querySelector('header');
+      var nav=document.querySelector('.site-nav');
+      var topOffset=0;
+      if(header) topOffset+=header.offsetHeight;
+      if(nav) topOffset+=nav.offsetHeight;
+      document.documentElement.style.setProperty('--site-top-offset', topOffset+'px');
+      document.documentElement.style.setProperty('--main-top-offset', (topOffset+12)+'px');
+    }catch(e){}
+  }
+  if(document.readyState==='loading'){window.addEventListener('DOMContentLoaded',updateHeaderSpacing);}else{updateHeaderSpacing();}
+  window.addEventListener('resize',updateHeaderSpacing);
+})();
+
+async function loadWinners() {
+  try {
+    const r = await fetch(`${API}/winners`);
+    const j = await r.json();
+    const list = document.getElementById('winnersList');
+    if (!list) return;
+    list.innerHTML = '';
+    (j.winners || []).forEach(w => {
+      const li = document.createElement('li');
+      li.textContent = `${w.name} — ${w.reward}`;
+      list.appendChild(li);
+    });
+  } catch (e) { /* ignore */ }
+}
+loadWinners();
+</script>
+</body>
+</html>

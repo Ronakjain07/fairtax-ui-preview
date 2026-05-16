@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FairTax — Free Filing + Referral Rewards</title>
+<link rel="stylesheet" href="style.css?v=12">
+<link rel="stylesheet" href="css/shared-components.css?v=1">
+</head>
+<body>
+<div class="top-banner blink-cta">
+  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
+</div>
+<div class="top-banner blink-green">
+  <span>Referral offer — payouts released Thursdays, 3:30 PM</span>
+</div>
+<div class="help-bar">
+  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
+</div>
+
+<header id="site-header"></header>
+
+<main>
+  <!-- REFERRAL HERO TEASER -->
+  <div class="referral-hero-teaser referral-glow-card" id="referralTeaser" style="margin-bottom:48px;animation:slideInDown 0.6s ease-out;background:linear-gradient(135deg,#ecfdf5,#d1fae5,#f0fdf4)">
+    <div class="teaser-content">
+      <div class="teaser-grid">
+        <div class="teaser-left">
+          <h2 class="teaser-title">File ITR & Earn Free Filing</h2>
+          <p class="teaser-subtitle">Refer 5 friends, get your taxes done completely free. Plus earn up to ₹15,000 in rewards.</p>
+          <div class="teaser-stats">
+            <div class="stat-item">
+              <span class="stat-label">Referrals Needed</span>
+              <span class="stat-value" id="referralsNeeded">5</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Your Rewards</span>
+              <span class="stat-value">₹15K</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Filed This Year</span>
+              <span class="stat-value" id="filingStatus">—</span>
+            </div>
+          </div>
+          <button type="button" class="teaser-cta" onclick="scrollToForm()">Continue to Referral Form</button>
+          <div class="trust-badges-container">
+            <div class="trust-badge">
+              <span class="trust-badge-icon">🔒</span>
+              <div class="trust-badge-label">Secure</div>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-badge-icon">✓</span>
+              <div class="trust-badge-label">Compliant</div>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-badge-icon">⚡</span>
+              <div class="trust-badge-label">Fast</div>
+            </div>
+            <div class="trust-badge">
+              <span class="trust-badge-icon">🎯</span>
+              <div class="trust-badge-label">Accurate</div>
+            </div>
+          </div>
+        </div>
+        <div class="teaser-right">
+          <div class="teaser-image-placeholder" style="position:relative">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80" alt="AI Tax Assistant helping with ITR filing">
+            <div class="ai-chat-bubble" style="top:20px;right:20px;z-index:2">
+              <div class="bubble-label">AI Tax Assistant</div>
+              <div>Here are deductions you can claim:</div>
+              <ul class="bubble-list">
+                <li><span class="bubble-check">&#10003;</span> Business Expenses</li>
+                <li><span class="bubble-check">&#10003;</span> Section 80D</li>
+                <li><span class="bubble-check">&#10003;</span> Section 80C</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress"><div id="bar"></div></div>
+  <div class="step-label" id="stepLabel">Step 1 of 7</div>
+  <form id="taxForm">
+    <!-- STEP 1 — Referral Filing: Your Details + 5 Referrals -->
+    <section class="step active" data-step="1">
+      <h2>Free Tax Filing — Refer 5 Friends</h2>
+      <p style="color:#6b7280;margin-bottom:20px">Fill your details and add 5 referrals to get free filing + ₹5,000 bonus. <a href="index.html" style="color:#1A56DB;font-weight:600">Switch to Regular Filing &rarr;</a></p>
+
+      <div id="freeReferralSection" style="display:block">
+        <h3>Your Personal Details</h3>
+        <p class="hint">Your information + 5 referrals (name + phone). All phones should be 10 digits.</p>
+        <div class="grid">
+          <label>Your Name <input name="referrer_name" placeholder="Your full name" required></label>
+          <label>Your Phone <input name="referrer_phone" placeholder="Your phone" pattern="\d{10}" required></label>
+          <label>Your Email <input name="email" placeholder="Your email" type="email" required></label>
+          <label>Your PAN <input name="pan" placeholder="PAN (e.g., ABCDE1234F)" pattern="[A-Z]{5}[0-9]{4}[A-Z]" style="text-transform:uppercase" required></label>
+          <label style="grid-column: 1 / -1">City Type (for HRA calculation)
+            <select name="city_type" required>
+              <option value="">-- Select City Type --</option>
+              <option value="metro">Metro</option>
+              <option value="non-metro">Non-Metro</option>
+            </select>
+          </label>
+        </div>
+
+        <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+        <h3>Add 5 Referrals</h3>
+        <p class="hint">Refer 5 people to get free filing + ₹5,000 bonus</p>
+        <div id="referralsList">
+          <div class="grid" id="refInputs">
+            <label>Ref 1 Name <input name="ref_name_1" placeholder="Name"></label>
+            <label>Ref 1 Phone <input name="ref_phone_1" placeholder="Phone" pattern="\d{10}"></label>
+            <label>Ref 2 Name <input name="ref_name_2" placeholder="Name"></label>
+            <label>Ref 2 Phone <input name="ref_phone_2" placeholder="Phone" pattern="\d{10}"></label>
+            <label>Ref 3 Name <input name="ref_name_3" placeholder="Name"></label>
+            <label>Ref 3 Phone <input name="ref_phone_3" placeholder="Phone" pattern="\d{10}"></label>
+            <label>Ref 4 Name <input name="ref_name_4" placeholder="Name"></label>
+            <label>Ref 4 Phone <input name="ref_phone_4" placeholder="Phone" pattern="\d{10}"></label>
+            <label>Ref 5 Name <input name="ref_name_5" placeholder="Name"></label>
+            <label>Ref 5 Phone <input name="ref_phone_5" placeholder="Phone" pattern="\d{10}"></label>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;text-align:center;position:relative">
+          <button type="button" id="jokerPlayBtn" class="joker-play-btn" style="display:inline-flex">
+            <span class="joker-half-face">🃏</span>
+            <span class="joker-text">Let's Play Fair →</span>
+          </button>
+        </div>
+
+        <div style="margin-top:10px">
+          <button type="button" id="revealCodeBtn" class="btn btn-primary">🃏 Reveal Code</button>
+          <div id="freeMessage" class="hint"></div>
+        </div>
+      </div>
+
+      <input type="hidden" name="filing_type" value="free">
+      <input type="hidden" name="referral_code" value="">
+    </section>
+
+    <!-- STEP 2 — Form 16 Yes/No -->
+    <section class="step" data-step="2">
+      <h2>Do you have Form 16?</h2>
+      <div class="choice-buttons">
+        <button type="button" class="choice" data-form16="yes">Yes, I have Form 16</button>
+        <button type="button" class="choice" data-form16="no">No, only Payslip</button>
+      </div>
+      <input type="hidden" name="has_form16">
+
+      <div id="form16Section" style="display:none;margin-top:20px">
+        <label class="file">
+          <span>Form 16 — multiple files allowed</span>
+          <input type="file" id="form16" accept="*/*" capture="environment" multiple>
+          <button type="button" class="camera-btn" data-target="form16">Use Camera</button>
+        </label>
+      </div>
+
+      <div id="payslipSection" style="display:none;margin-top:20px">
+        <label class="file">
+          <span>March 2026 YTD Payslip (mandatory)</span>
+          <input type="file" id="payslips" accept="*/*" capture="environment" multiple required>
+          <button type="button" class="camera-btn" data-target="payslips">Use Camera</button>
+        </label>
+        <p class="hint">Please upload your March 2026 Year-To-Date payslip.</p>
+      </div>
+
+      <div id="extractStatus" class="status"></div>
+
+      <div id="extractionLoader" style="display:none;margin-top:16px">
+        <div class="premium-loader">
+          <span class="loader-text">🤖 Extracting data...</span>
+          <div class="loader-dots">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 3 — Investment Proofs -->
+    <section class="step" data-step="3">
+      <h2>All the applicable investment documents</h2>
+      <p class="hint">Toggle <b>Yes</b> for applicable items and upload the document. Extraction runs automatically when you click <b>Next</b>; then verify.</p>
+
+      <input type="hidden" name="home_loans_json" id="homeLoansJson" value="[]">
+      <input type="hidden" name="insurance_policies_json" id="insurancePoliciesJson" value="[]">
+      <input type="hidden" name="donations_json" id="donationsJson" value="[]">
+
+      <div class="proof-section">
+        <div class="proof-header"><span>House Rent Paid</span>
+          <select class="proof-toggle" onchange="toggleSection('houseRentBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="houseRentBody" style="display:none;margin-top:10px">
+          <label>Monthly Rental Amount (with proof) <input name="rent_paid" type="number" placeholder="e.g. 15000"></label>
+        </div>
+      </div>
+
+      <div class="proof-section">
+        <div class="proof-header"><span>Home Loan</span>
+          <select class="proof-toggle" onchange="toggleSection('homeLoanBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="homeLoanBody" style="display:none;margin-top:10px">
+          <label class="file"><span>Home Loan Interest Certificate</span>
+            <input type="file" id="docHome" accept="*/*" multiple>
+            <button type="button" class="camera-btn" data-target="docHome">Use Camera</button>
+          </label>
+          <div id="homeLoanStatus" class="status" style="display:none;margin-bottom:8px"></div>
+        </div>
+      </div>
+
+      <div class="proof-section">
+        <div class="proof-header"><span>Life Insurance (LIC / ULIP)</span>
+          <select class="proof-toggle" onchange="toggleSection('lifeInsBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="lifeInsBody" style="display:none;margin-top:10px">
+          <label class="file"><span>Insurance Premium Receipt</span>
+            <input type="file" id="docInsLife" accept="*/*" multiple>
+            <button type="button" class="camera-btn" data-target="docInsLife">Use Camera</button>
+          </label>
+          <div id="lifeInsStatus" class="status" style="display:none;margin-bottom:8px"></div>
+        </div>
+      </div>
+
+      <div class="proof-section">
+        <div class="proof-header"><span>Health Insurance — Self &amp; Family</span>
+          <select class="proof-toggle" onchange="toggleSection('healthSelfBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="healthSelfBody" style="display:none;margin-top:10px">
+          <label class="file"><span>Health Insurance Document</span>
+            <input type="file" id="docInsHealth" accept="*/*" multiple>
+            <button type="button" class="camera-btn" data-target="docInsHealth">Use Camera</button>
+          </label>
+          <div id="healthSelfStatus" class="status" style="display:none;margin-bottom:8px"></div>
+        </div>
+      </div>
+
+      <div class="proof-section">
+        <div class="proof-header"><span>Health Insurance — Parents</span>
+          <select class="proof-toggle" onchange="toggleSection('healthParentBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="healthParentBody" style="display:none;margin-top:10px">
+          <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+            <input type="checkbox" name="parents_senior" value="1" style="width:auto;margin:0">
+            <span>Parents are Senior Citizens (higher 80D limit applies)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="proof-section">
+        <div class="proof-header"><span>NPS (National Pension Scheme)</span>
+          <select class="proof-toggle" onchange="toggleSection('npsBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="npsBody" style="display:none;margin-top:10px">
+          <label class="file"><span>NPS Statement</span>
+            <input type="file" id="docNps" accept="*/*" multiple>
+            <button type="button" class="camera-btn" data-target="docNps">Use Camera</button>
+          </label>
+          <div id="npsStatus" class="status" style="display:none;margin-bottom:8px"></div>
+        </div>
+      </div>
+
+      <div class="proof-section">
+        <div class="proof-header"><span>School / Tuition Fees (80C)</span>
+          <select class="proof-toggle" onchange="toggleSection('schoolFeesBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="schoolFeesBody" style="display:none;margin-top:10px">
+          <label class="file"><span>Fee Receipt</span>
+            <input type="file" id="docSchool" accept="*/*" multiple>
+            <button type="button" class="camera-btn" data-target="docSchool">Use Camera</button>
+          </label>
+          <div id="schoolStatus" class="status" style="display:none;margin-bottom:8px"></div>
+        </div>
+      </div>
+
+      <div class="proof-section">
+        <div class="proof-header"><span>Donations (Section 80G)</span>
+          <select class="proof-toggle" onchange="toggleSection('donationsBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="donationsBody" style="display:none;margin-top:10px">
+          <label class="file"><span>Donation Receipt / 80G Certificate</span>
+            <input type="file" id="docDon" accept="*/*" multiple>
+            <button type="button" class="camera-btn" data-target="docDon">Use Camera</button>
+          </label>
+          <div id="donationStatus" class="status" style="display:none;margin-bottom:8px"></div>
+        </div>
+      </div>
+
+      <div class="proof-section">
+        <div class="proof-header"><span>Other Deductions</span>
+          <select class="proof-toggle" onchange="toggleSection('otherDeductBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="otherDeductBody" style="display:none;margin-top:10px">
+          <div class="grid">
+            <label>80E — Education Loan Interest <input name="sec_80e" type="number" placeholder="₹ annual"></label>
+            <label>80EEB — EV Loan Interest <input name="sec_80eeb" type="number" placeholder="₹ annual"></label>
+            <label>80TTA — Savings Bank Interest <input name="savings_interest" type="number" placeholder="₹ annual"></label>
+            <label>80DDB — Specified Disease <input name="sec_80db" type="number" placeholder="₹ annual"></label>
+            <label>80G Donations Total <input name="sec_80g" type="number" placeholder="Auto-calculated"></label>
+            <label>Others — specify <input name="other_deductions_misc" placeholder="Description + amount"></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 4 — Review All Details -->
+    <section class="step" data-step="4">
+      <h2>Review Your Details</h2>
+      <p class="hint">AI pre-filled from your uploaded documents. Confirm and correct all figures before submitting.</p>
+
+      <h3 class="section-subtitle">Income Details</h3>
+      <div class="grid">
+        <label>Gross Salary / CTC (Annual) <input name="gross_salary" type="number" step="0.01" placeholder="₹"></label>
+        <label>Basic Salary (Annual) <input name="basic_salary" type="number" placeholder="₹"></label>
+        <label>HRA Received (Annual) <input name="hra_received" type="number" placeholder="₹"></label>
+        <label>PF — Employee Contribution (Annual) <input name="pf_employee" type="number" placeholder="₹"></label>
+        <label>TDS Deducted (Annual) <input name="tds_paid" type="number" placeholder="₹"></label>
+        <label>Professional Tax (Annual) <input name="professional_tax" type="number" placeholder="₹"></label>
+      </div>
+
+      <h3 class="section-subtitle">Investment Details (from uploaded documents)</h3>
+      <div class="grid">
+        <label>Home Loan Interest (Annual) <input name="home_loan_interest" type="number" placeholder="₹ (from certificate)"></label>
+        <label>Home Loan Principal (Annual) <input name="home_loan_principal" type="number" placeholder="₹ (from certificate)"></label>
+        <label>School / Tuition Fees (Annual) <input name="school_fees" type="number" placeholder="₹ (from receipt)"></label>
+        <label>PRAN Number (NPS) <input name="nps_pran" placeholder="Enter your PRAN"></label>
+        <label>NPS — Employee Contribution (Annual) <input name="nps_self" type="number" placeholder="₹ (from statement)"></label>
+        <label>NPS — Employer Contribution (Annual) <input name="nps_employer" type="number" placeholder="₹ (from statement)"></label>
+      </div>
+      <div style="margin-top:12px">
+        <h4 style="margin:6px 0 10px">Uploaded proofs & detailed entries</h4>
+        <div class="proof-list"><h5>Home Loans</h5><div id="homeLoanList"></div><button type="button" class="add-btn" onclick="addHomeLoan()">+ Add Home Loan</button></div>
+        <div class="proof-list"><h5>Life Insurance</h5><div id="lifeInsList"></div><button type="button" class="add-btn" onclick="addInsurance('lifeInsList','life')">+ Add Policy</button></div>
+        <div class="proof-list"><h5>Health Insurance — Self</h5><div id="healthSelfList"></div><button type="button" class="add-btn" onclick="addInsurance('healthSelfList','health_self')">+ Add Policy</button></div>
+        <div class="proof-list"><h5>Health Insurance — Parents</h5><div id="healthParentList"></div><button type="button" class="add-btn" onclick="addInsurance('healthParentList','health_parent')">+ Add Policy</button></div>
+        <div class="proof-list"><h5>Donations (80G)</h5><div id="donationList"></div><button type="button" class="add-btn" onclick="addDonation()">+ Add Donation</button></div>
+      </div>
+      <p class="hint" style="margin-top:12px">Note: If any field looks wrong, go back and re-upload the document or edit directly here.</p>
+    </section>
+
+    <!-- STEP 5 — Other Income + Notices + Referral -->
+    <section class="step" data-step="5">
+      <h2>Other Income & Final Details</h2>
+
+      <div class="proof-section">
+        <div class="proof-header"><span>Additional Income</span>
+          <select class="proof-toggle" onchange="toggleSection('additionalIncomeBody',this.value)"><option value="na">N/A</option><option value="yes">Yes</option></select>
+        </div>
+        <div id="additionalIncomeBody" style="display:none;margin-top:12px">
+          <div class="grid">
+            <label>Rental Income (Monthly) <input name="rental_income_monthly" type="number"></label>
+            <label>F&amp;O Trading P/L <input name="fno_pl" type="number"></label>
+            <label>Securities Income <input name="securities_income" type="number"></label>
+            <label>Business Nature <input name="business_nature" placeholder="e.g. Freelance design"></label>
+            <label>Business Income <input name="business_income" type="number"></label>
+            <label>Other Income <input name="other_income_misc" type="number"></label>
+            <label>FD Interest <input name="fd_interest" type="number"></label>
+            <label>Dividend <input name="dividend" type="number"></label>
+            <label>Tax Refund Interest <input name="refund_interest" type="number"></label>
+          </div>
+        </div>
+      </div>
+
+      <fieldset>
+        <legend>Pending Notices / Scrutiny</legend>
+        <select name="pending_notices"><option value="no">No</option><option value="yes">Yes</option></select>
+        <input name="pending_notices_detail" placeholder="If Yes, specify details">
+      </fieldset>
+
+      <fieldset>
+        <legend>Referral & Payout</legend>
+        <input name="referred_by" placeholder="Referral code (if any)" style="text-transform:uppercase">
+        <input name="upi_id" placeholder="Your UPI / GPay ID (for cashback)">
+      </fieldset>
+    </section>
+
+    <!-- STEP 6 — Submit -->
+    <section class="step" data-step="6">
+      <h2>Confirm & Submit</h2>
+      <div class="mega-offer">Refer 5 friends or family members to qualify for a full fee waiver</div>
+      <p>Our experts will review your filing and send your <b>3-option Quote</b> on WhatsApp within 24 hours.</p>
+      <ul class="bullets">
+        <li>Personalized refund analysis</li>
+        <li>Best regime recommendation</li>
+        <li>50% upfront + 50% after refund credited</li>
+      </ul>
+      <div class="consent-row">
+        <label class="consent-row"><input type="checkbox" id="consent" required> <span>I consent to data processing & WhatsApp communication.</span></label>
+        <button type="button" id="jokerBtnConfirm">Reveal Offer</button>
+      </div>
+    </section>
+
+    <!-- STEP 7 — Thank You & Quote Options -->
+    <section class="step" data-step="7">
+      <h2>Your Filing — Refund Options</h2>
+      <div class="success-box">
+        <p>Congratulations — your application is under expert review.</p>
+        <p>Your personal referral code:</p>
+        <div class="code" id="refCode">—</div>
+        <p>Share this and earn up to <b>₹15,000</b> cashback!</p>
+        <p>Personal Guidance and Tax awareness Campaign will be conducted by our Authorised experts in your community / Society / Corporate / etc for larger audiences (50+).</p>
+      </div>
+
+      <div class="quote-section" id="quoteSection" style="margin-top:24px">
+        <h3>Your Tax Refund Options</h3>
+        <p class="hint">Select how you'd like to receive your refund:</p>
+        <div class="options-grid" id="refundOptionsGrid">
+          <div class="option-card" data-option="A">
+            <h4>Option A — Standard</h4>
+            <div class="option-amount">₹<span id="optionA-amount">—</span></div>
+            <p class="option-description">Direct bank transfer within 7-10 working days</p>
+            <button type="button" class="btn-option" onclick="selectRefundOption('A')">Select Option A</button>
+          </div>
+          <div class="option-card" data-option="B">
+            <h4>Option B — Fast Track</h4>
+            <div class="option-amount">₹<span id="optionB-amount">—</span></div>
+            <p class="option-description">Expedited processing within 3-5 working days</p>
+            <p class="fee-note">(₹500 processing fee applicable)</p>
+            <button type="button" class="btn-option" onclick="selectRefundOption('B')">Select Option B</button>
+          </div>
+          <div class="option-card" data-option="C">
+            <h4>Option C — Savings</h4>
+            <div class="option-amount">₹<span id="optionC-amount">—</span></div>
+            <p class="option-description">Invest for 6 months @ 7.5% and earn interest</p>
+            <button type="button" class="btn-option" onclick="selectRefundOption('C')">Select Option C</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;text-align:center">
+        <button type="button" id="checkQuote" class="btn btn-primary">Check Quote Status</button>
+      </div>
+      <div id="quoteResult" style="margin-top:20px"></div>
+
+      <p style="margin-top:20px;text-align:center;font-size:13px;color:#6b7280">
+        You will receive final confirmation on WhatsApp once approved.<br>
+        <span class="contact">Contact: +91 7397 510 254 · fairtaxadvisors@gmail.com</span>
+      </p>
+    </section>
+
+    <!-- Spouse family package -->
+    <div class="spouse-section">
+      <h3>Instant Family Package — 20% off for your spouse</h3>
+      <p>Would you like to avail the family package discount by filing for your spouse too?</p>
+      <button type="button" class="spouse-yes-btn" id="showSpouseForm">Yes, Add My Spouse</button>
+      <div id="spouseForm" style="display:none;margin-top:20px;text-align:left">
+        <div class="offer-badge">ITR filing fees for your spouse: 20% off</div>
+        <div class="grid" style="margin-top:16px">
+          <label>Spouse Full Name <input name="spouse_name" placeholder="Full Name"></label>
+          <label>Spouse PAN <input name="spouse_pan" placeholder="ABCDE1234F" style="text-transform:uppercase" maxlength="10"></label>
+        </div>
+        <label>Spouse Phone (10 digits) <input name="spouse_phone" placeholder="10-digit mobile" pattern="\d{10}"></label>
+        <button type="button" id="submitSpouse">Submit Spouse Details →</button>
+        <div id="spouseStatus" class="status" style="display:none"></div>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button type="button" id="prev">Back</button>
+      <button type="button" id="next">Next</button>
+      <button type="button" id="submit" style="display:none">Submit</button>
+    </div>
+  </form>
+</main>
+
+<footer id="site-footer"></footer>
+
+<!-- Winners widget -->
+<div id="winnersWidget" class="winners-widget">
+  <h4>Weekly Winners</h4>
+  <ul id="winnersList"><li>Loading...</li></ul>
+  <a href="#" id="seeAllWinners">See all</a>
+</div>
+
+<!-- Camera modal -->
+<div id="cameraModal" class="modal" style="display:none">
+  <div class="modal-content">
+    <video id="cameraVideo" autoplay playsinline></video>
+    <canvas id="cameraCanvas" style="display:none"></canvas>
+    <div class="modal-actions">
+      <button id="captureBtn">Capture</button>
+      <button id="closeCamera">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Joker reveal modal -->
+<div id="jokerModal" class="joker-modal" style="display:none">
+  <div class="joker-modal-content">
+    <span class="joker-face"></span>
+    <h2 class="joker-title">CONGRATULATIONS!</h2>
+    <p class="joker-msg">You are the <b>6th Person</b> — your fees is <b>absolutely FREE!</b></p>
+    <div class="joker-code" id="jokerRevealCode">—</div>
+    <p style="color:#c4b5fd;margin:10px 0;font-size:13px">Share your referral code and earn up to <b>₹15,000</b> cashback!</p>
+    <button class="joker-close-btn" onclick="document.getElementById('jokerModal').style.display='none'">Claim My Free Filing</button>
+  </div>
+</div>
+
+<!-- Freelancer floating CTA -->
+<a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
+  <span class="fl-star">&#11088;</span>
+  <span class="fl-text">Why not join us<br>as a Freelancer?</span>
+</a>
+
+<script src="app.js?v=5"></script>
+
+<!-- Override filing type to FREE for this page -->
+<script>
+filingType = 'free';
+var ftHidden = document.querySelector('[name="filing_type"]');
+if (ftHidden) ftHidden.value = 'free';
+</script>
+
+<!-- Load header and footer components -->
+<script>
+fetch('components/header.html')
+  .then(r => r.text())
+  .then(html => document.getElementById('site-header').innerHTML = html)
+  .catch(e => console.error('Failed to load header:', e));
+
+fetch('components/footer.html')
+  .then(r => r.text())
+  .then(html => document.getElementById('site-footer').innerHTML = html)
+  .catch(e => console.error('Failed to load footer:', e));
+</script>
+
+<script>
+(function(){
+  function updateHeaderSpacing(){
+    try{
+      var header=document.querySelector('header');
+      var nav=document.querySelector('.site-nav');
+      var topOffset=0;
+      if(header) topOffset+=header.offsetHeight;
+      if(nav) topOffset+=nav.offsetHeight;
+      document.documentElement.style.setProperty('--site-top-offset', topOffset+'px');
+      document.documentElement.style.setProperty('--main-top-offset', (topOffset+12)+'px');
+    }catch(e){}
+  }
+  if(document.readyState==='loading'){window.addEventListener('DOMContentLoaded',updateHeaderSpacing);}else{updateHeaderSpacing();}
+  window.addEventListener('resize',updateHeaderSpacing);
+})();
+</script>
+</body>
+</html>
