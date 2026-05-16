@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API = "https://fairtax-backend.onrender.com/api";
 
 let currentStep = 1;
 const TOTAL = 7;
@@ -828,35 +828,11 @@ $("#submit").onclick = async () => {
 
       $("#refCode").textContent = refCode;
 
-      // Fetch canonical refund amounts from backend; fall back to local estimate
-      try {
-        const resp = await fetch(`${API}/status/${submissionId}`);
-        const sjson = await resp.json();
-        let amounts;
-        if (sjson && sjson.success && sjson.calculations) {
-          const c = sjson.calculations;
-          amounts = {
-            A: Math.round(Number(c.variant_a_refund || c.refund_new || 0)),
-            B: Math.round(Number(c.variant_b_refund || 0)),
-            C: Math.round(Number(c.variant_c_refund || 0)),
-          };
-        } else {
-          amounts = calculateRefundAmounts();
-        }
-
-        // Cache latest amounts for subsequent UI actions
-        window.latestRefundAmounts = amounts;
-
-        document.getElementById('optionA-amount').textContent = amounts.A.toLocaleString('en-IN');
-        document.getElementById('optionB-amount').textContent = amounts.B.toLocaleString('en-IN');
-        document.getElementById('optionC-amount').textContent = amounts.C.toLocaleString('en-IN');
-      } catch (e) {
-        const amounts = calculateRefundAmounts();
-        window.latestRefundAmounts = amounts;
-        document.getElementById('optionA-amount').textContent = amounts.A.toLocaleString('en-IN');
-        document.getElementById('optionB-amount').textContent = amounts.B.toLocaleString('en-IN');
-        document.getElementById('optionC-amount').textContent = amounts.C.toLocaleString('en-IN');
-      }
+      // Calculate and display refund options
+      const amounts = calculateRefundAmounts();
+      document.getElementById('optionA-amount').textContent = amounts.A.toLocaleString('en-IN');
+      document.getElementById('optionB-amount').textContent = amounts.B.toLocaleString('en-IN');
+      document.getElementById('optionC-amount').textContent = amounts.C.toLocaleString('en-IN');
 
       currentStep = 7;
       showStep(7);
@@ -880,10 +856,6 @@ function _inr(n) {
 
 // Calculate refund amounts based on tax refund (estimated)
 function calculateRefundAmounts() {
-  // Prefer canonical backend amounts when available (set after submit)
-  if (window.latestRefundAmounts && typeof window.latestRefundAmounts === 'object') {
-    return window.latestRefundAmounts;
-  }
   // Get gross salary and tax data from form
   const grossSalary = parseFloat(document.querySelector('[name="gross_salary"]')?.value || 0);
   const tdsPaid = parseFloat(document.querySelector('[name="tds_paid"]')?.value || 0);
@@ -928,8 +900,8 @@ async function selectRefundOption(option) {
     });
     document.querySelector(`.option-card[data-option="${option}"]`)?.classList.add('selected');
 
-    // Show payment instructions using cached backend amounts when available
-    const amounts = window.latestRefundAmounts || calculateRefundAmounts();
+    // Show payment instructions
+    const amounts = calculateRefundAmounts();
     const amount = amounts[option];
     const descriptions = {
       A: 'Direct bank transfer within 7-10 working days',
