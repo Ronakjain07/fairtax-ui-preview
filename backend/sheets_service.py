@@ -81,11 +81,20 @@ def _client():
     global _GC
     if _GC is not None:
         return _GC
+    SCOPES = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+    ]
+
     service_account_info = json.loads(
     os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"]
     )
 
-    creds = Credentials.from_service_account_info(service_account_info)
+    creds = Credentials.from_service_account_info(
+    service_account_info,
+    scopes=SCOPES
+    )
+
     _GC = gspread.authorize(creds)
     return _GC
 
