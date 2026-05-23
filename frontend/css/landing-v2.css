@@ -299,7 +299,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
 
 .lv2-hero {
   background: #ffffff;
-  padding-top: 52px;
+  padding-top: 16px;
 }
 
 .lv2-hero-container {
@@ -427,12 +427,12 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   transform: translateY(-1px);
 }
 
-/* Hero Right — Image + 4 Corner Floating Bubbles */
+/* Hero Right — Image + Floating Badges */
 .lv2-hero-right {
   display: flex;
   flex-direction: column;
   align-self: center;
-  padding: 30px 0 50px;   /* Space so overflowing bubbles are visible */
+  padding: 10px 0 40px;
   overflow: visible;
 }
 
@@ -590,6 +590,273 @@ a.lv2-bubble:hover {
 @keyframes lv2-float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-7px); }
+}
+
+/* ── FLOATING BADGE SYSTEM (Hero Image) ─────────────────── */
+
+/* Outer wrapper:
+   - top/bottom padding = badge height − safe overlap zone
+     Tallest badge ≈ 215px. Faces start at ~25% of image (~115px).
+     So badges at top:8px must bottom-out at ≤ image-top + 110px.
+     padding-top = 215 + 8 − 110 = 113px  →  use 115px for a safe gap.
+   - left/right 18px trims image width a little                        */
+.ft-img-outer {
+  position: relative;
+  padding: 115px 18px 105px;
+  overflow: visible;
+}
+
+/* The hero photo */
+.ft-img-link { display: block; }
+
+.ft-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(11, 37, 69, 0.13);
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.ft-hero-img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 20px 52px rgba(11, 37, 69, 0.18);
+}
+
+/* ── Base card ── */
+.ft-badge {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-shadow: 0 8px 28px rgba(11, 37, 69, 0.16), 0 2px 8px rgba(11, 37, 69, 0.06);
+  border: 1px solid rgba(26, 86, 219, 0.10);
+  z-index: 10;
+  width: 175px;
+  animation: ft-float 3.5s ease-in-out infinite;
+}
+
+/* ── Brand row ("🛡️ FAIRTAX") ── */
+.ft-brand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #0B2545;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.ft-brand-icon { font-size: 11px; }
+
+/* ── Headline ── */
+.ft-headline {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #0B2545;
+  line-height: 1.25;
+}
+
+/* ── Subhead ── */
+.ft-subhead {
+  font-size: 10px;
+  color: #475569;
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+/* ── Green accent text ── */
+.ft-green { color: #16a34a; }
+.ft-big   { font-size: 1.4em; font-weight: 900; }
+
+/* ── Check list ── */
+.ft-checks {
+  list-style: none;
+  margin: 2px 0 6px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ft-checks li {
+  font-size: 10px;
+  color: #334155;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  line-height: 1.3;
+}
+.ft-checks li::before {
+  content: '';
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2316a34a'%3E%3Ccircle cx='10' cy='10' r='9'/%3E%3Cpath d='M6 10l3 3 5-5' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
+  flex-shrink: 0;
+}
+
+/* ── CTA button ── */
+.ft-btn {
+  display: block;
+  text-align: center;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 2px;
+  transition: opacity 0.15s, transform 0.12s;
+  white-space: nowrap;
+}
+.ft-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.ft-btn-green {
+  background: #16a34a;
+  color: #ffffff;
+}
+.ft-btn-blue {
+  background: #1A56DB;
+  color: #ffffff;
+}
+
+/* ── We Care card ── */
+.ft-care-title {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #3b0764;
+  line-height: 1.2;
+}
+.ft-care-sub {
+  font-size: 10px;
+  color: #475569;
+  margin-bottom: 4px;
+}
+.ft-care-icons {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.ft-care-list {
+  list-style: none;
+  margin: 4px 0 6px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ft-care-list li {
+  font-size: 10px;
+  color: #334155;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ft-care-list li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #4B1FB5;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ft-care-bar {
+  background: #4B1FB5;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 600;
+  text-align: center;
+  padding: 5px 6px;
+  border-radius: 6px;
+  line-height: 1.3;
+}
+
+/* ── Refund card ── */
+.ft-refund-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #0B2545;
+  line-height: 1.3;
+}
+.ft-refund-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2px 0 6px;
+}
+.ft-refund-amt {
+  font-size: 22px;
+  font-weight: 900;
+  color: #16a34a;
+  line-height: 1;
+}
+.ft-refund-emoji { font-size: 22px; }
+
+/* ── Badge positions ─────────────────────────────────────────────
+   Badges overlap the image at its 4 corners + top-centre.
+   padding-top/bottom on ft-img-outer (115px / 105px) ensures every
+   badge stops well above the face zone (~25% down the image).
+   Corner background areas are safe: top-left = lamp/plants,
+   top-right = bookshelves, bottom corners = table/laptops.
+──────────────────────────────────────────────────────────────── */
+
+.ft-badge-1 {   /* top-left corner — Free Filing */
+  top: 8px;
+  left: 4px;
+  bottom: auto;
+  animation-delay: 0s;
+}
+.ft-badge-3 {   /* top-centre — Refer & Earn */
+  top: 8px;
+  left: 50%;
+  bottom: auto;
+  animation: ft-float-center 3.5s ease-in-out infinite;
+  animation-delay: 0.7s;
+}
+.ft-badge-2 {   /* top-right corner — Freelancer */
+  top: 8px;
+  right: 4px;
+  bottom: auto;
+  animation-delay: 1.4s;
+}
+.ft-badge-5 {   /* bottom-left corner — Refund */
+  bottom: 38px;
+  left: 4px;
+  top: auto;
+  animation-delay: 2.1s;
+}
+.ft-badge-4 {   /* bottom-right corner — We Care */
+  bottom: 38px;
+  right: 4px;
+  top: auto;
+  animation-delay: 2.8s;
+}
+
+/* ── Float animations ── */
+@keyframes ft-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-9px); }
+}
+
+/* Centre badge: keep translateX(-50%) in every keyframe */
+@keyframes ft-float-center {
+  0%, 100% { transform: translateX(-50%) translateY(0px); }
+  50%       { transform: translateX(-50%) translateY(-9px); }
+}
+
+/* ── Responsive: collapse badges on tablet/mobile ── */
+@media (max-width: 1024px) {
+  .lv2-hero-right { padding: 30px 0 50px; }
+  .ft-img-outer   { padding: 0 10px; }
+  .ft-badge       { display: none; }
 }
 
 /* Refund Badge */
