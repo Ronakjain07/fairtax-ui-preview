@@ -264,3 +264,21 @@ body.tr-page label { color: rgba(255,255,255,.7) !important; font-size: 12.5px; 
   .tr-form-card { padding: 28px 18px; }
   .tr-testimonial-inner { flex-direction: column; padding: 28px 20px; }
 }
+
+
+/* ── Nuke generic form styling from style.css ── */
+body.tr-page form {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  animation: none !important;
+}
+body.tr-page form::before,
+body.tr-page form::after {
+  display: none !important;
+}
+
