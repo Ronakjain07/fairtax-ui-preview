@@ -307,7 +307,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   margin: 0 auto;
   padding: 0 28px 0 28px;
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 47% 53%;
   gap: 40px;
   align-items: center;
 }
