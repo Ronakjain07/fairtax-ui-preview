@@ -143,12 +143,12 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   --white:    #ffffff;
   --muted:    rgba(255,255,255,0.55);
   --border:   rgba(255,255,255,0.08);
-  --blue:     #2563eb;
-  --purple:   #7c3aed;
+  --blue:     #1A56DB;
+  --purple:   #0B2545;
   --gold:     #f59e0b;
   --gold-2:   #d97706;
   --green:    #059669;
-  --green-2:  #047857;
+  --green-2:  #059669;
   --radius:   20px;
 }
 
@@ -413,7 +413,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
    PROMO STRIP
 ══════════════════════════════════════════════════ */
 .ref-promo-strip {
-  background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #7c3aed 100%);
+  background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 50%, #0B2545 100%);
   padding: 30px 28px;
   text-align: center;
   position: relative;
@@ -538,8 +538,8 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
 }
 
 /* Tier-specific glow colors */
-.ref-tier-1 { --tc: #3b82f6; }
-.ref-tier-3 { --tc: #8b5cf6; }
+.ref-tier-1 { --tc: #1A56DB; }
+.ref-tier-3 { --tc: #1A56DB; }
 .ref-tier-5 { --tc: #f59e0b; }
 .ref-tier-10 { --tc: #10b981; }
 
@@ -664,7 +664,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
 .ref-wa-section { background: #fff; }
 
 .ref-wa-card {
-  background: linear-gradient(140deg, #14532d 0%, #15803d 45%, #16a34a 100%);
+  background: linear-gradient(140deg, #14532d 0%, #059669 45%, #10B981 100%);
   border-radius: 28px;
   padding: 56px 52px;
   display: grid;
@@ -769,7 +769,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   margin: 0 auto;
   padding: 2px;
   border-radius: 26px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed, #f59e0b, #2563eb);
+  background: linear-gradient(135deg, #1A56DB, #0B2545, #f59e0b, #1A56DB);
   background-size: 300% 300%;
   animation: shimmer 5s linear infinite;
 }
@@ -983,8 +983,8 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   color: #fff;
 }
 
-.ref-ladder-row:nth-child(1) .ref-ladder-num { background: linear-gradient(135deg,#3b82f6,#2563eb); }
-.ref-ladder-row:nth-child(2) .ref-ladder-num { background: linear-gradient(135deg,#8b5cf6,#7c3aed); }
+.ref-ladder-row:nth-child(1) .ref-ladder-num { background: linear-gradient(135deg,#1A56DB,#1A56DB); }
+.ref-ladder-row:nth-child(2) .ref-ladder-num { background: linear-gradient(135deg,#1A56DB,#0B2545); }
 .ref-ladder-row:nth-child(3) .ref-ladder-num { background: linear-gradient(135deg,#f59e0b,#d97706); }
 .ref-ladder-row:nth-child(4) .ref-ladder-num { background: linear-gradient(135deg,#10b981,#059669); }
 
@@ -1087,7 +1087,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #2563eb 30%, #7c3aed 70%, transparent);
+  background: linear-gradient(90deg, transparent, #1A56DB 30%, #0B2545 70%, transparent);
 }
 
 /* Payout note below button */
@@ -1154,7 +1154,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   align-items: center;
   justify-content: center;
   gap: 9px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #1A56DB, #1A56DB);
   color: #fff;
   border: none;
   font-size: 15px;
@@ -1210,14 +1210,14 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .7px;
-  color: #34d399;
+  color: #10B981;
   display: block;
   margin-bottom: 6px;
 }
 .ref-reward-val {
   font-size: 42px;
   font-weight: 900;
-  color: #34d399;
+  color: #10B981;
   line-height: 1;
   display: block;
 }
@@ -1247,7 +1247,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
 .ref-step-line-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #f59e0b, #10b981, #ef4444);
+  background: linear-gradient(90deg, #1A56DB, #1A56DB, #f59e0b, #10b981, #ef4444);
   border-radius: 3px;
   transition: width .65s cubic-bezier(.4,0,.2,1);
   position: relative;
@@ -1306,8 +1306,8 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
 }
 
 /* Gradient per step */
-.ref-step[data-step="1"] .ref-step-num { background: linear-gradient(135deg,#3b82f6,#2563eb); outline-color: #dbeafe; }
-.ref-step[data-step="2"] .ref-step-num { background: linear-gradient(135deg,#8b5cf6,#7c3aed); outline-color: #ede9fe; }
+.ref-step[data-step="1"] .ref-step-num { background: linear-gradient(135deg,#1A56DB,#1A56DB); outline-color: #dbeafe; }
+.ref-step[data-step="2"] .ref-step-num { background: linear-gradient(135deg,#1A56DB,#0B2545); outline-color: #ede9fe; }
 .ref-step[data-step="3"] .ref-step-num { background: linear-gradient(135deg,#f59e0b,#d97706); outline-color: #fef3c7; }
 .ref-step[data-step="4"] .ref-step-num { background: linear-gradient(135deg,#10b981,#059669); outline-color: #d1fae5; }
 .ref-step[data-step="5"] .ref-step-num { background: linear-gradient(135deg,#ef4444,#dc2626); outline-color: #fee2e2; }
@@ -1323,7 +1323,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
 }
 .ref-step[data-step="2"].step-active .ref-step-num {
   box-shadow: 0 0 0 12px rgba(139,92,246,.18), 0 0 40px rgba(139,92,246,.6);
-  outline-color: #c4b5fd;
+  outline-color: #93C5FD;
 }
 .ref-step[data-step="3"].step-active .ref-step-num {
   box-shadow: 0 0 0 12px rgba(245,158,11,.18), 0 0 40px rgba(245,158,11,.6);
@@ -1391,7 +1391,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
 
 .ref-community-icon-wrap {
   width: 90px; height: 90px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #1A56DB, #1A56DB);
   border-radius: 22px;
   display: flex;
   align-items: center;
@@ -1418,7 +1418,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #1A56DB, #1A56DB);
   color: #fff;
   font-size: 14px;
   font-weight: 700;

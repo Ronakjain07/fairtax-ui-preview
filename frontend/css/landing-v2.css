@@ -59,7 +59,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   color: #ffffff !important;
 }
 .lv2-footer-brand-fair { color: #fff !important; }
-.lv2-footer-brand-advisors { color: #34D399 !important; }
+.lv2-footer-brand-advisors { color: #10B981 !important; }
 .lv2-footer-copy { color: rgba(255,255,255,0.3) !important; }
 
 .lv2-header-inner {
@@ -307,7 +307,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
   margin: 0 auto;
   padding: 0 28px 0 28px;
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 47% 53%;
   gap: 40px;
   align-items: center;
 }
@@ -399,7 +399,7 @@ body > main { max-width: none !important; margin: 0 !important; padding: 0 !impo
 }
 
 .lv2-btn-primary:hover {
-  background: #1E40AF;
+  background: #0B2545;
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(26, 86, 219, 0.38);
 }
@@ -486,7 +486,7 @@ a.lv2-bubble:hover {
 .lv2-bubble-icon {
   width: 22px;
   height: 22px;
-  background: linear-gradient(135deg, #1A56DB, #3B82F6);
+  background: linear-gradient(135deg, #1A56DB, #1A56DB);
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -707,7 +707,7 @@ a.lv2-bubble:hover {
   margin: 0;
 }
 
-.lv2-green { color: #34D399; }
+.lv2-green { color: #10B981; }
 
 .lv2-features-dark-right {
   display: grid;
@@ -771,7 +771,7 @@ a.lv2-bubble:hover {
   padding: 0 24px;
   font-size: 10px;
   font-weight: 800;
-  color: #34D399;
+  color: #10B981;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   white-space: nowrap;
@@ -783,7 +783,7 @@ a.lv2-bubble:hover {
 .lv2-winners-live-dot {
   width: 6px;
   height: 6px;
-  background: #34D399;
+  background: #10B981;
   border-radius: 50%;
   flex-shrink: 0;
   animation: lv2-pulse-dot 1.8s ease-in-out infinite;
@@ -842,7 +842,7 @@ a.lv2-bubble:hover {
 
 .lv2-winner-reward {
   font-weight: 700;
-  color: #34D399;
+  color: #10B981;
 }
 
 @keyframes lv2-marquee {
@@ -1349,7 +1349,7 @@ a.lv2-bubble:hover {
 .lv2-referral-eyebrow {
   font-size: 11px;
   font-weight: 700;
-  color: #34D399;
+  color: #10B981;
   text-transform: uppercase;
   letter-spacing: 0.13em;
   margin-bottom: 10px;
@@ -1365,7 +1365,7 @@ a.lv2-bubble:hover {
   display: block;
   width: 20px;
   height: 2px;
-  background: #34D399;
+  background: #10B981;
   border-radius: 1px;
   opacity: 0.6;
 }
@@ -1403,7 +1403,7 @@ a.lv2-bubble:hover {
   top: -11px;
   left: 50%;
   transform: translateX(-50%);
-  background: #34D399;
+  background: #10B981;
   color: #071a33;
   font-size: 10px;
   font-weight: 800;
@@ -1437,7 +1437,7 @@ a.lv2-bubble:hover {
   padding: 12px 10px;
   font-size: 17px;
   font-weight: 900;
-  color: #34D399;
+  color: #10B981;
   letter-spacing: -0.3px;
   line-height: 1.2;
 }
@@ -1459,13 +1459,13 @@ a.lv2-bubble:hover {
   padding: 8px 18px;
   font-size: 12.5px;
   font-weight: 600;
-  color: #34D399;
+  color: #10B981;
 }
 
 .lv2-payout-dot {
   width: 7px;
   height: 7px;
-  background: #34D399;
+  background: #10B981;
   border-radius: 50%;
   animation: lv2-pulse-dot 1.8s ease-in-out infinite;
 }
@@ -1480,7 +1480,7 @@ a.lv2-bubble:hover {
   align-items: center;
   gap: 8px;
   padding: 15px 32px;
-  background: #34D399;
+  background: #10B981;
   color: #071a33;
   font-size: 14.5px;
   font-weight: 800;
@@ -1737,7 +1737,7 @@ a.lv2-bubble:hover {
   margin: 0 0 14px;
 }
 
-.lv2-cta-title span { color: #34D399; }
+.lv2-cta-title span { color: #10B981; }
 
 .lv2-cta-sub {
   font-size: 15px;
@@ -1998,7 +1998,7 @@ a.lv2-bubble:hover {
 
 .lv2-footer-brand-name { display: flex; align-items: baseline; gap: 5px; line-height: 1; }
 .lv2-footer-brand-fair { font-size: 17px; font-weight: 900; color: #fff; letter-spacing: -0.2px; }
-.lv2-footer-brand-advisors { font-size: 13px; font-weight: 700; color: #34D399; }
+.lv2-footer-brand-advisors { font-size: 13px; font-weight: 700; color: #10B981; }
 .lv2-footer-brand-tagline { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 3px; }
 
 .lv2-footer-desc {
@@ -2019,7 +2019,7 @@ a.lv2-bubble:hover {
   text-decoration: none;
   transition: color 0.15s;
 }
-.lv2-footer-contact-item:hover { color: #34D399; }
+.lv2-footer-contact-item:hover { color: #10B981; }
 
 .lv2-footer-col h5 {
   font-size: 10.5px;
@@ -2058,7 +2058,7 @@ a.lv2-bubble:hover {
 .lv2-footer-badge {
   font-size: 11px;
   font-weight: 600;
-  color: #34D399;
+  color: #10B981;
   background: rgba(52, 211, 153, 0.08);
   border: 1px solid rgba(52, 211, 153, 0.18);
   padding: 5px 11px;
