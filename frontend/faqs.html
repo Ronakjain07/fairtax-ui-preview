@@ -4,311 +4,347 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FAQs — FairTax ITR Filing Questions Answered</title>
-  <link rel="stylesheet" href="style.css?v=3">
-  <link rel="stylesheet" href="css/shared-components.css?v=1">
-  <style>
-    .faq-search {
-      max-width: 600px;
-      margin: 0 auto 32px;
-      position: relative;
-    }
 
-    .faq-search input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 2px solid #e5e7eb;
-      border-radius: 10px;
-      font-size: 14px;
-      transition: border-color 0.2s ease;
-    }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 
-    .faq-search input:focus {
-      outline: none;
-      border-color: #1A56DB;
-      box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
-    }
-
-    .faq-category {
-      margin-bottom: 40px;
-    }
-
-    .faq-category-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #e5e7eb;
-    }
-
-    .faq-item {
-      margin-bottom: 12px;
-      border: 1px solid #e5e7eb;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: all 0.2s ease;
-    }
-
-    .faq-item:hover {
-      border-color: #1A56DB;
-      box-shadow: 0 4px 12px rgba(26, 86, 219, 0.08);
-    }
-
-    .faq-question {
-      background: #f8fafc;
-      padding: 16px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      color: #0f172a;
-      user-select: none;
-      transition: background 0.2s ease;
-    }
-
-    .faq-question:hover {
-      background: #f1f5f9;
-    }
-
-    .faq-item.open .faq-question {
-      background: linear-gradient(135deg, #1A56DB, #1E40AF);
-      color: #fff;
-    }
-
-    .faq-toggle {
-      font-size: 18px;
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-      margin-left: 12px;
-    }
-
-    .faq-item.open .faq-toggle {
-      transform: rotate(180deg);
-    }
-
-    .faq-answer {
-      padding: 0 16px;
-      max-height: 0;
-      overflow: hidden;
-      background: #fff;
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 500px;
-      padding: 16px;
-      border-top: 1px solid #e5e7eb;
-    }
-
-    .faq-answer p {
-      margin: 0 0 12px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #475569;
-    }
-
-    .faq-answer p:last-child {
-      margin-bottom: 0;
-    }
-
-    .faq-answer ul {
-      margin: 12px 0;
-      padding-left: 20px;
-      font-size: 14px;
-      color: #475569;
-      line-height: 1.8;
-    }
-
-    .faq-answer a {
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: 600;
-      transition: opacity 0.2s ease;
-    }
-
-    .faq-answer a:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="css/shared-components.css">
+  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="css/landing-v2.css">
+  <link rel="stylesheet" href="css/referral-v2.css">
+  <link rel="stylesheet" href="css/faqs-v2.css">
 </head>
-<body>
-<div class="top-banner blink-cta">
-  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
-</div>
-<div class="top-banner blink-green">
-  <span>Grab your Referral Offer — Referral payout released every Thursday 3:30 PM</span>
-</div>
-<div class="help-bar">
-  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
-</div>
+<body class="fq-page">
 
-  <header id="site-header"></header>
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header class="lv2-header">
+  <div class="lv2-header-inner">
+    <a href="landing.html" class="lv2-logo">
+      <div class="lv2-logo-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="9" fill="#0B2545"/>
+          <path d="M20 9L12 14v8c0 6 4 10 8 11.5C24 21.5 28 17.5 28 12V14L20 9z" fill="white" opacity="0.92"/>
+          <path d="M17 20.5l2.5 2.5 4-5" stroke="#0B2545" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="lv2-logo-text">
+        <div class="lv2-logo-name">
+          <span class="lv2-logo-fair">FAIRTAX</span>
+          <span class="lv2-logo-advisors">ADVISORS</span>
+        </div>
+        <div class="lv2-logo-tagline">Your Taxes. Our Expertise. Your Peace of Mind.</div>
+      </div>
+    </a>
+    <nav class="lv2-nav">
+        <a href="landing.html" class="lv2-nav-link">Home</a>
+        <a href="index.html" class="lv2-nav-link">File Returns</a>
+        <a href="referral-offer.html" class="lv2-nav-link">Referral Offer</a>
+        <a href="training.html" class="lv2-nav-link">Training</a>
+        <a href="wallet.html" class="lv2-nav-link">Wallet</a>
+        <a href="status.html" class="lv2-nav-link">Status</a>
+        <a href="proofs.html" class="lv2-nav-link">Proofs</a>
+        <a href="about.html" class="lv2-nav-link">About</a>
+      </nav>
+    <div class="lv2-header-right">
+      <a href="https://wa.me/917397510254" class="lv2-phone" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        +91 73975 10254
+      </a>
+      <a href="choice.html" class="lv2-btn-started">Get Started</a>
+    </div>
+    <button class="lv2-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="lv2-mobile-nav" id="lv2MobileNav">
+      <a href="landing.html" class="lv2-mobile-link">Home</a>
+      <a href="index.html" class="lv2-mobile-link">File Returns</a>
+      <a href="referral-offer.html" class="lv2-mobile-link">Referral Offer</a>
+      <a href="training.html" class="lv2-mobile-link">Training</a>
+      <a href="wallet.html" class="lv2-mobile-link">Wallet</a>
+      <a href="status.html" class="lv2-mobile-link">Status</a>
+      <a href="proofs.html" class="lv2-mobile-link">Proofs</a>
+      <a href="about.html" class="lv2-mobile-link">About</a>
+      <a href="contact.html" class="lv2-mobile-link">Contact</a>
+      <a href="faqs.html" class="lv2-mobile-link active">FAQs</a>
+    </nav>
+</header>
 
-  <main class="landing-main">
-    <!-- Hero with Image -->
-    <div class="hero-with-image" style="max-width:1100px;margin:0 auto 40px">
-      <div class="hero-text-side">
-        <h1>Frequently Asked <span class="text-green">Questions</span></h1>
-        <p>Most questions about ITR filing, refunds, and FairTax answered below. Can't find what you're looking for? <a href="contact.html" style="color:#34D399;font-weight:600;text-decoration:none">Contact us</a>.</p>
-        <a href="#faqSearch" class="hero-cta-primary">Search FAQs &darr;</a>
-      </div>
-      <div class="hero-image-side">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Tax professional answering questions">
-        <div class="hero-image-overlay"></div>
-      </div>
+<main>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="ref-hero fq-hero">
+  <div class="ref-blob ref-blob-1" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-2" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-3" aria-hidden="true"></div>
+
+  <div class="ref-hero-inner">
+    <div class="fq-hero-badge" data-aos="fade-down" data-aos-duration="600">
+      <span class="fq-badge-dot"></span>
+      20+ Questions Answered
     </div>
 
-    <!-- Search Box -->
-    <div class="faq-search" style="max-width: 1000px; margin: 0 auto 32px; padding: 0 16px;">
-      <input type="text" id="faqSearch" placeholder="Search FAQs... (e.g., 'refund', 'documents', 'fees')" style="width: 100%;">
+    <h1 class="ref-hero-h1 fq-hero-h1" data-aos="fade-up" data-aos-delay="100">
+      Everything You Need<br>
+      to Know About <span class="grad-indigo">FairTax.</span>
+    </h1>
+
+    <p class="ref-hero-sub" data-aos="fade-up" data-aos-delay="180">
+      From document uploads to refund timelines — all your ITR filing questions, answered by our experts. Can't find what you're looking for? <a href="contact.html" style="color:#818cf8;font-weight:600;text-decoration:none;">Contact us directly</a>.
+    </p>
+
+    <!-- Embedded Search Bar -->
+    <div class="fq-search-wrap" data-aos="fade-up" data-aos-delay="260">
+      <span class="fq-search-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.38)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </span>
+      <input
+        type="text"
+        id="faqSearch"
+        class="fq-search-input"
+        placeholder="Search questions… (e.g. 'refund', 'documents', 'fees')"
+        autocomplete="off"
+        spellcheck="false"
+      >
     </div>
 
-    <!-- FAQs Container -->
-    <div style="max-width: 900px; margin: 0 auto; padding: 0 16px;">
+    <div class="ref-hero-stats" data-aos="fade-up" data-aos-delay="340">
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#818cf8">20+</span>
+        <span class="ref-stat-label">Questions Covered</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#34d399">5</span>
+        <span class="ref-stat-label">Topic Categories</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#60a5fa">2 hr</span>
+        <span class="ref-stat-label">Support Response</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#fbbf24">24/7</span>
+        <span class="ref-stat-label">WhatsApp Help</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- Category 1: Filing Process -->
-      <div class="faq-category">
-        <h2 class="faq-category-title">📝 Filing Process</h2>
+<!-- ══════════════════════════════════════════
+     FAQ SECTION
+══════════════════════════════════════════ -->
+<section class="fq-section">
+  <div class="fq-inner">
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>How long does it take to file my ITR with FairTax?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
+    <!-- Category Filter Tabs -->
+    <div class="fq-cat-tabs" data-aos="fade-up" data-aos-delay="60" id="fqTabs">
+      <button class="fq-cat-tab active" data-tab="all">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        All
+        <span class="fq-tab-count" id="count-all">17</span>
+      </button>
+      <button class="fq-cat-tab" data-tab="filing">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Filing Process
+        <span class="fq-tab-count" id="count-filing">4</span>
+      </button>
+      <button class="fq-cat-tab" data-tab="refunds">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Refunds &amp; Taxes
+        <span class="fq-tab-count" id="count-refunds">4</span>
+      </button>
+      <button class="fq-cat-tab" data-tab="pricing">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        Fees &amp; Pricing
+        <span class="fq-tab-count" id="count-pricing">3</span>
+      </button>
+      <button class="fq-cat-tab" data-tab="referrals">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+        Referrals &amp; Offers
+        <span class="fq-tab-count" id="count-referrals">2</span>
+      </button>
+      <button class="fq-cat-tab" data-tab="technical">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        Technical &amp; Support
+        <span class="fq-tab-count" id="count-technical">4</span>
+      </button>
+    </div>
+
+    <!-- No Results Message -->
+    <div class="fq-no-results" id="fqNoResults">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      No questions match your search. Try a different keyword or <a href="contact.html" style="color:#818cf8">contact our team</a>.
+    </div>
+
+    <!-- ─── Category: Filing Process ─── -->
+    <div class="fq-cat-group" id="group-filing" data-aos="fade-up" data-aos-delay="80">
+      <div class="fq-cat-label">
+        <div class="fq-cat-label-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        Filing Process
+      </div>
+
+      <div class="fq-item" data-cat="filing">
+        <div class="fq-question">
+          <span class="fq-q-text">How long does it take to file my ITR with FairTax?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
             <p>Most returns are filed within <strong>5 minutes</strong> of uploading documents. The AI reads your documents instantly, and expert review typically takes a few hours. You'll receive your quote within 24 hours, ready to approve and file.</p>
           </div>
         </div>
+      </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>What documents do I need to upload?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
+      <div class="fq-item" data-cat="filing">
+        <div class="fq-question">
+          <span class="fq-q-text">What documents do I need to upload?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
             <p>At minimum, you need:</p>
             <ul>
-              <li><strong>Form 16</strong> (if salaried) OR <strong>Payslips</strong> (if self-employed)</li>
+              <li><strong>Form 16</strong> (if salaried) or <strong>Payslips</strong> (if self-employed)</li>
               <li>Any investment/deduction proofs (home loan certificate, insurance receipts, school fees, etc.)</li>
             </ul>
-            <p>We also accept:</p>
-            <ul>
-              <li>NPS statements</li>
-              <li>Donation receipts (80G)</li>
-              <li>Bank statements (for additional income)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Can I upload documents on mobile phone?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes! Our platform is 100% mobile-friendly. You can:</p>
-            <ul>
-              <li>Take photos directly from your phone camera</li>
-              <li>Upload PDF files</li>
-              <li>Upload scanned documents</li>
-            </ul>
-            <p>For best results, ensure documents are clear and properly oriented.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Is my data secure on FairTax?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes. We use:</p>
-            <ul>
-              <li><strong>256-bit encryption</strong> for all data in transit and at rest</li>
-              <li><strong>HTTPS/SSL</strong> for secure connections</li>
-              <li><strong>Regular security audits</strong> by third-party experts</li>
-              <li><strong>No data sharing</strong> with third parties (except required tax authorities)</li>
-            </ul>
-            <p>Your documents are deleted after filing is complete, unless you choose to keep them.</p>
+            <p>We also accept NPS statements, donation receipts (80G), and bank statements for additional income sources.</p>
           </div>
         </div>
       </div>
 
-      <!-- Category 2: Refunds & Taxes -->
-      <div class="faq-category">
-        <h2 class="faq-category-title">💰 Refunds & Taxes</h2>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>How much tax refund will I get?</span>
-            <span class="faq-toggle">▼</span>
+      <div class="fq-item" data-cat="filing">
+        <div class="fq-question">
+          <span class="fq-q-text">Can I upload documents on a mobile phone?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>Yes! Our platform is 100% mobile-friendly. You can take photos directly from your camera, upload PDF files, or upload scanned documents. For best results, ensure documents are clear, well-lit, and properly oriented.</p>
           </div>
-          <div class="faq-answer">
-            <p>Your refund depends on:</p>
+        </div>
+      </div>
+
+      <div class="fq-item" data-cat="filing">
+        <div class="fq-question">
+          <span class="fq-q-text">Is my data secure on FairTax?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>Absolutely. We use <strong>256-bit encryption</strong> for all data in transit and at rest, HTTPS/SSL for secure connections, and regular third-party security audits. Your data is never shared with third parties (except required tax authorities). Documents are deleted after filing is complete, unless you choose to keep them.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Category: Refunds & Taxes ─── -->
+    <div class="fq-cat-group" id="group-refunds" data-aos="fade-up" data-aos-delay="80">
+      <div class="fq-cat-label">
+        <div class="fq-cat-label-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        Refunds &amp; Taxes
+      </div>
+
+      <div class="fq-item" data-cat="refunds">
+        <div class="fq-question">
+          <span class="fq-q-text">How much tax refund will I get?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>Your refund depends on your total income and tax paid, deductions you claim (HRA, investments, donations, etc.), and which tax regime you choose. FairTax analyzes both <strong>Old Regime vs New Regime</strong> and recommends the one that maximizes your refund. On average, our customers save ₹15,000–₹50,000 by switching regimes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fq-item" data-cat="refunds">
+        <div class="fq-question">
+          <span class="fq-q-text">How long until I receive my refund after filing?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>Refunds typically arrive in <strong>7–10 working days</strong> after filing (standard processing). If you opt for our <strong>Fast Track option</strong>, we guarantee expedited processing and refunds usually come in <strong>3–5 working days</strong> (small additional fee applies).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fq-item" data-cat="refunds">
+        <div class="fq-question">
+          <span class="fq-q-text">What if I owe tax instead of getting a refund?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>If your income is higher than the TDS deducted, you may owe tax. FairTax will clearly show this in your quote so you know exactly how much to pay <strong>before</strong> filing. We guide you through the payment process via the official Income Tax portal.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fq-item" data-cat="refunds">
+        <div class="fq-question">
+          <span class="fq-q-text">Can I claim exemptions for HRA, LTA, and other allowances?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>Yes! FairTax automatically identifies and claims all eligible deductions:</p>
             <ul>
-              <li>Your total income and tax paid</li>
-              <li>Deductions you claim (HRA, investments, charitable donations, etc.)</li>
-              <li>Old Regime vs New Regime comparison</li>
-            </ul>
-            <p>FairTax analyzes both regimes and recommends the one that maximizes your refund. On average, customers save ₹15,000-₹50,000 by switching regimes.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>How long will I receive my refund after filing?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>Refunds typically arrive in <strong>7-10 working days</strong> after filing (standard processing). </p>
-            <p>If you opt for our <strong>Fast Track option</strong>, we guarantee expedited processing, and refunds usually come in <strong>3-5 working days</strong> (small fee applies).</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>What if I owe tax instead of getting a refund?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>If your income is higher than TDS deducted, you may owe tax. FairTax will clearly show this in your quote. You'll know exactly how much to pay before filing. We help you arrange payment through the income tax portal.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Can I claim exemptions for HRA, LTA, etc.?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes! FairTax automatically identifies and claims:</p>
-            <ul>
-              <li><strong>HRA (House Rent Allowance)</strong> — up to 50% of basic salary</li>
-              <li><strong>LTA (Leave Travel Allowance)</strong> — automatic</li>
-              <li><strong>Standard Deduction</strong> — ₹50,000 (salaried)</li>
-              <li><strong>Section 80C deductions</strong> — insurance, investments, tuition fees, etc.</li>
+              <li><strong>HRA</strong> — up to 50% of basic salary (metros), 40% (others)</li>
+              <li><strong>LTA</strong> — Leave Travel Allowance, auto-computed</li>
+              <li><strong>Standard Deduction</strong> — ₹50,000 for salaried employees</li>
+              <li><strong>Section 80C</strong> — insurance, PPF, ELSS, tuition fees &amp; more</li>
               <li><strong>Section 80D</strong> — health insurance premiums</li>
             </ul>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Category 3: Fees & Pricing -->
-      <div class="faq-category">
-        <h2 class="faq-category-title">💳 Fees & Pricing</h2>
+    <!-- ─── Category: Fees & Pricing ─── -->
+    <div class="fq-cat-group" id="group-pricing" data-aos="fade-up" data-aos-delay="80">
+      <div class="fq-cat-label">
+        <div class="fq-cat-label-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        Fees &amp; Pricing
+      </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>How much does FairTax charge?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p><strong>₹499</strong> for regular ITR filing (split into 50% upfront + 50% after refund is credited).</p>
-            <p>However, filing is <strong>completely FREE</strong> if you:</p>
+      <div class="fq-item" data-cat="pricing">
+        <div class="fq-question">
+          <span class="fq-q-text">How much does FairTax charge for filing?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p><strong>₹499</strong> for regular ITR filing — split into 50% upfront and 50% after your refund is credited.</p>
+            <p>Filing is <strong>completely FREE</strong> if you:</p>
             <ul>
-              <li>Qualify as senior citizen (60+ years)</li>
+              <li>Qualify as a senior citizen (60+ years)</li>
               <li>Are a widow/widower</li>
               <li>Are a single parent</li>
               <li>Are differently-abled</li>
@@ -316,151 +352,255 @@
             </ul>
           </div>
         </div>
+      </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Do you have hidden charges?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p><strong>No hidden charges.</strong> You see the exact fee upfront in your quote before filing. The fee covers:</p>
-            <ul>
-              <li>AI document reading</li>
-              <li>Expert CA review</li>
-              <li>ITR filing</li>
-              <li>WhatsApp support</li>
-            </ul>
-          </div>
+      <div class="fq-item" data-cat="pricing">
+        <div class="fq-question">
+          <span class="fq-q-text">Are there any hidden charges?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
         </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>What does the "Fast Track" refund option cost?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>Fast Track refund processing costs <strong>₹500 extra</strong> and guarantees your refund within 3-5 working days (vs. standard 7-10 days). This is completely optional — you can choose standard processing and save ₹500.</p>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p><strong>No hidden charges whatsoever.</strong> You see the exact fee upfront in your quote before filing. The fee covers AI document reading, expert CA review, ITR filing, and WhatsApp support throughout the process.</p>
           </div>
         </div>
       </div>
 
-      <!-- Category 4: Referrals & Offers -->
-      <div class="faq-category">
-        <h2 class="faq-category-title">🎁 Referrals & Offers</h2>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>How do I earn money by referring friends?</span>
-            <span class="faq-toggle">▼</span>
+      <div class="fq-item" data-cat="pricing">
+        <div class="fq-question">
+          <span class="fq-q-text">What does the Fast Track refund option cost?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>Fast Track processing costs <strong>₹500 extra</strong> and guarantees your refund within 3–5 working days (vs. standard 7–10 days). This is completely optional — choose standard processing and save ₹500.</p>
           </div>
-          <div class="faq-answer">
-            <p>For each friend you refer who files their ITR with FairTax:</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Category: Referrals & Offers ─── -->
+    <div class="fq-cat-group" id="group-referrals" data-aos="fade-up" data-aos-delay="80">
+      <div class="fq-cat-label">
+        <div class="fq-cat-label-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        Referrals &amp; Offers
+      </div>
+
+      <div class="fq-item" data-cat="referrals">
+        <div class="fq-question">
+          <span class="fq-q-text">How do I earn money by referring friends to FairTax?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>For each friend who files their ITR with FairTax through your referral:</p>
             <ul>
               <li><strong>1 referral:</strong> ₹250</li>
-              <li><strong>3 referrals:</strong> ₹1,000 + your free filing</li>
-              <li><strong>5 referrals:</strong> ₹5,000 + your free filing</li>
+              <li><strong>3 referrals:</strong> ₹1,000 + your filing is FREE</li>
+              <li><strong>5 referrals:</strong> ₹5,000 + your filing is FREE</li>
               <li><strong>10+ referrals:</strong> Up to ₹15,000</li>
             </ul>
-            <p>Referral payments are released every Thursday at 3:30 PM via your preferred UPI/bank transfer.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Can my spouse also file ITR with FairTax?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes! We offer a <strong>20% Family Package discount</strong> for spouses filing together. So if your filing costs ₹499, your spouse pays only ₹399. <a href="index.html" style="color: #2563eb; font-weight: 600;">Start filing</a> and you'll see this option at the end.</p>
+            <p>Referral payments are released every <strong>Thursday at 3:30 PM</strong> via UPI or bank transfer.</p>
           </div>
         </div>
       </div>
 
-      <!-- Category 5: Technical & Support -->
-      <div class="faq-category">
-        <h2 class="faq-category-title">🛠️ Technical & Support</h2>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>What file formats do you accept?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>We accept:</p>
-            <ul>
-              <li><strong>PDF</strong> documents (scanned or digital)</li>
-              <li><strong>JPG/JPEG</strong> images</li>
-              <li><strong>PNG</strong> images</li>
-              <li><strong>BMP</strong> images</li>
-              <li><strong>TIFF</strong> images</li>
-            </ul>
-            <p>File size limit: 25 MB per document. Multi-page PDFs are fully supported.</p>
-          </div>
+      <div class="fq-item" data-cat="referrals">
+        <div class="fq-question">
+          <span class="fq-q-text">Can my spouse also file their ITR with FairTax?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
         </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>What if the AI fails to extract my document?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>If the AI cannot read your document, we'll let you know immediately with a reason (e.g., "Image too blurry", "Text not readable"). You can then:</p>
-            <ul>
-              <li>Re-scan/re-photograph the document at higher quality</li>
-              <li>Manually enter the data</li>
-              <li>Contact our support team for help</li>
-            </ul>
-            <p>For best results: use clear, well-lit scans with straight orientation (not rotated).</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Can I save my progress and come back later?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>Yes! Your progress is automatically saved in your browser. You'll get a submission ID at the start which you can use to resume anytime. <strong>Note:</strong> Clear your browser cache and your submission will be lost, so save your ID!</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Who should I contact for support?</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            <p>We're available 24/7 via:</p>
-            <ul>
-              <li><strong>WhatsApp:</strong> <a href="https://wa.me/917397510254" target="_blank" style="color: #2563eb; font-weight: 600;">+91 7397 510 254</a> (fastest response)</li>
-              <li><strong>Email:</strong> <a href="mailto:fairtaxadvisors@gmail.com" style="color: #2563eb; font-weight: 600;">fairtaxadvisors@gmail.com</a> (2-hour response)</li>
-              <li><strong>Call:</strong> +91 7397 510 254 (9 AM - 9 PM)</li>
-            </ul>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>Yes! We offer a <strong>20% Family Package discount</strong> for spouses filing together. If your filing costs ₹499, your spouse pays only ₹399. <a href="choice.html">Start filing</a> and you'll see this option at the end of the process.</p>
           </div>
         </div>
       </div>
-
     </div>
 
-    <!-- Still Have Questions CTA -->
-    <div style="background: linear-gradient(135deg, #0B2545, #1A56DB); border-radius: 16px; padding: 40px 20px; text-align: center; margin: 48px auto; max-width: 800px; color: #fff; position:relative;overflow:hidden">
-      <div class="sparkle-container"><div class="sparkle-dot" style="background:#34D399"></div><div class="sparkle-dot" style="background:#34D399"></div><div class="sparkle-dot" style="background:#34D399"></div></div>
-      <h2 style="color: #fff; margin-bottom: 12px; text-shadow:none">Still Have Questions?</h2>
-      <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 24px; font-size: 15px;">
-        Our tax experts are here to help. Get in touch via WhatsApp, email, or phone.
-      </p>
-      <a href="contact.html" class="hero-cta-primary" style="display:inline-block;text-decoration:none">
-        Contact Support &rarr;
+    <!-- ─── Category: Technical & Support ─── -->
+    <div class="fq-cat-group" id="group-technical" data-aos="fade-up" data-aos-delay="80">
+      <div class="fq-cat-label">
+        <div class="fq-cat-label-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+        </div>
+        Technical &amp; Support
+      </div>
+
+      <div class="fq-item" data-cat="technical">
+        <div class="fq-question">
+          <span class="fq-q-text">What file formats does FairTax accept?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>We accept <strong>PDF</strong> (scanned or digital), <strong>JPG/JPEG</strong>, <strong>PNG</strong>, <strong>BMP</strong>, and <strong>TIFF</strong> image files. Maximum file size is 25 MB per document, and multi-page PDFs are fully supported.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fq-item" data-cat="technical">
+        <div class="fq-question">
+          <span class="fq-q-text">What if the AI fails to extract data from my document?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>If the AI cannot read your document, we'll notify you immediately with the reason (e.g., "Image too blurry"). You can then re-scan at higher quality, manually enter the data, or contact our support team for assistance. For best results use clear, well-lit scans with straight orientation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fq-item" data-cat="technical">
+        <div class="fq-question">
+          <span class="fq-q-text">Can I save my progress and come back later?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>Yes! Your progress is automatically saved in your browser session. You'll receive a unique submission ID at the start — keep it safe to resume anytime. <strong>Important:</strong> clearing your browser cache will delete your progress, so note down your submission ID.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fq-item" data-cat="technical">
+        <div class="fq-question">
+          <span class="fq-q-text">How do I contact FairTax support?</span>
+          <span class="fq-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </span>
+        </div>
+        <div class="fq-answer">
+          <div class="fq-answer-inner">
+            <p>We're available 24/7 across multiple channels:</p>
+            <ul>
+              <li><strong>WhatsApp:</strong> <a href="https://wa.me/917397510254" target="_blank" rel="noopener">+91 73975 10254</a> — fastest response</li>
+              <li><strong>Email:</strong> <a href="mailto:fairtaxadvisors@gmail.com">fairtaxadvisors@gmail.com</a> — 2-hour response</li>
+              <li><strong>Phone:</strong> +91 73975 10254 — available 9 AM to 9 PM</li>
+              <li><strong>Contact Form:</strong> <a href="contact.html">Contact page</a> — detailed queries</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BOTTOM CTA
+══════════════════════════════════════════ -->
+<div class="ref-footer-cta">
+  <div class="ref-blob ref-blob-1" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-2" aria-hidden="true"></div>
+  <div class="ref-footer-cta-inner" data-aos="fade-up">
+    <h2>Still Have Questions?</h2>
+    <p>Our tax experts are available 24/7 via WhatsApp, email, and phone. Get a personalised answer in under 2 hours.</p>
+    <a href="contact.html" class="ref-cta-primary" style="font-size:16px;padding:17px 38px">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Contact Our Team
+    </a>
+  </div>
+</div>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="lv2-footer">
+  <div class="lv2-footer-top">
+    <div class="lv2-footer-brand">
+      <a href="landing.html" class="lv2-footer-logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="9" fill="#1A56DB"/>
+          <path d="M20 9L12 14v8c0 6 4 10 8 11.5C24 21.5 28 17.5 28 12V14L20 9z" fill="white" opacity="0.92"/>
+          <path d="M17 20.5l2.5 2.5 4-5" stroke="#1A56DB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <div class="lv2-footer-brand-name">
+            <span class="lv2-footer-brand-fair">FAIRTAX</span>
+            <span class="lv2-footer-brand-advisors">ADVISORS</span>
+          </div>
+          <div class="lv2-footer-brand-tagline">Your Taxes. Our Expertise.</div>
+        </div>
       </a>
+      <p class="lv2-footer-desc">AI-powered ITR filing platform trusted by 2 lakh+ Indians. Accurate, secure, and expert-assisted.</p>
+      <div class="lv2-footer-contact">
+        <a href="https://wa.me/917397510254" class="lv2-footer-contact-item" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          +91 73975 10254
+        </a>
+        <a href="mailto:fairtaxadvisors@gmail.com" class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          fairtaxadvisors@gmail.com
+        </a>
+        <a href="#" class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Mumbai, Maharashtra, India
+        </a>
+      </div>
     </div>
+    <div class="lv2-footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="landing.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="choice.html">File ITR</a></li>
+        <li><a href="referral-offer.html">Refer &amp; Earn</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="lv2-footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="choice.html">Salaried ITR Filing</a></li>
+        <li><a href="choice.html">Freelancer ITR</a></li>
+        <li><a href="choice.html">Business ITR</a></li>
+        <li><a href="choice.html">Senior Citizen ITR</a></li>
+        <li><a href="choice.html">Capital Gains</a></li>
+        <li><a href="choice.html">NRI Filing</a></li>
+      </ul>
+    </div>
+    <div class="lv2-footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Disclaimer</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="lv2-footer-bottom">
+    <div class="lv2-footer-copy">© 2025 FairTax Advisors. All rights reserved. Made with ♥ in India.</div>
+    <div class="lv2-footer-badges">
+      <span class="lv2-footer-badge">256-bit Encrypted</span>
+      <span class="lv2-footer-badge">CA Verified</span>
+      <span class="lv2-footer-badge">ITD Authorized</span>
+    </div>
+  </div>
+</footer>
 
-  </main>
-
-  <footer id="site-footer"></footer>
-
-<!-- Freelancer floating CTA -->
+<!-- Freelancer CTA -->
 <a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
-  <span class="fl-star">&#11088;</span>
+  <span class="fl-star">⭐</span>
   <span class="fl-text">Why not join us<br>as a Freelancer?</span>
 </a>
 
@@ -468,62 +608,122 @@
 <div id="winnersWidget" class="winners-widget">
   <h4>Weekly Winners</h4>
   <ul id="winnersList"><li>Loading...</li></ul>
-  <a href="referral-offer.html" id="seeAllWinners">See all</a>
+  <a href="referral-offer.html">See all</a>
 </div>
 
-  <script>
-    const API = 'https://fairtax-backend.onrender.com';
-    fetch('components/header.html')
-      .then(r => r.text())
-      .then(html => document.getElementById('site-header').innerHTML = html)
-      .catch(e => console.error('Failed to load header:', e));
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+const API = 'https://fairtax-backend.onrender.com';
 
-    fetch('components/footer.html')
-      .then(r => r.text())
-      .then(html => document.getElementById('site-footer').innerHTML = html)
-      .catch(e => console.error('Failed to load footer:', e));
+/* ── Winners widget ── */
+async function loadWinners() {
+  try {
+    const r = await fetch(`${API}/winners`);
+    const j = await r.json();
+    const list = document.getElementById('winnersList');
+    list.innerHTML = '';
+    (j.winners || []).forEach(w => {
+      const li = document.createElement('li');
+      li.textContent = `${w.name} — ${w.reward}`;
+      list.appendChild(li);
+    });
+  } catch(e) { console.warn('winners load failed', e); }
+}
+loadWinners();
 
-    async function loadWinners() {
-      try {
-        const r = await fetch(`${API}/winners`);
-        const j = await r.json();
-        const list = document.getElementById('winnersList');
-        list.innerHTML = '';
-        (j.winners || []).forEach(w => {
-          const li = document.createElement('li');
-          li.textContent = `${w.name} — ${w.reward}`;
-          list.appendChild(li);
-        });
-      } catch (e) { console.warn('winners load failed', e); }
+/* ── AOS ── */
+AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+
+/* ── Accordion ── */
+document.querySelectorAll('.fq-item').forEach(item => {
+  item.querySelector('.fq-question').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    /* close all siblings in same group */
+    item.closest('.fq-cat-group').querySelectorAll('.fq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+/* ── Category tab filter ── */
+const tabs     = document.querySelectorAll('.fq-cat-tab');
+const groups   = document.querySelectorAll('.fq-cat-group');
+const allItems = document.querySelectorAll('.fq-item');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const sel = tab.dataset.tab;
+
+    if (sel === 'all') {
+      groups.forEach(g => g.style.display = '');
+      allItems.forEach(i => { if(i.style.display === 'none' && !i.dataset._searchHidden) i.style.display = ''; });
+    } else {
+      groups.forEach(g => {
+        const id = g.id.replace('group-', '');
+        g.style.display = id === sel ? '' : 'none';
+      });
     }
-    loadWinners();
+    document.getElementById('fqNoResults').style.display = 'none';
+  });
+});
 
-    // FAQ accordion functionality
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      question.addEventListener('click', () => {
-        item.classList.toggle('open');
-      });
+/* ── Live search ── */
+const searchInput = document.getElementById('faqSearch');
+searchInput.addEventListener('input', () => {
+  const term = searchInput.value.trim().toLowerCase();
+
+  /* reset tab to "all" when typing */
+  if (term) {
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelector('[data-tab="all"]').classList.add('active');
+    groups.forEach(g => g.style.display = '');
+  }
+
+  let visibleCount = 0;
+  allItems.forEach(item => {
+    if (!term) {
+      item.style.display = '';
+      item.dataset._searchHidden = '';
+      visibleCount++;
+      return;
+    }
+    const q = item.querySelector('.fq-q-text').textContent.toLowerCase();
+    const a = item.querySelector('.fq-answer-inner').textContent.toLowerCase();
+    const matches = q.includes(term) || a.includes(term);
+    item.style.display = matches ? '' : 'none';
+    item.dataset._searchHidden = matches ? '' : '1';
+    if (matches) visibleCount++;
+  });
+
+  /* hide empty groups */
+  groups.forEach(g => {
+    const anyVisible = [...g.querySelectorAll('.fq-item')].some(i => i.style.display !== 'none');
+    g.style.display = anyVisible ? '' : 'none';
+  });
+
+  document.getElementById('fqNoResults').style.display = visibleCount === 0 ? 'block' : 'none';
+});
+
+/* ── Mobile nav ── */
+(function(){
+  const btn = document.querySelector('.lv2-hamburger');
+  const nav = document.getElementById('lv2MobileNav');
+  if(!btn||!nav) return;
+  btn.addEventListener('click', function(){
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('.lv2-mobile-link').forEach(l => {
+    l.addEventListener('click', () => {
+      btn.setAttribute('aria-expanded','false');
+      btn.classList.remove('open');
+      nav.classList.remove('open');
     });
-
-    // FAQ search functionality
-    const searchInput = document.getElementById('faqSearch');
-    searchInput.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-
-      faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question span:first-child').textContent.toLowerCase();
-        const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
-        const matches = question.includes(searchTerm) || answer.includes(searchTerm);
-
-        if (searchTerm === '') {
-          item.style.display = 'block';
-        } else {
-          item.style.display = matches ? 'block' : 'none';
-        }
-      });
-    });
-  </script>
+  });
+})();
+</script>
 </body>
 </html>

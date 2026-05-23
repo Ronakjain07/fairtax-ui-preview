@@ -1,0 +1,196 @@
+/* ════════════════════════════════════════════════════════
+   splash-v2.css  v1  —  premium Splash / Referral Offer page
+   Leans on ref- classes; sp- prefix for new rules
+════════════════════════════════════════════════════════ */
+
+body.sp-page { background: #040d1a !important; }
+
+/* ── Hero: emerald accent ── */
+.sp-hero { background: #040d1a; }
+
+.sp-hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(16,185,129,.1);
+  border: 1px solid rgba(16,185,129,.26);
+  backdrop-filter: blur(12px);
+  color: #34d399;
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: .6px; text-transform: uppercase;
+  padding: 8px 20px; border-radius: 100px; margin-bottom: 28px;
+}
+.sp-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #10b981; box-shadow: 0 0 9px #10b981;
+  animation: live-pulse 1.8s ease-in-out infinite;
+}
+
+/* Emerald gradient headline */
+.sp-hero-h1 .grad-emerald {
+  background: linear-gradient(135deg, #059669 0%, #10b981 30%, #34d399 55%, #6ee7b7 70%, #34d399 85%, #10b981 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+  display: inline-block;
+}
+
+/* Dark section header override */
+.sp-dark-hd.ref-section-hd .ref-section-title { color: #fff; }
+.sp-dark-hd.ref-section-hd .ref-section-sub   { color: rgba(255,255,255,.46); }
+.sp-dark-hd.ref-section-hd .ref-label-pill {
+  background: rgba(16,185,129,.1);
+  border: 1px solid rgba(16,185,129,.2);
+  color: #34d399;
+}
+
+/* ══════════════════════════════════════════════════
+   HOW IT WORKS SECTION
+══════════════════════════════════════════════════ */
+.sp-steps-section {
+  background: #060f22;
+  padding: 90px 28px;
+  position: relative; overflow: hidden;
+}
+.sp-steps-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(16,185,129,.045), transparent 70%);
+  pointer-events: none;
+}
+
+.sp-steps-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; max-width: 1000px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+
+.sp-step-card {
+  background: #0a1628;
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 22px; padding: 32px 24px 28px;
+  text-align: center;
+  position: relative; overflow: hidden;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+}
+.sp-step-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: var(--sc, #10b981);
+  border-radius: 22px 22px 0 0;
+}
+.sp-step-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 45% at 50% 0%, color-mix(in srgb, var(--sc, #10b981) 10%, transparent), transparent 65%);
+  pointer-events: none;
+}
+.sp-step-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,.38); }
+
+.sp-step-num {
+  width: 48px; height: 48px; border-radius: 50%;
+  margin: 0 auto 18px;
+  background: color-mix(in srgb, var(--sc, #10b981) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sc, #10b981) 24%, transparent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 900;
+  color: color-mix(in srgb, var(--sc, #10b981) 90%, #fff);
+  position: relative; z-index: 1;
+}
+.sp-step-title {
+  font-size: 17px; font-weight: 800; color: #fff;
+  margin: 0 0 10px; position: relative; z-index: 1;
+}
+.sp-step-body {
+  font-size: 13.5px; color: rgba(255,255,255,.42); line-height: 1.72;
+  margin: 0; position: relative; z-index: 1;
+}
+.sp-step-reward {
+  margin-top: 14px;
+  display: inline-block;
+  background: color-mix(in srgb, var(--sc, #10b981) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sc, #10b981) 22%, transparent);
+  color: color-mix(in srgb, var(--sc, #10b981) 85%, #fff);
+  font-size: 14px; font-weight: 800;
+  padding: 6px 16px; border-radius: 100px;
+  position: relative; z-index: 1;
+}
+
+/* ══════════════════════════════════════════════════
+   REFERRAL TIERS
+══════════════════════════════════════════════════ */
+.sp-tiers-section {
+  background: #040d1a; padding: 80px 28px;
+}
+.sp-tiers-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 18px; max-width: 900px; margin: 0 auto;
+}
+.sp-tier-card {
+  background: #0a1628; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 18px; padding: 26px 18px; text-align: center;
+  position: relative; overflow: hidden;
+  transition: transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+}
+.sp-tier-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 0 0 1px var(--tc, #10b981), 0 20px 50px rgba(0,0,0,.38);
+}
+.sp-tier-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--tc, #10b981);
+}
+.sp-tier-refs {
+  font-size: 32px; font-weight: 900; letter-spacing: -1px;
+  color: color-mix(in srgb, var(--tc, #10b981) 80%, #fff);
+  display: block; margin-bottom: 5px;
+}
+.sp-tier-refs-label {
+  font-size: 10px; font-weight: 700; color: rgba(255,255,255,.3);
+  text-transform: uppercase; letter-spacing: .8px;
+  display: block; margin-bottom: 14px;
+}
+.sp-tier-reward {
+  font-size: 20px; font-weight: 900; color: #fff;
+  display: block; margin-bottom: 4px;
+}
+.sp-tier-bonus {
+  font-size: 11px; color: var(--tc, #10b981); font-weight: 600;
+  display: block;
+}
+
+/* Trust strip */
+.sp-trust-strip {
+  background: #060f22; padding: 28px;
+  border-top: 1px solid rgba(255,255,255,.04);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.sp-trust-inner {
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  gap: 32px; flex-wrap: wrap;
+}
+.sp-trust-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.36);
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .sp-tiers-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  /* Hero badge breathing room */
+  .ref-hero.sp-hero {
+    padding: 72px 16px 52px !important;
+    min-height: auto !important;
+  }
+  .sp-steps-section { padding: 60px 16px; }
+  .sp-tiers-section { padding: 60px 16px; }
+  .sp-steps-grid { grid-template-columns: 1fr; }
+  .sp-tiers-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+@media (max-width: 520px) {
+  /* Single column tiers on phones so rewards text isn't squeezed */
+  .sp-tiers-grid { grid-template-columns: 1fr; gap: 10px; }
+}

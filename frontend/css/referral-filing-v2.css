@@ -1,0 +1,604 @@
+/* ════════════════════════════════════════════════════════
+   referral-filing-v2.css  —  dark treatment for referral-filing.html
+   Violet accent (#8b5cf6 / #a78bfa)
+   rf- prefix for page-specific rules
+════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════
+   OVERRIDE CSS CUSTOM PROPERTIES FOR DARK THEME
+══════════════════════════════════════════════════ */
+body.rf-page {
+  --surface: #0d1428;
+  --surface-dim: #111a38;
+  --glass: rgba(13,20,40,0.95);
+  --glass-border: rgba(255,255,255,0.07);
+  --text: #f1f5f9;
+  --text-secondary: rgba(255,255,255,0.55);
+  --text-muted: rgba(255,255,255,0.35);
+  background: #040d1a !important;
+  color: #f1f5f9 !important;
+}
+
+/* ── Dark main area ── */
+body.rf-page > main {
+  background: #040d1a !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ── Form wrapper — nuke the white gradient from style.css's `form` rule ── */
+body.rf-page #taxForm {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 20px 90px !important;
+  max-width: 760px;
+  margin: 28px auto 0;
+}
+body.rf-page #taxForm::before,
+body.rf-page #taxForm::after {
+  display: none !important;
+}
+
+/* ── Progress bar ── */
+body.rf-page .progress {
+  position: sticky !important;
+  top: 0;
+  background: rgba(255,255,255,.05) !important;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  z-index: 199;
+}
+body.rf-page #bar {
+  background: linear-gradient(90deg, #8b5cf6, #a78bfa, #7c3aed) !important;
+}
+
+/* ── Step label ── */
+body.rf-page .step-label {
+  position: sticky !important;
+  top: 4px !important;
+  background: rgba(4,13,26,.96) !important;
+  backdrop-filter: blur(12px);
+  color: #a78bfa !important;
+  border-bottom-color: rgba(255,255,255,.06) !important;
+  z-index: 198;
+}
+
+/* ══════════════════════════════════════════════════
+   HERO CTA BUTTONS — override amber → violet
+══════════════════════════════════════════════════ */
+body.rf-page .ref-cta-primary {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+  box-shadow: 0 6px 28px rgba(139,92,246,.45) !important;
+  color: #ffffff !important;
+}
+body.rf-page .ref-cta-primary:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
+  box-shadow: 0 12px 36px rgba(139,92,246,.6) !important;
+}
+body.rf-page .ref-cta-secondary {
+  color: #a78bfa !important;
+  text-decoration: none !important;
+}
+body.rf-page .ref-cta-secondary:hover {
+  color: #c4b5fd !important;
+}
+
+/* ══════════════════════════════════════════════════
+   HERO — violet accent
+══════════════════════════════════════════════════ */
+.rf-hero { background: #040d1a; }
+
+.rf-hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(139,92,246,.1);
+  border: 1px solid rgba(139,92,246,.28);
+  backdrop-filter: blur(12px);
+  color: #a78bfa;
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: .6px; text-transform: uppercase;
+  padding: 8px 20px; border-radius: 100px; margin-bottom: 28px;
+}
+.rf-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #8b5cf6; box-shadow: 0 0 9px #8b5cf6;
+  animation: live-pulse 1.8s ease-in-out infinite;
+}
+
+/* Violet gradient headline */
+.rf-hero-h1 .grad-violet {
+  background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 35%, #a78bfa 60%, #c4b5fd 75%, #a78bfa 88%, #8b5cf6 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+  display: inline-block;
+}
+
+/* Dark section header */
+.rf-dark-hd.ref-section-hd .ref-section-title { color: #fff; }
+.rf-dark-hd.ref-section-hd .ref-section-sub { color: rgba(255,255,255,.46); }
+.rf-dark-hd.ref-section-hd .ref-label-pill {
+  background: rgba(139,92,246,.1);
+  border: 1px solid rgba(139,92,246,.2);
+  color: #a78bfa;
+}
+
+/* ══════════════════════════════════════════════════
+   STEP CARDS — dark
+══════════════════════════════════════════════════ */
+body.rf-page .step {
+  background: #0a1628 !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+  border-radius: 20px !important;
+  padding: 28px 28px !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.04) !important;
+  margin-bottom: 16px !important;
+}
+
+/* Step headings */
+body.rf-page .step h2 {
+  color: #f1f5f9 !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  margin-bottom: 6px !important;
+}
+body.rf-page .step h3 { color: #cbd5e1 !important; }
+body.rf-page .step p  { color: rgba(255,255,255,.45) !important; }
+body.rf-page .step a  { color: #a78bfa !important; }
+
+/* ── Inputs & selects ── */
+body.rf-page .step input,
+body.rf-page .step select,
+body.rf-page .step textarea {
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  border-radius: 10px !important;
+  color: #f1f5f9 !important;
+  padding: 11px 14px !important;
+  font-size: 14px !important;
+  transition: border-color .18s, box-shadow .18s !important;
+}
+body.rf-page .step input:focus,
+body.rf-page .step select:focus,
+body.rf-page .step textarea:focus {
+  border-color: rgba(139,92,246,.55) !important;
+  box-shadow: 0 0 0 3px rgba(139,92,246,.15) !important;
+  outline: none !important;
+}
+body.rf-page .step input::placeholder,
+body.rf-page .step textarea::placeholder {
+  color: rgba(255,255,255,.22) !important;
+}
+body.rf-page .step select option {
+  background: #0a1628 !important;
+  color: #f1f5f9 !important;
+}
+
+/* ── Labels ── */
+body.rf-page .step label {
+  color: rgba(255,255,255,.62) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+/* ── Hint text ── */
+body.rf-page .step .hint { color: rgba(255,255,255,.35) !important; }
+
+/* ── Section subtitles ── */
+body.rf-page .step .section-subtitle,
+body.rf-page .step h3.section-subtitle {
+  color: rgba(255,255,255,.35) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+}
+
+/* ── User details ── */
+body.rf-page .step .user-details {
+  background: rgba(139,92,246,.07) !important;
+  border-color: rgba(139,92,246,.2) !important;
+}
+body.rf-page .step .user-details h3 { color: #a78bfa !important; }
+
+/* ── Proof sections ── */
+body.rf-page .step .proof-section {
+  background: rgba(255,255,255,.03) !important;
+  border-color: rgba(255,255,255,.08) !important;
+  border-radius: 12px !important;
+}
+body.rf-page .step .proof-section:hover {
+  border-color: rgba(139,92,246,.35) !important;
+}
+body.rf-page .step .proof-header span {
+  color: rgba(255,255,255,.75) !important;
+  font-weight: 600 !important;
+}
+body.rf-page .step .proof-toggle {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #a78bfa !important;
+}
+
+/* ── File upload ── */
+body.rf-page .step label.file {
+  background: rgba(255,255,255,.04) !important;
+  border: 1.5px dashed rgba(255,255,255,.15) !important;
+  border-radius: 12px !important;
+  color: rgba(255,255,255,.5) !important;
+}
+body.rf-page .step label.file:hover {
+  border-color: rgba(139,92,246,.45) !important;
+  background: rgba(139,92,246,.06) !important;
+}
+
+/* ── Status messages ── */
+body.rf-page .step .status {
+  background: rgba(16,185,129,.08) !important;
+  border: 1px solid rgba(16,185,129,.2) !important;
+  color: #34d399 !important;
+  border-radius: 10px !important;
+}
+
+/* ── Choice buttons ── */
+body.rf-page .step .choice {
+  background: rgba(255,255,255,.05) !important;
+  border: 1.5px solid rgba(255,255,255,.1) !important;
+  color: rgba(255,255,255,.75) !important;
+  border-radius: 12px !important;
+}
+body.rf-page .step .choice:hover,
+body.rf-page .step .choice.selected {
+  background: rgba(139,92,246,.15) !important;
+  border-color: rgba(139,92,246,.45) !important;
+  color: #a78bfa !important;
+}
+
+/* ── Bullets & consent ── */
+body.rf-page .step .bullets li { color: rgba(255,255,255,.7) !important; }
+body.rf-page .step .consent-row { color: rgba(255,255,255,.55) !important; }
+body.rf-page .step .consent-row a { color: #a78bfa !important; }
+
+/* ── Extraction loader ── */
+body.rf-page .step .premium-loader {
+  background: rgba(139,92,246,.1) !important;
+  border-color: rgba(139,92,246,.3) !important;
+  color: #a78bfa !important;
+}
+
+/* ── Fieldsets ── */
+body.rf-page .step fieldset {
+  background: rgba(255,255,255,.03) !important;
+  border-color: rgba(255,255,255,.09) !important;
+}
+body.rf-page .step legend { color: rgba(255,255,255,.35) !important; }
+body.rf-page .step fieldset:has([name="referred_by"]) {
+  background: rgba(16,185,129,.05) !important;
+  border-color: rgba(16,185,129,.2) !important;
+}
+
+/* ── Option cards ── */
+body.rf-page .step .option-card {
+  background: rgba(255,255,255,.04) !important;
+  border-color: rgba(255,255,255,.1) !important;
+}
+body.rf-page .step .option-card:hover {
+  background: rgba(139,92,246,.1) !important;
+  border-color: rgba(139,92,246,.4) !important;
+}
+body.rf-page .step .option-card.selected {
+  background: rgba(139,92,246,.15) !important;
+  border-color: rgba(139,92,246,.5) !important;
+}
+body.rf-page .step .option-card h4    { color: #f1f5f9 !important; }
+body.rf-page .step .option-card .option-description { color: rgba(255,255,255,.45) !important; }
+body.rf-page .step .option-card .fee-note           { color: rgba(255,255,255,.3) !important; }
+
+/* ── Proof list ── */
+body.rf-page .step .proof-list {
+  background: rgba(255,255,255,.03) !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+body.rf-page .step .proof-list h5 { color: rgba(255,255,255,.35) !important; }
+
+/* ── Custom checkbox ── */
+body.rf-page .step input[type="checkbox"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  border: 2px solid rgba(255,255,255,.25) !important;
+  border-radius: 5px !important;
+  background: rgba(255,255,255,.06) !important;
+  cursor: pointer !important;
+  position: relative !important;
+  transition: border-color .18s, background .18s, box-shadow .18s !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+body.rf-page .step input[type="checkbox"]:hover {
+  border-color: rgba(139,92,246,.6) !important;
+  background: rgba(139,92,246,.12) !important;
+}
+body.rf-page .step input[type="checkbox"]:checked {
+  background: #8b5cf6 !important;
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 3px rgba(139,92,246,.2) !important;
+}
+body.rf-page .step input[type="checkbox"]:checked::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 4px !important;
+  top: 1px !important;
+  width: 6px !important;
+  height: 10px !important;
+  border: 2px solid #fff !important;
+  border-top: none !important;
+  border-left: none !important;
+  transform: rotate(45deg) !important;
+  display: block !important;
+}
+
+/* ── File input ── */
+body.rf-page .step input[type="file"] {
+  background: rgba(255,255,255,.04) !important;
+  color: rgba(255,255,255,.5) !important;
+  border: 2px dashed rgba(255,255,255,.15) !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+  width: 100% !important;
+  font-size: 12.5px !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+body.rf-page .step input[type="file"]::file-selector-button {
+  background: rgba(139,92,246,.2) !important;
+  color: #a78bfa !important;
+  border: 1px solid rgba(139,92,246,.4) !important;
+  border-radius: 7px !important;
+  padding: 6px 14px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  margin-right: 12px !important;
+  transition: background .15s !important;
+}
+body.rf-page .step input[type="file"]::file-selector-button:hover {
+  background: rgba(139,92,246,.4) !important;
+}
+
+/* ── Add / camera buttons ── */
+body.rf-page .step .add-btn {
+  background: rgba(139,92,246,.12) !important;
+  border-color: rgba(139,92,246,.3) !important;
+  color: #a78bfa !important;
+}
+body.rf-page .step .add-btn:hover {
+  background: #8b5cf6 !important;
+  color: #fff !important;
+}
+body.rf-page .step .camera-btn {
+  background: rgba(139,92,246,.12) !important;
+  border-color: rgba(139,92,246,.35) !important;
+  color: #a78bfa !important;
+}
+body.rf-page .step .camera-btn:hover {
+  background: #8b5cf6 !important;
+  color: #fff !important;
+}
+
+/* ── Camera modal content ── */
+body.rf-page .modal-content {
+  background: #0d1f3c !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+}
+body.rf-page #closeCamera {
+  background: rgba(255,255,255,.08) !important;
+  color: rgba(255,255,255,.7) !important;
+}
+
+/* ── Eligibility box ── */
+body.rf-page .eligibility-box {
+  background: rgba(139,92,246,.07) !important;
+  border-color: rgba(139,92,246,.18) !important;
+}
+body.rf-page .eligibility-label { color: #a78bfa !important; }
+body.rf-page .eligibility-sub   { color: rgba(255,255,255,.44) !important; }
+body.rf-page .step .eligibility-check { color: #34d399 !important; }
+body.rf-page .step .eligibility-check span { color: rgba(255,255,255,.7) !important; }
+
+/* ── Offer badge (in spouse section, outside .step) ── */
+body.rf-page .offer-badge {
+  background: rgba(16,185,129,.12) !important;
+  border: 1px solid rgba(16,185,129,.28) !important;
+  color: #34d399 !important;
+}
+
+/* ══════════════════════════════════════════════════
+   SPOUSE SECTION — violet tint
+══════════════════════════════════════════════════ */
+body.rf-page .spouse-section {
+  background: rgba(139,92,246,.06) !important;
+  border-color: rgba(139,92,246,.2) !important;
+  border-radius: 16px !important;
+}
+body.rf-page .spouse-section h3 { color: #fff !important; }
+body.rf-page .spouse-section p  { color: rgba(255,255,255,.44) !important; }
+body.rf-page .spouse-yes-btn {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 18px rgba(139,92,246,.35) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   CLAIM FREE FILING BUTTON — premium redesign
+══════════════════════════════════════════════════ */
+
+@keyframes rf-btn-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes rf-btn-glow {
+  0%, 100% { box-shadow: 0 4px 24px rgba(139,92,246,.5), 0 0 0 0 rgba(167,139,250,.0); }
+  50%       { box-shadow: 0 8px 36px rgba(139,92,246,.75), 0 0 0 5px rgba(167,139,250,.15); }
+}
+
+/* ── BASE button reset ── */
+body.rf-page .joker-play-btn {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+
+  /* vivid violet shimmer gradient */
+  background: linear-gradient(105deg,
+    #6d28d9 0%, #8b5cf6 25%, #a78bfa 50%, #8b5cf6 75%, #6d28d9 100%
+  ) !important;
+  background-size: 200% auto !important;
+  animation: rf-btn-shimmer 2.8s linear infinite, rf-btn-glow 2.2s ease-in-out infinite !important;
+
+  border: none !important;
+  border-radius: 14px !important;
+  padding: 16px 40px !important;
+  min-width: 240px !important;
+
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.2px !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,.3) !important;
+
+  opacity: 1 !important;
+  filter: none !important;
+  cursor: pointer !important;
+  transition: transform .2s, box-shadow .2s !important;
+  overflow: hidden !important;
+}
+
+/* glossy top sheen */
+body.rf-page .joker-play-btn::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,.18) 0%,
+    rgba(255,255,255,.0) 55%
+  ) !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  display: block !important;
+}
+
+body.rf-page .joker-play-btn .joker-btn-icon {
+  flex-shrink: 0 !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.5)) !important;
+}
+body.rf-page .joker-play-btn .joker-text {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+body.rf-page .joker-play-btn:hover:not(.locked) {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 12px 40px rgba(139,92,246,.8), 0 0 0 3px rgba(167,139,250,.25) !important;
+}
+body.rf-page .joker-play-btn:active:not(.locked) {
+  transform: translateY(-1px) scale(1.01) !important;
+}
+
+/* ── LOCKED — deep, readable, clearly "pending" ── */
+body.rf-page .joker-play-btn.locked {
+  background: linear-gradient(105deg, #3b1f72, #4c1d95, #3b1f72) !important;
+  background-size: 100% !important;
+  animation: rf-btn-glow 2.2s ease-in-out infinite !important;
+  box-shadow: 0 4px 20px rgba(76,29,149,.5) !important;
+  border: 1.5px solid rgba(139,92,246,.3) !important;
+  color: rgba(255,255,255,.9) !important;
+  cursor: default !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+body.rf-page .joker-play-btn.locked .joker-text,
+body.rf-page .joker-play-btn.locked .joker-btn-icon {
+  color: rgba(255,255,255,.9) !important;
+  opacity: 1 !important;
+  filter: none !important;
+}
+body.rf-page .joker-play-btn.locked:hover { transform: none !important; }
+
+/* ── Unlock hint text ── */
+body.rf-page .rf-unlock-hint {
+  margin-top: 12px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .8px !important;
+  text-transform: uppercase !important;
+  color: rgba(167,139,250,.5) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+}
+/* Auto-hide hint when unlocked */
+body.rf-page .joker-play-btn:not(.locked) ~ .rf-unlock-hint {
+  display: none !important;
+}
+
+/* ══════════════════════════════════════════════════
+   NAV BUTTONS
+══════════════════════════════════════════════════ */
+body.rf-page #prev {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: rgba(255,255,255,.6) !important;
+}
+body.rf-page #prev:hover {
+  background: rgba(255,255,255,.1) !important;
+  color: rgba(255,255,255,.85) !important;
+}
+body.rf-page #next,
+body.rf-page #submit {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed) !important;
+  box-shadow: 0 4px 20px rgba(139,92,246,.35) !important;
+  color: #fff !important;
+}
+body.rf-page #next:hover,
+body.rf-page #submit:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
+  box-shadow: 0 6px 26px rgba(139,92,246,.48) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  body.rf-page #taxForm { padding: 0 12px 70px !important; margin-top: 16px !important; }
+  body.rf-page .step    { padding: 20px 16px !important; }
+
+  /* Hero padding — at least 60px top so badge clears sticky header */
+  body.rf-page .ix-hero,
+  body.rf-page .rf-hero {
+    padding: 60px 16px 44px !important;
+  }
+
+  /* Option cards 1 col */
+  body.rf-page .step .option-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Nav buttons stack */
+  body.rf-page .nav {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  body.rf-page .nav #next,
+  body.rf-page .nav #submit,
+  body.rf-page .nav #prev {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}

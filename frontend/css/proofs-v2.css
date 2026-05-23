@@ -1,0 +1,254 @@
+/* ════════════════════════════════════════════════════════
+   proofs-v2.css  —  Free Filing Eligibility / Proofs page
+   Teal accent (#0891b2 / #38bdf8)
+   pv- prefix for new rules
+════════════════════════════════════════════════════════ */
+
+body.pv-page { background: #040d1a !important; }
+
+/* ── Hero ── */
+.pv-hero {
+  background: #040d1a;
+  padding: 90px 28px 64px;
+  text-align: center;
+}
+
+.pv-hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(8,145,178,.1);
+  border: 1px solid rgba(8,145,178,.28);
+  backdrop-filter: blur(12px);
+  color: #38bdf8;
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: .6px; text-transform: uppercase;
+  padding: 8px 20px; border-radius: 100px; margin-bottom: 28px;
+}
+.pv-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #0891b2; box-shadow: 0 0 9px #0891b2;
+  animation: live-pulse 1.8s ease-in-out infinite;
+}
+
+.pv-hero-h1 .grad-teal {
+  background: linear-gradient(135deg, #0e7490 0%, #0891b2 35%, #38bdf8 60%, #7dd3fc 75%, #38bdf8 88%, #0891b2 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+  display: inline-block;
+}
+
+/* ── Main section ── */
+.pv-main {
+  background: #040d1a;
+  padding: 60px 28px 100px;
+}
+.pv-inner { max-width: 680px; margin: 0 auto; }
+
+/* ── Eligibility cards ── */
+.pv-eligibility-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 36px;
+}
+.pv-elig-card {
+  background: #0a1628;
+  border: 1px solid rgba(56,189,248,.14);
+  border-radius: 16px;
+  padding: 18px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: border-color .2s, transform .2s;
+}
+.pv-elig-card:hover { border-color: rgba(56,189,248,.32); transform: translateY(-3px); }
+.pv-elig-icon {
+  width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(8,145,178,.12);
+  border: 1px solid rgba(8,145,178,.22);
+  display: flex; align-items: center; justify-content: center;
+}
+.pv-elig-title {
+  font-size: 13px; font-weight: 700; color: #fff; margin: 0 0 3px;
+}
+.pv-elig-sub {
+  font-size: 11.5px; color: rgba(255,255,255,.38); margin: 0; line-height: 1.5;
+}
+
+/* ── Form card ── */
+.pv-form-card {
+  background: #0a1628;
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 24px;
+  padding: 36px 32px;
+  position: relative; overflow: hidden;
+}
+.pv-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #0891b2, #38bdf8, #7dd3fc);
+  border-radius: 24px 24px 0 0;
+}
+.pv-form-title {
+  font-size: 20px; font-weight: 800; color: #fff;
+  margin: 0 0 6px;
+  display: flex; align-items: center; gap: 10px;
+}
+.pv-form-title-icon {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(8,145,178,.12);
+  border: 1px solid rgba(8,145,178,.2);
+  display: flex; align-items: center; justify-content: center;
+}
+.pv-form-sub {
+  font-size: 13.5px; color: rgba(255,255,255,.38); margin: 0 0 24px; line-height: 1.65;
+}
+
+/* ── File upload ── */
+.pv-file-label {
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  gap: 8px;
+  width: 100%; box-sizing: border-box;
+  border: 2px dashed rgba(56,189,248,.28);
+  border-radius: 14px;
+  padding: 28px 20px;
+  cursor: pointer;
+  background: rgba(56,189,248,.04);
+  transition: border-color .2s, background .2s;
+  margin-bottom: 16px;
+}
+.pv-file-label:hover {
+  border-color: rgba(56,189,248,.5);
+  background: rgba(56,189,248,.07);
+}
+.pv-file-icon-wrap {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(8,145,178,.14);
+  border: 1px solid rgba(8,145,178,.24);
+  display: flex; align-items: center; justify-content: center;
+}
+.pv-file-label-txt {
+  font-size: 13.5px; font-weight: 700; color: #38bdf8;
+}
+.pv-file-hint {
+  font-size: 11.5px; color: rgba(255,255,255,.28);
+}
+
+/* Override style.css button{width:100%} at 720px for narrow buttons */
+body.pv-page #captureBtn,
+body.pv-page #closeCamera {
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+/* ── Camera button ── */
+.pv-camera-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(8,145,178,.1);
+  border: 1px solid rgba(8,145,178,.22);
+  color: #38bdf8; font-size: 13px; font-weight: 700;
+  padding: 9px 18px; border-radius: 10px; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background .2s; margin-bottom: 20px;
+}
+.pv-camera-btn:hover { background: rgba(8,145,178,.18); }
+
+/* ── Textarea ── */
+.pv-field-label {
+  display: block; font-size: 11px; font-weight: 700;
+  color: rgba(255,255,255,.34); text-transform: uppercase;
+  letter-spacing: .7px; margin-bottom: 8px;
+}
+.pv-textarea {
+  width: 100%; box-sizing: border-box;
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  border-radius: 12px; color: #e2e8f0 !important;
+  font-size: 14px; padding: 14px 16px;
+  outline: none; resize: vertical; min-height: 110px;
+  transition: border-color .2s;
+  font-family: 'Inter', sans-serif;
+}
+.pv-textarea:focus {
+  border-color: rgba(56,189,248,.5) !important;
+  box-shadow: 0 0 0 3px rgba(56,189,248,.1);
+}
+.pv-textarea::placeholder { color: rgba(255,255,255,.2); }
+
+/* ── Submit + Back row ── */
+.pv-action-row {
+  display: flex; align-items: center; gap: 12px;
+  margin-top: 20px;
+}
+.pv-submit-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  flex: 1;
+  background: linear-gradient(135deg, #0891b2, #0e7490);
+  border: none; border-radius: 14px;
+  color: #fff; font-size: 15px; font-weight: 800;
+  padding: 15px 24px; cursor: pointer;
+  box-shadow: 0 4px 24px rgba(8,145,178,.3);
+  transition: transform .18s, box-shadow .18s;
+  font-family: 'Inter', sans-serif;
+}
+.pv-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(8,145,178,.42); }
+.pv-back-link {
+  font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,.38);
+  text-decoration: none; white-space: nowrap;
+  transition: color .15s;
+}
+.pv-back-link:hover { color: rgba(255,255,255,.7); }
+
+/* ── Nuke white gradient that style.css applies to every <form> ── */
+body.pv-page form {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+body.pv-page form::before,
+body.pv-page form::after {
+  display: none !important;
+}
+
+/* ── Input overrides ── */
+#proofDocs {
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  color: #e2e8f0 !important;
+}
+
+/* Style the native file-selector button for the proofs page */
+#proofDocs::file-selector-button {
+  background: rgba(8,145,178,.18) !important;
+  color: #38bdf8 !important;
+  border: 1px solid rgba(8,145,178,.35) !important;
+  border-radius: 7px !important;
+  padding: 6px 14px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  margin-right: 12px !important;
+  transition: background .15s !important;
+}
+#proofDocs::file-selector-button:hover {
+  background: rgba(8,145,178,.32) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .pv-hero { padding: 68px 16px 44px; }
+  .pv-main { padding: 40px 16px 70px; }
+  .pv-form-card { padding: 26px 18px; }
+  .pv-eligibility-grid { grid-template-columns: 1fr; }
+  .pv-hero-h1 { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+  .pv-action-row { flex-direction: column; gap: 10px; }
+  .pv-back-link { order: 2; text-align: center; }
+  .pv-submit-btn { width: 100%; }
+}

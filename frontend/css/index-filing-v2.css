@@ -1,0 +1,728 @@
+/* ════════════════════════════════════════════════════════
+   index-filing-v2.css  —  dark treatment for index.html
+   Blue accent (#1A56DB / #3b82f6)
+   ix- prefix for new rules
+════════════════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════════
+   OVERRIDE CSS CUSTOM PROPERTIES FOR DARK THEME
+══════════════════════════════════════════════════ */
+body.ix-page,
+body.if-page {
+  --surface: #0a1628;
+  --surface-dim: #0d1f3c;
+  --glass: rgba(10,22,40,0.95);
+  --glass-border: rgba(255,255,255,0.07);
+  --text: #f1f5f9;
+  --text-secondary: rgba(255,255,255,0.55);
+  --text-muted: rgba(255,255,255,0.35);
+  background: #040d1a !important;
+  color: #f1f5f9 !important;
+}
+
+body.ix-page { background: #040d1a !important; }
+
+body.ix-page > main {
+  background: #040d1a !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ── Progress bar ── */
+body.ix-page .progress {
+  position: sticky !important;
+  top: 0;
+  background: rgba(255,255,255,.05) !important;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  z-index: 199;
+}
+body.ix-page #bar {
+  background: linear-gradient(90deg, #1A56DB, #3b82f6, #1e40af) !important;
+}
+
+/* ── Step label ── */
+body.ix-page .step-label {
+  position: sticky !important;
+  top: 4px !important;
+  background: rgba(4,13,26,.96) !important;
+  backdrop-filter: blur(12px);
+  color: #93c5fd !important;
+  border-bottom-color: rgba(255,255,255,.06) !important;
+  z-index: 198;
+}
+
+/* ── Form wrapper — nuke the white gradient from style.css's `form` rule ── */
+body.ix-page #taxForm,
+body.if-page #taxForm {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 20px 90px !important;
+  max-width: 760px;
+  margin: 28px auto 0;
+}
+/* Remove the floating orb pseudo-elements that style.css adds to form */
+body.ix-page #taxForm::before,
+body.ix-page #taxForm::after,
+body.if-page #taxForm::before,
+body.if-page #taxForm::after {
+  display: none !important;
+}
+
+/* ── Hero ── */
+.ix-hero { background: #040d1a; }
+
+.ix-hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(26,86,219,.1);
+  border: 1px solid rgba(26,86,219,.28);
+  backdrop-filter: blur(12px);
+  color: #93c5fd;
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: .6px; text-transform: uppercase;
+  padding: 8px 20px; border-radius: 100px; margin-bottom: 28px;
+}
+.ix-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #1A56DB; box-shadow: 0 0 9px #1A56DB;
+  animation: live-pulse 1.8s ease-in-out infinite;
+}
+
+/* Blue gradient headline */
+.ix-hero-h1 .grad-blue {
+  background: linear-gradient(135deg, #1e40af 0%, #1A56DB 35%, #3b82f6 60%, #93c5fd 75%, #3b82f6 88%, #1A56DB 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+  display: inline-block;
+}
+
+/* ══════════════════════════════════════════════════
+   SHARED DARK FORM STYLES — ix-page + if-page
+══════════════════════════════════════════════════ */
+body.ix-page .step,
+body.if-page .step {
+  background: #0a1628 !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+  border-radius: 20px !important;
+  padding: 28px 28px !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.04) !important;
+  margin-bottom: 16px !important;
+}
+
+/* Step headings */
+body.ix-page .step h2,
+body.if-page .step h2 {
+  color: #f1f5f9 !important;
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  margin-bottom: 6px !important;
+}
+body.ix-page .step h3,
+body.if-page .step h3 {
+  color: #cbd5e1 !important;
+}
+body.ix-page .step p,
+body.if-page .step p {
+  color: rgba(255,255,255,.45) !important;
+}
+body.ix-page .step a,
+body.if-page .step a {
+  color: #60a5fa !important;
+}
+
+/* Inputs & selects */
+body.ix-page .step input,
+body.ix-page .step select,
+body.ix-page .step textarea,
+body.if-page .step input,
+body.if-page .step select,
+body.if-page .step textarea {
+  background: rgba(255,255,255,.05) !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+  border-radius: 10px !important;
+  color: #f1f5f9 !important;
+  padding: 11px 14px !important;
+  font-size: 14px !important;
+  transition: border-color .18s, box-shadow .18s !important;
+}
+body.ix-page .step input:focus,
+body.ix-page .step select:focus,
+body.ix-page .step textarea:focus,
+body.if-page .step input:focus,
+body.if-page .step select:focus,
+body.if-page .step textarea:focus {
+  border-color: rgba(26,86,219,.55) !important;
+  box-shadow: 0 0 0 3px rgba(26,86,219,.15) !important;
+  outline: none !important;
+}
+body.ix-page .step input::placeholder,
+body.ix-page .step textarea::placeholder,
+body.if-page .step input::placeholder,
+body.if-page .step textarea::placeholder {
+  color: rgba(255,255,255,.22) !important;
+}
+body.ix-page .step select option,
+body.if-page .step select option {
+  background: #0a1628 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Labels */
+body.ix-page .step label,
+body.if-page .step label {
+  color: rgba(255,255,255,.62) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+
+/* Hint text */
+body.ix-page .step .hint,
+body.if-page .step .hint {
+  color: rgba(255,255,255,.35) !important;
+}
+
+/* User details block */
+body.ix-page .step .user-details,
+body.if-page .step .user-details {
+  background: rgba(26,86,219,.07) !important;
+  border-color: rgba(26,86,219,.2) !important;
+}
+body.ix-page .step .user-details h3,
+body.if-page .step .user-details h3 {
+  color: #93c5fd !important;
+}
+
+/* Proof sections */
+body.ix-page .step .proof-section,
+body.if-page .step .proof-section {
+  background: rgba(255,255,255,.03) !important;
+  border-color: rgba(255,255,255,.08) !important;
+  border-radius: 12px !important;
+}
+body.ix-page .step .proof-section:hover,
+body.if-page .step .proof-section:hover {
+  border-color: rgba(26,86,219,.35) !important;
+}
+body.ix-page .step .proof-header span,
+body.if-page .step .proof-header span {
+  color: rgba(255,255,255,.75) !important;
+  font-weight: 600 !important;
+}
+body.ix-page .step .proof-toggle,
+body.if-page .step .proof-toggle {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #93c5fd !important;
+}
+
+/* File upload labels */
+body.ix-page .step label.file,
+body.if-page .step label.file {
+  background: rgba(255,255,255,.04) !important;
+  border: 1.5px dashed rgba(255,255,255,.15) !important;
+  border-radius: 12px !important;
+  color: rgba(255,255,255,.5) !important;
+}
+body.ix-page .step label.file:hover,
+body.if-page .step label.file:hover {
+  border-color: rgba(26,86,219,.45) !important;
+  background: rgba(26,86,219,.06) !important;
+}
+
+/* Status messages */
+body.ix-page .step .status,
+body.if-page .step .status {
+  background: rgba(16,185,129,.08) !important;
+  border: 1px solid rgba(16,185,129,.2) !important;
+  color: #34d399 !important;
+  border-radius: 10px !important;
+}
+
+/* Choice buttons (Form 16 Yes/No) */
+body.ix-page .step .choice,
+body.if-page .step .choice {
+  background: rgba(255,255,255,.05) !important;
+  border: 1.5px solid rgba(255,255,255,.1) !important;
+  color: rgba(255,255,255,.75) !important;
+  border-radius: 12px !important;
+}
+body.ix-page .step .choice:hover,
+body.ix-page .step .choice.selected,
+body.if-page .step .choice:hover,
+body.if-page .step .choice.selected {
+  background: rgba(26,86,219,.15) !important;
+  border-color: rgba(26,86,219,.45) !important;
+  color: #93c5fd !important;
+}
+
+/* ── Form step cards on dark background ── */
+body.ix-page .step {
+  box-shadow: 0 8px 40px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.04) !important;
+}
+
+/* ── Nav buttons ── */
+body.ix-page #prev {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: rgba(255,255,255,.6) !important;
+}
+body.ix-page #prev:hover {
+  background: rgba(255,255,255,.1) !important;
+  color: rgba(255,255,255,.85) !important;
+}
+body.ix-page #next, body.ix-page #submit {
+  background: linear-gradient(135deg, #1A56DB, #1e40af) !important;
+  box-shadow: 0 4px 20px rgba(26,86,219,.35) !important;
+  color: #ffffff !important;
+}
+body.ix-page #next:hover, body.ix-page #submit:hover {
+  background: linear-gradient(135deg, #1e40af, #1e3a8a) !important;
+  box-shadow: 0 6px 26px rgba(26,86,219,.48) !important;
+  color: #ffffff !important;
+}
+
+/* ── Spouse section ── */
+body.ix-page .spouse-section {
+  background: rgba(26,86,219,.06) !important;
+  border-color: rgba(26,86,219,.2) !important;
+}
+body.ix-page .spouse-section h3 { color: #fff !important; }
+body.ix-page .spouse-section p { color: rgba(255,255,255,.44) !important; }
+body.ix-page .spouse-yes-btn {
+  background: linear-gradient(135deg, #1A56DB, #1e40af) !important;
+  box-shadow: 0 4px 18px rgba(26,86,219,.35) !important;
+}
+
+/* ── Eligibility box on dark ── */
+body.ix-page .eligibility-box {
+  background: rgba(26,86,219,.07) !important;
+  border-color: rgba(26,86,219,.18) !important;
+}
+body.ix-page .eligibility-label { color: #93c5fd !important; }
+body.ix-page .eligibility-sub { color: rgba(255,255,255,.44) !important; }
+
+/* ── if-page (regular-filing.html) mirrors ── */
+body.if-page { background: #040d1a !important; }
+
+body.if-page > main {
+  background: #040d1a !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body.if-page .progress {
+  position: sticky !important;
+  top: 0;
+  background: rgba(255,255,255,.05) !important;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  z-index: 199;
+}
+body.if-page #bar {
+  background: linear-gradient(90deg, #1A56DB, #3b82f6, #1e40af) !important;
+}
+body.if-page .step-label {
+  position: sticky !important;
+  top: 4px !important;
+  background: rgba(4,13,26,.96) !important;
+  backdrop-filter: blur(12px);
+  color: #93c5fd !important;
+  border-bottom-color: rgba(255,255,255,.06) !important;
+  z-index: 198;
+}
+body.if-page #taxForm {
+  max-width: 760px;
+  margin: 28px auto 0;
+  padding: 0 20px 90px;
+}
+body.if-page #prev {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: rgba(255,255,255,.6) !important;
+}
+body.if-page #prev:hover {
+  background: rgba(255,255,255,.1) !important;
+  color: rgba(255,255,255,.85) !important;
+}
+body.if-page #next, body.if-page #submit {
+  background: linear-gradient(135deg, #1A56DB, #1e40af) !important;
+  box-shadow: 0 4px 20px rgba(26,86,219,.35) !important;
+  color: #ffffff !important;
+}
+body.if-page #next:hover, body.if-page #submit:hover {
+  background: linear-gradient(135deg, #1e40af, #1e3a8a) !important;
+  box-shadow: 0 6px 26px rgba(26,86,219,.48) !important;
+  color: #ffffff !important;
+}
+body.if-page .spouse-section {
+  background: rgba(26,86,219,.06) !important;
+  border-color: rgba(26,86,219,.2) !important;
+}
+body.if-page .spouse-section h3 { color: #fff !important; }
+body.if-page .spouse-section p { color: rgba(255,255,255,.44) !important; }
+body.if-page .spouse-yes-btn {
+  background: linear-gradient(135deg, #1A56DB, #1e40af) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 18px rgba(26,86,219,.35) !important;
+}
+body.if-page .eligibility-box {
+  background: rgba(26,86,219,.07) !important;
+  border-color: rgba(26,86,219,.18) !important;
+}
+body.if-page .eligibility-label { color: #93c5fd !important; }
+body.if-page .eligibility-sub { color: rgba(255,255,255,.44) !important; }
+body.if-page .eligibility-check span { color: rgba(255,255,255,.65) !important; }
+
+/* ══════════════════════════════════════════════════
+   CUSTOM CHECKBOX — eligibility & consent
+══════════════════════════════════════════════════ */
+body.ix-page .step input[type="checkbox"],
+body.if-page .step input[type="checkbox"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  border: 2px solid rgba(255,255,255,.25) !important;
+  border-radius: 5px !important;
+  background: rgba(255,255,255,.06) !important;
+  cursor: pointer !important;
+  position: relative !important;
+  transition: border-color .18s, background .18s, box-shadow .18s !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+body.ix-page .step input[type="checkbox"]:hover,
+body.if-page .step input[type="checkbox"]:hover {
+  border-color: rgba(26,86,219,.6) !important;
+  background: rgba(26,86,219,.12) !important;
+}
+body.ix-page .step input[type="checkbox"]:checked,
+body.if-page .step input[type="checkbox"]:checked {
+  background: #1A56DB !important;
+  border-color: #1A56DB !important;
+  box-shadow: 0 0 0 3px rgba(26,86,219,.2) !important;
+}
+body.ix-page .step input[type="checkbox"]:checked::after,
+body.if-page .step input[type="checkbox"]:checked::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 4px !important;
+  top: 1px !important;
+  width: 6px !important;
+  height: 10px !important;
+  border: 2px solid #fff !important;
+  border-top: none !important;
+  border-left: none !important;
+  transform: rotate(45deg) !important;
+  display: block !important;
+}
+
+/* ══════════════════════════════════════════════════
+   FILE INPUT — style the native "Choose Files" button
+══════════════════════════════════════════════════ */
+body.ix-page .step input[type="file"],
+body.if-page .step input[type="file"] {
+  background: rgba(255,255,255,.04) !important;
+  color: rgba(255,255,255,.5) !important;
+  border: 2px dashed rgba(255,255,255,.15) !important;
+  border-radius: 10px !important;
+  padding: 14px 16px !important;
+  width: 100% !important;
+  font-size: 12.5px !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+body.ix-page .step input[type="file"]::file-selector-button,
+body.if-page .step input[type="file"]::file-selector-button {
+  background: rgba(26,86,219,.2) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(26,86,219,.4) !important;
+  border-radius: 7px !important;
+  padding: 6px 14px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  font-family: inherit !important;
+  cursor: pointer !important;
+  margin-right: 12px !important;
+  transition: background .15s !important;
+}
+body.ix-page .step input[type="file"]::file-selector-button:hover,
+body.if-page .step input[type="file"]::file-selector-button:hover {
+  background: rgba(26,86,219,.4) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   SECTION SUBTITLES
+══════════════════════════════════════════════════ */
+body.ix-page .step .section-subtitle,
+body.ix-page .step h3.section-subtitle,
+body.if-page .step .section-subtitle,
+body.if-page .step h3.section-subtitle {
+  color: rgba(255,255,255,.35) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   BULLETS & CONSENT
+══════════════════════════════════════════════════ */
+body.ix-page .step .bullets li,
+body.if-page .step .bullets li {
+  color: rgba(255,255,255,.7) !important;
+}
+body.ix-page .step .consent-row,
+body.if-page .step .consent-row {
+  color: rgba(255,255,255,.55) !important;
+}
+body.ix-page .step .consent-row a,
+body.if-page .step .consent-row a {
+  color: #60a5fa !important;
+}
+
+/* ══════════════════════════════════════════════════
+   EXTRACTION LOADER
+══════════════════════════════════════════════════ */
+body.ix-page .step .premium-loader,
+body.if-page .step .premium-loader {
+  background: rgba(26,86,219,.1) !important;
+  border-color: rgba(26,86,219,.3) !important;
+  color: #93c5fd !important;
+}
+
+/* ══════════════════════════════════════════════════
+   FIELDSETS
+══════════════════════════════════════════════════ */
+body.ix-page .step fieldset,
+body.if-page .step fieldset {
+  background: rgba(255,255,255,.03) !important;
+  border-color: rgba(255,255,255,.09) !important;
+}
+body.ix-page .step legend,
+body.if-page .step legend {
+  color: rgba(255,255,255,.35) !important;
+}
+body.ix-page .step fieldset:has([name="referred_by"]),
+body.if-page .step fieldset:has([name="referred_by"]) {
+  background: rgba(16,185,129,.05) !important;
+  border-color: rgba(16,185,129,.2) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   OPTION CARDS (Refund step)
+══════════════════════════════════════════════════ */
+body.ix-page .step .option-card,
+body.if-page .step .option-card {
+  background: rgba(255,255,255,.04) !important;
+  border-color: rgba(255,255,255,.1) !important;
+}
+body.ix-page .step .option-card:hover,
+body.if-page .step .option-card:hover {
+  background: rgba(26,86,219,.1) !important;
+  border-color: rgba(26,86,219,.4) !important;
+}
+body.ix-page .step .option-card h4,
+body.if-page .step .option-card h4 {
+  color: #f1f5f9 !important;
+}
+body.ix-page .step .option-card .option-description,
+body.if-page .step .option-card .option-description {
+  color: rgba(255,255,255,.45) !important;
+}
+body.ix-page .step .option-card .fee-note,
+body.if-page .step .option-card .fee-note {
+  color: rgba(255,255,255,.3) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   PROOF LIST
+══════════════════════════════════════════════════ */
+body.ix-page .step .proof-list,
+body.if-page .step .proof-list {
+  background: rgba(255,255,255,.03) !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+body.ix-page .step .proof-list h5,
+body.if-page .step .proof-list h5 {
+  color: rgba(255,255,255,.35) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   ADD / CAMERA BUTTONS
+══════════════════════════════════════════════════ */
+
+/* Override style.css "button { width:100% }" at 720px for narrow buttons */
+body.ix-page .step .add-btn,
+body.ix-page .step .camera-btn,
+body.ix-page #closeCamera,
+body.if-page .step .add-btn,
+body.if-page .step .camera-btn,
+body.if-page #closeCamera {
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+body.ix-page .step .add-btn,
+body.if-page .step .add-btn {
+  background: rgba(26,86,219,.12) !important;
+  border-color: rgba(26,86,219,.3) !important;
+  color: #93c5fd !important;
+}
+body.ix-page .step .add-btn:hover,
+body.if-page .step .add-btn:hover {
+  background: #1A56DB !important;
+  color: #fff !important;
+}
+body.ix-page .step .camera-btn,
+body.if-page .step .camera-btn {
+  background: rgba(26,86,219,.12) !important;
+  border-color: rgba(26,86,219,.35) !important;
+  color: #93c5fd !important;
+}
+body.ix-page .step .camera-btn:hover,
+body.if-page .step .camera-btn:hover {
+  background: #1A56DB !important;
+  color: #fff !important;
+}
+
+/* ══════════════════════════════════════════════════
+   CAMERA MODAL CONTENT
+══════════════════════════════════════════════════ */
+body.ix-page .modal-content,
+body.if-page .modal-content {
+  background: #0d1f3c !important;
+  border: 1px solid rgba(255,255,255,.1) !important;
+}
+body.ix-page #closeCamera,
+body.if-page #closeCamera {
+  background: rgba(255,255,255,.08) !important;
+  color: rgba(255,255,255,.7) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   OFFER BADGE & QUOTE SECTION
+   (offer-badge lives in spouse-section, outside .step)
+══════════════════════════════════════════════════ */
+body.ix-page .offer-badge,
+body.if-page .offer-badge {
+  background: rgba(16,185,129,.12) !important;
+  border: 1px solid rgba(16,185,129,.28) !important;
+  color: #34d399 !important;
+}
+body.ix-page .step .quote-section h3,
+body.if-page .step .quote-section h3 {
+  color: #f1f5f9 !important;
+}
+
+/* ── Option card selected state ── */
+body.ix-page .step .option-card.selected,
+body.if-page .step .option-card.selected {
+  background: rgba(26,86,219,.15) !important;
+  border-color: rgba(26,86,219,.5) !important;
+}
+
+/* ── Eligibility check text ── */
+body.ix-page .step .eligibility-check,
+body.if-page .step .eligibility-check {
+  color: #34d399 !important;
+}
+body.ix-page .step .eligibility-check span,
+body.if-page .step .eligibility-check span {
+  color: rgba(255,255,255,.7) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   PROOF TOGGLE SELECT (dark option)
+══════════════════════════════════════════════════ */
+body.ix-page .step select.proof-toggle,
+body.if-page .step select.proof-toggle {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #93c5fd !important;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+
+/* ── Tablet (≤768px) ── */
+@media (max-width: 768px) {
+  /* Reduce hero top padding */
+  body.ix-page .ix-hero,
+  body.if-page .ix-hero {
+    padding: 48px 16px 40px !important;
+  }
+  /* ix-hero inner container */
+  body.ix-page .ix-hero > div,
+  body.if-page .ix-hero > div {
+    padding: 0 !important;
+  }
+  /* Stats strip — wrap to 2x2 on tablet */
+  body.ix-page .ix-hero .ix-stats-strip,
+  body.if-page .ix-hero .ix-stats-strip {
+    flex-wrap: wrap !important;
+  }
+}
+
+/* ── Mobile (≤640px) ── */
+@media (max-width: 640px) {
+  body.ix-page #taxForm,
+  body.if-page #taxForm { padding: 0 12px 70px !important; margin-top: 16px !important; }
+  body.ix-page .step,
+  body.if-page .step { padding: 20px 16px !important; }
+
+  /* Hero padding — at least 60px top so badge clears sticky header */
+  body.ix-page .ix-hero,
+  body.if-page .ix-hero {
+    padding: 60px 16px 44px !important;
+  }
+
+  /* Stat strip: 2 columns on mobile */
+  body.ix-page .ix-hero [style*="display: flex"][style*="border-radius: 20px"] > div,
+  body.if-page .ix-hero [style*="display: flex"][style*="border-radius: 20px"] > div {
+    min-width: 50% !important;
+    flex: 1 1 50% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.06) !important;
+  }
+
+  /* Hero buttons full width */
+  body.ix-page .ix-hero a[style*="inline-flex"],
+  body.if-page .ix-hero a[style*="inline-flex"] {
+    width: 100% !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Option cards — 1 column */
+  body.ix-page .step .option-cards,
+  body.if-page .step .option-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Proof list header row */
+  body.ix-page .step .proof-header,
+  body.if-page .step .proof-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  /* Nav buttons */
+  body.ix-page .nav,
+  body.if-page .nav {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  body.ix-page .nav #next,
+  body.ix-page .nav #submit,
+  body.if-page .nav #next,
+  body.if-page .nav #submit,
+  body.ix-page .nav #prev,
+  body.if-page .nav #prev {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}

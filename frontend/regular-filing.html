@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>File Your ITR — FairTax Advisors</title>
+  <title>File Your ITR — FairTax Advisors (Regular Filing)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -13,9 +13,16 @@
   <link rel="stylesheet" href="css/referral-v2.css">
   <link rel="stylesheet" href="css/index-v2.css">
   <link rel="stylesheet" href="css/index-filing-v2.css">
+  <link rel="stylesheet" href="css/filing-parity.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <style>
+    body.if-page { background: #040d1a !important; color: #f1f5f9 !important; }
+  </style>
 </head>
-<body class="ix-page">
+<body class="if-page">
+
+<div id="ft-banners-mount"></div>
+<script src="js/load-banners.js"></script>
 
 <!-- ═══════════════════ HEADER ═══════════════════ -->
 <header class="lv2-header">
@@ -84,7 +91,7 @@
 
     <div class="ix-hero-badge" data-aos="fade-down">
       <span class="ix-badge-dot"></span>
-      AI-Powered ITR Filing — FY 2025–26
+      Regular ITR Filing — FY 2025–26
     </div>
 
     <h1 class="ix-hero-h1" data-aos="fade-up" data-aos-delay="60"
@@ -664,8 +671,8 @@
     <div class="lv2-footer-col">
       <h5>Legal</h5>
       <ul>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
         <li><a href="#">Refund Policy</a></li>
         <li><a href="#">Cookie Policy</a></li>
         <li><a href="#">Disclaimer</a></li>
@@ -753,24 +760,24 @@ if (ftHidden) ftHidden.value = 'regular';
   })();
 </script>
 
+<!-- AOS + Winners -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>AOS.init({ once: true, duration: 600 });</script>
-
 <script>
-async function loadWinners() {
-  try {
-    const r = await fetch('https://fairtax-backend.onrender.com/api/winners');
-    const j = await r.json();
-    const list = document.getElementById('winnersList');
-    list.innerHTML = '';
-    (j.winners || []).forEach(w => {
-      const li = document.createElement('li');
-      li.textContent = `${w.name} — ${w.reward}`;
-      list.appendChild(li);
-    });
-  } catch(e) { /* ignore */ }
-}
-loadWinners();
+  AOS.init({ once: true, duration: 600 });
+  (function loadWinners() {
+    fetch('https://fairtax-backend.onrender.com/api/winners')
+      .then(r => r.json())
+      .then(j => {
+        const list = document.getElementById('winnersList');
+        if (!list) return;
+        list.innerHTML = '';
+        (j.winners || []).forEach(w => {
+          const li = document.createElement('li');
+          li.textContent = w.name + ' — ' + w.reward;
+          list.appendChild(li);
+        });
+      }).catch(() => {});
+  })();
 </script>
 
 </body>

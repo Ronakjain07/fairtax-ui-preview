@@ -1,0 +1,27 @@
+---
+description: FairTax client project — UI-only changes, no backend or behavior changes
+alwaysApply: true
+---
+
+# FairTax — UI-Only Scope (Confidential Client Project)
+
+## Hard constraints
+
+- **UI only**: Change presentation (HTML structure for layout, CSS, images, copy, icons). Do not change how the product works.
+- **Do not touch backend**: No edits under `backend/`, `config.py`, `tax_config.py`, API routes, Python services, env, or deployment scripts.
+- **Do not change frontend behavior**: Do not modify `frontend/app.js` logic, API URLs, `fetch` calls, form `name` attributes, `data-step` values, step counts, validation rules, or `localStorage` keys unless the user explicitly approves a behavior change.
+- **Preserve architecture**: Static HTML pages + `style.css` + page-specific `css/*-v2.css` + `css/shared-components.css`. No new frameworks (React, Vue, etc.), no build toolchain unless requested.
+
+## Safe UI work
+
+- Visual polish in `frontend/**/*.html` and `frontend/css/**/*.css` and `frontend/style.css`
+- Reuse `lv2-*` header/footer patterns from `landing-v2.css` across pages
+- Add wrappers/classes around existing form fields; keep all `name`, `id`, and `data-step` unchanged
+- Replace emoji nav with SVG icons; improve typography, spacing, motion (CSS only)
+- Align pages to spec flows (splash → choice → filing → status) without changing navigation targets
+
+## Before merging any change
+
+- Filing wizard (`index.html`, `referral-filing.html`) still submits with same field names
+- `status.html`, `wallet.html`, `proofs.html` still call the same endpoints with same parameters
+- Test critical paths manually after visual updates
