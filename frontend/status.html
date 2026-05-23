@@ -103,7 +103,7 @@
         <span class="ref-stat-label">Tracked Stages</span>
       </div>
       <div class="ref-stat">
-        <span class="ref-stat-val" style="color:#34d399">Live</span>
+        <span class="ref-stat-val" style="color:#10B981">Live</span>
         <span class="ref-stat-label">Status Updates</span>
       </div>
       <div class="ref-stat">
@@ -177,15 +177,15 @@
           <div class="st-payment-grid">
             <div class="st-payment-cell">
               <span class="st-pay-cell-label">Total Fee</span>
-              <span id="totalFee" class="st-pay-cell-val" style="color:#34d399">—</span>
+              <span id="totalFee" class="st-pay-cell-val" style="color:#10B981">—</span>
             </div>
             <div class="st-payment-cell">
               <span class="st-pay-cell-label">Upfront (50%)</span>
-              <span id="uptrontAmount" class="st-pay-cell-val" style="color:#34d399">—</span>
+              <span id="uptrontAmount" class="st-pay-cell-val" style="color:#10B981">—</span>
             </div>
             <div class="st-payment-cell">
               <span class="st-pay-cell-label">Balance Due</span>
-              <span id="balanceDue" class="st-pay-cell-val" style="color:#34d399">—</span>
+              <span id="balanceDue" class="st-pay-cell-val" style="color:#10B981">—</span>
             </div>
             <div class="st-payment-cell">
               <span class="st-pay-cell-label">Status</span>
@@ -342,8 +342,8 @@ const STAGE_COLORS = {
   SUBMITTED:     '#38bdf8',
   QUOTE_SENT:    '#818cf8',
   OPTION_CHOSEN: '#a78bfa',
-  PAID_HALF:     '#34d399',
-  PAID_FULL:     '#34d399',
+  PAID_HALF:     '#10B981',
+  PAID_FULL:     '#10B981',
   FILING:        '#10b981',
   FILED:         '#22c55e',
 };
@@ -523,7 +523,7 @@ async function uploadPaymentProof() {
     const r = await fetch(`${API}/upload-payment-proof`, { method: 'POST', body: fd });
     const j = await r.json();
     if (j.success) {
-      statusEl.style.color = '#34d399';
+      statusEl.style.color = '#10B981';
       statusEl.textContent = j.message;
       fileInput.value = '';
       setTimeout(() => checkStatus(sid), 2000);
