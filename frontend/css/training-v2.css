@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════
    training-v2.css  —  ITR Training & Coaching page
-   Amber/Gold accent (#f59e0b / #fbbf24)
+   Amber/Gold accent (#10B981 / #34D399)
    tr- prefix for new rules
 ════════════════════════════════════════════════════════ */
 
@@ -11,22 +11,22 @@ body.tr-page { background: #040d1a !important; }
 
 .tr-hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(245,158,11,.1);
-  border: 1px solid rgba(245,158,11,.28);
+  background: rgba(16,185,129,.1);
+  border: 1px solid rgba(16,185,129,.28);
   backdrop-filter: blur(12px);
-  color: #fbbf24;
+  color: #34D399;
   font-size: 11.5px; font-weight: 700;
   letter-spacing: .6px; text-transform: uppercase;
   padding: 8px 20px; border-radius: 100px; margin-bottom: 28px;
 }
 .tr-badge-dot {
   width: 7px; height: 7px; border-radius: 50%;
-  background: #f59e0b; box-shadow: 0 0 9px #f59e0b;
+  background: #10B981; box-shadow: 0 0 9px #10B981;
   animation: live-pulse 1.8s ease-in-out infinite;
 }
 
-.tr-hero-h1 .grad-amber {
-  background: linear-gradient(135deg, #b45309 0%, #d97706 30%, #f59e0b 55%, #fbbf24 70%, #f59e0b 85%, #d97706 100%);
+.tr-hero-h1 .grad-blue-green {
+  background: linear-gradient(135deg, #1A56DB 0%, #10B981 50%, #34D399 70%, #10B981 100%);
   background-size: 200% auto;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -42,10 +42,10 @@ body.tr-page { background: #040d1a !important; }
 .tr-price-val {
   font-size: clamp(2.4rem, 5vw, 3.6rem);
   font-weight: 900;
-  color: #fbbf24;
+  color: #34D399;
   letter-spacing: -2px;
   line-height: 1;
-  text-shadow: 0 0 32px rgba(251,191,36,.3);
+  text-shadow: 0 0 32px rgba(52,211,153,.3);
 }
 .tr-price-unit {
   font-size: 15px;
@@ -61,7 +61,7 @@ body.tr-page { background: #040d1a !important; }
 }
 .tr-features-section::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(245,158,11,.04), transparent 70%);
+  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(16,185,129,.04), transparent 70%);
   pointer-events: none;
 }
 
@@ -73,7 +73,7 @@ body.tr-page { background: #040d1a !important; }
 }
 
 .tr-feature-card {
-  background: #0a1628;
+  background: #0B2545 !important;
   border: 1px solid rgba(255,255,255,.06);
   border-radius: 20px; padding: 28px 22px;
   position: relative; overflow: hidden;
@@ -82,15 +82,15 @@ body.tr-page { background: #040d1a !important; }
 .tr-feature-card::before {
   content: ''; position: absolute;
   top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24);
+  background: linear-gradient(90deg, #059669, #10B981, #34D399);
   border-radius: 20px 20px 0 0;
 }
 .tr-feature-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,.38); }
 
 .tr-feature-icon {
   width: 46px; height: 46px; border-radius: 12px;
-  background: rgba(245,158,11,.12);
-  border: 1px solid rgba(245,158,11,.22);
+  background: rgba(16,185,129,.12);
+  border: 1px solid rgba(16,185,129,.22);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 16px;
 }
@@ -108,7 +108,7 @@ body.tr-page { background: #040d1a !important; }
 }
 
 .tr-topics-card {
-  background: #0a1628;
+  background: #0B2545 !important;
   border: 1px solid rgba(255,255,255,.07);
   border-radius: 22px;
   padding: 36px 32px;
@@ -118,7 +118,7 @@ body.tr-page { background: #040d1a !important; }
 .tr-topics-card::before {
   content: ''; position: absolute;
   top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24);
+  background: linear-gradient(90deg, #059669, #10B981, #34D399);
   border-radius: 22px 22px 0 0;
 }
 
@@ -136,8 +136,8 @@ body.tr-page { background: #040d1a !important; }
 .tr-topic-item:nth-last-child(-n+2) { border-bottom: none; }
 .tr-topic-check {
   width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
-  background: rgba(245,158,11,.14);
-  border: 1px solid rgba(245,158,11,.28);
+  background: rgba(16,185,129,.14);
+  border: 1px solid rgba(16,185,129,.28);
   display: flex; align-items: center; justify-content: center;
 }
 
@@ -148,8 +148,8 @@ body.tr-page { background: #040d1a !important; }
 }
 .tr-testimonial-inner {
   max-width: 800px; margin: 0 auto;
-  background: #0a1628;
-  border: 1px solid rgba(245,158,11,.16);
+  background: #0B2545 !important;
+  border: 1px solid rgba(16,185,129,.16);
   border-radius: 22px; padding: 40px 36px;
   display: flex; gap: 28px; align-items: flex-start;
   position: relative; overflow: hidden;
@@ -158,13 +158,13 @@ body.tr-page { background: #040d1a !important; }
   content: '"';
   position: absolute; top: -10px; left: 24px;
   font-size: 120px; font-weight: 900;
-  color: rgba(245,158,11,.06);
+  color: rgba(16,185,129,.06);
   line-height: 1; pointer-events: none;
 }
 .tr-quote-icon {
   width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
-  background: rgba(245,158,11,.12);
-  border: 1px solid rgba(245,158,11,.22);
+  background: rgba(16,185,129,.12);
+  border: 1px solid rgba(16,185,129,.22);
   display: flex; align-items: center; justify-content: center;
 }
 .tr-quote-text {
@@ -172,7 +172,7 @@ body.tr-page { background: #040d1a !important; }
   font-style: italic; line-height: 1.8; margin: 0 0 12px;
 }
 .tr-quote-author {
-  font-size: 13px; font-weight: 700; color: #fbbf24;
+  font-size: 13px; font-weight: 700; color: #34D399;
 }
 
 /* ── Registration form section ── */
@@ -181,7 +181,7 @@ body.tr-page { background: #040d1a !important; }
   padding: 80px 28px 100px;
 }
 .tr-form-card {
-  background: #0a1628;
+  background: #0B2545 !important;
   border: 1px solid rgba(255,255,255,.07);
   border-radius: 24px; padding: 40px 36px;
   max-width: 720px; margin: 0 auto;
@@ -190,7 +190,7 @@ body.tr-page { background: #040d1a !important; }
 .tr-form-card::before {
   content: ''; position: absolute;
   top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24);
+  background: linear-gradient(90deg, #059669, #10B981, #34D399);
   border-radius: 24px 24px 0 0;
 }
 .tr-form-title {
@@ -221,24 +221,26 @@ body.tr-page { background: #040d1a !important; }
 .tr-dark-hd.ref-section-hd .ref-section-title { color: #fff; }
 .tr-dark-hd.ref-section-hd .ref-section-sub   { color: rgba(255,255,255,.46); }
 .tr-dark-hd.ref-section-hd .ref-label-pill {
-  background: rgba(245,158,11,.1);
-  border: 1px solid rgba(245,158,11,.2);
-  color: #fbbf24;
+  background: rgba(16,185,129,.1);
+  border: 1px solid rgba(16,185,129,.2);
+  color: #34D399;
 }
 
 /* ── Input overrides ── */
 body.tr-page input, body.tr-page select, body.tr-page textarea {
-  background: rgba(255,255,255,.05) !important;
-  border: 1px solid rgba(255,255,255,.1) !important;
-  color: #e2e8f0 !important;
+  background: rgba(11,37,69,.5) !important;
+  border: 1px solid rgba(16,185,129,.3) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 12px 14px !important;
 }
 body.tr-page input::placeholder,
-body.tr-page textarea::placeholder { color: rgba(255,255,255,.22) !important; }
+body.tr-page textarea::placeholder { color: rgba(255,255,255,.5) !important; }
 body.tr-page input:focus, body.tr-page textarea:focus {
-  border-color: rgba(245,158,11,.45) !important;
-  box-shadow: 0 0 0 3px rgba(245,158,11,.1);
-  background: rgba(245,158,11,.04) !important;
-  outline: none;
+  border-color: #10B981 !important;
+  box-shadow: 0 0 0 3px rgba(16,185,129,.2) !important;
+  background: rgba(11,37,69,.8) !important;
+  outline: none !important;
 }
 body.tr-page label { color: rgba(255,255,255,.7) !important; font-size: 12.5px; }
 
