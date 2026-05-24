@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -317,7 +317,9 @@
 
 <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
 <script>
-const API = 'https://fairtax-backend.onrender.com';
+const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : 'https://fairtax-backend.onrender.com';
 const $ = s => document.querySelector(s);
 const $$ = s => document.querySelectorAll(s);
 
@@ -409,3 +411,4 @@ loadWinners();
 
 </body>
 </html>
+

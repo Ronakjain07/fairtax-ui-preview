@@ -817,6 +817,29 @@ footer {
 footer a { color: var(--accent); text-decoration: none; transition: all var(--transition); }
 footer a:hover { color: var(--accent-600); }
 
+/* ─── PREVIEW BUTTON ──────────────────────────────────────────────────────── */
+.preview-btn {
+  margin-top: 2px;
+  background: linear-gradient(135deg, #1e3a5f, #1A56DB);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  width: auto;
+  margin-bottom: 0;
+  letter-spacing: 0.3px;
+  transition: all .15s;
+  box-shadow: 0 2px 8px rgba(26, 86, 219, 0.3);
+}
+.preview-btn:hover {
+  background: linear-gradient(135deg, #1A56DB, #1e40af);
+  box-shadow: 0 4px 16px rgba(26, 86, 219, 0.45);
+  transform: translateY(-1px);
+}
+
 /* ─── CAMERA BUTTON ───────────────────────────────────────────────────────── */
 .camera-btn {
   margin-top: 6px;
@@ -1437,7 +1460,7 @@ footer a:hover { color: var(--accent-600); }
 .entry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 @media (max-width:600px) { .entry-grid { grid-template-columns: 1fr; } }
 .entry-grid label { font-size: 11.5px; color: #64748b; display: block; font-weight: 500; }
-.entry-grid input, .entry-grid select { margin-top: 3px; padding: 8px 10px; font-size: 13px; margin-bottom: 0; }
+.entry-grid input, .entry-grid select { margin-top: 3px; padding: 8px 10px; font-size: 13px; margin-bottom: 0; color: #1e293b; background: #fff; }
 .entry-row .full-col { grid-column: 1/-1; }
 .extract-inline-btn {
   background: linear-gradient(90deg,var(--primary),var(--primary-600));

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -610,7 +610,9 @@
 
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-const API = 'https://fairtax-backend.onrender.com';
+const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : 'https://fairtax-backend.onrender.com';
 
 /* ── Winners widget ── */
 async function loadWinners() {
@@ -724,3 +726,4 @@ searchInput.addEventListener('input', () => {
 </script>
 </body>
 </html>
+

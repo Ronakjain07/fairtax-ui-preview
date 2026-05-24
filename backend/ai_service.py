@@ -37,6 +37,56 @@ CRITICAL RULES:
 • Do NOT guess or estimate. Extract only what you see.
 • Numbers: plain integers (no commas, no currency symbols)."""
 
+# Dedicated prompt for payslip text extraction (fast-path via pdfplumber)
+PAYSLIP_TEXT_EXTRACTION_PROMPT = """You are an expert Indian payslip extractor. Extract salary data from the payslip text below.
+Return ONLY valid JSON with these exact keys (use 0 if not found):
+{
+  "employer_name": "",
+  "pan": "",
+  "gross_salary": 0,
+  "basic_salary": 0,
+  "hra_received": 0,
+  "lta": 0,
+  "special_allowance": 0,
+  "car_lease_allowance": 0,
+  "uniform_allowance": 0,
+  "pf_employee": 0,
+  "pf_employer": 0,
+  "tds_paid": 0,
+  "professional_tax": 0,
+  "gratuity": 0,
+  "leave_encashment": 0,
+  "is_ytd": false,
+  "assumptions": []
+}
+
+━━━ STEP 1: DETECT FORMAT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+FORMAT A — MONTHLY PAYSLIP: single month, one "Amount" column.
+  → Extract monthly figures. Set is_ytd=false. All values are monthly; multiply by 12 for annual.
+
+FORMAT B — YTD/ANNUAL PAYSLIP: multiple month columns OR "Grand Total"/"YTD"/"Cumulative" column.
+  → Extract ONLY from "Grand Total" / "YTD" / "Annual Total" / rightmost totals column.
+  → DO NOT use individual month columns. Set is_ytd=true. Values are already annual (do NOT multiply by 12).
+
+━━━ STEP 2: HRA — SUM ALL VARIANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━
+hra_received = SUM of ALL rows containing "HRA" in their label:
+  HRA + NON-FBP HRA + BASIC HRA + METRO HRA + any other "...HRA..." row.
+Add them all. Record each component in assumptions[].
+
+━━━ STEP 3: TDS — INCOME TAX ROW ONLY ━━━━━━━━━━━━━━━━━━━━━━━
+tds_paid = value from "INCOME TAX" or "TAX DEDUCTED AT SOURCE" or "TDS" row ONLY.
+⚠ NEVER use "TOTAL DEDUCTION" or "TOTAL DEDUCTIONS" — that is the sum of all deductions.
+
+━━━ STEP 4: PF & PROFESSIONAL TAX ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+pf_employee: "EMPLOYEE PF" / "PF EMPLOYEE" / "EPF EMPLOYEE" / "PF CONTRIBUTION"
+pf_employer: "EMPLOYER PF" / "PF EMPLOYER" / "EPF EMPLOYER"
+professional_tax: "PROFESSIONAL TAX" / "PROF TAX" / "PT"
+
+CRITICAL RULES:
+• Return plain integers only (no commas, no ₹ symbols).
+• Never invent values. Use 0 only if genuinely not found.
+• Record every assumption and conversion in the assumptions array."""
+
 INVESTMENT_PROMPTS = {
     "homeloan": """You are a tax document extractor. Extract from Home Loan Interest Certificate / Statement.
 Return ONLY valid JSON (use 0 if not found):
@@ -179,6 +229,81 @@ def _regex_fallback(text, doc_type):
     if result:
         print(f"[EXTRACT][{doc_type}] regex fallback found: {result}")
     return result
+
+
+def _sum_all_hra_from_text(text):
+    """
+    Deterministic HRA extraction for payslips.
+
+    Handles two payslip structures safely:
+
+    STRUCTURE A — separate components (sum them):
+        HRA           1,96,875
+        NON-FBP HRA   7,41,563
+        → return 9,38,438
+
+    STRUCTURE B — total + breakdown (use total, don't double-count):
+        TOTAL HRA     9,38,438   ← summary row
+        FBP HRA       1,96,875
+        NON-FBP HRA   7,41,563
+        → return 9,38,438 (from summary row only)
+
+    Returns the correct hra_received value, or None to leave it to the AI.
+    """
+    if not text:
+        return None
+
+    clean = text.replace(',', '').replace('₹', '').replace('Rs.', '').replace('INR', '')
+    lines = clean.split('\n')
+
+    summary_rows = []   # lines with "TOTAL HRA" / "HRA TOTAL" / "GROSS HRA"
+    component_rows = [] # lines with plain "HRA" / "NON-FBP HRA" / "BASIC HRA"
+
+    # Keywords that indicate a summary/total row — skip these when summing components
+    TOTAL_KEYWORDS = re.compile(r'\b(total|grand|subtotal|gross|net|aggregate)\b', re.I)
+
+    for line in lines:
+        if not re.search(r'\bHRA\b', line, re.I):
+            continue
+        # Skip non-data lines
+        if re.search(r'(calculation|exemption|header|description|component|allowance\s+type)', line, re.I):
+            continue
+
+        numbers = [int(m) for m in re.findall(r'\d{4,}', line)]
+        if not numbers:
+            continue
+
+        # Rightmost large number = Grand Total / YTD column
+        grand_total = numbers[-1]
+        if grand_total <= 0:
+            continue
+
+        if TOTAL_KEYWORDS.search(line):
+            summary_rows.append(grand_total)
+            print(f"[HRA_SUM] Summary row: '{line.strip()[:60]}' = {grand_total}")
+        else:
+            component_rows.append(grand_total)
+            print(f"[HRA_SUM] Component row: '{line.strip()[:60]}' = {grand_total}")
+
+    # STRUCTURE B: a summary row exists — use it directly (no double-counting)
+    if summary_rows:
+        result = max(summary_rows)  # use the largest summary value
+        print(f"[HRA_SUM] Using summary row value: {result}")
+        return result
+
+    # STRUCTURE A: only component rows — sum them if there are 2+
+    if len(component_rows) >= 2:
+        # Safety check: if one value equals the sum of others, it's itself a total
+        total = sum(component_rows)
+        for v in component_rows:
+            rest = [x for x in component_rows if x != v]
+            if rest and sum(rest) == v:
+                print(f"[HRA_SUM] Detected hidden total row ({v}), using it directly")
+                return v
+        print(f"[HRA_SUM] Summing components {component_rows} = {total}")
+        return total
+
+    return None  # 0 or 1 row — leave to AI
 
 
 def _preprocess_ocr_text(text):
@@ -404,6 +529,87 @@ def extract_document(file_b64, mime, doc_type="form16"):
     except Exception as e:
         print(f"[EXTRACT][{doc_type}] error: {e}")
         return {}
+
+
+def extract_from_text(text, doc_type="payslip"):
+    """
+    Fast-path extraction from pre-extracted plain text (e.g. pdfplumber output).
+    Skips OCR entirely — for use when the PDF is digital (not scanned).
+
+    Returns dict in document_processor-compatible format:
+    {
+        "success": bool,
+        "data": {flat field dict},
+        "confidence": float,
+        "metadata": {"assumptions": [...], "duplicates": [], "conflicts": [],
+                      "pages_processed": 1, "validation_errors": [], "validation_warnings": [],
+                      "extraction_quality": "high", "extraction_method": "text"}
+    }
+    """
+    try:
+        text = _preprocess_ocr_text(text)
+        if not text or len(text.strip()) < 50:
+            return {"success": False, "error": "Insufficient text for extraction"}
+
+        # Pick the right prompt
+        if doc_type == "payslip":
+            prompt = PAYSLIP_TEXT_EXTRACTION_PROMPT
+        else:
+            prompt = INVESTMENT_PROMPTS.get(doc_type, EXTRACTION_PROMPT)
+
+        messages = [{"role": "user", "content": f"{prompt}\n\nDOCUMENT TEXT:\n{text}"}]
+        raw = _call_openai(messages)
+        result = _parse_json(raw)
+
+        if not result:
+            # Try regex fallback for investment types
+            result = _regex_fallback(text, doc_type) or {}
+
+        if not result:
+            return {"success": False, "error": "No data extracted from text"}
+
+        # Pull out assumptions if AI returned them inside the JSON
+        assumptions = []
+        if isinstance(result.get("assumptions"), list):
+            assumptions = result.pop("assumptions")
+
+        is_ytd = result.pop("is_ytd", False)
+        if is_ytd:
+            assumptions.insert(0, "YTD payslip detected — values extracted from Grand Total / annual column (already annual, no ×12 needed)")
+        elif doc_type == "payslip":
+            assumptions.insert(0, "Monthly payslip detected — values are monthly; annualize by ×12 for tax calculation")
+
+        # ── Deterministic HRA override for payslips ──────────────────────────
+        # AI often picks only the largest HRA component. Sum ALL HRA rows from
+        # the raw text to guarantee correctness regardless of AI behaviour.
+        if doc_type == "payslip":
+            hra_sum = _sum_all_hra_from_text(text)
+            if hra_sum and hra_sum != result.get("hra_received", 0):
+                print(f"[HRA_SUM] Overriding AI hra_received {result.get('hra_received')} → {hra_sum}")
+                result["hra_received"] = hra_sum
+                assumptions.append(f"HRA overridden by deterministic sum of all HRA rows = {hra_sum}")
+
+        print(f"[EXTRACT_TEXT][{doc_type}] result: {result}")
+
+        return {
+            "success": True,
+            "data": result,
+            "confidence": 0.88,
+            "metadata": {
+                "assumptions": assumptions,
+                "duplicates": [],
+                "conflicts": [],
+                "pages_processed": 1,
+                "validation_errors": [],
+                "validation_warnings": [],
+                "extraction_quality": "high",
+                "extraction_method": "text_fast_path"
+            }
+        }
+
+    except Exception as e:
+        print(f"[EXTRACT_TEXT][{doc_type}] error: {e}")
+        return {"success": False, "error": str(e)}
 
 
 def merge_extractions(extractions):

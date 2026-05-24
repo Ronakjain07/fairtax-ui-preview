@@ -52,6 +52,17 @@ def save_phase():
     try:
         data = request.get_json(force=True)
 
+        # ── LOCAL DEV MODE: skip all Sheets ops when credentials aren't configured ──
+        _sa = getattr(Config, 'SERVICE_ACCOUNT_JSON', None)
+        _sheets_configured = bool(
+            getattr(Config, 'GOOGLE_SHEET_ID', None) and
+            _sa and _sa != 'service_account.json'
+        )
+        if not _sheets_configured:
+            submission_id = data.get('submission_id') or str(uuid.uuid4())
+            print(f"[SAVE_PHASE][LOCAL] Sheets not configured — returning mock success. submission_id={submission_id}")
+            return jsonify({"success": True, "submission_id": submission_id, "referral_code": ""})
+
         # Ensure a referral code exists early so we can return it to the UI
         # even if Sheets writes are delayed or fail. Use sheets_service helper.
         try:

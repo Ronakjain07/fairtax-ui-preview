@@ -541,12 +541,74 @@ body.if-page .step .option-card .fee-note {
 ══════════════════════════════════════════════════ */
 body.ix-page .step .proof-list,
 body.if-page .step .proof-list {
-  background: rgba(255,255,255,.03) !important;
-  border-color: rgba(255,255,255,.08) !important;
+  background: rgba(255,255,255,.025) !important;
+  border: 1px solid rgba(255,255,255,.08) !important;
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  margin: 8px 0 !important;
 }
 body.ix-page .step .proof-list h5,
 body.if-page .step .proof-list h5 {
-  color: rgba(255,255,255,.35) !important;
+  color: rgba(255,255,255,.5) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.7px !important;
+  text-transform: uppercase !important;
+  margin: 0 0 10px !important;
+}
+
+/* ══════════════════════════════════════════════════
+   ENTRY ROW (investment detail cards — Home Loan, Insurance etc.)
+══════════════════════════════════════════════════ */
+body.ix-page .step .entry-row,
+body.if-page .step .entry-row {
+  background: rgba(26,86,219,.06) !important;
+  border: 1px solid rgba(26,86,219,.2) !important;
+  border-radius: 10px !important;
+  padding: 12px !important;
+}
+body.ix-page .step .entry-grid label,
+body.if-page .step .entry-grid label {
+  color: rgba(255,255,255,.45) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+/* Section heading above proof-list */
+body.ix-page .step h4,
+body.if-page .step h4 {
+  color: rgba(255,255,255,.65) !important;
+}
+
+/* Remove button — red tint for dark theme */
+body.ix-page .step .remove-btn,
+body.if-page .step .remove-btn {
+  background: rgba(220,38,38,.1) !important;
+  border: 1px solid rgba(220,38,38,.25) !important;
+  color: #f87171 !important;
+  width: auto !important;
+}
+body.ix-page .step .remove-btn:hover,
+body.if-page .step .remove-btn:hover {
+  background: rgba(220,38,38,.22) !important;
+  border-color: rgba(220,38,38,.45) !important;
+}
+
+/* Preview button — matches dark theme */
+body.ix-page .step .preview-btn,
+body.if-page .step .preview-btn {
+  background: rgba(26,86,219,.15) !important;
+  border: 1px solid rgba(26,86,219,.35) !important;
+  color: #93c5fd !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  margin-top: 6px !important;
+}
+body.ix-page .step .preview-btn:hover,
+body.if-page .step .preview-btn:hover {
+  background: rgba(26,86,219,.28) !important;
+  border-color: rgba(26,86,219,.55) !important;
+  transform: none !important;
 }
 
 /* ══════════════════════════════════════════════════
@@ -664,6 +726,236 @@ body.if-page .step select.proof-toggle {
   body.if-page .ix-hero .ix-stats-strip {
     flex-wrap: wrap !important;
   }
+}
+
+/* ══════════════════════════════════════════════════
+   EXTRACTION LOADER — dark theme override
+══════════════════════════════════════════════════ */
+body.ix-page .premium-loader,
+body.if-page .premium-loader {
+  background: #0d1f3c !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(26,86,219,0.2) !important;
+}
+body.ix-page .loader-text,
+body.if-page .loader-text {
+  color: #e2e8f0 !important;
+  font-size: 15px !important;
+}
+body.ix-page .loader-text::first-letter,
+body.if-page .loader-text::first-letter {
+  font-size: 36px !important;
+}
+body.ix-page .loader-dot,
+body.if-page .loader-dot {
+  background: #1A56DB !important;
+  width: 10px !important;
+  height: 10px !important;
+}
+
+/* ══════════════════════════════════════════════════
+   DOCUMENT VERIFY MODAL
+══════════════════════════════════════════════════ */
+#docVerifyModal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dv-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(5px);
+}
+.dv-panel {
+  position: relative;
+  background: #0a1628;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  width: min(94vw, 1080px);
+  height: min(90vh, 680px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.dv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  flex-shrink: 0;
+}
+.dv-title {
+  color: #f1f5f9;
+  font-weight: 700;
+  font-size: 14px;
+}
+.dv-close {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.6);
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+.dv-close:hover { background: rgba(255,255,255,0.16); color: #fff; }
+.dv-body {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+/* File viewer side */
+.dv-viewer {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+  min-height: 0;
+}
+.dv-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.dv-tab {
+  padding: 5px 12px;
+  border-radius: 7px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: transparent;
+  color: rgba(255,255,255,0.45);
+  transition: all .15s;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dv-tab:hover { color: rgba(255,255,255,0.75); }
+.dv-tab.active {
+  background: rgba(26,86,219,0.18);
+  border-color: rgba(26,86,219,0.5);
+  color: #93c5fd;
+}
+.dv-frame {
+  flex: 1;
+  overflow: auto;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+.dv-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.dv-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* Extracted fields side */
+.dv-fields {
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.dv-fields-title {
+  color: rgba(255,255,255,0.4);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.dv-field { margin-bottom: 12px; }
+.dv-field-label {
+  color: rgba(255,255,255,0.38);
+  font-size: 10.5px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.dv-field-value {
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.08);
+  word-break: break-all;
+}
+.dv-field-value.dv-money {
+  background: rgba(26,86,219,0.1);
+  border-color: rgba(26,86,219,0.28);
+  color: #93c5fd;
+}
+.dv-no-data {
+  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+  text-align: center;
+  margin-top: 24px;
+}
+/* Verify button inside status bar */
+.dv-verify-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+  padding: 3px 10px;
+  background: rgba(26,86,219,0.18);
+  border: 1px solid rgba(26,86,219,0.4);
+  border-radius: 6px;
+  color: #93c5fd;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: background .15s;
+}
+.dv-verify-btn:hover { background: rgba(26,86,219,0.32); }
+
+/* Mobile: stack vertically */
+@media (max-width: 640px) {
+  .dv-panel {
+    width: 98vw;
+    height: 95vh;
+    border-radius: 12px;
+  }
+  .dv-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 55% 45%;
+  }
+  .dv-viewer { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .dv-fields { padding: 12px; }
 }
 
 /* ── Mobile (≤640px) ── */

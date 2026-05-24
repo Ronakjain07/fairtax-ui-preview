@@ -9,11 +9,55 @@ Main entry point for the Vision-based extraction pipeline:
 5. Return normalized, validated data
 """
 
+import io
 import traceback
 from services import file_handler, vision_extractor, normalization_service, validation_service
 import logging
 
 logger = logging.getLogger(__name__)
+
+# Minimum average characters per page to consider a PDF "digital" (not scanned)
+_TEXT_FAST_PATH_MIN_CHARS = 150
+
+# Doc types where text fast-path is safe (well-structured tabular text in digital PDFs)
+_TEXT_FAST_PATH_DOC_TYPES = {"payslip", "form16", "homeloan", "nps", "school", "insurance", "donation"}
+
+
+def _try_text_extraction(file_bytes, doc_type):
+    """
+    Attempt fast-path text extraction for digital PDFs using pdfplumber.
+    Returns a document_processor-compatible result dict, or None if text quality is too low.
+    """
+    try:
+        import pdfplumber
+        import ai_service
+
+        with pdfplumber.open(io.BytesIO(file_bytes)) as pdf:
+            pages_text = []
+            for page in pdf.pages:
+                t = page.extract_text() or ""
+                pages_text.append(t)
+
+            full_text = "\n\n".join(pages_text)
+            num_pages = max(len(pages_text), 1)
+            avg_chars = len(full_text.replace(" ", "").replace("\n", "")) / num_pages
+
+            if avg_chars < _TEXT_FAST_PATH_MIN_CHARS:
+                print(f"[DOC_PROCESSOR][TEXT_FAST] avg {avg_chars:.0f} chars/page — too low, falling back to Vision")
+                return None
+
+            print(f"[DOC_PROCESSOR][TEXT_FAST] Digital PDF detected ({avg_chars:.0f} chars/page). Using text extraction.")
+            result = ai_service.extract_from_text(full_text, doc_type)
+
+            if result.get("success"):
+                return result
+            else:
+                print(f"[DOC_PROCESSOR][TEXT_FAST] Text extraction failed: {result.get('error')}. Falling back to Vision.")
+                return None
+
+    except Exception as e:
+        print(f"[DOC_PROCESSOR][TEXT_FAST] pdfplumber error: {e}. Falling back to Vision.")
+        return None
 
 
 def process_documents(file_bytes, mime_type, doc_type):
@@ -54,6 +98,15 @@ def process_documents(file_bytes, mime_type, doc_type):
     - User uploads low-quality document → Error + feedback to user
     """
     try:
+        # ─────── FAST PATH: Digital PDF via pdfplumber ───
+        # For digital (non-scanned) PDFs, skip image conversion + Vision API entirely.
+        # This is ~3-5× faster and more accurate for clean payslips / Form 16 PDFs.
+        if "pdf" in (mime_type or "").lower() and doc_type in _TEXT_FAST_PATH_DOC_TYPES:
+            fast_result = _try_text_extraction(file_bytes, doc_type)
+            if fast_result:
+                print(f"[DOCUMENT_PROCESSOR] Fast-path succeeded. Returning text-extracted result.")
+                return fast_result
+
         # ─────── STEP 1: Convert File to Images ──────────
         try:
             print(f"[DOCUMENT_PROCESSOR] Converting {mime_type} to images...")

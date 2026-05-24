@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -526,7 +526,9 @@
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.min.js"></script>
 <script>
-const API = 'https://fairtax-backend.onrender.com';
+const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : 'https://fairtax-backend.onrender.com';
 
 /* ── Winners widget ── */
 async function loadWinners() {
@@ -585,3 +587,4 @@ AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
 </script>
 </body>
 </html>
+

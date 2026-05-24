@@ -1,4 +1,6 @@
-const API = "https://fairtax-backend.onrender.com/api";
+const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : 'https://fairtax-backend.onrender.com/api';
 
 let currentStep = 1;
 const TOTAL = 7;
@@ -326,11 +328,15 @@ async function uploadDocs(inputId, docType) {
         }
       }
 
-      // Income info
+      // Income info — fill all salary fields
       if (extracted.income) {
         const inc = extracted.income;
-        ["gross_salary", "basic_salary", "hra_received", "tds_paid"].forEach(
-          (k) => {
+        [
+          "gross_salary", "basic_salary", "hra_received", "tds_paid",
+          "pf_employee", "pf_employer", "professional_tax",
+          "lta", "special_allowance", "car_lease_allowance",
+          "uniform_allowance", "gratuity", "leave_encashment"
+        ].forEach((k) => {
             const el = document.querySelector(`[name="${k}"]`);
             if (el && inc[k]) el.value = inc[k];
           },
@@ -348,13 +354,20 @@ async function uploadDocs(inputId, docType) {
 
       // ✅ AUTO-SAVE extracted data to Google Sheets immediately
       try {
+        const inc = extracted.income || {};
+        const ded = extracted.deductions || {};
         const flatData = {
-          gross_salary: extracted.income?.gross_salary || 0,
-          basic_salary: extracted.income?.basic_salary || 0,
-          hra_received: extracted.income?.hra_received || 0,
-          tds_paid: extracted.income?.tds_paid || 0,
-          home_loan_interest: extracted.deductions?.home_loan_interest || 0,
-          nps_self: extracted.deductions?.nps_self || 0,
+          gross_salary: inc.gross_salary || 0,
+          basic_salary: inc.basic_salary || 0,
+          hra_received: inc.hra_received || 0,
+          tds_paid: inc.tds_paid || 0,
+          pf_employee: inc.pf_employee || 0,
+          pf_employer: inc.pf_employer || 0,
+          professional_tax: inc.professional_tax || 0,
+          lta: inc.lta || 0,
+          special_allowance: inc.special_allowance || 0,
+          home_loan_interest: ded.home_loan_interest || 0,
+          nps_self: ded.nps_self || 0,
           pan: extracted.personal?.pan || "",
         };
         await savePhase(flatData);
@@ -370,7 +383,8 @@ async function uploadDocs(inputId, docType) {
 
       if (status) {
         status.className = "status success";
-        status.textContent = "✅ Extracted & Saved! Review on next step.";
+        _lastExtraction[inputId] = { data: j.data, docType };
+        status.innerHTML = `✅ Extracted & Saved! Review on next step. ${_dvVerifyBtn(inputId)}`;
       }
     } else if (status) {
       status.className = "status error";
@@ -770,6 +784,110 @@ $$(".camera-btn").forEach((b) =>
     if (target) openCameraFor(target);
   }),
 );
+
+// ══════════════════════════════════════════════════════════════════════════
+// DOCUMENT VERIFY MODAL
+// ══════════════════════════════════════════════════════════════════════════
+
+// Stores last extraction result per inputId
+const _lastExtraction = {};
+
+// Field definitions shown in the verify panel per doc type
+const DV_FIELDS = {
+  form16:   [{ k:"gross_salary",l:"Gross Salary" },{ k:"basic_salary",l:"Basic Salary" },{ k:"hra_received",l:"HRA Received" },{ k:"tds_paid",l:"TDS Paid" },{ k:"pf_employee",l:"PF (Employee)" },{ k:"professional_tax",l:"Professional Tax" },{ k:"pan",l:"PAN" }],
+  payslip:  [{ k:"gross_salary",l:"Gross Salary" },{ k:"basic_salary",l:"Basic Salary" },{ k:"hra_received",l:"HRA Received" },{ k:"tds_paid",l:"TDS Paid" },{ k:"pf_employee",l:"PF (Employee)" },{ k:"pf_employer",l:"PF (Employer)" },{ k:"professional_tax",l:"Professional Tax" },{ k:"lta",l:"LTA" },{ k:"special_allowance",l:"Special Allowance" }],
+  homeloan: [{ k:"home_loan_interest",l:"Interest (Annual)" },{ k:"home_loan_principal",l:"Principal (Annual)" },{ k:"bank_name",l:"Bank / Lender" },{ k:"loan_account_no",l:"Account No" },{ k:"loan_outstanding",l:"Outstanding Balance" }],
+  insurance:[{ k:"premium_paid",l:"Premium Paid" },{ k:"policy_no",l:"Policy No" },{ k:"insurer_name",l:"Insurer" },{ k:"sum_assured",l:"Sum Assured" }],
+  nps:      [{ k:"nps_pran",l:"PRAN Number" },{ k:"nps_self",l:"Employee Contribution" },{ k:"nps_employer",l:"Employer Contribution" }],
+  school:   [{ k:"school_name",l:"School Name" },{ k:"school_fees",l:"Fees (Annual)" }],
+  donation: [{ k:"org_name",l:"Organisation" },{ k:"donation_amount",l:"Amount Donated" }],
+};
+const DV_MONEY = new Set(["gross_salary","basic_salary","hra_received","tds_paid","pf_employee","pf_employer","professional_tax","lta","special_allowance","home_loan_interest","home_loan_principal","loan_outstanding","premium_paid","sum_assured","nps_self","nps_employer","school_fees","donation_amount"]);
+
+function _dvVerifyBtn(inputId) {
+  return `<button class="dv-verify-btn" onclick="openDocVerify('${inputId}')">📄 Verify</button>`;
+}
+
+function openDocVerify(inputId) {
+  const input = document.getElementById(inputId);
+  const ext = _lastExtraction[inputId];
+  if (!input || !input.files.length) {
+    alert("No file uploaded for this document yet.\nGo back to Step 2 or 3 and upload the file first.");
+    return;
+  }
+
+  const files = Array.from(input.files);
+  const tabsEl = document.getElementById("dvTabs");
+  const fieldsEl = document.getElementById("dvFieldsInner");
+
+  // Build file tabs
+  window._dvFiles = files;
+  window._dvUrls = files.map(f => URL.createObjectURL(f));
+  tabsEl.innerHTML = files.map((f,i) =>
+    `<button class="dv-tab${i===0?" active":""}" onclick="dvShowFile(${i})" title="${f.name}">${f.name}</button>`
+  ).join("");
+  dvShowFile(0);
+
+  // Build extracted fields
+  const docType = ext?.docType || "";
+  const raw = ext?.data || {};
+  const flat = { ...raw, ...(raw.income||{}), ...(raw.deductions||{}), ...(raw.personal||{}) };
+  const defs = DV_FIELDS[docType] || [];
+
+  if (defs.length) {
+    fieldsEl.innerHTML = defs.map(({ k, l }) => {
+      const v = flat[k];
+      if (v === undefined || v === null || v === "" || v === 0) return "";
+      const isMoney = DV_MONEY.has(k);
+      const display = isMoney ? "₹" + Number(v).toLocaleString("en-IN") : v;
+      return `<div class="dv-field">
+        <div class="dv-field-label">${l}</div>
+        <div class="dv-field-value${isMoney?" dv-money":""}">${display}</div>
+      </div>`;
+    }).join("") || '<div class="dv-no-data">No extracted values to display.</div>';
+  } else {
+    fieldsEl.innerHTML = '<div class="dv-no-data">Upload a file and extract to see values here.</div>';
+  }
+
+  document.getElementById("docVerifyModal").style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+function dvShowFile(idx) {
+  const frameEl = document.getElementById("dvFrame");
+  const file = window._dvFiles[idx];
+  const url = window._dvUrls[idx];
+  document.querySelectorAll(".dv-tab").forEach((t,i) => t.classList.toggle("active", i===idx));
+  const isPdf = file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
+  frameEl.innerHTML = isPdf
+    ? `<iframe src="${url}"></iframe>`
+    : `<img src="${url}" alt="${file.name}">`;
+}
+
+function closeDocVerify() {
+  document.getElementById("docVerifyModal").style.display = "none";
+  document.body.style.overflow = "";
+}
+
+// ── File preview buttons ──────────────────────────────────────────────────
+// Automatically adds a "👁 Preview" button next to every file input.
+// Button is hidden until a file is selected, then opens it in a new tab.
+document.querySelectorAll('input[type="file"]').forEach((input) => {
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "preview-btn";
+  btn.innerHTML = "👁&nbsp; Preview File";
+  btn.style.display = "none";
+  btn.addEventListener("click", () => {
+    const files = Array.from(input.files || []);
+    if (!files.length) return;
+    files.forEach((f) => window.open(URL.createObjectURL(f), "_blank"));
+  });
+  input.parentElement.insertBefore(btn, input.nextSibling);
+  input.addEventListener("change", () => {
+    btn.style.display = input.files && input.files.length ? "inline-block" : "none";
+  });
+});
 
 // fetch winners for widget
 async function loadWinners() {
@@ -1515,9 +1633,9 @@ async function extractSection(inputId, docType, statusId) {
     if (j.success && j.data && Object.keys(j.data).length > 0) {
       fillInvestmentFields(j.data, docType);
       if (statusEl) {
+        _lastExtraction[inputId] = { data: j.data, docType };
         statusEl.className = "status success";
-        statusEl.textContent =
-          "✅ Extracted! Review & confirm the fields below.";
+        statusEl.innerHTML = `✅ Extracted! Review & confirm the fields below. ${_dvVerifyBtn(inputId)}`;
       }
     } else {
       if (statusEl) {
@@ -1526,10 +1644,10 @@ async function extractSection(inputId, docType, statusId) {
           "⚠️ Could not auto-extract — please fill fields manually.";
       }
     }
-  } catch (e) {
+  } catch (err) {
     if (statusEl) {
       statusEl.className = "status error";
-      statusEl.textContent = "❌ " + e.message;
+      statusEl.textContent = "❌ " + err.message;
     }
   } finally {
     if (loader) {
