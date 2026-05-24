@@ -329,6 +329,8 @@ async function uploadDocs(inputId, docType) {
       }
 
       // Income info — fill all salary fields
+      // Use inc[k] first (nested income object), fall back to extracted[k] (top-level)
+      // This handles cases where AI returns 0 in the nested mapping but correct value at top level.
       if (extracted.income) {
         const inc = extracted.income;
         [
@@ -337,18 +339,24 @@ async function uploadDocs(inputId, docType) {
           "lta", "special_allowance", "car_lease_allowance",
           "uniform_allowance", "gratuity", "leave_encashment"
         ].forEach((k) => {
-            const el = document.querySelector(`[name="${k}"]`);
-            if (el && inc[k]) el.value = inc[k];
-          },
-        );
+          const el = document.querySelector(`[name="${k}"]`);
+          if (!el) return;
+          // Prefer nested inc[k], fall back to top-level extracted[k]
+          const val = inc[k] || extracted[k];
+          if (val) el.value = val;
+          console.log(`[FILL] ${k}: inc=${inc[k]}, top=${extracted[k]}, used=${val}`);
+        });
       }
 
       // Deductions
       if (extracted.deductions) {
         const ded = extracted.deductions;
-        ["home_loan_interest", "nps_self"].forEach((k) => {
+        ["home_loan_interest", "nps_self", "home_loan_principal", "nps_employer",
+         "school_fees", "nps_pran"].forEach((k) => {
           const el = document.querySelector(`[name="${k}"]`);
-          if (el && ded[k]) el.value = ded[k];
+          if (!el) return;
+          const val = ded[k] || extracted[k];
+          if (val) el.value = val;
         });
       }
 
@@ -356,19 +364,20 @@ async function uploadDocs(inputId, docType) {
       try {
         const inc = extracted.income || {};
         const ded = extracted.deductions || {};
+        // Use nested inc/ded fields with top-level extracted fallback (same logic as form filling)
         const flatData = {
-          gross_salary: inc.gross_salary || 0,
-          basic_salary: inc.basic_salary || 0,
-          hra_received: inc.hra_received || 0,
-          tds_paid: inc.tds_paid || 0,
-          pf_employee: inc.pf_employee || 0,
-          pf_employer: inc.pf_employer || 0,
-          professional_tax: inc.professional_tax || 0,
-          lta: inc.lta || 0,
-          special_allowance: inc.special_allowance || 0,
-          home_loan_interest: ded.home_loan_interest || 0,
-          nps_self: ded.nps_self || 0,
-          pan: extracted.personal?.pan || "",
+          gross_salary: inc.gross_salary || extracted.gross_salary || 0,
+          basic_salary: inc.basic_salary || extracted.basic_salary || 0,
+          hra_received: inc.hra_received || extracted.hra_received || 0,
+          tds_paid: inc.tds_paid || extracted.tds_paid || 0,
+          pf_employee: inc.pf_employee || extracted.pf_employee || 0,
+          pf_employer: inc.pf_employer || extracted.pf_employer || 0,
+          professional_tax: inc.professional_tax || extracted.professional_tax || 0,
+          lta: inc.lta || extracted.lta || 0,
+          special_allowance: inc.special_allowance || extracted.special_allowance || 0,
+          home_loan_interest: ded.home_loan_interest || extracted.home_loan_interest || 0,
+          nps_self: ded.nps_self || extracted.nps_self || 0,
+          pan: extracted.personal?.pan || extracted.pan || "",
         };
         await savePhase(flatData);
         console.log(
