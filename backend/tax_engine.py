@@ -56,7 +56,7 @@ def compute_tax_before_cess(taxable, regime):
 
     tax = raw
     if threshold is not None and taxable <= threshold:
-        tax = max(0.0, raw - cap)
+        tax = 0.0  # FIXED: Section 87A rebate eliminates tax completely, not subtract cap
     elif threshold is not None:
         # Legacy marginal relief behaviour preserved: ensure tax not exceed
         # taxable - threshold. This mimics existing logic in older engine.
@@ -91,7 +91,7 @@ def _apply_surcharge_and_cess(tax_before_cess, total_income):
         rate = 0.0
         for th, r in tax_config.SURCHARGE_BANDS:
             try:
-                if total_income > th:
+                if total_income >= th:  # FIXED: Changed > to >= (taxpayers at exact threshold should get surcharge)
                     rate = r
             except Exception:
                 continue
@@ -187,7 +187,21 @@ def calculate(payload):
     basic = g("basic_salary")
     hra_received = g("hra_received")
 
-    rent_paid = (g("monthly_rent") or g("rent_paid")) * 12
+    # FIXED: Handle rent correctly — detect if it's already annual or monthly
+    # Priority: use monthly_rent if provided, fallback to rent_paid
+    monthly_rent = g("monthly_rent") or 0
+    rent_paid_field = g("rent_paid") or 0
+
+    # If rent_paid_field > 1 lakh, assume it's annual; otherwise multiply by 12
+    if rent_paid_field > 0 and monthly_rent == 0:
+        # Use rent_paid_field: if it looks like annual (>100k), use as-is; otherwise multiply by 12
+        if rent_paid_field > 100000:
+            rent_paid = rent_paid_field  # Already annual
+        else:
+            rent_paid = rent_paid_field * 12  # Multiply monthly by 12
+    else:
+        # Use monthly_rent and multiply by 12
+        rent_paid = monthly_rent * 12
 
     tds = g("tds_paid") or g("tds_deducted")
 

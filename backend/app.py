@@ -1,23 +1,79 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 from config import Config
 import ai_service, tax_engine, sheets_service, storage_service, whatsapp_service
-import base64, traceback, os, requests as _requests, logging
+import base64, traceback, os, requests as _requests, logging, sys
 from pdf_service import generate_quote_pdf
 from services import document_processor, quality_checker, doc_type_detector
+from extraction_validator import ExtractionValidator
 import uuid
 
-# Configure logging for production
+# Configure logging for both console and file (for Waitress visibility)
 logging.basicConfig(
-    level=logging.INFO,
-    format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
+    level=logging.DEBUG,
+    format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    handlers=[
+        logging.FileHandler('flask_app.log'),
+        logging.StreamHandler(sys.stdout)  # FIXED: Also log to console/Waitress
+    ]
 )
 logger = logging.getLogger(__name__)
-app = Flask(__name__)
+
+# Configure Flask to serve frontend files
+# Frontend is in ../frontend relative to this backend directory
+frontend_path = os.path.join(os.path.dirname(__file__), '..', 'frontend')
+app = Flask(__name__,
+            static_folder=os.path.join(frontend_path),
+            static_url_path='',
+            template_folder=frontend_path)
 app.secret_key = Config.FLASK_SECRET
 CORS(app)
-from itr_api import itr_bp
-app.register_blueprint(itr_bp)
+
+# Add file handler with proper flushing
+file_handler = logging.FileHandler('flask_app.log', mode='a')
+file_handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+app.logger.addHandler(file_handler)
+app.logger.setLevel(logging.DEBUG)
+
+# Ensure output is flushed immediately (for Waitress)
+sys.stdout.flush()
+sys.stderr.flush()
+try:
+    from itr_api import itr_bp
+    print(f"[DEBUG] itr_bp imported: {itr_bp}, url_prefix={itr_bp.url_prefix}")
+    app.register_blueprint(itr_bp)
+    print(f"[DEBUG] itr_bp registered with Flask app")
+except Exception as e:
+    print(f"[ERROR] Failed to register itr_bp: {e}")
+    import traceback
+    traceback.print_exc()
+
+# Global request logger - log EVERY request with proper logging
+@app.before_request
+def log_request():
+    # Don't read request data here - it can consume the stream!
+    if '/itr/extract' in request.path:
+        app.logger.info(f"[REQUEST] {request.method} {request.path}")
+        app.logger.info(f"  Content-Type: {request.content_type}")
+        app.logger.info(f"  Content-Length: {request.content_length}")
+        app.logger.info(f"  Files keys: {list(request.files.keys())}")
+        app.logger.info(f"  Form keys: {list(request.form.keys())}")
+
+# Global error handler to catch ALL errors
+@app.errorhandler(422)
+def handle_422(e):
+    app.logger.error(f"[422 ERROR] {request.method} {request.path}")
+    app.logger.error(f"  Exception type: {type(e).__name__}")
+    app.logger.error(f"  Error: {str(e)}")
+    import traceback
+    app.logger.error(f"  Traceback: {traceback.format_exc()}")
+    return jsonify({
+        'success': False,
+        'error': f'Validation failed: {str(e)}',
+        'data': {}
+    }), 422
 
 
 def _safe_float(v):
@@ -35,6 +91,32 @@ def _safe_float(v):
     except Exception:
         return 0.0
 
+def _normalize_and_validate_phone(phone_raw):
+    """Normalize and validate phone number. Returns (is_valid, normalized_phone).
+
+    Validation rules:
+    - Input must contain at least 10 digits
+    - Returns last 10 digits (handles country codes like +91 prefix)
+
+    Returns:
+        tuple: (is_valid, normalized_phone)
+        - is_valid: bool indicating if phone is valid
+        - normalized_phone: str of 10 digits, or empty string if invalid
+    """
+    if not phone_raw:
+        return False, ""
+
+    # Extract all digits
+    digits = ''.join(c for c in str(phone_raw).strip() if c.isdigit())
+
+    # Validate minimum length
+    if len(digits) < 10:
+        return False, ""
+
+    # Return last 10 digits (handles +91-10digit and variations)
+    normalized = digits[-10:]
+    return True, normalized
+
 try:
     from scheduler_service import start_scheduler
     _scheduler = start_scheduler()
@@ -46,31 +128,25 @@ def health():
     return {"status": "ok"}
 
 
+# ---------- Landing Page (Root Route) ----------
+@app.route("/")
+def landing():
+    """Serve landing.html as the default homepage"""
+    try:
+        return render_template("landing.html")
+    except Exception as e:
+        print(f"[LANDING] Error serving landing.html: {e}")
+        logger.error(f"[LANDING] Error: {e}", exc_info=True)
+        return {"error": "Could not load landing page"}, 500
+
+
 # ---------- Phase-by-phase save ----------
 @app.route("/api/save-phase", methods=["POST"])
 def save_phase():
+    print(">>> [SAVE_PHASE] FUNCTION CALLED - NEW CODE")
     try:
         data = request.get_json(force=True)
-
-        # ── LOCAL DEV MODE: skip all Sheets ops when credentials aren't configured ──
-        _sa = getattr(Config, 'SERVICE_ACCOUNT_JSON', None)
-        _sheets_configured = bool(
-            getattr(Config, 'GOOGLE_SHEET_ID', None) and
-            _sa and _sa != 'service_account.json'
-        )
-        if not _sheets_configured:
-            submission_id = data.get('submission_id') or str(uuid.uuid4())
-            print(f"[SAVE_PHASE][LOCAL] Sheets not configured — returning mock success. submission_id={submission_id}")
-            return jsonify({"success": True, "submission_id": submission_id, "referral_code": ""})
-
-        # Ensure a referral code exists early so we can return it to the UI
-        # even if Sheets writes are delayed or fail. Use sheets_service helper.
-        try:
-            if not data.get('referral_code'):
-                data['referral_code'] = sheets_service.gen_referral_code(data.get('name'))
-        except Exception:
-            # Non-fatal: if gen_referral_code unavailable, leave blank and continue
-            pass
+        print(f">>> [SAVE_PHASE] Got data with filing_category={data.get('filing_category')}")
 
         # Compatibility normalizations: frontend uses `filing_type`, backend/sheets expect `filing_category`.
         if data.get('filing_type') and not data.get('filing_category'):
@@ -83,6 +159,57 @@ def save_phase():
         if not submission_id:
             if not data.get('filing_category') or data.get('filing_category') not in ('regular', 'free'):
                 return jsonify({"success": False, "error": "Please select filing type: 'regular' or 'free' before continuing."}), 400
+
+        # ✅ CRITICAL: For NEW FREE filing, validate BEFORE anything else (BEFORE Sheets check)
+        # User must provide: all 5 referrals + referral code (generated by frontend)
+        if not submission_id and (data.get('filing_category') == 'free' or data.get('filing_type') == 'free'):
+            # Check all 5 referrals are filled with valid names and phones
+            filled_count = 0
+            for i in range(1, 6):
+                ref_name = (data.get(f'ref_name_{i}', '') or '').strip()
+                ref_phone = (data.get(f'ref_phone_{i}', '') or '').strip()
+                # Extract only digits from phone
+                phone_digits = ''.join(c for c in ref_phone if c.isdigit())
+                # Check if name exists and phone has 10+ digits
+                if ref_name and len(phone_digits) >= 10:
+                    filled_count += 1
+
+            # Enforce: ALL 5 must be filled
+            if filled_count < 5:
+                return jsonify({
+                    "success": False,
+                    "error": f"Please fill all 5 referrals before proceeding. Currently filled: {filled_count}/5",
+                    "type": "incomplete_referrals"
+                }), 400
+
+            # Enforce: Referral code MUST be provided by frontend (generated via "Reveal Code")
+            if not data.get('referral_code'):
+                return jsonify({
+                    "success": False,
+                    "error": "Please click 'Reveal Code' to generate your referral code before proceeding.",
+                    "type": "missing_referral_code"
+                }), 400
+
+        # ── LOCAL DEV MODE: skip all Sheets ops when credentials aren't configured ──
+        _sa = getattr(Config, 'SERVICE_ACCOUNT_JSON', None)
+        _sheets_configured = bool(
+            getattr(Config, 'GOOGLE_SHEET_ID', None) and
+            _sa and _sa != 'service_account.json'
+        )
+        if not _sheets_configured:
+            referral_code = data.get('referral_code', '')
+            print(f"[SAVE_PHASE][LOCAL] Sheets not configured — returning mock success. submission_id={submission_id}")
+            return jsonify({"success": True, "submission_id": submission_id, "referral_code": referral_code})
+
+        # Ensure a referral code exists early so we can return it to the UI
+        # even if Sheets writes are delayed or fail. Use sheets_service helper.
+        # Only auto-generate for REGULAR filings or existing submissions
+        try:
+            if not data.get('referral_code') and (data.get('filing_category') == 'regular' or submission_id):
+                data['referral_code'] = sheets_service.gen_referral_code(data.get('name'))
+        except Exception:
+            # Non-fatal: if gen_referral_code unavailable, leave blank and continue
+            pass
 
         # Normalize phone to digits (store last 10 digits when available)
         if data.get('phone'):
@@ -491,6 +618,35 @@ def extract():
         if conflicts:
             print(f"[EXTRACT][{doc_type}] conflicts detected: {conflicts}")
 
+        # ✅ VALIDATION LAYER: Comprehensive extraction validation
+        # Validates annual/monthly consistency, Form 16 priority, document reconciliation, etc.
+        try:
+            validator = ExtractionValidator(extractions, merged)
+            validated_data, validation_report = validator.validate()
+
+            # Use validated data and store report for audit trail
+            merged.update(validated_data)
+            merged['_validation_report'] = validation_report
+
+            print(f"[VALIDATION] Valid={validation_report.get('valid')}, "
+                  f"Warnings={len(validation_report.get('warnings', []))}")
+        except Exception as e:
+            print(f"[VALIDATION] Comprehensive validation failed (non-blocking): {e}")
+            # Non-breaking: continue with unvalidated data
+            merged['_validation_report'] = {'valid': False, 'error': str(e)}
+
+        # ✅ NEW: Form 16 vs Payslip consistency check (adds specialized conflict detection)
+        form16_payslip_conflicts = []
+        try:
+            merged, form16_payslip_conflicts = ai_service.validate_form16_payslip_consistency(merged, extractions)
+            # Merge the new conflicts with existing ones
+            if form16_payslip_conflicts:
+                conflicts.extend(form16_payslip_conflicts)
+                print(f"[EXTRACT] Form 16/Payslip conflicts: {len(form16_payslip_conflicts)}")
+        except Exception as e:
+            print(f"[EXTRACT] Form 16/Payslip validation failed (non-blocking): {e}")
+            # Don't block extraction if validation fails
+
         # Clean extraction (existing validation)
         merged = ai_service.clean_extraction(merged)
 
@@ -580,26 +736,94 @@ def serve_upload(submission_id, filename):
 
 
 # ---------- Final submit ----------
+@app.route("/api/minimal", methods=["POST"])
+def minimal():
+    return jsonify({"test": "minimal"})
+
+@app.route("/api/test-json", methods=["POST"])
+def test_json():
+    """Minimal endpoint to test JSON parsing"""
+    try:
+        # Try to parse JSON WITHOUT calling get_data first
+        data = request.get_json(force=True)
+
+        return jsonify({
+            "success": True,
+            "keys": list(data.keys()) if isinstance(data, dict) else "not a dict"
+        })
+    except Exception as e:
+        import traceback
+        return jsonify({
+            "success": False,
+            "error": str(e),
+            "type": type(e).__name__,
+            "traceback": traceback.format_exc()[:500]
+        }), 500
+
 @app.route("/api/submit", methods=["POST"])
 def submit():
     try:
-        data = request.get_json(force=True)
+        # CRITICAL: Werkzeug development server needs explicit handling
+        # Try to parse request with safe defaults
+        try:
+            data = request.get_json(force=True)
+            if not isinstance(data, dict):
+                data = {}
+        except Exception as json_err:
+            # If JSON parsing fails, try again with cache=False
+            try:
+                data = request.get_json(force=True, cache=False)
+                if not isinstance(data, dict):
+                    data = {}
+            except:
+                # Last resort: return empty dict
+                data = {}
+
+        print(f"[SUBMIT] Data received: {list(data.keys())}", flush=True)
 
         submission_id = data.get("submission_id")
+        print(f"[SUBMIT] submission_id: {submission_id}")
         if not submission_id:
+            print("[SUBMIT] No submission_id provided")
             return jsonify({"success": False, "error": "submission_id required"}), 400
 
         row = sheets_service.get_row_by_submission_id(submission_id)
+        print(f"[SUBMIT] Initial row lookup: {row}")
+
         # If row missing, create it so updates and calculations persist
         if row is None:
             try:
-                sheets_service.insert_submission({"submission_id": submission_id, **data})
+                print(f"[SUBMIT] Creating new submission in Sheets...")
+                result = sheets_service.insert_submission({"submission_id": submission_id, **data})
+                print(f"[SUBMIT] Insert result: {result}")
+                print(f"[SUBMIT] Referral code generated: {result.get('referral_code')}")
+                # Update data with generated referral code
+                if result.get('referral_code'):
+                    data['referral_code'] = result['referral_code']
                 row = sheets_service.get_row_by_submission_id(submission_id)
-            except Exception:
+                print(f"[SUBMIT] Row after insert: {row}")
+            except Exception as insert_err:
+                logger.error(f"[SUBMIT] ERROR during insert_submission: {insert_err}")
+                logger.error(f"[SUBMIT] Traceback: {traceback.format_exc()}")
+                print(f"[SUBMIT] ERROR during insert_submission: {insert_err}", flush=True)
+                # Check if it's a quota error
+                if "RESOURCE_EXHAUSTED" in str(insert_err) or "Quota exceeded" in str(insert_err):
+                    logger.warning("[SUBMIT] Google Sheets quota exceeded - data will be retried later")
                 row = None
 
+        # ✅ Regenerate referral code with actual name (was generated as USER_FAIRTAX## before name was collected)
+        # BUT: Do NOT regenerate for referral filings (code should use REFERRER's name, not referred person's name)
+        # Check if this is a pure regular filing (not a referral redirect)
+        is_referral_filing = data.get('filing_category') == 'free' or data.get('referrer_name') or data.get('_referral_handoff')
+        if (not is_referral_filing and data.get('name') and
+            data.get('referral_code', '').startswith('USER_')):
+            data['referral_code'] = sheets_service.gen_referral_code(data.get('name'))
+            print(f"[SUBMIT] Regenerated referral code with actual name: {data['referral_code']}")
+
         # ✅ save final data
+        print(f"[SUBMIT] Updating row with data...")
         sheets_service.update_row(row, data)
+        print(f"[SUBMIT] Update complete")
 
         # Merge sheet row (has OCR-extracted investment data) with submitted form data
         existing_rec = sheets_service.check_approval(submission_id)
@@ -627,6 +851,19 @@ def submit():
                 merged_data['monthly_rent'] = merged_data.get('rent_paid')
         except Exception:
             pass
+
+        # ✅ VALIDATION: Use validation report from extraction (if available)
+        # Validator runs in /api/extract, not here in /api/submit
+        validation_report = merged_data.get('_validation_report', {})
+        if validation_report:
+            print(f"[VALIDATION] Valid={validation_report.get('valid')}, "
+                  f"Errors={len(validation_report.get('errors', []))}, "
+                  f"Warnings={len(validation_report.get('warnings', []))}")
+            if not validation_report.get('valid'):
+                logger.warning(f"[VALIDATION] Submission has validation errors: "
+                              f"{validation_report.get('errors')}")
+        else:
+            print("[VALIDATION] No validation report from extraction (normal if not Form16/Payslip)")
 
         # ✅ TAX CALC — deterministic engine is the source of truth;
         #    AI enrichment (assumptions, notes) is optional overlay.
@@ -678,7 +915,40 @@ def submit():
         else:
             calc = engine_calc
 
+        # ✅ ADD VALIDATION STATUS TO CALC before saving
+        # Recommendation should only run if validation passed
+        calc['_validation_passed'] = validation_report.get('valid', False)
+        calc['_validation_errors'] = validation_report.get('errors', [])
+        calc['_validation_warnings'] = validation_report.get('warnings', [])
+
         sheets_service.save_calculation_by_row(row, calc)
+
+        # ✅ Flag data conflicts for auditor review (if any were detected during extraction)
+        try:
+            conflicts_list = merged_data.get('_form16_payslip_conflicts', [])
+            if conflicts_list:
+                # Build conflict summary for auditor notes
+                conflict_summary = f"⚠️ DATA CONFLICTS DETECTED ({len(conflicts_list)} conflicts):\n"
+                for conflict in conflicts_list:
+                    conflict_summary += (
+                        f"• {conflict.get('field_name', conflict.get('field'))}: "
+                        f"Form 16 = ₹{conflict.get('form16_value'):,.0f}, "
+                        f"Payslip (annualized) = ₹{conflict.get('payslip_annualized_value'):,.0f} "
+                        f"({conflict.get('variance_percent', 0):.1f}% diff). "
+                        f"Using Form 16 value. Severity: {conflict.get('severity', 'MEDIUM')}\n"
+                    )
+
+                # Append to auditor_notes in Sheets for review
+                existing_notes = (merged_data.get('auditor_notes') or "")
+                conflict_summary += f"\nResolution: Used Form 16 (primary) over Payslip (monthly). Auditor should verify if discrepancy is due to mid-year salary changes, bonuses, or leaves."
+
+                if existing_notes:
+                    conflict_summary = existing_notes + "\n---\n" + conflict_summary
+
+                sheets_service.update_row(row, {"auditor_notes": conflict_summary})
+                print(f"[CONFLICT] Flagged {len(conflicts_list)} conflicts for auditor review")
+        except Exception as conflict_flag_e:
+            print(f"[CONFLICT] Failed to flag conflicts for auditor (non-blocking): {conflict_flag_e}")
 
         # ✅ Verify calculation consistency before finalizing
         is_valid, issues = sheets_service.verify_calculation_consistency(submission_id, calc)
@@ -701,16 +971,42 @@ def submit():
             )
 
         # Log 5 referrals from referral-filing form (if present)
+        # BACKEND VALIDATION: Normalize and validate all referral data
         referrer_name = data.get("referrer_name", "") or data.get("name", "")
+        logged_phones = set()  # Track logged phones to prevent duplicates
+
         for i in range(1, 6):
-            ref_name = data.get(f"ref_name_{i}", "").strip()
-            ref_phone = data.get(f"ref_phone_{i}", "").strip()
-            if ref_name and ref_phone:
-                try:
-                    sheets_service.log_referral(ref_code, ref_name, ref_phone)
-                    print(f"[REFERRAL] Logged referral {i}: {ref_name} ({ref_phone})")
-                except Exception as e:
-                    print(f"[REFERRAL] Error logging referral {i}: {e}")
+            ref_name = (data.get(f"ref_name_{i}", "") or "").strip()
+            ref_phone_raw = (data.get(f"ref_phone_{i}", "") or "").strip()
+
+            # Skip empty entries
+            if not ref_name or not ref_phone_raw:
+                continue
+
+            # Normalize phone: extract digits and take last 10
+            phone_digits = ''.join(c for c in ref_phone_raw if c.isdigit())
+
+            # VALIDATION: Phone must be at least 10 digits
+            if len(phone_digits) < 10:
+                print(f"[REFERRAL] Skipped referral {i}: Invalid phone format '{ref_phone_raw}' (needs 10+ digits)")
+                continue
+
+            # Use last 10 digits for Indian phone numbers
+            ref_phone = phone_digits[-10:]
+
+            # DEDUPLICATION: Skip if same phone already logged in this batch
+            if ref_phone in logged_phones:
+                print(f"[REFERRAL] Skipped referral {i}: Duplicate phone {ref_phone}")
+                continue
+
+            logged_phones.add(ref_phone)
+
+            # Log the validated referral
+            try:
+                sheets_service.log_referral(ref_code, ref_name, ref_phone)
+                print(f"[REFERRAL] Logged referral {i}: {ref_name} ({ref_phone})")
+            except Exception as e:
+                print(f"[REFERRAL] Error logging referral {i}: {e}")
 
         # WhatsApp (still uses phone) — non-blocking, errors don't block submission
         try:
@@ -741,16 +1037,37 @@ def submit():
             except Exception:
                 pass
 
-        return jsonify({
+        response_data = {
             "success": True,
             "submission_id": submission_id,
             "referral_code": ref_code,
-            "message": "Submitted! You'll receive your quote on WhatsApp within 24 hours."
-        })
+            "message": "Submitted! You'll receive your quote on WhatsApp within 24 hours.",
+            "refund_old_a": engine_calc.get('refund_old_a', 0),
+            "refund_old_b": engine_calc.get('refund_old_b', 0),
+            "refund_old_c": engine_calc.get('refund_old_c', 0),
+        }
+        print(f"[SUBMIT] Returning success response: {response_data}")
+        return jsonify(response_data)
 
     except Exception as e:
-        traceback.print_exc()
-        return jsonify({"success": False, "error": str(e)}), 500
+        exc_traceback = traceback.format_exc()
+        error_msg = str(e)
+        print(f"[SUBMIT] EXCEPTION in submit endpoint: {error_msg}", flush=True)
+        print(f"[SUBMIT] Traceback:\n{exc_traceback}", flush=True)
+
+        # Try to return error response
+        try:
+            error_response = {
+                "success": False,
+                "error": error_msg
+            }
+            print(f"[SUBMIT] Created error_response dict", flush=True)
+            result = jsonify(error_response)
+            print(f"[SUBMIT] jsonify succeeded", flush=True)
+            return result, 500
+        except Exception as json_err:
+            print(f"[SUBMIT] ERROR: Could not jsonify error response: {json_err}", flush=True)
+            return {"success": False, "error": error_msg}, 500
 
 
 # ---------- Quote ----------
@@ -973,15 +1290,41 @@ def notify_referrals():
         submission_id = data.get('submission_id')
         referrer_name = data.get('referrer_name') or 'Your friend'
         referral_code = data.get('referral_code') or ''
-        referrals = data.get('referrals', [])
+
+        # BACKEND VALIDATION: Handle referrals as string or list
+        referrals_raw = data.get('referrals', [])
+        if isinstance(referrals_raw, str):
+            try:
+                referrals = json.loads(referrals_raw)
+            except:
+                referrals = []
+        else:
+            referrals = referrals_raw if isinstance(referrals_raw, list) else []
 
         sent_count = 0
         for r in referrals:
-            phone = r.get('phone')
-            name = r.get('name', '')
-            if not phone:
+            # VALIDATION: Ensure r is a dict with required fields
+            if not isinstance(r, dict):
                 continue
-            wa_phone = whatsapp_service.normalize_phone(phone)
+
+            phone_raw = r.get('phone', '').strip()
+            name = (r.get('name', '') or '').strip()
+
+            # VALIDATION: Skip empty entries
+            if not phone_raw:
+                continue
+
+            # NORMALIZATION: Extract digits and validate
+            phone_digits = ''.join(c for c in phone_raw if c.isdigit())
+
+            # VALIDATION: Phone must be at least 10 digits
+            if len(phone_digits) < 10:
+                print(f"[NOTIFY] Skipping referral {name}: Invalid phone {phone_raw}")
+                continue
+
+            # Use last 10 digits for Indian phone numbers
+            phone_normalized = phone_digits[-10:]
+            wa_phone = whatsapp_service.normalize_phone(phone_normalized)
 
             # Try approved template first; fall back to plain text
             try:
@@ -1137,14 +1480,23 @@ def withdraw():
 def add_referral():
     try:
         data = request.get_json(force=True)
-        referral_code = data.get("referral_code", "")
-        friend_name = data.get("friend_name", "")
-        friend_phone = data.get("friend_phone", "")
+        referral_code = data.get("referral_code", "").strip()
+        friend_name = (data.get("friend_name", "") or "").strip()
+        friend_phone_raw = (data.get("friend_phone", "") or "").strip()
 
-        if not referral_code or not friend_name or not friend_phone:
+        # VALIDATION: Check required fields
+        if not referral_code or not friend_name or not friend_phone_raw:
             return jsonify({"success": False, "error": "referral_code, friend_name, and friend_phone required"}), 400
 
-        # Normalize phone
+        # VALIDATION: Phone format validation BEFORE normalization
+        phone_digits = ''.join(c for c in friend_phone_raw if c.isdigit())
+        if len(phone_digits) < 10:
+            return jsonify({"success": False, "error": "Invalid phone number (must have at least 10 digits)"}), 400
+
+        # NORMALIZATION: Use last 10 digits for Indian phone numbers
+        friend_phone = phone_digits[-10:]
+
+        # NORMALIZATION: Also normalize via whatsapp_service for consistency
         friend_phone = whatsapp_service.normalize_phone(friend_phone)
         if not friend_phone or len(friend_phone) < 10:
             return jsonify({"success": False, "error": "Invalid phone number"}), 400
@@ -1518,7 +1870,66 @@ def schedule_referral_status_updates():
         print(f"[SCHEDULER] Error in schedule_referral_status_updates: {e}")
 
 
+# DIAGNOSTIC ENDPOINT - For debugging when tests fail
+@app.route("/api/diagnostic", methods=["POST"])
+def diagnostic():
+    """Debug endpoint to test data flow and logging"""
+    try:
+        data = request.get_json(force=True) or {}
+
+        # Log to both file and console
+        logger.info(f"[DIAGNOSTIC] Received data: {data}")
+        print(f"[DIAGNOSTIC] Print statement: {data}", flush=True)
+
+        # Test Sheets access
+        sheets_status = "OK" if sheets_service._client() else "NO CLIENT"
+        logger.info(f"[DIAGNOSTIC] Sheets client: {sheets_status}")
+
+        # Test data persistence
+        test_id = data.get("submission_id", "diagnostic-test")
+        result = sheets_service.insert_submission({
+            "submission_id": test_id,
+            "name": data.get("name", "Test"),
+            "phone": data.get("phone", "0000000000")
+        })
+        logger.info(f"[DIAGNOSTIC] Insert result: {result}")
+
+        # Check if data was saved
+        row = sheets_service.get_row_by_submission_id(test_id)
+        logger.info(f"[DIAGNOSTIC] Row lookup: {row}")
+
+        return jsonify({
+            "success": True,
+            "diagnostic": {
+                "sheets_client": sheets_status,
+                "insert_result": result,
+                "row_found": row is not None,
+                "row_number": row
+            },
+            "message": "Check flask_app.log for detailed output"
+        }), 200
+
+    except Exception as e:
+        logger.error(f"[DIAGNOSTIC] Error: {e}")
+        logger.error(f"[DIAGNOSTIC] Traceback: {traceback.format_exc()}")
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+
+
 if __name__ == "__main__":
     import os
+    import sys
+    # Force unbuffered output
+    sys.stdout = open(sys.stdout.fileno(), mode='w', buffering=1, encoding='utf-8', errors='replace')
+    sys.stderr = open(sys.stderr.fileno(), mode='w', buffering=1, encoding='utf-8', errors='replace')
+
     debug_mode = os.getenv('FLASK_DEBUG', 'false').lower() == 'true'
-    app.run(host="0.0.0.0", port=int(os.getenv('PORT', 5000)), debug=debug_mode)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.getenv('PORT', 5000)),
+        debug=debug_mode,
+        use_reloader=False,
+        threaded=True
+    )

@@ -418,6 +418,9 @@ def extract_pass1_vision(image_bytes_list, doc_type):
                 # Only actual exceptions (API errors, network errors) are errors
                 error_msg = f"Page {page_num} extraction failed: {str(e)}"
                 print(f"[VISION_EXTRACTOR] {error_msg}")
+                print(f"[VISION_EXTRACTOR] Exception type: {type(e).__name__}")
+                import traceback
+                print(f"[VISION_EXTRACTOR] Traceback: {traceback.format_exc()}")
                 errors.append(error_msg)
                 consecutive_blanks += 1
                 continue

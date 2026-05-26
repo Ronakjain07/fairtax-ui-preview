@@ -7,6 +7,9 @@ const TOTAL = 7;
 
 // ❗ REPLACED phone with submission_id
 let submissionId = localStorage.getItem("submission_id") || "";
+
+// Store refund amounts from backend calculation
+let refundAmounts = { A: 0, B: 0, C: 0 };
 // 🔥 RESET if backend restarted
 if (!localStorage.getItem("session_active")) {
   localStorage.removeItem("submission_id");
@@ -635,7 +638,7 @@ async function revealReferralCode() {
   const rcEl = document.querySelector('[name="referral_code"]');
   if (rcEl) rcEl.value = code;
   $("#freeMessage").textContent =
-    `Your referral code: ${code} — share with your referrals.`;
+    `Get your code at the end — share with your referrals.`;
 
   // Step 6: Save referral code and referrals to server
   try {
@@ -665,14 +668,7 @@ async function revealReferralCode() {
   } catch (e) {
     console.warn("notify-referrals failed:", e);
   }
-
-  // Step 8: Show the referral code modal
-  showJokerModal();
 }
-
-document
-  .getElementById("revealCodeBtn")
-  ?.addEventListener("click", revealReferralCode);
 
 // Joker button click - same as reveal code but with celebration
 document.getElementById("jokerPlayBtn")?.addEventListener("click", async () => {
@@ -961,14 +957,42 @@ $("#next").onclick = async () => {
         // Save submission for REGULAR filing
         await savePhase();
       } else if (filingType === "free") {
-        // For FREE filing, check if referral code was generated
+        // For FREE filing, auto-save Step 1 to generate referral code with correct name
         if (!referralCode && !localStorage.getItem("referral_code")) {
-          alert(
-            'Please click "Reveal Code" to generate your referral code first.',
-          );
-          return;
+          try {
+            const s1 = collectStep(1);
+            // Referral flow uses referrer_name/referrer_phone, not name/phone
+            const actualName = s1.referrer_name || s1.name;
+            const actualPhone = s1.referrer_phone || s1.phone;
+
+            const missing = [];
+            if (!actualName || !actualName.toString().trim()) missing.push("name");
+            const phoneDigits = (actualPhone || "").toString().replace(/\D/g, "");
+            if (phoneDigits.length < 10) missing.push("phone");
+            const mail = s1.email || "";
+            const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!mail || !emailRe.test(mail)) missing.push("email");
+            if (missing.length) {
+              alert("Please fill required fields: " + missing.join(", "));
+              return;
+            }
+
+            // Auto-save Step 1 data for FREE filing
+            await savePhase({
+              filing_category: "free",
+              name: actualName,
+              phone: actualPhone,
+              email: s1.email,
+              pan: s1.pan,
+              city_type: s1.city_type,
+            });
+          } catch (e) {
+            console.error("Step 1 auto-save failed:", e);
+            alert("Failed to save your details. Please try again.");
+            return;
+          }
         }
-        // Submission already created in revealReferralCode()
+        // Submission created via auto-save above
       } else {
         alert("Please select a filing type first.");
         return;
@@ -1064,8 +1088,14 @@ $("#submit").onclick = async () => {
 
       $("#refCode").textContent = refCode;
 
-      // Calculate and display refund options
-      const amounts = calculateRefundAmounts();
+      // Calculate and display refund options using actual backend-calculated values
+      const amounts = calculateRefundAmounts({
+        refund_old_a: j.refund_old_a,
+        refund_old_b: j.refund_old_b,
+        refund_old_c: j.refund_old_c,
+      });
+      // Store for later use in selectRefundOption
+      refundAmounts = amounts;
       document.getElementById("optionA-amount").textContent =
         amounts.A.toLocaleString("en-IN");
       document.getElementById("optionB-amount").textContent =
@@ -1091,9 +1121,19 @@ function _inr(n) {
   return "₹" + Number(n || 0).toLocaleString("en-IN");
 }
 
-// Calculate refund amounts based on tax refund (estimated)
-function calculateRefundAmounts() {
-  // Get gross salary and tax data from form
+// Calculate refund amounts based on actual backend calculation
+function calculateRefundAmounts(backendData = {}) {
+  // If backend provides actual calculated refunds, use them
+  if (backendData && backendData.refund_old_a !== undefined) {
+    return {
+      A: Math.round(backendData.refund_old_a || 0),
+      B: Math.round(backendData.refund_old_b || 0),
+      C: Math.round(backendData.refund_old_c || 0),
+    };
+  }
+
+  // Fallback: Estimate refund (simplified: TDS - tax owed)
+  // This is only used if backend data is not available
   const grossSalary = parseFloat(
     document.querySelector('[name="gross_salary"]')?.value || 0,
   );
@@ -1101,8 +1141,6 @@ function calculateRefundAmounts() {
     document.querySelector('[name="tds_paid"]')?.value || 0,
   );
 
-  // Estimate refund (simplified: TDS - tax owed)
-  // This is a basic estimate; actual calculation done on backend
   let estimatedRefund = tdsPaid * 0.85; // 85% of TDS as placeholder
 
   if (estimatedRefund < 5000) estimatedRefund = 5000;
@@ -1143,9 +1181,8 @@ async function selectRefundOption(option) {
       .querySelector(`.option-card[data-option="${option}"]`)
       ?.classList.add("selected");
 
-    // Show payment instructions
-    const amounts = calculateRefundAmounts();
-    const amount = amounts[option];
+    // Show payment instructions using stored amounts from submit
+    const amount = refundAmounts[option];
     const descriptions = {
       A: "Direct bank transfer within 7-10 working days",
       B: "Expedited processing within 3-5 working days (₹500 fee)",

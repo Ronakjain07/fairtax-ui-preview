@@ -7,10 +7,35 @@ Handles:
 - Duplicate detection
 - Conflict detection across multiple documents
 - Deduction classification
+- Multiple documents of same type (sum appropriately)
 """
 
 import hashlib
 import json
+
+# Document types where multiple instances should have numeric values summed
+# E.g., 2 home loans = sum both interests; 2 schools = sum both fees
+TYPES_TO_SUM_WHEN_MULTIPLE = {
+    'form16',      # Multiple employers: sum salary components
+    'homeloan',    # Multiple loans: sum interest and principal
+    'school',      # Multiple schools: sum tuition fees
+    'nps',         # Multiple NPS accounts: sum contributions
+    'insurance',   # Multiple policies: sum premiums
+    'donation',    # Multiple donations: sum amounts
+}
+
+# Fields that represent additive quantities (should be summed, not averaged)
+ADDITIVE_FIELDS = {
+    'gross_salary', 'basic_salary', 'hra_received', 'lta', 'special_allowance',
+    'car_lease_allowance', 'uniform_allowance', 'pf_employee', 'pf_employer',
+    'tds_paid', 'professional_tax', 'gratuity', 'leave_encashment',
+    'section_17_1', 'section_17_2', 'section_17_3',
+    'home_loan_interest', 'home_loan_principal', 'loan_outstanding',
+    'school_fees',
+    'nps_self', 'nps_employer',
+    'premium_amount', 'sum_assured',
+    'donation_amount',
+}
 
 
 def _compute_checksum(data, fields):
@@ -174,17 +199,33 @@ def normalize_extractions(extractions_list, doc_types_list):
             else:
                 string_values.append(fv)
 
-        # For salary documents (multiple Form16s): sum numeric values
-        if numeric_values and all(ext["doc_type"] == "form16" for ext in extractions_data):
+        # ───── MULTIPLE NUMERIC VALUES: Decide whether to SUM or PICK HIGHEST ─────
+
+        # Determine if we should sum this field across multiple documents
+        should_sum = False
+        if numeric_values and len(numeric_values) > 1:
+            # Check if all documents are of a type that supports summing
+            doc_types_in_extraction = {ext["doc_type"] for ext in extractions_data}
+
+            # Sum if: (1) all docs are same type AND (2) that type is in TYPES_TO_SUM_WHEN_MULTIPLE
+            if len(doc_types_in_extraction) == 1:
+                doc_type = doc_types_in_extraction.pop()
+                if doc_type in TYPES_TO_SUM_WHEN_MULTIPLE and field_name in ADDITIVE_FIELDS:
+                    should_sum = True
+
+        if numeric_values and should_sum:
+            # SUM: Multiple documents of same type with additive fields
             total = sum(fv["value"] for fv in numeric_values if isinstance(fv["value"], (int, float)))
             normalized[field_name] = int(total) if isinstance(total, float) and total.is_integer() else total
 
             # Log if different values (conflict)
             unique_vals = set(str(fv["value"]) for fv in numeric_values)
             if len(unique_vals) > 1:
+                # Get the document type for conflict logging
+                doc_type = numeric_values[0]["doc_type"] if numeric_values else "unknown"
                 conflicts.append({
                     "field": field_name,
-                    "type": "multi_form16_aggregate",
+                    "type": f"multi_{doc_type}_aggregate",
                     "values": [(fv["value"], fv["confidence"], fv["doc_type"]) for fv in numeric_values],
                     "result": "summed"
                 })
@@ -239,11 +280,29 @@ def normalize_extractions(extractions_list, doc_types_list):
                 assumptions.append("Payslip amounts are monthly; will be annualized (×12) in tax calculation")
                 break
 
-    # Multi-document aggregation
+    # Multi-document aggregation logging
     if len(extractions_data) > 1:
-        form16_count = sum(1 for e in extractions_data if e["doc_type"] == "form16")
-        if form16_count > 1:
-            assumptions.append(f"{form16_count} Form16 documents detected: numeric fields summed (multiple employers)")
+        # Count documents by type
+        doc_type_counts = {}
+        for e in extractions_data:
+            doc_type = e["doc_type"]
+            doc_type_counts[doc_type] = doc_type_counts.get(doc_type, 0) + 1
+
+        # Log for each type with multiple documents
+        for doc_type, count in doc_type_counts.items():
+            if count > 1:
+                if doc_type == "form16":
+                    assumptions.append(f"{count} Form16 documents detected: numeric fields summed (multiple employers)")
+                elif doc_type == "homeloan":
+                    assumptions.append(f"{count} Home Loan documents detected: interests and principals summed (multiple loans)")
+                elif doc_type == "school":
+                    assumptions.append(f"{count} School Fee documents detected: fees summed (multiple schools)")
+                elif doc_type == "nps":
+                    assumptions.append(f"{count} NPS documents detected: contributions summed (multiple NPS accounts)")
+                elif doc_type == "insurance":
+                    assumptions.append(f"{count} Insurance documents detected: premiums summed (multiple policies)")
+                elif doc_type == "donation":
+                    assumptions.append(f"{count} Donation documents detected: amounts summed (multiple donations)")
 
     # ─────── FILTER SENSITIVE FIELDS ─────────────────
     # Exclude metadata fields from normalized output

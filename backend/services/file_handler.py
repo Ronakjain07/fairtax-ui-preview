@@ -164,36 +164,95 @@ def convert_pdf_to_images(file_bytes, dpi=300):
         List[bytes]: JPEG images
     """
     try:
-        import fitz  # PyMuPDF
-        doc = fitz.open(stream=file_bytes, filetype="pdf")
-        images = []
+        # Validate file is actually a PDF
+        if not file_bytes or len(file_bytes) < 100:
+            raise ValueError(f"Invalid file: too small ({len(file_bytes)} bytes)")
 
-        for page_num, page in enumerate(doc):
-            try:
-                # Use higher quality pixmap
-                pix = page.get_pixmap(matrix=fitz.Matrix(dpi/72, dpi/72))
-                img_bytes = pix.tobytes("jpeg")
-                img = Image.open(io.BytesIO(img_bytes))
+        if not file_bytes.startswith(b'%PDF'):
+            raise ValueError(f"Invalid PDF: does not start with %PDF header. First bytes: {file_bytes[:20]}")
 
-                # Enhance for better extraction
-                img = enhance_image_quality(img, is_scanned=False)
+        # Try PyMuPDF first (fitz)
+        try:
+            import fitz  # PyMuPDF
+            logger.info(f"[PDF_CONVERTER] Opening PDF with PyMuPDF ({len(file_bytes)} bytes)...")
+            doc = fitz.open(stream=file_bytes, filetype="pdf")
+            logger.info(f"[PDF_CONVERTER] PDF opened successfully, {len(doc)} pages found")
+            images = []
 
-                # Convert to JPEG
-                img_bytes_io = io.BytesIO()
-                img.save(img_bytes_io, format="JPEG", quality=95)
-                images.append(img_bytes_io.getvalue())
+            for page_num, page in enumerate(doc):
+                try:
+                    # Use higher quality pixmap
+                    pix = page.get_pixmap(matrix=fitz.Matrix(dpi/72, dpi/72))
+                    img_bytes = pix.tobytes("jpeg")
+                    img = Image.open(io.BytesIO(img_bytes))
 
-            except Exception as e:
-                logger.warning(f"Failed to process PDF page {page_num + 1}: {str(e)}")
-                continue
+                    # Enhance for better extraction
+                    img = enhance_image_quality(img, is_scanned=False)
 
-        doc.close()
+                    # Convert to JPEG
+                    img_bytes_io = io.BytesIO()
+                    img.save(img_bytes_io, format="JPEG", quality=95)
+                    images.append(img_bytes_io.getvalue())
 
-        if not images:
-            raise ValueError("No pages extracted from PDF")
+                except Exception as e:
+                    logger.warning(f"Failed to process PDF page {page_num + 1}: {str(e)}")
+                    continue
 
-        logger.info(f"[PDF_PROCESSOR] Converted {len(images)} pages from PDF at {dpi} DPI")
-        return images
+            doc.close()
+
+            if not images:
+                raise ValueError("No pages extracted from PDF")
+
+            logger.info(f"[PDF_PROCESSOR] Converted {len(images)} pages from PDF at {dpi} DPI")
+            return images
+
+        except Exception as fitz_error:
+            logger.warning(f"[PDF_CONVERTER] PyMuPDF failed: {str(fitz_error)}, trying pypdfium2...")
+
+            # Fallback to pypdfium2
+            import pypdfium2 as pdfium
+            logger.info(f"[PDF_CONVERTER] Opening PDF with pypdfium2 ({len(file_bytes)} bytes)...")
+
+            # Load PDF directly from bytes
+            pdf = pdfium.PdfDocument(file_bytes)
+            logger.info(f"[PDF_CONVERTER] PDF opened successfully, {len(pdf)} pages found")
+
+            images = []
+            for page_num, page in enumerate(pdf):
+                try:
+                    # Render page to image with specified DPI
+                    # DPI scale: 72 DPI is the default, so multiply by (target_dpi / 72)
+                    scale = dpi / 72.0
+                    bitmap = page.render(
+                        scale=scale,
+                        rotation=0,
+                        rev_byteorder=True  # Swap BGR to RGB for better compatibility
+                    )
+
+                    # Convert bitmap to PIL Image
+                    img = bitmap.to_pil()
+
+                    # Ensure RGB mode
+                    if img.mode != 'RGB':
+                        img = img.convert('RGB')
+
+                    # Enhance for better extraction
+                    img = enhance_image_quality(img, is_scanned=False)
+
+                    # Convert to JPEG
+                    img_bytes_io = io.BytesIO()
+                    img.save(img_bytes_io, format="JPEG", quality=95)
+                    images.append(img_bytes_io.getvalue())
+
+                except Exception as e:
+                    logger.warning(f"Failed to process PDF page {page_num + 1}: {str(e)}")
+                    continue
+
+            if not images:
+                raise ValueError("No pages extracted from PDF")
+
+            logger.info(f"[PDF_PROCESSOR] Converted {len(images)} pages from PDF at {dpi} DPI using pypdfium2")
+            return images
 
     except Exception as e:
         logger.error(f"[PDF_PROCESSOR] Error converting PDF: {str(e)}")
@@ -380,9 +439,16 @@ def process_file(file_bytes, mime_type):
         ValueError: If file type unsupported or processing fails
     """
     try:
+        # Validate input
+        if not file_bytes:
+            raise ValueError("File is empty")
+
+        logger.info(f"[FILE_HANDLER] Processing file: {len(file_bytes)} bytes, mime={mime_type}")
+
         # Detect file type
         file_type = detect_file_type(file_bytes, mime_type)
         logger.info(f"[FILE_HANDLER] Detected file type: {file_type} (mime={mime_type})")
+        logger.info(f"[FILE_HANDLER] File header: {file_bytes[:20]}")
 
         # Convert to images based on type
         if file_type == 'pdf':

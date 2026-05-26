@@ -160,7 +160,7 @@
             <label>Full Name <input name="name" placeholder="Your full name" required></label>
             <label>Phone <input name="phone" placeholder="Phone" pattern="\d{10}" required></label>
             <label>Email <input name="email" placeholder="Your email" type="email" required></label>
-            <label>PAN <input name="pan" placeholder="PAN (e.g., ABCDE1234F)" pattern="[A-Z]{5}[0-9]{4}[A-Z]" style="text-transform:uppercase" required></label>
+            <label>PAN <input name="pan" placeholder="PAN (e.g., ABCDE1234F)" pattern="[A-Z]{5}[0-9]{4}[A-Z]" style="text-transform:uppercase" oninput="this.value = this.value.toUpperCase()" required></label>
             <label style="grid-column: 1 / -1">City Type (for HRA calculation)
               <select name="city_type" required>
                 <option value="">-- Select City Type --</option>
@@ -527,7 +527,7 @@
       </ul>
 
       <div class="consent-row">
-        <label class="consent-row"><input type="checkbox" id="consent" required> <span>I consent to data processing & WhatsApp communication.</span></label>
+        <label class="consent-row"><input type="checkbox" id="consent" name="consent" required> <span>I consent to data processing & WhatsApp communication.</span></label>
       </div>
     </section>
 
@@ -591,7 +591,7 @@
           <div class="offer-badge">ITR filing fees for your spouse: 20% off</div>
           <div class="grid" style="margin-top:16px">
             <label>Spouse Full Name <input name="spouse_name" placeholder="Full Name"></label>
-            <label>Spouse PAN <input name="spouse_pan" placeholder="ABCDE1234F" style="text-transform:uppercase" maxlength="10"></label>
+            <label>Spouse PAN <input name="spouse_pan" placeholder="ABCDE1234F" style="text-transform:uppercase" maxlength="10" oninput="this.value = this.value.toUpperCase()"></label>
           </div>
           <label>Spouse Phone (10 digits) <input name="spouse_phone" placeholder="10-digit mobile" pattern="\d{10}"></label>
           <button type="button" id="submitSpouse">Submit Spouse Details →</button>
@@ -722,11 +722,65 @@
 
 <script src="app.js?v=5"></script>
 
-<!-- Override filing type to REGULAR for this page -->
+<!-- Override filing type to REGULAR for this page (or FREE if coming from referral) -->
 <script>
-filingType = 'regular';
-var ftHidden = document.querySelector('[name="filing_type"]');
-if (ftHidden) ftHidden.value = 'regular';
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var handoffRaw = sessionStorage.getItem('referral_handoff');
+  var isReferral = params.get('from') === 'referral' && handoffRaw;
+
+  if (isReferral) {
+    /* ── REFERRAL HANDOFF: User completed Step 1 on referral-filing.html ── */
+    var handoff = JSON.parse(handoffRaw);
+
+    // Set filing type to FREE
+    filingType = 'free';
+    var ftHidden = document.querySelector('[name="filing_type"]');
+    if (ftHidden) ftHidden.value = 'free';
+
+    // Set referral code from localStorage (already saved by revealReferralCode)
+    var rcHidden = document.querySelector('[name="referral_code"]');
+    if (rcHidden) rcHidden.value = referralCode || localStorage.getItem('referral_code') || '';
+
+    // Pre-fill Step 1 fields with referral user's data
+    // (needed because submit collects ALL steps — empty fields would overwrite backend data)
+    var fieldMap = {
+      'name': handoff.referrer_name || '',
+      'phone': handoff.referrer_phone || '',
+      'email': handoff.email || '',
+      'pan': handoff.pan || '',
+      'city_type': handoff.city_type || ''
+    };
+    for (var key in fieldMap) {
+      var el = document.querySelector('[name="' + key + '"]');
+      if (el) el.value = fieldMap[key];
+    }
+
+    // Skip to Step 2 (document upload) — Step 1 already done on referral page
+    currentStep = 2;
+    showStep(2);
+
+    // Override Back button at Step 2: go back to referral page instead of regular Step 1
+    window._isReferralSession = true;
+    var origPrevFn = document.getElementById('prev').onclick;
+    document.getElementById('prev').onclick = function() {
+      if (window._isReferralSession && currentStep === 2) {
+        window.location.href = 'referral-filing.html';
+        return;
+      }
+      if (origPrevFn) origPrevFn();
+    };
+
+    // Clean up handoff (keep referral session flag for Back button)
+    sessionStorage.removeItem('referral_handoff');
+
+  } else {
+    // Normal regular filing
+    filingType = 'regular';
+    var ftHidden = document.querySelector('[name="filing_type"]');
+    if (ftHidden) ftHidden.value = 'regular';
+  }
+})();
 </script>
 
 <!-- Mobile hamburger -->

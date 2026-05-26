@@ -10,6 +10,7 @@ from decimal import Decimal, ROUND_HALF_UP
 EXTRACTION_PROMPT = """You are a tax document extractor. Extract ONLY factual values from the document.
 Return ONLY valid JSON with these exact keys (use 0 if not found, strings for names):
 {
+  "name": "",
   "employer_name": "",
   "pan": "",
   "assessment_year": "",
@@ -41,6 +42,7 @@ CRITICAL RULES:
 PAYSLIP_TEXT_EXTRACTION_PROMPT = """You are an expert Indian payslip extractor. Extract salary data from the payslip text below.
 Return ONLY valid JSON with these exact keys (use 0 if not found):
 {
+  "name": "",
   "employer_name": "",
   "pan": "",
   "gross_salary": 0,
@@ -171,7 +173,7 @@ def _call_openai(messages, max_tokens=2000):
     payload = {
         "model": Config.OPENAI_MODEL,
         "messages": messages,
-        "temperature": 0.1,
+        "temperature": 0.0,  # FIXED: Changed from 0.1 to 0.0 for deterministic extraction
         "max_tokens": max_tokens,
     }
     r = requests.post(Config.OPENAI_URL, headers=headers, json=payload, timeout=120)
@@ -699,6 +701,143 @@ def merge_extractions(extractions):
     return out
 
 
+def validate_form16_payslip_consistency(merged_data, extractions):
+    """
+    ✅ FORM 16 vs PAYSLIP CONFLICT DETECTION
+
+    Priority Logic:
+    1. Form 16 is PRIMARY (official annual summary)
+    2. Payslip is SUPPLEMENTARY (monthly breakdown, used to fill gaps)
+    3. Flag conflicts when values differ significantly
+
+    Returns: (merged_data_with_form16_priority, conflicts_list)
+
+    IMPORTANT: Does NOT modify merge_extractions() behavior - only adds validation layer
+    """
+
+    conflicts = []
+
+    # Find Form 16 and Payslip documents
+    form16_doc = None
+    payslip_doc = None
+
+    for ext in extractions:
+        doc_type = ext.get('_doc_type', '').lower()
+        if 'form16' in doc_type or 'form 16' in doc_type:
+            form16_doc = ext
+        elif 'payslip' in doc_type:
+            payslip_doc = ext
+
+    # If only one type of document or no conflict, return as-is
+    if not form16_doc or not payslip_doc:
+        return merged_data, conflicts
+
+    print("[CONFLICT] Detected both Form 16 and Payslip - validating consistency...")
+
+    # Helper function to safely parse numeric values
+    def _to_num(x):
+        try:
+            if x is None or x == "" or x == 0:
+                return 0.0
+            if isinstance(x, (int, float)):
+                return float(x)
+            s = str(x).replace(',', '').replace('₹', '').replace('Rs.', '').strip()
+            if not s:
+                return 0.0
+            return float(s)
+        except Exception:
+            return 0.0
+
+    # Fields to check (these should be annual in Form 16, monthly in Payslip)
+    annual_fields = [
+        ('gross_salary', 'Gross Salary'),
+        ('basic_salary', 'Basic Salary'),
+        ('hra_received', 'HRA'),
+        ('pf_employee', 'PF (Employee)'),
+    ]
+
+    tolerance = 0.15  # Allow 15% variance (accounts for seasonal variations, bonuses)
+
+    for field_key, field_name in annual_fields:
+        form16_val = _to_num(form16_doc.get(field_key))
+        payslip_val = _to_num(payslip_doc.get(field_key))
+
+        # Skip if either is missing
+        if form16_val == 0 or payslip_val == 0:
+            continue
+
+        # Payslip is MONTHLY, Form 16 is ANNUAL
+        # Annualize payslip value for comparison
+        payslip_annualized = payslip_val * 12
+
+        # Check for significant variance
+        variance = abs(payslip_annualized - form16_val) / max(form16_val, payslip_annualized)
+
+        if variance > tolerance:
+            # Large discrepancy detected
+            conflict = {
+                "field": field_key,
+                "field_name": field_name,
+                "form16_value": form16_val,
+                "form16_source": "Form 16 (Annual)",
+                "payslip_monthly_value": payslip_val,
+                "payslip_annualized_value": round(payslip_annualized, 2),
+                "variance_percent": round(variance * 100, 1),
+                "severity": "HIGH" if variance > 0.30 else "MEDIUM",
+                "recommended_value": form16_val,
+                "message": f"{field_name}: Form 16 = ₹{form16_val:,.0f} (annual), "
+                          f"Payslip = ₹{payslip_val:,.0f} (monthly, annualized = ₹{payslip_annualized:,.0f}). "
+                          f"Difference: {variance*100:.1f}%. Using Form 16 value."
+            }
+            conflicts.append(conflict)
+            print(f"[CONFLICT][{field_key}] {conflict['message']}")
+
+    # Special handling for TDS (should be annual in Form 16, monthly in Payslip)
+    form16_tds = _to_num(form16_doc.get('tds_paid'))
+    payslip_tds = _to_num(payslip_doc.get('tds_paid'))
+
+    if form16_tds > 0 and payslip_tds > 0:
+        payslip_tds_annual = payslip_tds * 12
+        tds_variance = abs(payslip_tds_annual - form16_tds) / max(form16_tds, payslip_tds_annual)
+
+        if tds_variance > 0.25:  # 25% tolerance for TDS (wider due to monthly variations)
+            conflicts.append({
+                "field": "tds_paid",
+                "field_name": "TDS Paid",
+                "form16_value": form16_tds,
+                "payslip_monthly_value": payslip_tds,
+                "payslip_annualized_value": round(payslip_tds_annual, 2),
+                "variance_percent": round(tds_variance * 100, 1),
+                "severity": "MEDIUM",
+                "recommended_value": form16_tds,
+                "message": f"TDS: Form 16 = ₹{form16_tds:,.0f} (annual), "
+                          f"Payslip = ₹{payslip_tds:,.0f} (monthly). "
+                          f"Using Form 16 value."
+            })
+            print(f"[CONFLICT][tds_paid] TDS variance detected: {tds_variance*100:.1f}%")
+
+    # IMPORTANT: Form 16 values take PRIORITY - they're already in merged_data
+    # The payslip was summed by merge_extractions, but we want Form 16 as primary
+    # If both exist, use Form 16 value (it's the authoritative annual document)
+    if form16_doc:
+        for field_key, _ in annual_fields:
+            form16_val = form16_doc.get(field_key)
+            if form16_val and form16_val != 0:
+                # Override merged value with Form 16 (primary source)
+                merged_data[field_key] = form16_val
+
+        # TDS: use Form 16 (annual)
+        if form16_doc.get('tds_paid'):
+            merged_data['tds_paid'] = form16_doc.get('tds_paid')
+
+    # Store conflicts for response
+    if conflicts:
+        merged_data['_form16_payslip_conflicts'] = conflicts
+        print(f"[CONFLICT] Detected {len(conflicts)} conflicts between Form 16 and Payslip")
+
+    return merged_data, conflicts
+
+
 def calculate_tax_ai(data):
     """Call LLM for structured tax calculation with explicit conflict detection & self-validation.
     Returns a dict consistent with expected schema plus detailed assumptions.
@@ -939,127 +1078,13 @@ User Data (raw JSON):
     except Exception as e:
         print("AI tax error:", e)
         traceback.print_exc()
-        return {}
-        other_income = (calc.get('other_income') or {})
-        total_other_income = _to_num(other_income.get('total_other_income'))
-        if total_other_income == 0:
-            total_other_income = _sum_fields(other_income, ['fd_interest', 'dividend', 'tax_refund_interest'])
-
-        std_ded = _to_num((calc.get('section_16') or {}).get('standard_deduction')) or 0.0
-        prof_tax = _to_num((calc.get('section_16') or {}).get('professional_tax')) or 0.0
-
-        # home loan: cap for self-occupied to 200000
-        home_loan_interest = _to_num(calc.get('home_loan_interest', 0))
-        home_loan_allowed = min(home_loan_interest, 200000)
-        if home_loan_allowed != home_loan_interest:
-            calc.setdefault('assumptions', []).append(f"Home loan interest capped to ₹200000; provided {home_loan_interest}")
-        calc['home_loan_interest'] = home_loan_allowed
-
-        total_sec10 = _to_num((calc.get('section_10_exemptions') or {}).get('total_sec_10_exemptions'))
-
-        # GTI recompute
-        recomputed_gti = gross + total_other_income - total_sec10 - home_loan_allowed - std_ded - prof_tax
-        recomputed_gti = round(float(recomputed_gti), 2)
-        calc.setdefault('calculations', {})
-        reported_gti = _to_num(calc['calculations'].get('gti'))
-        if abs(reported_gti - recomputed_gti) > 1:
-            calc['calculations']['gti'] = recomputed_gti
-            calc.setdefault('assumptions', []).append('GTI recomputed server-side to avoid double-counting and ensure consistent treatment of home loan interest and standard deduction.')
-
-        # chapter VIA deductions
-        deductions_total = _to_num((calc.get('deductions_80') or {}).get('total_deductions_80'))
-
-        # OLD regime tax
-        taxable_old = max(0.0, recomputed_gti - deductions_total)
-        old_tax_before_cess = float(tax_engine.slab_tax_old(taxable_old))
-        old_total_tax = float(Decimal(old_tax_before_cess * (1 + tax_config.CESS_RATE)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
-        tds_paid = _to_num(calc.get('compatibility_summary', {}).get('tds_paid') or data.get('tds_paid') or calc.get('tds_paid') or 0)
-        old_refund = float(Decimal(tds_paid - old_total_tax).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
-
-        # NEW regime tax
-        std_new = 75000
-        gti_new = gross + total_other_income - std_new
-        sec_80ccd_2 = _to_num((calc.get('deductions_80') or {}).get('sec_80ccd_2') or calc.get('sec_80ccd_2') or 0)
-        taxable_new = max(0.0, gti_new - sec_80ccd_2)
-        new_tax_before_cess = float(tax_engine.slab_tax_new(taxable_new))
-        new_total_tax = float(Decimal(new_tax_before_cess * (1 + tax_config.CESS_RATE)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
-        new_refund = float(Decimal(tds_paid - new_total_tax).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
-
-        # update calculations
-        calc['calculations'].update({
-            'gti': recomputed_gti,
-            'taxable_old': round(float(taxable_old), 2),
-            'old_tax_before_cess': int(round(old_tax_before_cess)),
-            'old_total_tax': old_total_tax,
-            'old_refund_or_due': old_refund,
-            'taxable_new': round(float(taxable_new), 2),
-            'new_tax_before_cess': int(round(new_tax_before_cess)),
-            'new_total_tax': new_total_tax,
-            'new_refund_or_due': new_refund,
-        })
-
-        # variants
-        variants = calc.get('variant_options') or {}
-        if not variants.get('variant_a'):
-            variants['variant_a'] = {
-                'taxable': calc['calculations']['taxable_old'],
-                'total_tax': calc['calculations']['old_total_tax'],
-                'refund': calc['calculations']['old_refund_or_due'],
-                'regime': 'OLD' if calc['calculations']['old_refund_or_due'] >= calc['calculations']['new_refund_or_due'] else 'NEW'
-            }
-        if not variants.get('variant_b'):
-            sec80c = _to_num((calc.get('deductions_80') or {}).get('sec_80c') or 0)
-            optimized_80c = min(150000, sec80c if sec80c > 0 else sec80c)
-            opt_deductions = max(deductions_total, optimized_80c)
-            opt_taxable = max(0.0, recomputed_gti - opt_deductions)
-            opt_tax_before = float(tax_engine.slab_tax_old(opt_taxable))
-            opt_total = float(Decimal(opt_tax_before * (1 + tax_config.CESS_RATE)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
-            opt_refund = float(Decimal(tds_paid - opt_total).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
-            variants['variant_b'] = {'taxable': round(opt_taxable, 2), 'total_tax': opt_total, 'refund': opt_refund}
-        if not variants.get('variant_c'):
-            aggressive_80c = 150000
-            aggressive_80ccd_1b = 50000
-            agg_deductions = max(deductions_total, aggressive_80c + aggressive_80ccd_1b)
-            agg_taxable = max(0.0, recomputed_gti - agg_deductions)
-            agg_tax_before = float(tax_engine.slab_tax_old(agg_taxable))
-            agg_total = float(Decimal(agg_tax_before * (1 + tax_config.CESS_RATE)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
-            agg_refund = float(Decimal(tds_paid - agg_total).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
-            variants['variant_c'] = {'taxable': round(agg_taxable, 2), 'total_tax': agg_total, 'refund': agg_refund}
-
-        calc['variant_options'] = variants
-
-        # compatibility summary
-        comp = calc.get('compatibility_summary') or {}
-        comp.update({
-            'gross_salary': gross,
-            'basic_salary': _to_num((calc.get('gross_components') or {}).get('basic_salary') or calc.get('basic_salary') or data.get('basic_salary') or 0),
-            'hra_received': _to_num((calc.get('gross_components') or {}).get('hra_received') or calc.get('hra_received') or data.get('hra_received') or 0),
-            'hra_exempt_actual': _to_num((calc.get('section_10_exemptions') or {}).get('hra', {}).get('hra_exemption') or 0),
-            'tds_paid': tds_paid,
-            'sec_80c': _to_num((calc.get('deductions_80') or {}).get('sec_80c') or 0),
-            'sec_80d': _to_num((calc.get('deductions_80') or {}).get('sec_80d') or 0),
-            'sec_80ccd_1b': _to_num((calc.get('deductions_80') or {}).get('sec_80ccd_1b') or 0),
-            'sec_80ccd_2': sec_80ccd_2,
-            'deductions_total': deductions_total,
-            'taxable_new': calc['calculations']['taxable_new'],
-            'total_tax_new': calc['calculations']['new_total_tax'],
-            'refund_new': calc['calculations']['new_refund_or_due'],
-            'taxable_old_a': calc['calculations']['taxable_old'],
-            'total_tax_old_a': calc['calculations']['old_total_tax'],
-            'refund_old_a': calc['calculations']['old_refund_or_due'],
-            'variant_a_refund': variants.get('variant_a', {}).get('refund', 0),
-            'variant_a_regime': variants.get('variant_a', {}).get('regime', ''),
-            'variant_b_refund': variants.get('variant_b', {}).get('refund', 0),
-            'variant_c_refund': variants.get('variant_c', {}).get('refund', 0),
-            'recommended_regime': 'OLD' if calc['calculations']['old_refund_or_due'] >= calc['calculations']['new_refund_or_due'] else 'NEW'
-        })
-        calc['compatibility_summary'] = comp
-
-        return calc
-
-    except Exception as e:
-        print("AI tax error:", e)
-        return {}
+        # Return minimal error report instead of empty dict
+        return {
+            'error': str(e),
+            'calculations': {'taxable_old': 0, 'old_total_tax': 0, 'old_refund_or_due': 0,
+                           'taxable_new': 0, 'new_total_tax': 0, 'new_refund_or_due': 0},
+            'assumptions': ['AI enrichment failed, using engine-only calculations']
+        }
 
 
 def clean_extraction(data):
