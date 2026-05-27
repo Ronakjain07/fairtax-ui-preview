@@ -13,6 +13,22 @@ itr_bp = Blueprint('itr', __name__, url_prefix='/api/itr')
 # Initialize the processor
 processor = ITRDocumentProcessor(use_ocr=True)
 
+# DEBUG: Test endpoint to verify blueprint is working
+@itr_bp.route('/test', methods=['GET'])
+def test():
+    from flask import current_app
+    test_logger = current_app.logger
+    test_logger.info("[TEST ENDPOINT] /api/itr/test endpoint called successfully")
+
+    response_data = {
+        'status': 'ITR Blueprint is active',
+        'timestamp': str(__import__('datetime').datetime.now()),
+        'message': 'If you see this, the Blueprint routing is working'
+    }
+
+    test_logger.info(f"[TEST ENDPOINT] Returning response: {response_data}")
+    return jsonify(response_data), 200
+
 
 @itr_bp.route('/extract', methods=['POST'])
 def extract_itr_data():
@@ -42,9 +58,25 @@ def extract_itr_data():
         'metadata': {...}
     }
     """
+    import time
+    import sys
+    from flask import current_app
+
+    start_time = time.time()
+
+    # Use Flask logger for better capture
+    logger = current_app.logger
+    logger.info("[ITR_EXTRACT] REQUEST RECEIVED - Function called")
+    print("[STDOUT] ITR_EXTRACT endpoint function called", file=sys.stdout, flush=True)
+
     try:
         # Check if file(s) are provided
+        logger.info(f"[ITR_EXTRACT] Checking for file in request")
+        file_keys = list(request.files.keys())
+        logger.info(f"[ITR_EXTRACT] Request files: {file_keys}")
+
         if 'file' not in request.files:
+            print("[ITR_EXTRACT] [ERROR] No 'file' in request.files")
             return jsonify({
                 'success': False,
                 'error': 'No file provided',
@@ -53,8 +85,10 @@ def extract_itr_data():
 
         # Handle multiple files - get all files with key 'file'
         files = request.files.getlist('file')
+        print(f"[ITR_EXTRACT] Files received: {len(files)} file(s)")
 
         if not files or all(f.filename == '' for f in files):
+            print("[ITR_EXTRACT] [ERROR] No valid files selected")
             return jsonify({
                 'success': False,
                 'error': 'No file selected',
@@ -63,6 +97,7 @@ def extract_itr_data():
 
         # Get document type from request (default to form16)
         doc_type = request.form.get('doc_type', 'form16').lower().strip()
+        print(f"[ITR_EXTRACT] Document type: {doc_type}")
 
         # Validate doc_type
         supported_doc_types = {'form16', 'payslip', 'homeloan', 'school', 'nps', 'insurance', 'donation'}
@@ -87,8 +122,33 @@ def extract_itr_data():
             # Read file bytes
             file_bytes = file.read()
 
-            # Process document with specified doc_type
-            result = processor.process_file(file_bytes, file.filename, doc_type=doc_type)
+            # Check file size (max 50MB)
+            if len(file_bytes) > 50 * 1024 * 1024:
+                print(f"[ITR_EXTRACT] File too large: {file.filename} ({len(file_bytes) / 1024 / 1024:.2f}MB)")
+                all_results.append({
+                    'success': False,
+                    'error': 'File too large (max 50MB)',
+                    'data': {},
+                    'filename': file.filename
+                })
+                continue
+
+            # Process document with specified doc_type (with timeout)
+            try:
+                file_start = time.time()
+                result = processor.process_file(file_bytes, file.filename, doc_type=doc_type)
+                file_elapsed = time.time() - file_start
+                print(f"[ITR_EXTRACT] {file.filename}: {file_elapsed:.2f}s, success={result.get('success')}")
+            except Exception as file_error:
+                file_elapsed = time.time() - file_start
+                print(f"[ITR_EXTRACT] {file.filename}: ERROR after {file_elapsed:.2f}s: {str(file_error)}")
+                all_results.append({
+                    'success': False,
+                    'error': f'Processing error: {str(file_error)}',
+                    'data': {},
+                    'filename': file.filename
+                })
+                continue
 
             # AUTO-DETECTION: Only when confidence is very low AND document is small
             # (don't re-process large PDFs with every doc type — too expensive)
@@ -169,13 +229,53 @@ def extract_itr_data():
                 'metadata': merged_metadata
             }
 
-        return jsonify(result), 200 if result['success'] else 422
+        elapsed = time.time() - start_time
+        if result['success']:
+            logger.info(f"[ITR_EXTRACT] Success in {elapsed:.2f}s")
+            response = jsonify(result)
+            logger.info(f"[ITR_EXTRACT] Returning 200 response")
+            return response, 200
+        else:
+            logger.error(f"[ITR_EXTRACT] Failed after {elapsed:.2f}s")
+            logger.error(f"[ITR_EXTRACT] Result keys: {result.keys()}")
+            logger.error(f"[ITR_EXTRACT] Error message: {result.get('error', 'Unknown error')}")
 
-    except Exception as e:
+            response_dict = {
+                'success': False,
+                'error': result.get('error', 'Extraction failed - no valid data extracted'),
+                'data': result.get('data', {}),
+                'metadata': {**result.get('metadata', {}), 'elapsed_seconds': round(elapsed, 2)}
+            }
+
+            logger.error(f"[ITR_EXTRACT] Building 400 response")
+            try:
+                response = jsonify(response_dict)
+                logger.error(f"[ITR_EXTRACT] Response created successfully, returning 400")
+                return response, 400
+            except Exception as e:
+                logger.error(f"[ITR_EXTRACT] ERROR creating response: {str(e)}", exc_info=True)
+                # Fallback minimal response
+                return jsonify({'success': False, 'error': 'Response encoding error'}), 400
+
+    except TimeoutError as e:
+        elapsed = time.time() - start_time
+        logger.error(f"[ITR_EXTRACT] TIMEOUT after {elapsed:.2f}s: {str(e)}", exc_info=True)
         return jsonify({
             'success': False,
-            'error': str(e),
+            'error': 'Extraction timeout - file took too long to process. Try a smaller file.',
             'data': {},
+            'metadata': {'elapsed_seconds': round(elapsed, 2), 'error_type': 'timeout'}
+        }), 408
+
+    except Exception as e:
+        elapsed = time.time() - start_time
+        logger.error(f"[ITR_EXTRACT] EXCEPTION after {elapsed:.2f}s: {str(e)}", exc_info=True)
+        logger.error(f"[ITR_EXTRACT] Exception type: {type(e).__name__}")
+        return jsonify({
+            'success': False,
+            'error': f'Extraction error: {str(e)}',
+            'data': {},
+            'metadata': {'elapsed_seconds': round(elapsed, 2), 'error_type': 'exception'}
         }), 500
 
 

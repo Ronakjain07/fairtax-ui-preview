@@ -1,126 +1,315 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Filing Status — FairTax</title>
-<link rel="stylesheet" href="style.css?v=2">
-<link rel="stylesheet" href="css/shared-components.css?v=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Filing Status — FairTax ITR Tracker</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+  <link rel="stylesheet" href="css/shared-components.css">
+  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="css/landing-v2.css">
+  <link rel="stylesheet" href="css/referral-v2.css">
+  <link rel="stylesheet" href="css/status-v2.css">
 </head>
-<body>
-<div class="top-banner blink-cta">
-  <a class="banner-link" href="proofs.html">🚨 Free File Eligibility — Click to check now!</a>
-</div>
-<div class="top-banner blink-green">
-  <span>Referral payout released every Thursday 3:30 PM — Grab your cashback!</span>
-</div>
-<div class="help-bar">
-  Queries? WhatsApp us at +91 7397 510 254 — we reply instantly.
-</div>
+<body class="st-page">
 
-<header id="site-header"></header>
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header class="lv2-header">
+  <div class="lv2-header-inner">
+    <a href="landing.html" class="lv2-logo">
+      <div class="lv2-logo-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="9" fill="#0B2545"/>
+          <path d="M20 9L12 14v8c0 6 4 10 8 11.5C24 21.5 28 17.5 28 12V14L20 9z" fill="white" opacity="0.92"/>
+          <path d="M17 20.5l2.5 2.5 4-5" stroke="#0B2545" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="lv2-logo-text">
+        <div class="lv2-logo-name">
+          <span class="lv2-logo-fair">FAIRTAX</span>
+          <span class="lv2-logo-advisors">ADVISORS</span>
+        </div>
+        <div class="lv2-logo-tagline">Your Taxes. Our Expertise. Your Peace of Mind.</div>
+      </div>
+    </a>
+    <nav class="lv2-nav">
+        <a href="landing.html" class="lv2-nav-link">Home</a>
+        <a href="index.html" class="lv2-nav-link">File Returns</a>
+        <a href="referral-offer.html" class="lv2-nav-link">Referral Offer</a>
+        <a href="training.html" class="lv2-nav-link">Training</a>
+        <a href="wallet.html" class="lv2-nav-link">Wallet</a>
+        <a href="status.html" class="lv2-nav-link active">Status</a>
+        <a href="proofs.html" class="lv2-nav-link">Proofs</a>
+        <a href="about.html" class="lv2-nav-link">About</a>
+      </nav>
+    <div class="lv2-header-right">
+      <a href="https://wa.me/917397510254" class="lv2-phone" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        +91 73975 10254
+      </a>
+      <a href="choice.html" class="lv2-btn-started">Get Started</a>
+    </div>
+    <button class="lv2-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="lv2-mobile-nav" id="lv2MobileNav">
+      <a href="landing.html" class="lv2-mobile-link">Home</a>
+      <a href="index.html" class="lv2-mobile-link">File Returns</a>
+      <a href="referral-offer.html" class="lv2-mobile-link">Referral Offer</a>
+      <a href="training.html" class="lv2-mobile-link">Training</a>
+      <a href="wallet.html" class="lv2-mobile-link">Wallet</a>
+      <a href="status.html" class="lv2-mobile-link active">Status</a>
+      <a href="proofs.html" class="lv2-mobile-link">Proofs</a>
+      <a href="about.html" class="lv2-mobile-link">About</a>
+      <a href="contact.html" class="lv2-mobile-link">Contact</a>
+      <a href="faqs.html" class="lv2-mobile-link">FAQs</a>
+    </nav>
+</header>
 
-<main class="status-page">
+<main>
 
-  <!-- Hero with Image -->
-  <div class="hero-with-image" style="max-width:1100px;margin:0 auto 40px;overflow:hidden">
-    <div class="hero-text-side">
-      <h1 style="font-size:42px;font-weight:900;color:#ffffff;text-shadow:0 2px 8px rgba(0,0,0,0.3);margin:0 0 16px">Track Your Filing</h1>
-      <p style="font-size:17px;color:#ffffff;text-shadow:0 1px 4px rgba(0,0,0,0.2);margin:0 0 24px;line-height:1.6">Get real-time updates on your ITR filing status. Track from submission to completion with live progress notifications on WhatsApp.</p>
-      <div style="background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:20px;margin:0">
-        <div style="font-size:13px;color:#1e40af;font-weight:600;margin-bottom:8px">📊 What You Can Track:</div>
-        <ul style="margin:0;padding-left:20px;color:#1e40af;font-size:14px;line-height:1.8;font-weight:500">
-          <li>Expert review progress</li>
-          <li>Quote preparation status</li>
-          <li>Payment milestones</li>
-          <li>Filing completion</li>
-        </ul>
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="ref-hero st-hero">
+  <div class="ref-blob ref-blob-1" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-2" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-3" aria-hidden="true"></div>
+
+  <div class="ref-hero-inner">
+    <div class="st-hero-badge" data-aos="fade-down" data-aos-duration="600">
+      <span class="st-badge-dot"></span>
+      Real-Time Status Tracking
+    </div>
+
+    <h1 class="ref-hero-h1 st-hero-h1" data-aos="fade-up" data-aos-delay="100">
+      Track Your<br>
+      ITR Filing — <span class="grad-cyan">Live.</span>
+    </h1>
+
+    <p class="ref-hero-sub" data-aos="fade-up" data-aos-delay="180">
+      Enter your Submission ID to get real-time updates on every stage of your return — from document review to acknowledgement.
+    </p>
+
+    <div class="ref-hero-stats" data-aos="fade-up" data-aos-delay="260">
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#38bdf8">7</span>
+        <span class="ref-stat-label">Tracked Stages</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#10B981">Live</span>
+        <span class="ref-stat-label">Status Updates</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#a78bfa">WhatsApp</span>
+        <span class="ref-stat-label">Alerts Sent</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#fbbf24">24/7</span>
+        <span class="ref-stat-label">Support Access</span>
       </div>
     </div>
-    <div class="hero-image-side">
-      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" alt="Real-time filing status tracking">
-      <div class="hero-image-overlay"></div>
-    </div>
   </div>
+</section>
 
-  <div class="status-lookup-card">
-    <h2>📊 Track Your ITR Filing</h2>
-    <p class="hint" style="margin-bottom:20px">Enter your Submission ID to check real-time status of your filing.</p>
-    <label>Submission ID
-      <input id="sidInput" placeholder="e.g. 3f2a4b1c-…" style="margin-top:6px;font-family:monospace">
-    </label>
-    <button class="status-lookup-btn" id="checkStatusBtn" style="margin-top:4px">Check Status →</button>
-    <div id="statusError" class="status error" style="display:none;margin-top:12px"></div>
-  </div>
+<!-- ══════════════════════════════════════════
+     MAIN SECTION
+══════════════════════════════════════════ -->
+<div class="st-main-section">
+  <div class="st-inner">
 
-  <div id="statusResult" style="display:none">
-
-    <!-- Client info bar -->
-    <div id="clientBar" style="background:#fff;border-radius:16px;padding:18px 20px;box-shadow:0 2px 12px rgba(0,0,0,.06);margin-bottom:20px;display:flex;align-items:center;gap:16px">
-      <div style="font-size:32px">👤</div>
-      <div>
-        <div id="clientName" style="font-size:17px;font-weight:800;color:#0f172a"></div>
-        <div id="clientSid" style="font-size:12px;color:#64748b;font-family:monospace"></div>
+    <!-- Lookup Card -->
+    <div class="st-lookup-card" data-aos="fade-up">
+      <div class="st-lookup-title">
+        <div class="st-lookup-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        Track Your ITR Filing
       </div>
-      <div id="stageBadge" style="margin-left:auto;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700"></div>
+      <p class="st-lookup-sub">Enter your Submission ID to check your real-time filing status.</p>
+      <label class="st-field-label" for="sidInput">Submission ID</label>
+      <input
+        id="sidInput"
+        class="st-sid-input"
+        placeholder="e.g. 3f2a4b1c-abcd-1234-efgh-567890abcdef"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button class="st-check-btn" id="checkStatusBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Check Status
+      </button>
+      <div id="statusError" class="st-error"></div>
     </div>
 
-    <!-- Timeline -->
-    <div style="background:#fff;border-radius:18px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,.07)">
-      <h3 style="color:#0f172a;margin-bottom:22px;font-size:16px">Filing Progress</h3>
-      <div class="timeline" id="timeline"></div>
+    <!-- Result area (hidden until lookup succeeds) -->
+    <div id="statusResult" style="display:none">
 
-      <!-- Auditor notes if any -->
-      <div id="auditNotes" style="display:none;margin-top:20px;background:#fef3c7;border:1px solid #f59e0b;border-radius:10px;padding:12px 14px;font-size:13px;color:#78350f"></div>
+      <!-- Client bar -->
+      <div id="clientBar" class="st-client-bar" data-aos="fade-up">
+        <div class="st-client-avatar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div>
+          <span id="clientName" class="st-client-name"></span>
+          <span id="clientSid" class="st-client-sid"></span>
+        </div>
+        <div id="stageBadge" class="st-stage-pill"></div>
+      </div>
 
-      <!-- Payment Status Section -->
-      <div id="paymentSection" style="display:none;margin-top:24px;background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #6ee7b7;border-radius:14px;padding:20px">
-        <h3 style="color:#166534;margin-bottom:12px">💳 Payment Status</h3>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-          <div style="background:#fff;border-radius:8px;padding:12px">
-            <div style="font-size:11px;color:#94a3b8;font-weight:600;margin-bottom:4px">TOTAL FEE</div>
-            <div id="totalFee" style="font-size:20px;font-weight:900;color:#166534">—</div>
-          </div>
-          <div style="background:#fff;border-radius:8px;padding:12px">
-            <div style="font-size:11px;color:#94a3b8;font-weight:600;margin-bottom:4px">UPFRONT (50%)</div>
-            <div id="uptrontAmount" style="font-size:20px;font-weight:900;color:#166534">—</div>
-          </div>
-          <div style="background:#fff;border-radius:8px;padding:12px">
-            <div style="font-size:11px;color:#94a3b8;font-weight:600;margin-bottom:4px">BALANCE DUE</div>
-            <div id="balanceDue" style="font-size:20px;font-weight:900;color:#166534">—</div>
-          </div>
-          <div style="background:#fff;border-radius:8px;padding:12px">
-            <div style="font-size:11px;color:#94a3b8;font-weight:600;margin-bottom:4px">STATUS</div>
-            <div id="paymentStatus" style="font-size:16px;font-weight:900;color:#f97316">PENDING</div>
+      <!-- Timeline card -->
+      <div class="st-timeline-card" data-aos="fade-up" data-aos-delay="60">
+        <div class="st-timeline-label">Filing Progress</div>
+        <div class="timeline" id="timeline"></div>
+
+        <!-- Auditor notes -->
+        <div id="auditNotes" class="st-audit-box"></div>
+
+        <!-- Payment section -->
+        <div id="paymentSection" class="st-payment-section">
+          <div class="st-payment-ttl">Payment Status</div>
+          <div class="st-payment-grid">
+            <div class="st-payment-cell">
+              <span class="st-pay-cell-label">Total Fee</span>
+              <span id="totalFee" class="st-pay-cell-val" style="color:#10B981">—</span>
+            </div>
+            <div class="st-payment-cell">
+              <span class="st-pay-cell-label">Upfront (50%)</span>
+              <span id="uptrontAmount" class="st-pay-cell-val" style="color:#10B981">—</span>
+            </div>
+            <div class="st-payment-cell">
+              <span class="st-pay-cell-label">Balance Due</span>
+              <span id="balanceDue" class="st-pay-cell-val" style="color:#10B981">—</span>
+            </div>
+            <div class="st-payment-cell">
+              <span class="st-pay-cell-label">Status</span>
+              <span id="paymentStatus" class="st-pay-cell-val pending-pay">PENDING</span>
+            </div>
           </div>
         </div>
+
+        <!-- Upload Payment Proof -->
+        <div id="paymentProofSection" class="st-proof-section">
+          <div class="st-proof-ttl">Upload Payment Proof</div>
+          <p class="st-proof-sub">Upload a screenshot of your UPI transaction or bank transfer to confirm payment.</p>
+          <label class="st-proof-file-label" id="proofFileLabel">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Choose Payment Proof
+            <input type="file" id="paymentProofInput" accept="image/*,.pdf" multiple style="display:none">
+          </label>
+          <button class="st-proof-submit" onclick="uploadPaymentProof()">Submit Proof</button>
+          <div id="paymentProofStatus" class="st-proof-status"></div>
+        </div>
+
+        <!-- Action area -->
+        <div class="st-action-area" id="actionArea"></div>
       </div>
 
-      <!-- Upload Payment Proof -->
-      <div id="paymentProofSection" style="display:none;margin-top:24px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px">
-        <h3 style="color:#0f172a;margin-bottom:12px">📸 Upload Payment Proof</h3>
-        <p style="color:#64748b;font-size:13px;margin-bottom:16px">Upload a screenshot of your UPI transaction / bank transfer to confirm payment.</p>
-        <label class="file" style="border:2px dashed #2563eb;border-radius:10px;padding:20px;text-align:center;cursor:pointer">
-          <span style="font-weight:700;color:#2563eb">📄 Choose Payment Proof</span>
-          <input type="file" id="paymentProofInput" accept="image/*,.pdf" multiple style="display:none">
-        </label>
-        <button onclick="uploadPaymentProof()" style="background:#2563eb;color:#fff;width:100%;padding:12px;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-top:12px;font-size:14px">✓ Submit Proof</button>
-        <div id="paymentProofStatus" class="status" style="display:none;margin-top:12px"></div>
-      </div>
-
-      <!-- Action area -->
-      <div id="actionArea" style="margin-top:24px"></div>
     </div>
-
   </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     BOTTOM CTA
+══════════════════════════════════════════ -->
+<div class="ref-footer-cta">
+  <div class="ref-blob ref-blob-1" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-2" aria-hidden="true"></div>
+  <div class="ref-footer-cta-inner" data-aos="fade-up">
+    <h2>Need Help With Your Filing?</h2>
+    <p>Our experts are available 24/7 on WhatsApp. Get your Submission ID, questions answered, or acknowledgement sent in minutes.</p>
+    <a href="contact.html" class="ref-cta-primary" style="font-size:16px;padding:17px 38px">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Contact Our Team
+    </a>
+  </div>
+</div>
 
 </main>
 
-<footer id="site-footer"></footer>
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="lv2-footer">
+  <div class="lv2-footer-top">
+    <div class="lv2-footer-brand">
+      <a href="landing.html" class="lv2-footer-logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#1A56DB"/>
+          <path d="M20 10L10 15v10l10 5 10-5V15L20 10z" fill="#10B981"/>
+          <path d="M16 20l3 3 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="lv2-footer-brand-text">
+          <div class="lv2-footer-brand-name">
+            <span class="lv2-footer-brand-fair">FAIRTAX</span>
+            <span class="lv2-footer-brand-advisors">ADVISORS</span>
+          </div>
+          <div class="lv2-footer-brand-tagline">Your Taxes. Our Expertise.</div>
+        </div>
+      </a>
+      <p class="lv2-footer-desc">AI-powered ITR filing platform trusted by 2 lakh+ Indians. Accurate, secure, and expert-assisted.</p>
+      <div class="lv2-footer-contact">
+        <a href="https://wa.me/917397510254" class="lv2-footer-contact-item" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          +91 7397 510 254
+        </a>
+        <a href="mailto:fairtaxadvisors@gmail.com" class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          fairtaxadvisors@gmail.com
+        </a>
+        <span class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Mumbai, Maharashtra, India
+        </span>
+      </div>
+    </div>
 
-<!-- Freelancer floating CTA -->
+    <div class="lv2-footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="landing.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="training.html">Training</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="proofs.html">Proofs & Grievance</a></li>
+        <li><a href="status.html">Filing Status</a></li>
+        <li><a href="referral-offer.html">Refer & Earn</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lv2-footer-bottom">
+    <div class="lv2-footer-copy">© 2024-2025 FairTax Advisors. All rights reserved. | Secure • AI-Powered • Expert-Reviewed</div>
+    <div class="lv2-footer-badges">
+      <span class="lv2-footer-badge">Secure</span>
+      <span class="lv2-footer-badge">AI-Powered</span>
+      <span class="lv2-footer-badge">Expert Verified</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Freelancer CTA -->
 <a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
-  <span class="fl-star">&#11088;</span>
+  <span class="fl-star">⭐</span>
   <span class="fl-text">Why not join us<br>as a Freelancer?</span>
 </a>
 
@@ -131,9 +320,13 @@
   <a href="referral-offer.html" id="seeAllWinners">See all</a>
 </div>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-const API = 'https://fairtax-backend.onrender.com/api';
+const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'
+  : 'https://fairtax-backend.onrender.com/api';
 
+/* ── Stage definitions ── */
 const STAGES = [
   { id: 'SUBMITTED',     label: 'Application Submitted',  desc: 'We received your ITR filing request.' },
   { id: 'QUOTE_SENT',    label: 'Expert Review Complete',  desc: 'Your quote has been prepared and sent on WhatsApp.' },
@@ -141,22 +334,26 @@ const STAGES = [
   { id: 'PAID_HALF',     label: '50% Payment Received',   desc: 'Upfront payment confirmed — filing in progress!' },
   { id: 'PAID_FULL',     label: 'Full Payment Received',  desc: 'Both payments received. Thank you!' },
   { id: 'FILING',        label: 'Filing In Progress',      desc: 'Our expert is filing your ITR on the portal.' },
-  { id: 'FILED',         label: 'Return Filed ✓',         desc: 'Your ITR has been successfully filed! Acknowledgement will be sent on WhatsApp.' },
+  { id: 'FILED',         label: 'Return Filed',            desc: 'Your ITR has been successfully filed! Acknowledgement sent on WhatsApp.' },
 ];
-
 const STAGE_ORDER = STAGES.map(s => s.id);
-
 const STAGE_COLORS = {
-  SUBMITTED: '#1A56DB', QUOTE_SENT: '#1E40AF', OPTION_CHOSEN: '#0B2545',
-  PAID_HALF: '#059669', PAID_FULL: '#059669', FILING: '#10B981', FILED: '#16a34a',
+  SUBMITTED:     '#38bdf8',
+  QUOTE_SENT:    '#818cf8',
+  OPTION_CHOSEN: '#a78bfa',
+  PAID_HALF:     '#10B981',
+  PAID_FULL:     '#10B981',
+  FILING:        '#10b981',
+  FILED:         '#22c55e',
 };
 
+/* ── Build timeline HTML ── */
 function buildTimeline(currentStage) {
   const currentIdx = STAGE_ORDER.indexOf(currentStage);
   return STAGES.map((s, i) => {
     let cls = 'pending';
     let dotContent = '○';
-    if (i < currentIdx) { cls = 'done'; dotContent = '✓'; }
+    if (i < currentIdx) { cls = 'done';   dotContent = '✓'; }
     if (i === currentIdx) { cls = 'active'; dotContent = '●'; }
     return `
       <div class="t-step ${cls}">
@@ -169,52 +366,71 @@ function buildTimeline(currentStage) {
   }).join('');
 }
 
+/* ── Build action area HTML ── */
 function buildActionArea(rec) {
   const stage = rec.stage;
-  const sid = rec.submission_id;
+  const sid   = rec.submission_id;
   const waBase = 'https://wa.me/917397510254?text=';
 
   if (stage === 'SUBMITTED') {
-    return `<div class="milestone-hint">⏳ Your application is under expert review. You'll receive a WhatsApp notification once your quote is ready (usually within 24 hours).</div>`;
+    return `<div class="st-hint-box st-hint-pending">
+      Your application is under expert review. You will receive a WhatsApp notification once your quote is ready — usually within 24 hours.
+    </div>`;
   }
+
   if (stage === 'QUOTE_SENT') {
-    return `
-      <div style="text-align:center">
-        <p style="color:#475569;font-size:14px;margin-bottom:16px">Your quote has been prepared by our experts. For confidentiality, the detailed quote and the secured PDF are sent only via WhatsApp.</p>
-        <p style="color:#6b7280;font-size:13px;margin-top:6px">Please check the WhatsApp number you provided. If you didn't receive it, contact our support on WhatsApp.</p>
-        <div style="margin-top:12px">
-          <a href="https://wa.me/917397510254?text=Hi+FairTax,+I+haven't+received+my+quote+(ID:+${sid})" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#1A56DB,#1E40AF);color:#fff;padding:10px 22px;border-radius:18px;font-weight:700;text-decoration:none">📱 Contact Support on WhatsApp</a>
-        </div>
-      </div>`;
+    const waMsg = encodeURIComponent(`Hi FairTax, I haven't received my quote (ID: ${sid})`);
+    return `<div class="st-action-center">
+      <p>Your quote has been prepared by our experts. For confidentiality, the detailed quote is sent only via WhatsApp.</p>
+      <p class="st-note">Please check the WhatsApp number you registered. If you didn't receive it, contact our support.</p>
+      <div class="st-btn-row">
+        <a href="${waBase}${waMsg}" target="_blank" rel="noopener" class="st-wa-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Contact Support on WhatsApp
+        </a>
+      </div>
+    </div>`;
   }
+
   if (stage === 'OPTION_CHOSEN') {
     const waMsg = encodeURIComponent(`Hi FairTax! I have selected my plan (ID: ${sid}). Please share payment details.`);
-    return `
-      <div style="text-align:center">
-        <p style="color:#475569;font-size:14px;margin-bottom:16px">Plan selected! Please complete your 50% upfront payment to begin filing.</p>
-        <a href="${waBase}${waMsg}" target="_blank" class="payment-wa-btn">📱 WhatsApp Us for Payment Details →</a>
-      </div>`;
+    return `<div class="st-action-center">
+      <p>Plan selected! Please complete your 50% upfront payment to begin filing.</p>
+      <div class="st-btn-row">
+        <a href="${waBase}${waMsg}" target="_blank" rel="noopener" class="st-wa-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us for Payment Details
+        </a>
+      </div>
+    </div>`;
   }
+
   if (stage === 'PAID_HALF' || stage === 'FILING') {
-    return `<div class="milestone-hint" style="background:#f0fdf4;border-color:#16a34a;color:#166534">🚀 <b>Filing is in progress!</b> Our expert is working on your return. You'll be notified on WhatsApp once filed.</div>`;
+    return `<div class="st-hint-box st-hint-progress">
+      <strong>Filing is in progress!</strong> Our expert is working on your return. You will be notified on WhatsApp once it has been filed with the Income Tax portal.
+    </div>`;
   }
+
   if (stage === 'FILED') {
     const waMsg = encodeURIComponent(`Hi FairTax! My ITR is filed (ID: ${sid}). Please share the acknowledgement.`);
-    return `
-      <div style="text-align:center">
-        <div style="font-size:48px;margin-bottom:10px">🎉</div>
-        <h3 style="color:#16a34a;margin-bottom:8px">Your ITR has been filed successfully!</h3>
-        <p style="color:#475569;font-size:14px;margin-bottom:16px">Acknowledgement (ITR-V) will be shared on WhatsApp. Check your email from income-tax.gov.in.</p>
-        <a href="${waBase}${waMsg}" target="_blank" class="payment-wa-btn">📱 Request Acknowledgement on WhatsApp</a>
-      </div>`;
+    return `<div class="st-filed-box">
+      <span class="st-filed-emoji">🎉</span>
+      <div class="st-filed-title">Your ITR Has Been Filed!</div>
+      <p class="st-filed-desc">Acknowledgement (ITR-V) will be shared on WhatsApp. Also check your email from income-tax.gov.in.</p>
+      <a href="${waBase}${waMsg}" target="_blank" rel="noopener" class="st-wa-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Request Acknowledgement
+      </a>
+    </div>`;
   }
   return '';
 }
 
+/* ── Enhanced check status ── */
 async function checkStatus(sid) {
   document.getElementById('statusError').style.display = 'none';
   const btn = document.getElementById('checkStatusBtn');
-  btn.textContent = 'Checking...';
+  btn.textContent = 'Checking…';
   btn.disabled = true;
 
   try {
@@ -222,248 +438,176 @@ async function checkStatus(sid) {
     const j = await r.json();
 
     if (!j.success) {
-      document.getElementById('statusError').style.display = 'block';
-      document.getElementById('statusError').textContent = '❌ ' + (j.error || 'Submission ID not found.');
+      const errEl = document.getElementById('statusError');
+      errEl.style.display = 'block';
+      errEl.textContent = j.error || 'Submission ID not found. Please double-check and try again.';
       return;
     }
 
-    // Client bar
+    /* Client bar */
     document.getElementById('clientName').textContent = j.name || 'Your Filing';
-    document.getElementById('clientSid').textContent = 'ID: ' + j.submission_id;
-    const badge = document.getElementById('stageBadge');
+    document.getElementById('clientSid').textContent  = 'ID: ' + j.submission_id;
+    const badge      = document.getElementById('stageBadge');
     const stageLabel = STAGES.find(s => s.id === j.stage)?.label || j.stage;
-    badge.textContent = stageLabel;
-    badge.style.background = (STAGE_COLORS[j.stage] || '#2563eb') + '22';
-    badge.style.color = STAGE_COLORS[j.stage] || '#2563eb';
+    badge.textContent      = stageLabel;
+    badge.style.background = (STAGE_COLORS[j.stage] || '#38bdf8') + '22';
+    badge.style.color      = STAGE_COLORS[j.stage] || '#38bdf8';
+    badge.style.borderColor = (STAGE_COLORS[j.stage] || '#38bdf8') + '44';
 
-    // Timeline
+    /* Timeline */
     document.getElementById('timeline').innerHTML = buildTimeline(j.stage);
 
-    // Auditor notes
+    /* Auditor notes */
     if (j.auditor_notes) {
       const el = document.getElementById('auditNotes');
       el.style.display = 'block';
-      el.textContent = '📝 Auditor notes: ' + j.auditor_notes;
+      el.textContent = 'Expert notes: ' + j.auditor_notes;
     }
 
-    // Action area
+    /* Payment section */
+    if (['OPTION_CHOSEN','PAID_HALF','PAID_FULL','FILING','FILED'].includes(j.stage)) {
+      document.getElementById('paymentSection').style.display = 'block';
+      try {
+        const pr = await fetch(`${API}/payment-status/${sid}`);
+        const pj = await pr.json();
+        if (pj.success) {
+          const fmt = n => '₹' + Number(n).toLocaleString('en-IN');
+          document.getElementById('totalFee').textContent    = fmt(pj.total_fee);
+          document.getElementById('uptrontAmount').textContent = fmt(pj.upfront_due);
+          document.getElementById('balanceDue').textContent  = fmt(pj.balance_due);
+          const ps = document.getElementById('paymentStatus');
+          ps.textContent = pj.payment_status || 'PENDING';
+          ps.className   = 'st-pay-cell-val ' + (pj.payment_status === 'PAID' ? 'paid-pay' : 'pending-pay');
+          if (pj.payment_status !== 'PAID' && ['OPTION_CHOSEN','PAID_HALF'].includes(j.stage)) {
+            document.getElementById('paymentProofSection').style.display = 'block';
+          }
+        }
+      } catch(e) { console.warn('Payment status error:', e); }
+    }
+
+    /* Action area */
     document.getElementById('actionArea').innerHTML = buildActionArea(j);
 
+    /* Show result */
     document.getElementById('statusResult').style.display = 'block';
-    document.getElementById('statusResult').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('statusResult').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  } catch (e) {
-    document.getElementById('statusError').style.display = 'block';
-    document.getElementById('statusError').textContent = '❌ Network error: ' + e.message;
+  } catch(e) {
+    const errEl = document.getElementById('statusError');
+    errEl.style.display = 'block';
+    errEl.textContent = 'Network error: ' + e.message;
   } finally {
-    btn.textContent = 'Check Status →';
+    btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> Check Status';
     btn.disabled = false;
   }
 }
 
-document.getElementById('checkStatusBtn').addEventListener('click', () => {
-  const sid = document.getElementById('sidInput').value.trim();
-  if (!sid) { alert('Please enter your Submission ID.'); return; }
-  checkStatus(sid);
-});
-
-// Payment proof upload
+/* ── Payment proof upload ── */
 async function uploadPaymentProof() {
-  const sidInput = document.getElementById('sidInput').value.trim();
+  const sid       = document.getElementById('sidInput').value.trim();
   const fileInput = document.getElementById('paymentProofInput');
-
-  if (!sidInput) {
-    alert('Please check your submission status first.');
-    return;
-  }
-
-  if (!fileInput.files.length) {
-    alert('Please select a file.');
-    return;
-  }
+  if (!sid) { alert('Please check your submission status first.'); return; }
+  if (!fileInput.files.length) { alert('Please select a file.'); return; }
 
   const fd = new FormData();
-  fd.append('submission_id', sidInput);
+  fd.append('submission_id', sid);
   [...fileInput.files].forEach(f => fd.append('proof', f));
 
   const statusEl = document.getElementById('paymentProofStatus');
   statusEl.style.display = 'block';
-  statusEl.className = 'status loading';
-  statusEl.textContent = '📤 Uploading payment proof...';
+  statusEl.style.color = '#38bdf8';
+  statusEl.textContent = 'Uploading payment proof…';
 
   try {
     const r = await fetch(`${API}/upload-payment-proof`, { method: 'POST', body: fd });
     const j = await r.json();
-
     if (j.success) {
-      statusEl.className = 'status success';
-      statusEl.textContent = '✅ ' + j.message;
+      statusEl.style.color = '#10B981';
+      statusEl.textContent = j.message;
       fileInput.value = '';
-      // Reload status after 2 seconds
-      setTimeout(() => checkStatus(sidInput), 2000);
+      setTimeout(() => checkStatus(sid), 2000);
     } else {
-      statusEl.className = 'status error';
-      statusEl.textContent = '❌ ' + (j.error || 'Upload failed');
+      statusEl.style.color = '#fca5a5';
+      statusEl.textContent = j.error || 'Upload failed';
     }
-  } catch (e) {
-    statusEl.className = 'status error';
-    statusEl.textContent = '❌ ' + e.message;
+  } catch(e) {
+    statusEl.style.color = '#fca5a5';
+    statusEl.textContent = 'Network error: ' + e.message;
   }
 }
 
-// File input click
-document.querySelector('.file')?.addEventListener('click', () => {
+/* File input interactions */
+document.getElementById('proofFileLabel').addEventListener('click', () => {
   document.getElementById('paymentProofInput').click();
 });
-
-document.getElementById('paymentProofInput')?.addEventListener('change', () => {
-  const fileNames = Array.from(document.getElementById('paymentProofInput').files)
-    .map(f => f.name)
-    .join(', ');
-  if (fileNames) {
-    const label = document.querySelector('.file span');
-    if (label) label.textContent = '✓ ' + fileNames;
+document.getElementById('paymentProofInput').addEventListener('change', function() {
+  const names = Array.from(this.files).map(f => f.name).join(', ');
+  if (names) {
+    document.querySelector('#proofFileLabel').childNodes[2].textContent = names;
   }
 });
 
-// Enhanced checkStatus to show payment section
-const originalCheckStatus = checkStatus;
-async function enhancedCheckStatus(sid) {
-  document.getElementById('statusError').style.display = 'none';
-  const btn = document.getElementById('checkStatusBtn');
-  btn.textContent = 'Checking...';
-  btn.disabled = true;
-
-  try {
-    const r = await fetch(`${API}/status/${encodeURIComponent(sid)}`);
-    const j = await r.json();
-
-    if (!j.success) {
-      document.getElementById('statusError').style.display = 'block';
-      document.getElementById('statusError').textContent = '❌ ' + (j.error || 'Submission ID not found.');
-      return;
-    }
-
-    // Call original logic
-    document.getElementById('clientName').textContent = j.name || 'Your Filing';
-    document.getElementById('clientSid').textContent = 'ID: ' + j.submission_id;
-    const badge = document.getElementById('stageBadge');
-    const stageLabel = STAGES.find(s => s.id === j.stage)?.label || j.stage;
-    badge.textContent = stageLabel;
-    badge.style.background = (STAGE_COLORS[j.stage] || '#2563eb') + '22';
-    badge.style.color = STAGE_COLORS[j.stage] || '#2563eb';
-
-    document.getElementById('timeline').innerHTML = buildTimeline(j.stage);
-
-    if (j.auditor_notes) {
-      const el = document.getElementById('auditNotes');
-      el.style.display = 'block';
-      el.textContent = '📝 Auditor notes: ' + j.auditor_notes;
-    }
-
-    // Show payment section for stages after quote sent
-    if (['OPTION_CHOSEN', 'PAID_HALF', 'PAID_FULL', 'FILING', 'FILED'].includes(j.stage)) {
-      const paymentSec = document.getElementById('paymentSection');
-      paymentSec.style.display = 'block';
-
-      try {
-        const pr = await fetch(`${API}/payment-status/${sid}`);
-        const pj = await pr.json();
-
-        if (pj.success) {
-          const fmt = (n) => '₹' + Number(n).toLocaleString('en-IN');
-          document.getElementById('totalFee').textContent = fmt(pj.total_fee);
-          document.getElementById('uptrontAmount').textContent = fmt(pj.upfront_due);
-          document.getElementById('balanceDue').textContent = fmt(pj.balance_due);
-
-          const payStatus = document.getElementById('paymentStatus');
-          payStatus.textContent = pj.payment_status || 'PENDING';
-          if (pj.payment_status === 'PAID') {
-            payStatus.style.color = '#16a34a';
-          }
-
-          // Show proof upload if payment not yet confirmed
-          if (pj.payment_status !== 'PAID' && ['OPTION_CHOSEN', 'PAID_HALF'].includes(j.stage)) {
-            document.getElementById('paymentProofSection').style.display = 'block';
-          }
-        }
-      } catch (e) {
-        console.warn('Could not fetch payment status:', e);
-      }
-    }
-
-    document.getElementById('actionArea').innerHTML = buildActionArea(j);
-    document.getElementById('statusResult').style.display = 'block';
-    document.getElementById('statusResult').scrollIntoView({ behavior: 'smooth' });
-
-  } catch (e) {
-    document.getElementById('statusError').style.display = 'block';
-    document.getElementById('statusError').textContent = '❌ Network error: ' + e.message;
-  } finally {
-    btn.textContent = 'Check Status →';
-    btn.disabled = false;
-  }
-}
-
-// Override checkStatus
-window.checkStatus = enhancedCheckStatus;
-
+/* Check status button */
 document.getElementById('checkStatusBtn').addEventListener('click', () => {
   const sid = document.getElementById('sidInput').value.trim();
   if (!sid) { alert('Please enter your Submission ID.'); return; }
   checkStatus(sid);
 });
 
-// Auto-load from query param ?id=xxx
+/* Enter key */
+document.getElementById('sidInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const sid = e.target.value.trim();
+    if (sid) checkStatus(sid);
+  }
+});
+
+/* Auto-load from ?id= query param */
 const urlId = new URLSearchParams(location.search).get('id');
 if (urlId) {
   document.getElementById('sidInput').value = urlId;
   checkStatus(urlId);
 }
 
-// Load header and footer components
-fetch('components/header.html')
-  .then(r => r.text())
-  .then(html => document.getElementById('site-header').innerHTML = html)
-  .catch(e => console.error('Failed to load header:', e));
-
-fetch('components/footer.html')
-  .then(r => r.text())
-  .then(html => document.getElementById('site-footer').innerHTML = html)
-  .catch(e => console.error('Failed to load footer:', e));
-
-// Header spacing update
-(function(){
-  function updateHeaderSpacing(){
-    try{
-      var header=document.querySelector('header');
-      var nav=document.querySelector('.site-nav');
-      var topOffset=0;
-      if(header) topOffset+=header.offsetHeight;
-      if(nav) topOffset+=nav.offsetHeight;
-      document.documentElement.style.setProperty('--site-top-offset', topOffset+'px');
-      document.documentElement.style.setProperty('--main-top-offset', (topOffset+12)+'px');
-    }catch(e){}
-  }
-  if(document.readyState==='loading'){window.addEventListener('DOMContentLoaded',updateHeaderSpacing);}else{updateHeaderSpacing();}
-  window.addEventListener('resize',updateHeaderSpacing);
-})();
-
+/* ── Winners widget ── */
 async function loadWinners() {
   try {
     const r = await fetch(`${API}/winners`);
     const j = await r.json();
     const list = document.getElementById('winnersList');
-    if (!list) return;
     list.innerHTML = '';
     (j.winners || []).forEach(w => {
       const li = document.createElement('li');
       li.textContent = `${w.name} — ${w.reward}`;
       list.appendChild(li);
     });
-  } catch (e) { /* ignore */ }
+  } catch(e) { console.warn('winners load failed', e); }
 }
 loadWinners();
+
+/* ── AOS ── */
+AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+
+/* ── Mobile nav ── */
+(function(){
+  const btn = document.querySelector('.lv2-hamburger');
+  const nav = document.getElementById('lv2MobileNav');
+  if(!btn||!nav) return;
+  btn.addEventListener('click', function(){
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('.lv2-mobile-link').forEach(l => {
+    l.addEventListener('click', () => {
+      btn.setAttribute('aria-expanded','false');
+      btn.classList.remove('open');
+      nav.classList.remove('open');
+    });
+  });
+})();
 </script>
 </body>
 </html>
+

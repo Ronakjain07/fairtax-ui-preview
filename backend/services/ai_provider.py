@@ -15,15 +15,22 @@ def _get_client():
     """Initialize OpenAI API client."""
     global _client
     if _client is not None:
+        print(f"[AI_PROVIDER] Returning cached client")
         return _client
     api_key = os.getenv("OPENAI_API_KEY")
-    try:    
+    print(f"[AI_PROVIDER] _get_client() called. API key: {'SET' if api_key else 'NOT SET'}")
+    try:
         if api_key:
+            print(f"[AI_PROVIDER] Initializing OpenAI with API key...")
             _client = OpenAI(api_key=api_key)
         else:
+            print(f"[AI_PROVIDER] Initializing OpenAI from environment...")
             _client = OpenAI()  # Uses OPENAI_API_KEY from env
+        print(f"[AI_PROVIDER] OpenAI client initialized successfully")
     except Exception as e:
         print(f"[AI_PROVIDER] Could not initialize OpenAI client: {str(e)}")
+        import traceback
+        traceback.print_exc()
         _client = None
     return _client
 
@@ -40,7 +47,7 @@ def generate_ai_response(prompt):
                 messages=[
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.7,
+                temperature=0.0,  # FIXED: Changed from 0.7 to 0.0 for deterministic extraction
                 max_tokens=2000
             )
 
@@ -87,7 +94,7 @@ def call_vision_model(image_bytes, prompt):
                 }
             ],
             max_tokens=2000,
-            temperature=0.7
+            temperature=0.0  # FIXED: Changed from 0.7 to 0.0 for deterministic document extraction
         )
 
         result = response.choices[0].message.content

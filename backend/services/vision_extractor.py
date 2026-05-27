@@ -59,32 +59,70 @@ Rules:
 
 CRITICAL: Return ONLY valid JSON. Do NOT include markdown or explanations.
 
+━━━ STEP 1: IDENTIFY THE PAYSLIP FORMAT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FORMAT A — STANDARD MONTHLY PAYSLIP
+  Signs: Shows ONE month's data, single "Amount" column, header shows month+year (e.g. "April 2025")
+  Action: Extract the monthly figures shown. Mark every salary field with "monthly": true.
+
+FORMAT B — YTD / CUMULATIVE / ANNUAL PAYSLIP
+  Signs: Shows MULTIPLE months as columns (Jan, Feb, Mar… or Month-1, Month-2…)
+         OR has a "Grand Total", "YTD", "Annual Total", "Cumulative", or "Year to Date" column.
+  Action: Extract ONLY from the "Grand Total" / "YTD" / "Annual Total" / rightmost totals column.
+          DO NOT extract from individual month columns.
+          Mark every salary field with "annual": true.
+
+━━━ STEP 2: HRA — SUM ALL VARIANTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+hra_received MUST be the SUM of ALL HRA-type rows:
+  • HRA / HOUSE RENT ALLOWANCE
+  • NON-FBP HRA / NON FBP HRA
+  • BASIC HRA / METRO HRA / SPECIAL HRA
+  • Any row whose label contains the word "HRA"
+Add them all together. In the justification, show each row value you summed.
+
+━━━ STEP 3: TDS — USE INCOME TAX ROW ONLY ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+tds_paid = value from the row labelled "INCOME TAX", "TAX DEDUCTED AT SOURCE", or "TDS" ONLY.
+⚠ NEVER use "TOTAL DEDUCTION" or "TOTAL DEDUCTIONS" for tds_paid —
+  that row is the sum of ALL deductions (PF + PT + TDS + others).
+
+━━━ STEP 4: PF & PROFESSIONAL TAX ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+pf_employee : "EMPLOYEE PF", "PF EMPLOYEE", "EPF EMPLOYEE", "PF CONTRIBUTION", "EMPLOYEE EPF"
+pf_employer : "EMPLOYER PF", "PF EMPLOYER", "EPF EMPLOYER", "EMPLOYER CONTRIBUTION (PF)"
+professional_tax : "PROFESSIONAL TAX", "PROF TAX", "PT", "P. TAX"
+
+━━━ OUTPUT ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 {
   "employer_name": {"value": "...", "confidence": 0.95, "justification": "..."},
   "pan": {"value": "XXXXX9999X", "confidence": 0.9, "justification": "..."},
-  "month": {"value": "May", "confidence": 0.95, "justification": "From payslip date"},
-  "year": {"value": 2024, "confidence": 0.95, "justification": "From payslip date"},
+  "payslip_format": {"value": "monthly", "confidence": 0.95, "justification": "Single column / or YTD multi-column"},
+  "month": {"value": "May", "confidence": 0.95, "justification": "From payslip date (null for YTD format)"},
+  "year": {"value": 2025, "confidence": 0.95, "justification": "From payslip date"},
   "gross_salary": {"value": 120000, "confidence": 0.92, "monthly": true, "justification": "Gross/CTC line"},
   "basic_salary": {"value": 60000, "confidence": 0.9, "monthly": true, "justification": "Basic pay row"},
-  "hra_received": {"value": 24000, "confidence": 0.88, "monthly": true, "justification": "HRA line"},
+  "hra_received": {"value": 78203, "confidence": 0.95, "monthly": true, "justification": "Sum of HRA (16406) + NON-FBP HRA (61797) = 78203"},
   "lta": {"value": 0, "confidence": 0.7, "monthly": true, "justification": "Not visible"},
   "special_allowance": {"value": 36000, "confidence": 0.85, "monthly": true, "justification": "Special pay row"},
   "car_lease_allowance": {"value": 0, "confidence": 0.8, "justification": "Not applicable"},
   "uniform_allowance": {"value": 0, "confidence": 0.8, "justification": "Not applicable"},
-  "pf_employee": {"value": 7200, "confidence": 0.9, "monthly": true, "justification": "Employee PF deduction"},
-  "pf_employer": {"value": 7200, "confidence": 0.9, "monthly": true, "justification": "Employer contribution"},
-  "tds_paid": {"value": 15000, "confidence": 0.95, "monthly": true, "justification": "TDS deduction"},
-  "professional_tax": {"value": 200, "confidence": 0.85, "monthly": true, "justification": "PT deduction"},
+  "pf_employee": {"value": 7200, "confidence": 0.9, "monthly": true, "justification": "EMPLOYEE PF deduction row"},
+  "pf_employer": {"value": 7200, "confidence": 0.9, "monthly": true, "justification": "EMPLOYER PF row"},
+  "tds_paid": {"value": 15000, "confidence": 0.95, "monthly": true, "justification": "INCOME TAX row (not Total Deduction)"},
+  "professional_tax": {"value": 200, "confidence": 0.85, "monthly": true, "justification": "PROF TAX row"},
   "gratuity": {"value": 0, "confidence": 0.8, "justification": "Not on payslip"},
   "leave_encashment": {"value": 0, "confidence": 0.8, "justification": "Not on payslip"}
 }
 
+For YTD format: replace "monthly": true with "annual": true in every field.
+
 Rules:
-- MONTHLY figures (not annualized)
-- Include "monthly": true for salary fields
-- All monetary amounts in INR (integers only)
-- Never invent values
+- All monetary amounts in INR (integers only, no commas or symbols)
+- Never invent values. Use null for missing/uncertain fields.
 - Confidence < 0.6 → use null
+- hra_received justification MUST list the individual row values you summed
 """,
 
     "homeloan": """Extract home loan interest certificate / statement data from image.
@@ -380,6 +418,9 @@ def extract_pass1_vision(image_bytes_list, doc_type):
                 # Only actual exceptions (API errors, network errors) are errors
                 error_msg = f"Page {page_num} extraction failed: {str(e)}"
                 print(f"[VISION_EXTRACTOR] {error_msg}")
+                print(f"[VISION_EXTRACTOR] Exception type: {type(e).__name__}")
+                import traceback
+                print(f"[VISION_EXTRACTOR] Traceback: {traceback.format_exc()}")
                 errors.append(error_msg)
                 consecutive_blanks += 1
                 continue

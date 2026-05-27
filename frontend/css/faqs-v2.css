@@ -1,0 +1,248 @@
+/* ════════════════════════════════════════════════════════
+   faqs-v2.css  v1  —  premium FAQs page
+   Leans on ref- classes; fq- prefix for new rules
+════════════════════════════════════════════════════════ */
+
+body.fq-page { background: #040d1a !important; }
+
+/* ── Hero: indigo accent ── */
+.fq-hero { background: #040d1a; }
+
+.fq-hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(99,102,241,.12);
+  border: 1px solid rgba(99,102,241,.28);
+  backdrop-filter: blur(12px);
+  color: #a5b4fc;
+  font-size: 11.5px; font-weight: 700;
+  letter-spacing: .6px; text-transform: uppercase;
+  padding: 8px 20px; border-radius: 100px; margin-bottom: 28px;
+}
+.fq-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #22c55e; box-shadow: 0 0 9px #22c55e;
+  animation: live-pulse 1.8s ease-in-out infinite;
+}
+
+/* Indigo gradient headline */
+.fq-hero-h1 .grad-indigo {
+  background: linear-gradient(135deg, #818cf8 0%, #a5b4fc 40%, #c7d2fe 65%, #a5b4fc 80%, #818cf8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+  display: inline-block;
+}
+
+/* Search bar — embedded in hero */
+.fq-search-wrap {
+  position: relative;
+  max-width: 580px; width: 100%;
+  margin: 0 auto 40px;
+}
+.fq-search-icon {
+  position: absolute; left: 18px; top: 50%;
+  transform: translateY(-50%); pointer-events: none;
+}
+.fq-search-input {
+  width: 100%; box-sizing: border-box;
+  background: rgba(255,255,255,.07) !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+  border-radius: 16px;
+  color: #e2e8f0 !important; font-size: 15px; font-family: 'Inter', sans-serif;
+  padding: 17px 20px 17px 52px;
+  outline: none; -webkit-appearance: none;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+  backdrop-filter: blur(12px);
+}
+.fq-search-input::placeholder { color: rgba(255,255,255,.28); }
+.fq-search-input:focus {
+  border-color: rgba(99,102,241,.55) !important;
+  background: rgba(99,102,241,.06) !important;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.12);
+}
+
+/* Override global input styling from style.css */
+#faqSearch {
+  background: rgba(255,255,255,.07) !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
+  color: #e2e8f0 !important;
+  margin-bottom: 0 !important;
+  backdrop-filter: blur(12px);
+}
+
+/* ══════════════════════════════════════════════════
+   FAQ MAIN SECTION
+══════════════════════════════════════════════════ */
+.fq-section {
+  background: #040d1a;
+  padding: 80px 28px 110px;
+}
+.fq-inner { max-width: 800px; margin: 0 auto; }
+
+/* Category filter tabs */
+.fq-cat-tabs {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  justify-content: center; margin-bottom: 52px;
+}
+.fq-cat-tab {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 18px; border-radius: 100px;
+  font-size: 12.5px; font-weight: 700;
+  cursor: pointer; user-select: none;
+  border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.42);
+  transition: all .2s;
+}
+.fq-cat-tab:hover {
+  color: rgba(255,255,255,.78);
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.18);
+}
+.fq-cat-tab.active {
+  background: rgba(99,102,241,.16);
+  border-color: rgba(99,102,241,.35);
+  color: #a5b4fc;
+}
+.fq-tab-count {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.1); border-radius: 100px;
+  font-size: 10px; min-width: 18px; height: 18px; padding: 0 5px;
+}
+.fq-cat-tab.active .fq-tab-count { background: rgba(99,102,241,.28); }
+
+/* Category group */
+.fq-cat-group { margin-bottom: 54px; }
+.fq-cat-group:last-child { margin-bottom: 0; }
+
+.fq-cat-label {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 12.5px; font-weight: 700;
+  color: rgba(255,255,255,.3); text-transform: uppercase; letter-spacing: .9px;
+  margin-bottom: 18px; padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.fq-cat-label-icon {
+  width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
+  background: rgba(99,102,241,.12); border: 1px solid rgba(99,102,241,.2);
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* FAQ accordion items */
+.fq-item {
+  background: #0a1628; border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px; overflow: hidden;
+  margin-bottom: 10px;
+  transition: border-color .25s, box-shadow .25s;
+}
+.fq-item:last-child { margin-bottom: 0; }
+.fq-item.open {
+  border-color: rgba(99,102,241,.38);
+  box-shadow: 0 0 0 1px rgba(99,102,241,.1), 0 8px 30px rgba(0,0,0,.28);
+}
+
+.fq-question {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 20px; gap: 16px;
+  cursor: pointer; user-select: none;
+  font-size: 14.5px; font-weight: 600; color: rgba(255,255,255,.76);
+  transition: color .2s;
+}
+.fq-item.open .fq-question { color: #fff; }
+.fq-q-text { flex: 1; line-height: 1.45; }
+
+/* Plus → X toggle icon */
+.fq-toggle {
+  width: 30px; height: 30px; flex-shrink: 0; border-radius: 9px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s, transform .3s ease;
+}
+.fq-item.open .fq-toggle {
+  background: rgba(99,102,241,.2); border-color: rgba(99,102,241,.35);
+  transform: rotate(45deg);
+}
+
+/* Expandable answer */
+.fq-answer {
+  max-height: 0; overflow: hidden;
+  padding: 0 20px;
+  transition: max-height .42s cubic-bezier(.2,.8,.2,1), padding .3s ease;
+}
+.fq-item.open .fq-answer { max-height: 800px; padding: 0 20px 22px; }
+.fq-answer-inner {
+  font-size: 14px; color: rgba(255,255,255,.5);
+  line-height: 1.74; border-top: 1px solid rgba(255,255,255,.06); padding-top: 16px;
+}
+.fq-answer-inner p { margin: 0 0 10px; }
+.fq-answer-inner p:last-child { margin-bottom: 0; }
+.fq-answer-inner ul { padding-left: 18px; margin: 8px 0; list-style-type: disc; }
+.fq-answer-inner li { margin-bottom: 5px; }
+.fq-answer-inner strong { color: rgba(255,255,255,.74); font-weight: 700; }
+.fq-answer-inner a { color: #818cf8; text-decoration: none; font-weight: 600; }
+.fq-answer-inner a:hover { color: #a5b4fc; text-decoration: underline; }
+
+/* No results message */
+.fq-no-results {
+  text-align: center; padding: 56px 28px;
+  color: rgba(255,255,255,.3); font-size: 15px;
+  display: none;
+}
+.fq-no-results svg { margin: 0 auto 16px; display: block; }
+
+/* Dark section header override */
+.fq-dark-hd.ref-section-hd .ref-section-title { color: #fff; }
+.fq-dark-hd.ref-section-hd .ref-section-sub   { color: rgba(255,255,255,.46); }
+.fq-dark-hd.ref-section-hd .ref-label-pill {
+  background: rgba(99,102,241,.1);
+  border: 1px solid rgba(99,102,241,.2);
+  color: #a5b4fc;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  /* Hero badge breathing room */
+  .ref-hero.fq-hero {
+    padding: 72px 16px 52px !important;
+    min-height: auto !important;
+  }
+
+  /* FAQ section: restore horizontal padding */
+  .fq-section { padding: 32px 16px 100px; }
+  .fq-inner { padding: 0; }
+
+  /* ── Category tabs: horizontal scroll instead of wrapping ── */
+  .fq-cat-tabs {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 28px !important;
+    /* Hide scrollbar on mobile */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .fq-cat-tabs::-webkit-scrollbar { display: none; }
+
+  /* Tabs: keep compact, don't stretch full width */
+  .fq-cat-tab {
+    flex-shrink: 0 !important;
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  /* FAQ items: tighter */
+  .fq-question { font-size: 13.5px; padding: 14px 16px; gap: 10px; }
+  .fq-answer { padding: 0 16px; }
+  .fq-item.open .fq-answer { padding: 0 16px 18px; }
+  .fq-answer-inner { font-size: 13.5px; }
+  .fq-cat-label { font-size: 11px; margin-bottom: 14px; }
+  .fq-cat-group { margin-bottom: 36px; }
+  .fq-search-input { font-size: 14px; padding: 14px 16px 14px 46px; }
+}

@@ -1,89 +1,631 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FairTax — Choose Your Filing Type</title>
-<link rel="stylesheet" href="style.css?v=12">
-<link rel="stylesheet" href="css/shared-components.css?v=1">
-</head>
-<body>
-<div class="top-banner blink-cta">
-  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
-</div>
-<div class="top-banner blink-green">
-  <span>Referral offer — payouts released Thursdays, 3:30 PM</span>
-</div>
-<div class="help-bar">
-  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
-</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Choose Your Filing Path — FairTax Advisors</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/shared-components.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/landing-v2.css" />
+    <link rel="stylesheet" href="css/choice-v2.css" />
+  </head>
+  <body class="ch-body">
+    <!-- ═══════════════════ HEADER ═══════════════════ -->
+    <header class="lv2-header">
+      <div class="lv2-header-inner">
+        <a href="landing.html" class="lv2-logo">
+          <div class="lv2-logo-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="9" fill="#0B2545" />
+              <path
+                d="M20 9L12 14v8c0 6 4 10 8 11.5C24 21.5 28 17.5 28 12V14L20 9z"
+                fill="white"
+                opacity="0.92"
+              />
+              <path
+                d="M17 20.5l2.5 2.5 4-5"
+                stroke="#0B2545"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="lv2-logo-text">
+            <div class="lv2-logo-name">
+              <span class="lv2-logo-fair">FAIRTAX</span>
+              <span class="lv2-logo-advisors">ADVISORS</span>
+            </div>
+            <div class="lv2-logo-tagline">
+              Your Taxes. Our Expertise. Your Peace of Mind.
+            </div>
+          </div>
+        </a>
 
-<header id="site-header"></header>
+        <nav class="lv2-nav">
+        <a href="landing.html" class="lv2-nav-link">Home</a>
+        <a href="index.html" class="lv2-nav-link active">File Returns</a>
+        <a href="referral-offer.html" class="lv2-nav-link">Referral Offer</a>
+        <a href="training.html" class="lv2-nav-link">Training</a>
+        <a href="wallet.html" class="lv2-nav-link">Wallet</a>
+        <a href="status.html" class="lv2-nav-link">Status</a>
+        <a href="proofs.html" class="lv2-nav-link">Proofs</a>
+        <a href="about.html" class="lv2-nav-link">About</a>
+      </nav>
 
-<main style="max-width:900px;padding:48px 16px">
-  <div style="text-align:center;margin-bottom:48px">
-    <h1 style="font-size:32px;font-weight:800;color:#0B2545;margin-bottom:12px">Choose Your Filing Type</h1>
-    <p style="font-size:16px;color:#6b7280">Select how you'd like to file your ITR</p>
-  </div>
+        <div class="lv2-header-right">
+          <a
+            href="https://wa.me/917397510254"
+            class="lv2-phone"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"
+              />
+            </svg>
+            +91 73975 10254
+          </a>
+          <a href="choice.html" class="lv2-btn-started">Get Started</a>
+        </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:48px">
-    <!-- Regular Tax Filing -->
-    <a href="index.html" style="text-decoration:none;color:inherit">
-      <div style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border:2px solid #1A56DB;border-radius:16px;padding:32px;text-align:center;cursor:pointer;transition:all 0.3s ease">
-        <div style="font-size:48px;margin-bottom:16px">💼</div>
-        <h2 style="font-size:24px;font-weight:800;color:#0B2545;margin-bottom:8px">Regular Tax</h2>
-        <p style="font-size:14px;color:#4b5563;line-height:1.6">
-          File your ITR directly with your income and deductions. Pay our filing fee based on your refund amount.
-        </p>
-        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(26,86,219,0.2)">
-          <span style="display:inline-block;background:linear-gradient(135deg,#1A56DB,#1E40AF);color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;font-size:13px">
-            Start Filing &rarr;
-          </span>
+        <button
+          class="lv2-hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <nav class="lv2-mobile-nav" id="lv2MobileNav">
+      <a href="landing.html" class="lv2-mobile-link">Home</a>
+      <a href="index.html" class="lv2-mobile-link active">File Returns</a>
+      <a href="referral-offer.html" class="lv2-mobile-link">Referral Offer</a>
+      <a href="training.html" class="lv2-mobile-link">Training</a>
+      <a href="wallet.html" class="lv2-mobile-link">Wallet</a>
+      <a href="status.html" class="lv2-mobile-link">Status</a>
+      <a href="proofs.html" class="lv2-mobile-link">Proofs</a>
+      <a href="about.html" class="lv2-mobile-link">About</a>
+      <a href="contact.html" class="lv2-mobile-link">Contact</a>
+      <a href="faqs.html" class="lv2-mobile-link">FAQs</a>
+    </nav>
+    </header>
+
+    <!-- ═══════════════════ CHOICE PAGE ═══════════════════ -->
+    <main>
+      <div class="ch-page">
+        <!-- Breadcrumb -->
+        <div class="ch-breadcrumb">
+          <a href="landing.html">Home</a>
+          <span class="ch-breadcrumb-sep">›</span>
+          <span class="ch-breadcrumb-current">Choose Filing Path</span>
+        </div>
+
+        <!-- Page Header -->
+        <div class="ch-header">
+          <div class="ch-step-badge">
+            <span class="ch-step-badge-dot"></span>
+            Step 1 of 3 — Choose your path
+          </div>
+          <h1 class="ch-title">How would you like to file your ITR?</h1>
+          <p class="ch-sub">
+            Pick the option that works best for you. Both paths get you expert
+            CA-assisted filing.
+          </p>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="ch-grid">
+          <!-- ── Card 1: Regular Tax Filing ── -->
+          <a
+            href="index.html"
+            style="text-decoration: none; color: inherit; display: block"
+          >
+            <div class="ch-card">
+              <div class="ch-card-icon-row">
+                <div class="ch-card-icon blue">
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1A56DB"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="4" y="2" width="16" height="20" rx="2" />
+                    <path d="M8 6h8M8 10h8M8 14h5" />
+                    <path d="M15 17l1.5 1.5L19 16" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="ch-card-title">File &amp; Pay</h2>
+                  <p class="ch-card-subtitle">
+                    Direct expert-assisted ITR filing
+                  </p>
+                </div>
+              </div>
+
+              <p class="ch-card-desc">
+                Upload your documents, let our AI extract the data, and our CA
+                team files your ITR with precision. Pay a simple fee based on
+                your filing type.
+              </p>
+
+              <ul class="ch-features">
+                <li>
+                  <span class="ch-check blue">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#1A56DB"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  AI-powered Form 16 &amp; document extraction
+                </li>
+                <li>
+                  <span class="ch-check blue">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#1A56DB"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  Old vs New regime comparison &amp; optimization
+                </li>
+                <li>
+                  <span class="ch-check blue">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#1A56DB"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  Expert CA review before filing
+                </li>
+                <li>
+                  <span class="ch-check blue">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#1A56DB"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  Refund tracking &amp; status updates
+                </li>
+                <li>
+                  <span class="ch-check blue">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#1A56DB"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  WhatsApp confirmation &amp; support
+                </li>
+                <li>
+                  <span class="ch-check blue">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#1A56DB"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  Covers all ITR types — 1, 2, 3, 4
+                </li>
+              </ul>
+
+              <div style="background:linear-gradient(135deg,#dbeafe,#eff6ff);border-radius:12px;padding:14px;margin-bottom:20px;position:relative">
+                <div style="font-size:13px;color:#1A56DB;font-weight:600">50% Now • 50% After Refund</div>
+                <div style="font-size:11px;color:#4b5563;margin-top:4px">Flexible payment options</div>
+              </div>
+
+              <div class="ch-btn blue">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+                Start Filing
+              </div>
+            </div>
+          </a>
+
+          <!-- ── Card 2: Free Tax with Referrals ── -->
+          <a
+            href="referral-filing.html"
+            style="text-decoration: none; color: inherit; display: block"
+          >
+            <div class="ch-card featured">
+              <div class="ch-popular-badge">⭐ MOST POPULAR</div>
+
+              <div class="ch-card-icon-row">
+                <div class="ch-card-icon green">
+                  <svg
+                    width="28"
+                    height="28"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#059669"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="ch-card-title green">Refer &amp; File Free</h2>
+                  <p class="ch-card-subtitle">
+                    Refer 5 friends — your ITR is 100% FREE
+                  </p>
+                </div>
+              </div>
+
+              <p class="ch-card-desc">
+                Share FairTax with 5 friends and your entire filing fee is
+                waived. Plus earn real cashback at every referral milestone — up
+                to ₹15,000!
+              </p>
+
+              <ul class="ch-features">
+                <li>
+                  <span class="ch-check green">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#059669"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  Everything included in File &amp; Pay
+                </li>
+                <li>
+                  <span class="ch-check green">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#059669"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  ITR filing completely FREE at 5 referrals
+                </li>
+                <li>
+                  <span class="ch-check green">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#059669"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  Earn ₹250 cashback from just 1 referral
+                </li>
+                <li>
+                  <span class="ch-check green">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#059669"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  Earn up to ₹15,000 for 10 referrals
+                </li>
+                <li>
+                  <span class="ch-check green">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#059669"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  Real-time referral dashboard &amp; wallet
+                </li>
+                <li>
+                  <span class="ch-check green">
+                    <svg
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#059669"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  Direct bank payout every Thursday
+                </li>
+              </ul>
+
+              <!-- Mini Tier Display -->
+              <div class="ch-tiers-mini">
+                <div class="ch-tier-mini">
+                  <div class="ch-tier-mini-count">1</div>
+                  <div class="ch-tier-mini-label">referral</div>
+                  <div class="ch-tier-mini-reward">₹250</div>
+                </div>
+                <div class="ch-tier-mini">
+                  <div class="ch-tier-mini-count">3</div>
+                  <div class="ch-tier-mini-label">referrals</div>
+                  <div class="ch-tier-mini-reward">₹1,000</div>
+                </div>
+                <div class="ch-tier-mini">
+                  <div class="ch-tier-mini-count">5</div>
+                  <div class="ch-tier-mini-label">referrals</div>
+                  <div class="ch-tier-mini-reward">FREE<br />+₹5K</div>
+                </div>
+                <div class="ch-tier-mini">
+                  <div class="ch-tier-mini-count">10</div>
+                  <div class="ch-tier-mini-label">referrals</div>
+                  <div class="ch-tier-mini-reward">₹15,000</div>
+                </div>
+              </div>
+
+              <div style="background:linear-gradient(135deg,#d1fae5,#ecfdf5);border-radius:12px;padding:16px;margin-bottom:20px;position:relative;border:2px dashed #10b981">
+                <div style="font-size:13px;color:#10b981;font-weight:700">EARN WHILE FILING</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+                  <div><div style="font-size:16px;font-weight:900;color:#059669">₹250</div><div style="font-size:10px;color:#4b5563">Per Referral</div></div>
+                  <div><div style="font-size:16px;font-weight:900;color:#059669">₹15K</div><div style="font-size:10px;color:#4b5563">Max Bonus</div></div>
+                </div>
+              </div>
+
+              <div class="ch-btn green">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8" />
+                  <polyline points="16 6 12 2 8 6" />
+                  <line x1="12" y1="2" x2="12" y2="15" />
+                </svg>
+                Start Free Filing
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Tip Bar -->
+        <div class="ch-tip">
+          <div class="ch-tip-icon">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1A56DB"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 8v4M12 16h.01" />
+            </svg>
+          </div>
+          <div>
+            <strong>Not sure which to choose?</strong> Start with Refer &amp;
+            File Free — you can switch to regular filing anytime during the
+            process. Most of our customers prefer it!
+          </div>
         </div>
       </div>
-    </a>
+    </main>
 
-    <!-- Free Tax with Referrals -->
-    <a href="referral-filing.html" style="text-decoration:none;color:inherit">
-      <div class="referral-glow-card" style="background:linear-gradient(135deg,#ecfdf5,#d1fae5);border:2px solid #10b981;border-radius:16px;padding:32px;text-align:center;cursor:pointer;transition:all 0.3s ease;position:relative">
-        <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;box-shadow:0 4px 12px rgba(16,185,129,0.3)">POPULAR</div>
-        <div style="font-size:48px;margin-bottom:16px">🎁</div>
-        <h2 style="font-size:24px;font-weight:800;color:#065f46;margin-bottom:8px">Free Tax (Refer 5)</h2>
-        <p style="font-size:14px;color:#4b5563;line-height:1.6">
-          Refer 5 friends and get your ITR filing completely FREE. Plus earn up to ₹15,000 in rewards!
-        </p>
-        <div style="margin-top:20px;padding-top:20px;border-top:1px solid #a7f3d0">
-          <span style="display:inline-block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;font-size:13px">
-            Start Free Filing &rarr;
-          </span>
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="lv2-footer">
+  <div class="lv2-footer-top">
+    <div class="lv2-footer-brand">
+      <a href="landing.html" class="lv2-footer-logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#1A56DB"/>
+          <path d="M20 10L10 15v10l10 5 10-5V15L20 10z" fill="#10B981"/>
+          <path d="M16 20l3 3 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="lv2-footer-brand-text">
+          <div class="lv2-footer-brand-name">
+            <span class="lv2-footer-brand-fair">FAIRTAX</span>
+            <span class="lv2-footer-brand-advisors">ADVISORS</span>
+          </div>
+          <div class="lv2-footer-brand-tagline">Your Taxes. Our Expertise.</div>
         </div>
+      </a>
+      <p class="lv2-footer-desc">AI-powered ITR filing platform trusted by 2 lakh+ Indians. Accurate, secure, and expert-assisted.</p>
+      <div class="lv2-footer-contact">
+        <a href="https://wa.me/917397510254" class="lv2-footer-contact-item" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          +91 7397 510 254
+        </a>
+        <a href="mailto:fairtaxadvisors@gmail.com" class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          fairtaxadvisors@gmail.com
+        </a>
+        <span class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Mumbai, Maharashtra, India
+        </span>
       </div>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="landing.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="training.html">Training</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="proofs.html">Proofs & Grievance</a></li>
+        <li><a href="status.html">Filing Status</a></li>
+        <li><a href="referral-offer.html">Refer & Earn</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lv2-footer-bottom">
+    <div class="lv2-footer-copy">© 2024-2025 FairTax Advisors. All rights reserved. | Secure • AI-Powered • Expert-Reviewed</div>
+    <div class="lv2-footer-badges">
+      <span class="lv2-footer-badge">Secure</span>
+      <span class="lv2-footer-badge">AI-Powered</span>
+      <span class="lv2-footer-badge">Expert Verified</span>
+    </div>
+  </div>
+</footer>
+
+    <!-- Freelancer CTA -->
+    <a
+      class="freelancer-cta"
+      href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!"
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="fl-star">⭐</span>
+      <span class="fl-text">Why not join us<br />as a Freelancer?</span>
     </a>
-  </div>
 
-  <div style="background:#eff6ff;border:1px solid rgba(26,86,219,0.15);border-radius:12px;padding:20px;text-align:center">
-    <p style="margin:0;font-size:14px;color:#1e40af">
-      <strong>💡 Tip:</strong> You can switch between options anytime during the process.
-    </p>
-  </div>
-
-  <footer id="site-footer" style="margin-top:80px"></footer>
-</main>
-
-<!-- Freelancer floating CTA -->
-<a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
-  <span class="fl-star">&#11088;</span>
-  <span class="fl-text">Why not join us<br>as a Freelancer?</span>
-</a>
-
-<script>
-document.addEventListener('DOMContentLoaded', async () => {
-  const headerResp = await fetch('components/header.html');
-  document.getElementById('site-header').innerHTML = await headerResp.text();
-
-  const footerResp = await fetch('components/footer.html');
-  document.getElementById('site-footer').innerHTML = await footerResp.text();
-});
-</script>
-</body>
+    <script>
+      // Mobile hamburger
+      (function () {
+        const btn = document.querySelector(".lv2-hamburger");
+        const nav = document.getElementById("lv2MobileNav");
+        if (!btn || !nav) return;
+        btn.addEventListener("click", function () {
+          const open = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", String(!open));
+          btn.classList.toggle("open");
+          nav.classList.toggle("open");
+        });
+        nav.querySelectorAll(".lv2-mobile-link").forEach((l) => {
+          l.addEventListener("click", () => {
+            btn.setAttribute("aria-expanded", "false");
+            btn.classList.remove("open");
+            nav.classList.remove("open");
+          });
+        });
+      })();
+    </script>
+  </body>
 </html>

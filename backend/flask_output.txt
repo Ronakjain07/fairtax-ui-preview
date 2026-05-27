@@ -1,0 +1,18 @@
+[OK] AI Document Extractor initialized successfully
+[DEBUG] itr_bp imported: <Blueprint 'itr'>, url_prefix=/api/itr
+[DEBUG] itr_bp registered with Flask app
+[2026-05-25 22:31:43,049] INFO in base: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[2026-05-25 22:31:43,049] INFO in base: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[2026-05-25 22:31:43,049] INFO in base: Adding job tentatively -- it will be properly scheduled when the scheduler starts
+[2026-05-25 22:31:43,051] INFO in base: Added job "3-day Payment Reminders" to job store "default"
+[2026-05-25 22:31:43,051] INFO in base: Added job "Referral Status Updates" to job store "default"
+[2026-05-25 22:31:43,051] INFO in base: Added job "Filing Completion Notifications" to job store "default"
+[2026-05-25 22:31:43,055] INFO in base: Scheduler started
+[Scheduler] Could not start: 'charmap' codec can't encode character '\u2705' in position 12: character maps to <undefined>
+ * Serving Flask app 'app'
+ * Debug mode: off
+[2026-05-25 22:31:43,113] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.103:5000
+[2026-05-25 22:31:43,113] INFO in _internal: [33mPress CTRL+C to quit[0m

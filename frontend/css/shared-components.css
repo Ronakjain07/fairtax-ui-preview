@@ -81,14 +81,14 @@
 
 .nav-link:hover {
   color: #fff;
-  background: linear-gradient(135deg, #1A56DB, #1E40AF);
+  background: linear-gradient(135deg, #1A56DB, #0B2545);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(26, 86, 219, 0.15);
 }
 
 .nav-link.active {
   color: #fff;
-  background: linear-gradient(135deg, #1A56DB, #1E40AF);
+  background: linear-gradient(135deg, #1A56DB, #0B2545);
   box-shadow: 0 8px 24px rgba(26, 86, 219, 0.2);
 }
 
@@ -289,7 +289,7 @@
 }
 
 .footer-links a:hover {
-  color: #34D399;
+  color: #10B981;
   transform: translateX(4px);
 }
 
@@ -306,7 +306,7 @@
 }
 
 .contact-item a {
-  color: #34D399;
+  color: #10B981;
   text-decoration: none;
   transition: opacity 0.2s ease;
 }
@@ -342,7 +342,7 @@
 }
 
 .social-icons a:hover {
-  background: linear-gradient(135deg, #1A56DB, #3B82F6);
+  background: linear-gradient(135deg, #1A56DB, #1A56DB);
   transform: translateY(-3px);
   color: #fff;
 }
@@ -391,7 +391,7 @@
 .badge {
   font-size: 11px;
   font-weight: 700;
-  color: #34D399;
+  color: #10B981;
   background: rgba(52, 211, 153, 0.1);
   padding: 6px 12px;
   border-radius: 6px;

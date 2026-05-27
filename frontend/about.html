@@ -1,207 +1,518 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About FairTax — AI-Powered ITR Filing</title>
-  <link rel="stylesheet" href="style.css?v=3">
-  <link rel="stylesheet" href="css/shared-components.css?v=1">
+  <title>About FairTax — India's Most Trusted Tax Filing Platform</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+  <link rel="stylesheet" href="css/shared-components.css">
+  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="css/landing-v2.css">
+  <link rel="stylesheet" href="css/referral-v2.css">
+  <link rel="stylesheet" href="css/about-v2.css">
 </head>
-<body>
-<div class="top-banner blink-cta">
-  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
-</div>
-<div class="top-banner blink-green">
-  <span>Grab your Referral Offer — Referral payout released every Thursday 3:30 PM</span>
-</div>
-<div class="help-bar">
-  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
-</div>
+<body class="ab-page">
 
-  <header id="site-header"></header>
-
-  <main class="landing-main">
-    <!-- Hero with Image -->
-    <div class="hero-with-image" style="max-width:1100px;margin:0 auto 40px">
-      <div class="hero-text-side">
-        <h1>About <span class="text-green">FairTax</span> Advisors</h1>
-        <p>We're on a mission to make tax filing simple, affordable, and accessible to everyone in India.</p>
-        <div class="hero-features-list">
-          <div class="hero-feature-item"><span class="hero-feature-check">&#10003;</span><span>AI-Powered Document Reading</span></div>
-          <div class="hero-feature-item"><span class="hero-feature-check">&#10003;</span><span>Expert CA-Reviewed Returns</span></div>
-          <div class="hero-feature-item"><span class="hero-feature-check">&#10003;</span><span>Maximum Refund Guarantee</span></div>
-        </div>
-        <a href="index.html" class="hero-cta-primary">File Your ITR Now &rarr;</a>
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header class="lv2-header">
+  <div class="lv2-header-inner">
+    <a href="landing.html" class="lv2-logo">
+      <div class="lv2-logo-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="9" fill="#0B2545"/>
+          <path d="M20 9L12 14v8c0 6 4 10 8 11.5C24 21.5 28 17.5 28 12V14L20 9z" fill="white" opacity="0.92"/>
+          <path d="M17 20.5l2.5 2.5 4-5" stroke="#0B2545" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-      <div class="hero-image-side">
-        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="FairTax team of professionals working together">
-        <div class="hero-image-overlay"></div>
+      <div class="lv2-logo-text">
+        <div class="lv2-logo-name">
+          <span class="lv2-logo-fair">FAIRTAX</span>
+          <span class="lv2-logo-advisors">ADVISORS</span>
+        </div>
+        <div class="lv2-logo-tagline">Your Taxes. Our Expertise. Your Peace of Mind.</div>
+      </div>
+    </a>
+    <nav class="lv2-nav">
+        <a href="landing.html" class="lv2-nav-link">Home</a>
+        <a href="index.html" class="lv2-nav-link">File Returns</a>
+        <a href="referral-offer.html" class="lv2-nav-link">Referral Offer</a>
+        <a href="training.html" class="lv2-nav-link">Training</a>
+        <a href="wallet.html" class="lv2-nav-link">Wallet</a>
+        <a href="status.html" class="lv2-nav-link">Status</a>
+        <a href="proofs.html" class="lv2-nav-link">Proofs</a>
+        <a href="about.html" class="lv2-nav-link active">About</a>
+      </nav>
+    <div class="lv2-header-right">
+      <a href="https://wa.me/917397510254" class="lv2-phone" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        +91 73975 10254
+      </a>
+      <a href="choice.html" class="lv2-btn-started">Get Started</a>
+    </div>
+    <button class="lv2-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="lv2-mobile-nav" id="lv2MobileNav">
+      <a href="landing.html" class="lv2-mobile-link">Home</a>
+      <a href="index.html" class="lv2-mobile-link">File Returns</a>
+      <a href="referral-offer.html" class="lv2-mobile-link">Referral Offer</a>
+      <a href="training.html" class="lv2-mobile-link">Training</a>
+      <a href="wallet.html" class="lv2-mobile-link">Wallet</a>
+      <a href="status.html" class="lv2-mobile-link">Status</a>
+      <a href="proofs.html" class="lv2-mobile-link">Proofs</a>
+      <a href="about.html" class="lv2-mobile-link active">About</a>
+      <a href="contact.html" class="lv2-mobile-link">Contact</a>
+      <a href="faqs.html" class="lv2-mobile-link">FAQs</a>
+    </nav>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="ref-hero ab-hero">
+  <div class="ref-blob ref-blob-1" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-2" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-3" aria-hidden="true"></div>
+
+  <div class="ref-hero-inner">
+    <div class="ab-hero-badge" data-aos="fade-down" data-aos-duration="600">
+      <span class="ab-badge-dot"></span>
+      Trusted by 2 Lakh+ Indians
+    </div>
+
+    <h1 class="ref-hero-h1 ab-hero-h1" data-aos="fade-up" data-aos-delay="100">
+      Taxes Made Simple.<br>
+      <span class="grad-gold">Beautifully Fair.</span>
+    </h1>
+
+    <p class="ref-hero-sub" data-aos="fade-up" data-aos-delay="180">
+      We believe every Indian deserves professional tax guidance — not just those who can afford a CA. FairTax combines AI precision with human expertise to make that possible.
+    </p>
+
+    <div class="ref-hero-stats" data-aos="fade-up" data-aos-delay="260">
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#fbbf24">2 L+</span>
+        <span class="ref-stat-label">Clients Helped</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#10B981">₹2 Cr+</span>
+        <span class="ref-stat-label">Refunds Processed</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#818cf8">99%</span>
+        <span class="ref-stat-label">Satisfaction Rate</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#60a5fa">4.8/5</span>
+        <span class="ref-stat-label">Average Rating</span>
       </div>
     </div>
 
-    <!-- Our Story Section with Image -->
-    <div class="section-with-image" style="max-width:1000px;margin:0 auto;padding:40px 16px">
-      <div class="section-image-wrap">
-        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80" alt="Modern office with tax professionals collaborating">
-      </div>
-      <div class="section-text">
-        <span class="offer-shine-badge" style="background:linear-gradient(135deg,#1A56DB,#1E40AF)">Our Story</span>
-        <h2 style="margin-top:12px">Making tax filing <span style="color:#1A56DB">simple</span> for everyone</h2>
-        <p>FairTax was founded with a simple observation: millions of Indians spend weeks and thousands of rupees filing their income tax returns, often ending up with suboptimal tax planning. We leveraged cutting-edge AI and expert tax knowledge to change that.</p>
-      </div>
-    </div>
-
-    <!-- Why Choose Us Section -->
-    <section style="background: linear-gradient(135deg, #EFF6FF, #DBEAFE); border-radius: 16px; padding: 40px 20px; margin: 40px auto; max-width: 1000px; border:1px solid rgba(26,86,219,0.1)">
-      <h2 style="text-align: center; margin-bottom: 32px; color: #0B2545;">Why Choose FairTax Advisors?</h2>
-
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feat-icon">🤖</div>
-          <h3>AI-Powered</h3>
-          <p>Latest Gemini 2.5 Vision model reads your documents with 92%+ accuracy. No manual entry errors.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feat-icon">👨‍💼</div>
-          <h3>Expert Verified</h3>
-          <p>Every return reviewed by a qualified Chartered Accountant before filing. Your assurance, our responsibility.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feat-icon">⚡</div>
-          <h3>5 Minutes</h3>
-          <p>Upload documents, AI extracts data, experts review, file submitted. Start to finish in one sitting.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feat-icon">💸</div>
-          <h3>Smart Tax Planning</h3>
-          <p>We compare Old & New regimes, identify missed deductions, maximize your refund. Save thousands.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feat-icon">📱</div>
-          <h3>Mobile-First</h3>
-          <p>File from your phone. Receive quote and updates via WhatsApp. Convenient, not complicated.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feat-icon">🎁</div>
-          <h3>Free for Eligible</h3>
-          <p>Senior citizens, widows, single parents, and differently-abled individuals file for FREE.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Team Section -->
-    <section style="max-width: 1000px; margin: 40px auto; padding: 0 16px;">
-      <h2 style="text-align: center; margin-bottom: 32px;">Our Team</h2>
-      <p style="text-align: center; color: #6b7280; margin-bottom: 32px; font-size: 14px;">
-        Built by tax experts, engineers, and designers passionate about simplifying taxes.
-      </p>
-
-      <div class="feature-grid">
-        <div class="feature-card" style="text-align: center;">
-          <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f59e0b, #f97316); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 40px;">👨‍💼</div>
-          <h4 style="margin: 0 0 4px; font-size: 14px;">Rahul Sharma</h4>
-          <p style="color: #6b7280; font-size: 12px; margin: 0 0 8px;">Co-Founder & Tax Strategist</p>
-          <p style="font-size: 12px; color: #475569; line-height: 1.5;">CA with 8+ years in tax planning for startups and individuals. Passionate about making taxes simple.</p>
-        </div>
-
-        <div class="feature-card" style="text-align: center;">
-          <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 40px;">👩‍💻</div>
-          <h4 style="margin: 0 0 4px; font-size: 14px;">Priya Desai</h4>
-          <p style="color: #6b7280; font-size: 12px; margin: 0 0 8px;">Co-Founder & Tech Lead</p>
-          <p style="font-size: 12px; color: #475569; line-height: 1.5;">Full-stack engineer with AI/ML expertise. Built the Vision extraction pipeline from scratch.</p>
-        </div>
-
-        <div class="feature-card" style="text-align: center;">
-          <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 50%; margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 40px;">🎨</div>
-          <h4 style="margin: 0 0 4px; font-size: 14px;">Aditya Kumar</h4>
-          <p style="color: #6b7280; font-size: 12px; margin: 0 0 8px;">Head of Product & Design</p>
-          <p style="font-size: 12px; color: #475569; line-height: 1.5;">Former UX lead at fintech startup. Obsessed with simplifying complex tax workflows.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Trust Badges Section -->
-    <section style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-radius: 16px; padding: 40px 20px; margin: 40px auto; max-width: 1000px; text-align: center;">
-      <h2 style="color: #166534; margin-bottom: 32px;">Trusted by Thousands</h2>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 24px; margin-bottom: 24px;">
-        <div>
-          <div style="font-size: 32px; font-weight: 900; color: #16a34a; margin-bottom: 4px;">1,000+</div>
-          <p style="margin: 0; color: #166534; font-size: 12px; font-weight: 600;">Returns Filed</p>
-        </div>
-        <div>
-          <div style="font-size: 32px; font-weight: 900; color: #16a34a; margin-bottom: 4px;">₹2 Cr+</div>
-          <p style="margin: 0; color: #166534; font-size: 12px; font-weight: 600;">Refunds Processed</p>
-        </div>
-        <div>
-          <div style="font-size: 32px; font-weight: 900; color: #16a34a; margin-bottom: 4px;">99%</div>
-          <p style="margin: 0; color: #166534; font-size: 12px; font-weight: 600;">Customer Satisfaction</p>
-        </div>
-        <div>
-          <div style="font-size: 32px; font-weight: 900; color: #16a34a; margin-bottom: 4px;">4.8/5</div>
-          <p style="margin: 0; color: #166534; font-size: 12px; font-weight: 600;">Average Rating</p>
-        </div>
-      </div>
-
-      <p style="color: #166534; font-size: 14px; margin: 0;">
-        Helping middle-class Indians reclaim their money from the government legitimately.
-      </p>
-    </section>
-
-    <!-- Testimonials -->
-    <section style="max-width: 1000px; margin: 40px auto; padding: 0 16px;">
-      <h2 style="text-align: center; margin-bottom: 32px;">What Our Customers Say</h2>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        <div style="background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; text-align: center;">
-          <p style="font-size: 14px; color: #334155; font-style: italic; margin-bottom: 16px; line-height: 1.6;">
-            "I saved ₹18,000 in taxes just by comparing the two regimes. FairTax made it so simple!"
-          </p>
-          <p style="font-weight: 700; color: #1f2937; margin: 0 0 2px; font-size: 13px;">Priya Menon</p>
-          <p style="color: #6b7280; font-size: 12px; margin: 0;">Software Engineer, Bangalore</p>
-        </div>
-
-        <div style="background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; text-align: center;">
-          <p style="font-size: 14px; color: #334155; font-style: italic; margin-bottom: 16px; line-height: 1.6;">
-            "The AI read my documents perfectly. Not a single manual entry needed. 5 minutes total."
-          </p>
-          <p style="font-weight: 700; color: #1f2937; margin: 0 0 2px; font-size: 13px;">Arjun Singh</p>
-          <p style="color: #6b7280; font-size: 12px; margin: 0;">Entrepreneur, Delhi</p>
-        </div>
-
-        <div style="background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; text-align: center;">
-          <p style="font-size: 14px; color: #334155; font-style: italic; margin-bottom: 16px; line-height: 1.6;">
-            "Expert reviewed and filed perfectly. I got my refund within 5 days. Highly recommended!"
-          </p>
-          <p style="font-weight: 700; color: #1f2937; margin: 0 0 2px; font-size: 13px;">Neha Reddy</p>
-          <p style="color: #6b7280; font-size: 12px; margin: 0;">Doctor, Mumbai</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <div style="background: linear-gradient(135deg, #0B2545, #1A56DB); border-radius: 16px; padding: 40px 20px; text-align: center; margin: 48px auto; max-width: 800px; color: #fff; position:relative;overflow:hidden">
-      <div class="sparkle-container">
-        <div class="sparkle-dot" style="background:#34D399"></div>
-        <div class="sparkle-dot" style="background:#34D399"></div>
-        <div class="sparkle-dot" style="background:#34D399"></div>
-      </div>
-      <h2 style="color: #fff; margin-bottom: 12px; text-shadow:none">Ready to File Your ITR?</h2>
-      <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 24px; font-size: 15px;">
-        Start your return in 5 minutes. AI handles the reading. Experts handle the filing.
-      </p>
-      <a href="index.html" class="hero-cta-primary" style="display:inline-block;text-decoration:none">
-        File Your Return Now &rarr;
+    <div class="ref-ctas" data-aos="fade-up" data-aos-delay="340">
+      <a href="choice.html" class="ref-cta-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        File Your ITR Now
+      </a>
+      <a href="#our-story" class="ref-cta-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Our Story
       </a>
     </div>
+  </div>
 
-  </main>
+  <div class="ref-scroll-hint" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll
+  </div>
+</section>
 
-  <footer id="site-footer"></footer>
+<!-- ══════════════════════════════════════════
+     IMPACT COUNTERS
+══════════════════════════════════════════ -->
+<section class="ab-impact-section">
+  <div class="ab-impact-grid">
 
-<!-- Freelancer floating CTA -->
+    <div class="ab-impact-card" style="--ic:#f59e0b" data-aos="fade-up" data-aos-delay="0">
+      <span class="ab-impact-num" id="ab-count-clients">0</span>
+      <span class="ab-impact-label">Clients Helped</span>
+    </div>
+
+    <div class="ab-impact-card" style="--ic:#10b981" data-aos="fade-up" data-aos-delay="80">
+      <span class="ab-impact-num" id="ab-count-refunds">0</span>
+      <span class="ab-impact-label">Refunds Processed</span>
+    </div>
+
+    <div class="ab-impact-card" style="--ic:#1A56DB" data-aos="fade-up" data-aos-delay="160">
+      <span class="ab-impact-num" id="ab-count-sat">0</span>
+      <span class="ab-impact-label">Satisfaction Rate</span>
+    </div>
+
+    <div class="ab-impact-card" style="--ic:#1A56DB" data-aos="fade-up" data-aos-delay="240">
+      <span class="ab-impact-num" id="ab-count-rating">0</span>
+      <span class="ab-impact-label">Average Rating</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     OUR STORY
+══════════════════════════════════════════ -->
+<section id="our-story" class="ab-story-section">
+  <div class="ab-story-grid">
+
+    <!-- Left: text -->
+    <div data-aos="fade-right">
+      <div class="ab-story-eyebrow">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        Our Story — Since 2023
+      </div>
+      <h2 class="ab-story-title">Making Taxes Simple<br>for <span class="grad-indigo">Every Indian.</span></h2>
+      <p class="ab-story-body">FairTax was founded with one observation: millions of Indians spend weeks navigating a complex tax system — often paying more than they should. We set out to change that by combining Gemini AI with qualified Chartered Accountants, creating a platform that's fast, accurate, and affordable for everyone.</p>
+
+      <ul class="ab-story-points">
+        <li class="ab-story-point">
+          <div class="ab-sp-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          AI reads your documents in seconds — Gemini 2.5 Vision with 92%+ accuracy
+        </li>
+        <li class="ab-story-point">
+          <div class="ab-sp-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Every return reviewed by a qualified CA before it's filed — no shortcuts
+        </li>
+        <li class="ab-story-point">
+          <div class="ab-sp-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          We compare Old &amp; New regimes automatically — you always get the best deal
+        </li>
+        <li class="ab-story-point">
+          <div class="ab-sp-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          Free filing for senior citizens, widows, single parents &amp; differently-abled
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right: image -->
+    <div class="ab-story-visual" data-aos="fade-left">
+      <div class="ab-story-img-wrap">
+        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80" alt="FairTax team collaborating">
+        <div class="ab-story-img-overlay"></div>
+      </div>
+      <div class="ab-story-float">
+        <div class="ab-float-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,158,11,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div>
+          <span class="ab-float-label">Refunds Processed</span>
+          <span class="ab-float-val">₹2 Cr+</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     WHY CHOOSE US  (6 feature cards)
+══════════════════════════════════════════ -->
+<section class="ref-section ab-features-section">
+  <div class="ref-section-inner">
+    <div class="ref-section-hd ab-dark-hd" data-aos="fade-up">
+      <div class="ref-label-pill">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Why FairTax
+      </div>
+      <h2 class="ref-section-title">Everything You Need,<br><span class="grad-text">Nothing You Don't.</span></h2>
+      <p class="ref-section-sub">Six reasons why 2 lakh+ Indians trust us with their tax returns every year.</p>
+    </div>
+
+    <div class="ab-feature-grid">
+
+      <!-- 1: AI-Powered -->
+      <div class="ab-feat-card" style="--fc:#1A56DB" data-aos="fade-up" data-aos-delay="0">
+        <div class="ab-feat-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(99,102,241,.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+        </div>
+        <h3 class="ab-feat-title">AI-Powered Reading</h3>
+        <p class="ab-feat-body">Gemini 2.5 Vision reads your Form-16, payslips and investment proofs with 92%+ accuracy. Zero manual data entry — ever.</p>
+      </div>
+
+      <!-- 2: Expert Verified -->
+      <div class="ab-feat-card" style="--fc:#10b981" data-aos="fade-up" data-aos-delay="80">
+        <div class="ab-feat-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(16,185,129,.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h3 class="ab-feat-title">CA-Verified Returns</h3>
+        <p class="ab-feat-body">Every return reviewed by a qualified Chartered Accountant before filing. Your assurance, our responsibility.</p>
+      </div>
+
+      <!-- 3: 5 Minutes -->
+      <div class="ab-feat-card" style="--fc:#f59e0b" data-aos="fade-up" data-aos-delay="160">
+        <div class="ab-feat-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(245,158,11,.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="ab-feat-title">Done in 5 Minutes</h3>
+        <p class="ab-feat-body">Upload documents. AI extracts the data. Experts review and file. Start to finish in one sitting — no back-and-forth.</p>
+      </div>
+
+      <!-- 4: Maximum Refund -->
+      <div class="ab-feat-card" style="--fc:#1A56DB" data-aos="fade-up" data-aos-delay="0">
+        <div class="ab-feat-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(26,86,219,.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3 class="ab-feat-title">Maximum Refund</h3>
+        <p class="ab-feat-body">We compare Old &amp; New tax regimes, spot every missed deduction, and choose what saves you the most. Average saving: ₹15,000+.</p>
+      </div>
+
+      <!-- 5: Mobile-First -->
+      <div class="ab-feat-card" style="--fc:#1A56DB" data-aos="fade-up" data-aos-delay="80">
+        <div class="ab-feat-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(26,86,219,.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3 class="ab-feat-title">Mobile-First</h3>
+        <p class="ab-feat-body">File entirely from your phone. Snap a photo of your documents. Receive your quote and updates straight on WhatsApp.</p>
+      </div>
+
+      <!-- 6: Free for Eligible -->
+      <div class="ab-feat-card" style="--fc:#14b8a6" data-aos="fade-up" data-aos-delay="160">
+        <div class="ab-feat-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(20,184,166,.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <h3 class="ab-feat-title">Free for Eligible</h3>
+        <p class="ab-feat-body">Senior citizens, widows, single parents, and differently-abled individuals file completely FREE — no conditions, no catches.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TEAM
+══════════════════════════════════════════ -->
+<section class="ab-team-section">
+  <div class="ref-section-inner">
+    <div class="ref-section-hd ab-dark-hd ab-indigo-hd" data-aos="fade-up">
+      <div class="ref-label-pill">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        The Team
+      </div>
+      <h2 class="ref-section-title">Built by Experts,<br><span class="grad-text">Driven by Purpose.</span></h2>
+      <p class="ref-section-sub">Tax professionals, engineers and designers united by one mission: make taxes simple for every Indian.</p>
+    </div>
+
+    <div class="ab-team-grid">
+
+      <div class="ab-team-card" style="--tc:#f59e0b" data-aos="fade-up" data-aos-delay="0">
+        <div class="ab-team-avatar">RS</div>
+        <div class="ab-team-name">Rahul Sharma</div>
+        <div class="ab-team-role">Co-Founder &amp; Tax Strategist</div>
+        <p class="ab-team-bio">CA with 8+ years in tax planning for startups and individuals. Passionate about making taxes simple and transparent for everyone.</p>
+      </div>
+
+      <div class="ab-team-card" style="--tc:#10b981" data-aos="fade-up" data-aos-delay="100">
+        <div class="ab-team-avatar">PD</div>
+        <div class="ab-team-name">Priya Desai</div>
+        <div class="ab-team-role">Co-Founder &amp; Tech Lead</div>
+        <p class="ab-team-bio">Full-stack engineer with deep AI/ML expertise. Built the Gemini Vision extraction pipeline from scratch to achieve 92%+ accuracy.</p>
+      </div>
+
+      <div class="ab-team-card" style="--tc:#1A56DB" data-aos="fade-up" data-aos-delay="200">
+        <div class="ab-team-avatar">AK</div>
+        <div class="ab-team-name">Aditya Kumar</div>
+        <div class="ab-team-role">Head of Product &amp; Design</div>
+        <p class="ab-team-bio">Former UX lead at a fintech startup. Obsessed with simplifying complex tax workflows into experiences that feel effortless.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<section class="ab-testi-section">
+  <div class="ref-section-inner">
+    <div class="ref-section-hd ab-dark-hd ab-green-hd" data-aos="fade-up">
+      <div class="ref-label-pill">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Customer Stories
+      </div>
+      <h2 class="ref-section-title">What Our Clients<br><span class="grad-text">Are Saying.</span></h2>
+      <p class="ref-section-sub">Real people, real savings, real peace of mind.</p>
+    </div>
+
+    <div class="ab-testi-grid">
+
+      <div class="ab-testi-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="ab-testi-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="ab-testi-quote">"I saved ₹18,000 in taxes just by comparing the two regimes. FairTax made it so simple!"</p>
+        <div class="ab-testi-author">
+          <div class="ab-testi-avatar" style="--av:#1A56DB">PM</div>
+          <div>
+            <span class="ab-testi-name">Priya Menon</span>
+            <span class="ab-testi-role">Software Engineer, Bangalore</span>
+          </div>
+        </div>
+        <div class="ab-testi-mark">"</div>
+      </div>
+
+      <div class="ab-testi-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="ab-testi-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="ab-testi-quote">"The AI read my documents perfectly. Not a single manual entry needed. 5 minutes total."</p>
+        <div class="ab-testi-author">
+          <div class="ab-testi-avatar" style="--av:#1A56DB">AS</div>
+          <div>
+            <span class="ab-testi-name">Arjun Singh</span>
+            <span class="ab-testi-role">Entrepreneur, Delhi</span>
+          </div>
+        </div>
+        <div class="ab-testi-mark">"</div>
+      </div>
+
+      <div class="ab-testi-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="ab-testi-stars">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="ab-testi-quote">"Expert reviewed and filed perfectly. I got my refund within 5 days. Highly recommended!"</p>
+        <div class="ab-testi-author">
+          <div class="ab-testi-avatar" style="--av:#10b981">NR</div>
+          <div>
+            <span class="ab-testi-name">Neha Reddy</span>
+            <span class="ab-testi-role">Doctor, Mumbai</span>
+          </div>
+        </div>
+        <div class="ab-testi-mark">"</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BOTTOM CTA
+══════════════════════════════════════════ -->
+<div class="ref-footer-cta">
+  <div class="ref-blob ref-blob-1" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-2" aria-hidden="true"></div>
+  <div class="ref-footer-cta-inner" data-aos="fade-up">
+    <h2>Ready to File Your ITR?</h2>
+    <p>AI handles the reading. Experts handle the filing. You get the maximum refund — in 5 minutes flat.</p>
+    <a href="choice.html" class="ref-cta-primary" style="font-size:16px;padding:17px 38px">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      File Your Return Now
+    </a>
+  </div>
+</div>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="lv2-footer">
+  <div class="lv2-footer-top">
+    <div class="lv2-footer-brand">
+      <a href="landing.html" class="lv2-footer-logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#1A56DB"/>
+          <path d="M20 10L10 15v10l10 5 10-5V15L20 10z" fill="#10B981"/>
+          <path d="M16 20l3 3 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="lv2-footer-brand-text">
+          <div class="lv2-footer-brand-name">
+            <span class="lv2-footer-brand-fair">FAIRTAX</span>
+            <span class="lv2-footer-brand-advisors">ADVISORS</span>
+          </div>
+          <div class="lv2-footer-brand-tagline">Your Taxes. Our Expertise.</div>
+        </div>
+      </a>
+      <p class="lv2-footer-desc">AI-powered ITR filing platform trusted by 2 lakh+ Indians. Accurate, secure, and expert-assisted.</p>
+      <div class="lv2-footer-contact">
+        <a href="https://wa.me/917397510254" class="lv2-footer-contact-item" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          +91 7397 510 254
+        </a>
+        <a href="mailto:fairtaxadvisors@gmail.com" class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          fairtaxadvisors@gmail.com
+        </a>
+        <span class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Mumbai, Maharashtra, India
+        </span>
+      </div>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="landing.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="training.html">Training</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="proofs.html">Proofs & Grievance</a></li>
+        <li><a href="status.html">Filing Status</a></li>
+        <li><a href="referral-offer.html">Refer & Earn</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lv2-footer-bottom">
+    <div class="lv2-footer-copy">© 2024-2025 FairTax Advisors. All rights reserved. | Secure • AI-Powered • Expert-Reviewed</div>
+    <div class="lv2-footer-badges">
+      <span class="lv2-footer-badge">Secure</span>
+      <span class="lv2-footer-badge">AI-Powered</span>
+      <span class="lv2-footer-badge">Expert Verified</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Freelancer CTA -->
 <a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
-  <span class="fl-star">&#11088;</span>
+  <span class="fl-star">⭐</span>
   <span class="fl-text">Why not join us<br>as a Freelancer?</span>
 </a>
 
@@ -209,35 +520,71 @@
 <div id="winnersWidget" class="winners-widget">
   <h4>Weekly Winners</h4>
   <ul id="winnersList"><li>Loading...</li></ul>
-  <a href="referral-offer.html" id="seeAllWinners">See all</a>
+  <a href="referral-offer.html">See all</a>
 </div>
 
-  <script>
-    const API = 'https://fairtax-backend.onrender.com';
-    fetch('components/header.html')
-      .then(r => r.text())
-      .then(html => document.getElementById('site-header').innerHTML = html)
-      .catch(e => console.error('Failed to load header:', e));
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.8.0/countUp.umd.min.js"></script>
+<script>
+const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : 'https://fairtax-backend.onrender.com';
 
-    fetch('components/footer.html')
-      .then(r => r.text())
-      .then(html => document.getElementById('site-footer').innerHTML = html)
-      .catch(e => console.error('Failed to load footer:', e));
+/* ── Winners widget ── */
+async function loadWinners() {
+  try {
+    const r = await fetch(`${API}/winners`);
+    const j = await r.json();
+    const list = document.getElementById('winnersList');
+    list.innerHTML = '';
+    (j.winners || []).forEach(w => {
+      const li = document.createElement('li');
+      li.textContent = `${w.name} — ${w.reward}`;
+      list.appendChild(li);
+    });
+  } catch(e) { console.warn('winners load failed', e); }
+}
+loadWinners();
 
-    async function loadWinners() {
-      try {
-        const r = await fetch(`${API}/winners`);
-        const j = await r.json();
-        const list = document.getElementById('winnersList');
-        list.innerHTML = '';
-        (j.winners || []).forEach(w => {
-          const li = document.createElement('li');
-          li.textContent = `${w.name} — ${w.reward}`;
-          list.appendChild(li);
-        });
-      } catch (e) { console.warn('winners load failed', e); }
-    }
-    loadWinners();
-  </script>
+/* ── CountUp stats ── */
+function startCounts() {
+  const opts = { duration: 2.2, useEasing: true };
+  new countUp.CountUp('ab-count-clients', 2, { ...opts, suffix: ' Lakh+', decimalPlaces: 0 }).start();
+  new countUp.CountUp('ab-count-refunds', 2, { ...opts, prefix: '₹', suffix: ' Cr+', decimalPlaces: 0 }).start();
+  new countUp.CountUp('ab-count-sat',     99, { ...opts, suffix: '%',  decimalPlaces: 0 }).start();
+  new countUp.CountUp('ab-count-rating',  4.8,{ ...opts, suffix: ' / 5', decimalPlaces: 1 }).start();
+}
+
+/* Trigger CountUp when section enters viewport */
+const impactSection = document.querySelector('.ab-impact-section');
+const countObserver = new IntersectionObserver(entries => {
+  if(entries[0].isIntersecting) { startCounts(); countObserver.disconnect(); }
+}, { threshold: 0.3 });
+if(impactSection) countObserver.observe(impactSection);
+
+/* ── AOS ── */
+AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+
+/* ── Mobile nav ── */
+(function(){
+  const btn = document.querySelector('.lv2-hamburger');
+  const nav = document.getElementById('lv2MobileNav');
+  if(!btn||!nav) return;
+  btn.addEventListener('click', function(){
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    btn.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('.lv2-mobile-link').forEach(l => {
+    l.addEventListener('click', () => {
+      btn.setAttribute('aria-expanded','false');
+      btn.classList.remove('open');
+      nav.classList.remove('open');
+    });
+  });
+})();
+</script>
 </body>
 </html>
+

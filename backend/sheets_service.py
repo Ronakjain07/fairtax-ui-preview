@@ -81,30 +81,53 @@ def _client():
     global _GC
     if _GC is not None:
         return _GC
-    SCOPES = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive"
-    ]
 
-    service_account_info = json.loads(
-    os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"]
-    )
+    try:
+        SCOPES = [
+        "https://www.googleapis.com/auth/spreadsheets",
+        "https://www.googleapis.com/auth/drive"
+        ]
 
-    creds = Credentials.from_service_account_info(
-    service_account_info,
-    scopes=SCOPES
-    )
+        service_account_json = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON", "")
+        if not service_account_json or not service_account_json.strip():
+            print("[SHEETS] WARNING: GOOGLE_SERVICE_ACCOUNT_JSON not configured. Running in mock mode.")
+            return None
 
-    _GC = gspread.authorize(creds)
-    return _GC
+        service_account_info = json.loads(service_account_json)
+
+        creds = Credentials.from_service_account_info(
+        service_account_info,
+        scopes=SCOPES
+        )
+
+        _GC = gspread.authorize(creds)
+        print("[SHEETS] Google Sheets client initialized successfully")
+        return _GC
+    except json.JSONDecodeError as e:
+        print(f"[SHEETS] ERROR: Invalid GOOGLE_SERVICE_ACCOUNT_JSON format: {e}")
+        print(f"[SHEETS] Running in mock mode (no Sheets persistence)")
+        return None
+    except Exception as e:
+        print(f"[SHEETS] ERROR: Failed to initialize Google Sheets client: {e}")
+        print(f"[SHEETS] Running in mock mode (no Sheets persistence)")
+        return None
 
 def _is_rate_limit(e):
     try:
         info = e.args[0]
         if isinstance(info, dict):
+            # Check for quota exceeded or rate limit
             if info.get('code') == 429 or info.get('status') == 'RESOURCE_EXHAUSTED':
+                print(f"[SHEETS] Rate/Quota limit detected: {info.get('message', 'Unknown')}")
                 return True
-    except Exception:
+            if 'Quota exceeded' in str(info.get('message', '')):
+                print(f"[SHEETS] Quota exceeded: {info.get('message', 'Unknown')}")
+                return True
+        # Check the error message string directly
+        if 'Quota exceeded' in str(e) or 'RESOURCE_EXHAUSTED' in str(e):
+            print(f"[SHEETS] Quota/Rate limit detected in error: {str(e)[:200]}")
+            return True
+    except Exception as ex:
         pass
     return False
 
@@ -127,12 +150,18 @@ def _call_with_retries(func, *args, **kwargs):
 
 
 def _ws_call(ws, method_name, *args, **kwargs):
+    if ws is None:
+        raise ValueError(f"Cannot call {method_name}: worksheet is None (Sheets unavailable)")
     fn = getattr(ws, method_name)
     return _call_with_retries(fn, *args, **kwargs)
 
 
 def _sheet(name):
     gc = _client()
+    if gc is None:
+        print(f"[SHEETS] WARNING: Sheets not available for worksheet '{name}'")
+        return None
+
     global _SPREADSHEET, _SPREADSHEET_KEY, _SPREADSHEET_TS
 
     with _LOCK:
@@ -151,18 +180,30 @@ def _sheet(name):
         return _call_with_retries(sh.add_worksheet, name, 1000, 100)
 
 def _ensure_headers(ws, headers):
-    existing = _ws_call(ws, 'row_values', 1)
-    if existing != headers:
-        _ws_call(ws, 'update', "A1", [headers])
-        _ws_call(ws, 'format', "1:1", {"textFormat": {"bold": True},
-                          "backgroundColor": {"red": 0.85, "green": 0.92, "blue": 1.0}})
+    if ws is None:
+        return  # Sheets unavailable, skip header check
+    try:
+        existing = _ws_call(ws, 'row_values', 1)
+        if existing != headers:
+            _ws_call(ws, 'update', "A1", [headers])
+            _ws_call(ws, 'format', "1:1", {"textFormat": {"bold": True},
+                              "backgroundColor": {"red": 0.85, "green": 0.92, "blue": 1.0}})
+    except Exception as e:
+        print(f"[SHEETS] _ensure_headers failed: {e}")
 
 def gen_referral_code(name):
-    base = ''.join([c for c in (name or "USER").upper() if c.isalpha()])[:4].ljust(4, "X")
-    return f"{base}_{random.randint(100, 999)}"
+    # Format: name_FAIRTAXXX where XX is 2 random digits
+    # Example: "John_FAIRTAX42"
+    name_part = (name or "USER").split()[0][:20]  # Take first word, max 20 chars
+    random_digits = random.randint(10, 99)  # 2 random digits (10-99)
+    return f"{name_part}_FAIRTAX{random_digits}"
 
 def get_row_by_submission_id(submission_id):
     ws = _sheet("Submissions")
+
+    if ws is None:
+        print(f"[SHEETS] Sheets unavailable - returning None for {submission_id}")
+        return None
 
     # ✅ ENSURE HEADERS FIRST
     _ensure_headers(ws, HEADERS)
@@ -338,10 +379,47 @@ def verify_calculation_consistency(submission_id, calc):
     return len(issues) == 0, issues
 
 
-def log_referral(referrer_code, referred_name, referred_phone):
+def log_referral(referrer_code, referred_name, referred_phone, referred_pan=None):
+    """Log a referral with deduplication check.
+
+    Args:
+        referrer_code: Code of person making the referral
+        referred_name: Name of referred person
+        referred_phone: Phone of referred person (10 digits)
+        referred_pan: Optional PAN of referred person (for dedup check)
+
+    Returns:
+        bool: True if logged, False if duplicate found
+    """
     rws = _sheet("Referrals")
-    _ensure_headers(rws, ["timestamp", "referrer_code", "referred_name", "referred_phone"])
-    _ws_call(rws, 'append_row', [datetime.now().isoformat(), referrer_code, referred_name, referred_phone])
+    if rws is None:
+        print(f"[SHEETS] log_referral: Sheets unavailable, skipping referral log")
+        return False
+    _ensure_headers(rws, ["timestamp", "referrer_code", "referred_name", "referred_phone", "referred_pan"])
+
+    # DEDUPLICATION: Check if this phone was already referred
+    existing_referrals = _ws_call(rws, 'get_all_records')
+
+    for existing in existing_referrals:
+        # Check phone duplicate (most reliable)
+        if existing.get('referred_phone') == referred_phone:
+            print(f"[REFERRAL] Duplicate phone detected: {referred_phone}, skipping")
+            return False
+
+        # Check PAN duplicate if provided
+        if referred_pan and existing.get('referred_pan') == referred_pan:
+            print(f"[REFERRAL] Duplicate PAN detected: {referred_pan}, skipping")
+            return False
+
+    # No duplicate found, log the referral
+    _ws_call(rws, 'append_row', [
+        datetime.now().isoformat(),
+        referrer_code,
+        referred_name,
+        referred_phone,
+        referred_pan or ""
+    ])
+
     # Increment referrer's count
     ws = _sheet("Submissions")
     cells = _ws_call(ws, 'findall', referrer_code)
@@ -356,12 +434,21 @@ def log_referral(referrer_code, referred_name, referred_phone):
             _ws_call(ws, 'update_cell', c.row, count_col, cur + 1)
             break
 
+    return True
+
 
 def insert_submission(data):
     ws = _sheet("Submissions")
+    if ws is None:
+        print("[SHEETS] insert_submission: Sheets unavailable - cannot insert")
+        return {"created": False, "referral_code": "", "row": None}
+
     _ensure_headers(ws, HEADERS)
 
     col_map = get_column_map()
+    if not col_map:
+        print("[SHEETS] insert_submission: Failed to get column map")
+        return {"created": False, "referral_code": "", "row": None}
 
     row_data = [""] * len(col_map)
 
@@ -405,9 +492,16 @@ def insert_submission(data):
 
 def get_column_map():
     ws = _sheet("Submissions")
-    headers = _ws_call(ws, 'row_values', 1)
+    if ws is None:
+        print("[SHEETS] get_column_map: Sheets unavailable")
+        return None
 
-    return {col: idx+1 for idx, col in enumerate(headers)}
+    try:
+        headers = _ws_call(ws, 'row_values', 1)
+        return {col: idx+1 for idx, col in enumerate(headers)}
+    except Exception as e:
+        print(f"[SHEETS] get_column_map failed: {e}")
+        return None
 
 
 def check_approval(submission_id):
@@ -415,6 +509,9 @@ def check_approval(submission_id):
     This is used by the app to read approval/referral fields for a submission.
     """
     ws = _sheet("Submissions")
+    if ws is None:
+        print(f"[SHEETS] check_approval: Sheets unavailable for {submission_id}")
+        return None
     _ensure_headers(ws, HEADERS)
 
     row_idx = get_row_by_submission_id(submission_id)
@@ -431,7 +528,13 @@ def save_calculation_by_row(row, calc):
     Ensures all key numeric fields are present and consistent.
     """
     ws = _sheet("Submissions")
+    if ws is None:
+        print(f"[SHEETS] save_calculation_by_row: Sheets unavailable")
+        return
     col_map = get_column_map()
+    if not col_map:
+        print("[SHEETS] save_calculation_by_row: Failed to get column map")
+        return
 
     def _to_num(x):
         try:
@@ -523,10 +626,13 @@ def save_calculation_by_row(row, calc):
 
 def update_row(row, data):
     if not row:
-        print("⚠️ Skipping update — row is None")
+        print("[WARNING] Skipping update - row is None")
         return
 
     ws = _sheet("Submissions")
+    if ws is None:
+        print("[SHEETS] Skipping update_row - Sheets unavailable")
+        return
     col_map = get_column_map()
 
     for k, v in data.items():

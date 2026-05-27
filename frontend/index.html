@@ -1,33 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FairTax — File ITR in 5 Minutes</title>
-<link rel="stylesheet" href="style.css?v=12">
-<link rel="stylesheet" href="css/shared-components.css?v=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>File Your ITR — FairTax Advisors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/shared-components.css">
+  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="css/landing-v2.css">
+  <link rel="stylesheet" href="css/referral-v2.css">
+  <link rel="stylesheet" href="css/index-v2.css">
+  <link rel="stylesheet" href="css/index-filing-v2.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 </head>
-<body>
-<div class="top-banner blink-cta">
-  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
-</div>
-<div class="top-banner blink-green">
-  <span>Referral offer — payouts released Thursdays, 3:30 PM</span>
-</div>
-<div class="help-bar">
-  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
-</div>
+<body class="ix-page">
 
-<header id="site-header"></header>
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header class="lv2-header">
+  <div class="lv2-header-inner">
+
+    <a href="landing.html" class="lv2-logo">
+      <div class="lv2-logo-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="9" fill="#0B2545"/>
+          <path d="M20 9L12 14v8c0 6 4 10 8 11.5C24 21.5 28 17.5 28 12V14L20 9z" fill="white" opacity="0.92"/>
+          <path d="M17 20.5l2.5 2.5 4-5" stroke="#0B2545" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="lv2-logo-text">
+        <div class="lv2-logo-name">
+          <span class="lv2-logo-fair">FAIRTAX</span>
+          <span class="lv2-logo-advisors">ADVISORS</span>
+        </div>
+        <div class="lv2-logo-tagline">Your Taxes. Our Expertise. Your Peace of Mind.</div>
+      </div>
+    </a>
+
+    <nav class="lv2-nav">
+        <a href="landing.html" class="lv2-nav-link">Home</a>
+        <a href="index.html" class="lv2-nav-link active">File Returns</a>
+        <a href="referral-offer.html" class="lv2-nav-link">Referral Offer</a>
+        <a href="training.html" class="lv2-nav-link">Training</a>
+        <a href="wallet.html" class="lv2-nav-link">Wallet</a>
+        <a href="status.html" class="lv2-nav-link">Status</a>
+        <a href="proofs.html" class="lv2-nav-link">Proofs</a>
+        <a href="about.html" class="lv2-nav-link">About</a>
+      </nav>
+
+    <div class="lv2-header-right">
+      <a href="https://wa.me/917397510254" class="lv2-phone" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        +91 73975 10254
+      </a>
+      <a href="choice.html" class="lv2-btn-started">Get Started</a>
+    </div>
+
+    <button class="lv2-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="lv2-mobile-nav" id="lv2MobileNav">
+      <a href="landing.html" class="lv2-mobile-link">Home</a>
+      <a href="index.html" class="lv2-mobile-link active">File Returns</a>
+      <a href="referral-offer.html" class="lv2-mobile-link">Referral Offer</a>
+      <a href="training.html" class="lv2-mobile-link">Training</a>
+      <a href="wallet.html" class="lv2-mobile-link">Wallet</a>
+      <a href="status.html" class="lv2-mobile-link">Status</a>
+      <a href="proofs.html" class="lv2-mobile-link">Proofs</a>
+      <a href="about.html" class="lv2-mobile-link">About</a>
+      <a href="contact.html" class="lv2-mobile-link">Contact</a>
+      <a href="faqs.html" class="lv2-mobile-link">FAQs</a>
+    </nav>
+</header>
 
 <main>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="ix-hero" style="padding: 72px 24px 60px; text-align: center; background: #040d1a;">
+  <div style="max-width: 820px; margin: 0 auto;">
+
+    <div class="ix-hero-badge" data-aos="fade-down">
+      <span class="ix-badge-dot"></span>
+      AI-Powered ITR Filing — FY 2025–26
+    </div>
+
+    <h1 class="ix-hero-h1" data-aos="fade-up" data-aos-delay="60"
+        style="font-size: clamp(2.2rem, 5.5vw, 3.8rem); font-weight: 900; color: #fff; margin: 0 0 18px; letter-spacing: -2px; line-height: 1.06;">
+      File Your ITR Today.<br>
+      <span class="grad-blue">Secure. Accurate. Expert-Reviewed.</span>
+    </h1>
+
+    <p data-aos="fade-up" data-aos-delay="100"
+       style="font-size: 17px; color: rgba(255,255,255,.5); max-width: 560px; margin: 0 auto 36px; line-height: 1.7;">
+      Upload your documents, let our AI extract everything, and get a personalised expert quote on WhatsApp in under 24 hours.
+    </p>
+
+    <div data-aos="fade-up" data-aos-delay="140"
+         style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 50px;">
+      <a href="#taxForm" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1A56DB, #0B2545); border-radius: 14px; color: #fff; font-size: 15px; font-weight: 800; padding: 15px 32px; text-decoration: none; box-shadow: 0 4px 24px rgba(26,86,219,.38); transition: transform .18s, box-shadow .18s;"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 32px rgba(26,86,219,.52)'"
+         onmouseout="this.style.transform='';this.style.boxShadow='0 4px 24px rgba(26,86,219,.38)'">
+        Start Filing Now
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="referral-filing.html" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(26,86,219,.1); border: 1px solid rgba(26,86,219,.28); border-radius: 14px; color: #93c5fd; font-size: 15px; font-weight: 700; padding: 15px 28px; text-decoration: none; transition: background .2s;"
+         onmouseover="this.style.background='rgba(26,86,219,.18)'"
+         onmouseout="this.style.background='rgba(26,86,219,.1)'">
+        Refer 5 friends — File FREE
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Stats strip -->
+    <div data-aos="fade-up" data-aos-delay="180"
+         style="display: flex; gap: 0; justify-content: center; max-width: 680px; margin: 0 auto; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 20px; overflow: hidden;">
+      <div style="flex: 1; padding: 22px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.06);">
+        <div style="font-size: 22px; font-weight: 900; color: #93c5fd; line-height: 1;">8,000</div>
+        <div style="font-size: 10.5px; color: rgba(255,255,255,.38); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;">Happy Families</div>
+      </div>
+      <div style="flex: 1; padding: 22px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.06);">
+        <div style="font-size: 22px; font-weight: 900; color: #93c5fd; line-height: 1;">100%</div>
+        <div style="font-size: 10.5px; color: rgba(255,255,255,.38); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;">Regulatory Compliant</div>
+      </div>
+      <div style="flex: 1; padding: 22px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.06);">
+        <div style="font-size: 22px; font-weight: 900; color: #93c5fd; line-height: 1;">75K</div>
+        <div style="font-size: 10.5px; color: rgba(255,255,255,.38); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;">ITRs Filed</div>
+      </div>
+      <div style="flex: 1; padding: 22px 8px; text-align: center;">
+        <div style="font-size: 22px; font-weight: 900; color: #93c5fd; line-height: 1;">4.9/5</div>
+        <div style="font-size: 10.5px; color: rgba(255,255,255,.38); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;">Customer Rating</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
   <div class="progress"><div id="bar"></div></div>
   <div class="step-label" id="stepLabel">Step 1 of 7</div>
   <form id="taxForm">
     <!-- STEP 1 — Basic Info (Regular Tax Only) -->
     <section class="step active" data-step="1">
       <h2>Regular Tax Filing</h2>
-      <p style="color:#6b7280;margin-bottom:20px">File your ITR now. Want to get free filing? <a href="referral-filing.html" style="color:#2563eb;font-weight:600">Refer 5 friends →</a></p>
+      <p style="color:#6b7280;margin-bottom:20px">File your ITR now. Want to get free filing? <a href="referral-filing.html" style="color:#1A56DB;font-weight:600">Refer 5 friends →</a></p>
 
       <div id="regularForm">
         <div class="user-details">
@@ -101,18 +218,6 @@
       </div>
 
       <div id="extractStatus" class="status"></div>
-
-      <!-- PREMIUM EXTRACTION LOADER -->
-      <div id="extractionLoader" style="display:none;margin-top:16px">
-        <div class="premium-loader">
-          <span class="loader-text">🤖 Extracting data...</span>
-          <div class="loader-dots">
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- STEP 3 — Investment Proofs (upload + details combined) -->
@@ -288,7 +393,13 @@
       <h2>Review Your Details</h2>
       <p class="hint">AI pre-filled from your uploaded documents. Confirm and correct all figures before submitting.</p>
 
-      <h3 class="section-subtitle">Income Details</h3>
+      <h3 class="section-subtitle" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+        Income Details
+        <span style="display:flex;gap:6px;flex-wrap:wrap;">
+          <button type="button" class="dv-verify-btn" onclick="openDocVerify('form16')">📄 Verify Form 16</button>
+          <button type="button" class="dv-verify-btn" onclick="openDocVerify('payslips')">📄 Verify Payslip</button>
+        </span>
+      </h3>
       <div class="grid">
         <label>Gross Salary / CTC (Annual) <input name="gross_salary" type="number" step="0.01" placeholder="₹"></label>
         <label>Basic Salary (Annual) <input name="basic_salary" type="number" placeholder="₹"></label>
@@ -319,27 +430,27 @@
       <div style="margin-top:12px">
         <h4 style="margin:6px 0 10px">Uploaded proofs & detailed entries</h4>
         <div class="proof-list">
-          <h5>Home Loans</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Home Loans <button type="button" class="dv-verify-btn" onclick="openDocVerify('docHome')">📄 Verify</button></h5>
           <div id="homeLoanList"></div>
           <button type="button" class="add-btn" onclick="addHomeLoan()">+ Add Home Loan</button>
         </div>
         <div class="proof-list">
-          <h5>Life Insurance</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Life Insurance <button type="button" class="dv-verify-btn" onclick="openDocVerify('docInsLife')">📄 Verify</button></h5>
           <div id="lifeInsList"></div>
           <button type="button" class="add-btn" onclick="addInsurance('lifeInsList','life')">+ Add Policy</button>
         </div>
         <div class="proof-list">
-          <h5>Health Insurance — Self</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Health Insurance — Self <button type="button" class="dv-verify-btn" onclick="openDocVerify('docInsHealth')">📄 Verify</button></h5>
           <div id="healthSelfList"></div>
           <button type="button" class="add-btn" onclick="addInsurance('healthSelfList','health_self')">+ Add Policy</button>
         </div>
         <div class="proof-list">
-          <h5>Health Insurance — Parents</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Health Insurance — Parents <button type="button" class="dv-verify-btn" onclick="openDocVerify('docInsHealth')">📄 Verify</button></h5>
           <div id="healthParentList"></div>
           <button type="button" class="add-btn" onclick="addInsurance('healthParentList','health_parent')">+ Add Policy</button>
         </div>
         <div class="proof-list">
-          <h5>Donations (80G)</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Donations (80G) <button type="button" class="dv-verify-btn" onclick="openDocVerify('docDon')">📄 Verify</button></h5>
           <div id="donationList"></div>
           <button type="button" class="add-btn" onclick="addDonation()">+ Add Donation</button>
         </div>
@@ -401,7 +512,7 @@
         <li>Best regime recommendation</li>
         <li>50% upfront + 50% after refund credited</li>
       </ul>
-    
+
       <div class="consent-row">
         <label class="consent-row"><input type="checkbox" id="consent" required> <span>I consent to data processing & WhatsApp communication.</span></label>
       </div>
@@ -418,7 +529,7 @@
         <p>Personal Guidance and Tax awareness Campaign will be conducted by our Authorised experts in your community / Society / Corporate / etc for larger audiences (50+).</p>
       </div>
 
-      <div class="quote-section" id="quoteSection" style="margin-top:24px">
+      <div class="quote-section" id="quoteSection" style="display:none;margin-top:24px">
         <h3>Your Tax Refund Options</h3>
         <p class="hint">Select how you'd like to receive your refund:</p>
 
@@ -476,6 +587,18 @@
       </div>
     </section>
 
+    <!-- GLOBAL EXTRACTION LOADER — visible across all steps -->
+    <div id="extractionLoader" style="display:none;margin-bottom:16px">
+      <div class="premium-loader">
+        <span class="loader-text">🤖 Extracting data...</span>
+        <div class="loader-dots">
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="nav">
       <button type="button" id="prev">Back</button>
       <button type="button" id="next">Next</button>
@@ -484,14 +607,102 @@
   </form>
 </main>
 
-<footer id="site-footer"></footer>
-
-<!-- Winners widget (always visible) -->
-<div id="winnersWidget" class="winners-widget">
-  <h4>Weekly Winners</h4>
-  <ul id="winnersList"><li>Loading...</li></ul>
-  <a href="#" id="seeAllWinners">See all</a>
+<!-- ═══════════════════ DOCUMENT VERIFY MODAL ═══════════════════ -->
+<div id="docVerifyModal" style="display:none">
+  <div class="dv-overlay" onclick="closeDocVerify()"></div>
+  <div class="dv-panel">
+    <div class="dv-header">
+      <span class="dv-title">📄 Verify Extracted Data</span>
+      <button class="dv-close" onclick="closeDocVerify()">✕</button>
+    </div>
+    <div class="dv-body">
+      <!-- Left: file viewer -->
+      <div class="dv-viewer">
+        <div class="dv-tabs" id="dvTabs"></div>
+        <div class="dv-frame" id="dvFrame"></div>
+      </div>
+      <!-- Right: extracted fields -->
+      <div class="dv-fields">
+        <div class="dv-fields-title">Extracted Values</div>
+        <div id="dvFieldsInner"></div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="lv2-footer">
+  <div class="lv2-footer-top">
+    <div class="lv2-footer-brand">
+      <a href="landing.html" class="lv2-footer-logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#1A56DB"/>
+          <path d="M20 10L10 15v10l10 5 10-5V15L20 10z" fill="#10B981"/>
+          <path d="M16 20l3 3 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="lv2-footer-brand-text">
+          <div class="lv2-footer-brand-name">
+            <span class="lv2-footer-brand-fair">FAIRTAX</span>
+            <span class="lv2-footer-brand-advisors">ADVISORS</span>
+          </div>
+          <div class="lv2-footer-brand-tagline">Your Taxes. Our Expertise.</div>
+        </div>
+      </a>
+      <p class="lv2-footer-desc">AI-powered ITR filing platform trusted by 2 lakh+ Indians. Accurate, secure, and expert-assisted.</p>
+      <div class="lv2-footer-contact">
+        <a href="https://wa.me/917397510254" class="lv2-footer-contact-item" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          +91 7397 510 254
+        </a>
+        <a href="mailto:fairtaxadvisors@gmail.com" class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          fairtaxadvisors@gmail.com
+        </a>
+        <span class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Mumbai, Maharashtra, India
+        </span>
+      </div>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="landing.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="training.html">Training</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="proofs.html">Proofs & Grievance</a></li>
+        <li><a href="status.html">Filing Status</a></li>
+        <li><a href="referral-offer.html">Refer & Earn</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lv2-footer-bottom">
+    <div class="lv2-footer-copy">© 2024-2025 FairTax Advisors. All rights reserved. | Secure • AI-Powered • Expert-Reviewed</div>
+    <div class="lv2-footer-badges">
+      <span class="lv2-footer-badge">Secure</span>
+      <span class="lv2-footer-badge">AI-Powered</span>
+      <span class="lv2-footer-badge">Expert Verified</span>
+    </div>
+  </div>
+</footer>
 
 <!-- Camera modal for capturing photos into file inputs -->
 <div id="cameraModal" class="modal" style="display:none">
@@ -512,16 +723,24 @@
     <h2 class="joker-title">CONGRATULATIONS!</h2>
     <p class="joker-msg">You are the <b>6th Person</b> — your fees is <b>absolutely FREE!</b></p>
     <div class="joker-code" id="jokerRevealCode">—</div>
-    <p style="color:#c4b5fd;margin:10px 0;font-size:13px">Share your referral code and earn up to <b>₹15,000</b> cashback!</p>
+    <p style="color:#93C5FD;margin:10px 0;font-size:13px">Share your referral code and earn up to <b>₹15,000</b> cashback!</p>
     <button class="joker-close-btn" onclick="document.getElementById('jokerModal').style.display='none'">Claim My Free Filing</button>
+    <button onclick="localStorage.removeItem('referral_code');localStorage.removeItem('submission_id');localStorage.removeItem('session_active');document.getElementById('jokerModal').style.display='none';window.location.reload();" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:12px;cursor:pointer;margin-top:10px;text-decoration:underline;">Not you? Start a fresh filing →</button>
   </div>
 </div>
 
 <!-- Freelancer floating CTA -->
 <a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
-  <span class="fl-star">&#11088;</span>
+  <span class="fl-star">⭐</span>
   <span class="fl-text">Why not join us<br>as a Freelancer?</span>
 </a>
+
+<!-- Winners widget -->
+<div id="winnersWidget" class="winners-widget">
+  <h4>Weekly Winners</h4>
+  <ul id="winnersList"><li>Loading...</li></ul>
+  <a href="referral-offer.html">See all</a>
+</div>
 
 <script src="app.js?v=5"></script>
 
@@ -532,36 +751,47 @@ var ftHidden = document.querySelector('[name="filing_type"]');
 if (ftHidden) ftHidden.value = 'regular';
 </script>
 
-<!-- Load header and footer components -->
+<!-- Mobile hamburger -->
 <script>
-fetch('components/header.html')
-  .then(r => r.text())
-  .then(html => document.getElementById('site-header').innerHTML = html)
-  .catch(e => console.error('Failed to load header:', e));
-
-fetch('components/footer.html')
-  .then(r => r.text())
-  .then(html => document.getElementById('site-footer').innerHTML = html)
-  .catch(e => console.error('Failed to load footer:', e));
+  (function() {
+    const btn = document.querySelector('.lv2-hamburger');
+    const nav = document.getElementById('lv2MobileNav');
+    if (!btn || !nav) return;
+    btn.addEventListener('click', function() {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.classList.toggle('open');
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('.lv2-mobile-link').forEach(l => {
+      l.addEventListener('click', () => {
+        btn.setAttribute('aria-expanded', 'false');
+        btn.classList.remove('open');
+        nav.classList.remove('open');
+      });
+    });
+  })();
 </script>
 
-<!-- Ensure header/nav spacing is set even if app.js is cached -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ once: true, duration: 600 });</script>
+
 <script>
-(function(){
-  function updateHeaderSpacing(){
-    try{
-      var header=document.querySelector('header');
-      var nav=document.querySelector('.site-nav');
-      var topOffset=0;
-      if(header) topOffset+=header.offsetHeight;
-      if(nav) topOffset+=nav.offsetHeight;
-      document.documentElement.style.setProperty('--site-top-offset', topOffset+'px');
-      document.documentElement.style.setProperty('--main-top-offset', (topOffset+12)+'px');
-    }catch(e){}
-  }
-  if(document.readyState==='loading'){window.addEventListener('DOMContentLoaded',updateHeaderSpacing);}else{updateHeaderSpacing();}
-  window.addEventListener('resize',updateHeaderSpacing);
-})();
+async function loadWinners() {
+  try {
+    const r = await fetch('https://fairtax-backend.onrender.com/api/winners');
+    const j = await r.json();
+    const list = document.getElementById('winnersList');
+    list.innerHTML = '';
+    (j.winners || []).forEach(w => {
+      const li = document.createElement('li');
+      li.textContent = `${w.name} — ${w.reward}`;
+      list.appendChild(li);
+    });
+  } catch(e) { /* ignore */ }
+}
+loadWinners();
 </script>
+
 </body>
 </html>

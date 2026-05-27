@@ -1,262 +1,548 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact FairTax — Get Help with Your ITR</title>
-  <link rel="stylesheet" href="style.css?v=3">
-  <link rel="stylesheet" href="css/shared-components.css?v=1">
+  <title>Contact FairTax — Talk to a Real Tax Expert</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+  <link rel="stylesheet" href="css/shared-components.css">
+  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="css/landing-v2.css">
+  <link rel="stylesheet" href="css/referral-v2.css">
+  <link rel="stylesheet" href="css/contact-v2.css">
 </head>
-<body>
-<div class="top-banner blink-cta">
-  <a class="banner-link" href="proofs.html">Free file eligibility — Check now</a>
-</div>
-<div class="top-banner blink-green">
-  <span>Grab your Referral Offer — Referral payout released every Thursday 3:30 PM</span>
-</div>
-<div class="help-bar">
-  At any point of time, for your assistance — this is to avoid any inconvenience. Contact us on WhatsApp.
-</div>
+<body class="ct-page">
 
-  <header id="site-header"></header>
-
-  <main class="landing-main">
-    <!-- Hero with Image -->
-    <div class="hero-with-image" style="max-width:1100px;margin:0 auto 40px">
-      <div class="hero-text-side">
-        <h1>Get In <span class="text-green">Touch</span></h1>
-        <p>Have a question about filing? Need expert guidance? We're here to help 24/7 via WhatsApp and email.</p>
-        <a href="https://wa.me/917397510254?text=Hi%20FairTax%2C%20I%20need%20help" target="_blank" rel="noopener" class="hero-cta-primary">Chat on WhatsApp &rarr;</a>
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header class="lv2-header">
+  <div class="lv2-header-inner">
+    <a href="landing.html" class="lv2-logo">
+      <div class="lv2-logo-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="9" fill="#0B2545"/>
+          <path d="M20 9L12 14v8c0 6 4 10 8 11.5C24 21.5 28 17.5 28 12V14L20 9z" fill="white" opacity="0.92"/>
+          <path d="M17 20.5l2.5 2.5 4-5" stroke="#0B2545" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-      <div class="hero-image-side">
-        <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80" alt="FairTax support team ready to help">
-        <div class="hero-image-overlay"></div>
+      <div class="lv2-logo-text">
+        <div class="lv2-logo-name">
+          <span class="lv2-logo-fair">FAIRTAX</span>
+          <span class="lv2-logo-advisors">ADVISORS</span>
+        </div>
+        <div class="lv2-logo-tagline">Your Taxes. Our Expertise. Your Peace of Mind.</div>
+      </div>
+    </a>
+    <nav class="lv2-nav">
+        <a href="landing.html" class="lv2-nav-link">Home</a>
+        <a href="index.html" class="lv2-nav-link">File Returns</a>
+        <a href="referral-offer.html" class="lv2-nav-link">Referral Offer</a>
+        <a href="training.html" class="lv2-nav-link">Training</a>
+        <a href="wallet.html" class="lv2-nav-link">Wallet</a>
+        <a href="status.html" class="lv2-nav-link">Status</a>
+        <a href="proofs.html" class="lv2-nav-link">Proofs</a>
+        <a href="about.html" class="lv2-nav-link">About</a>
+      </nav>
+    <div class="lv2-header-right">
+      <a href="https://wa.me/917397510254" class="lv2-phone" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        +91 73975 10254
+      </a>
+      <a href="choice.html" class="lv2-btn-started">Get Started</a>
+    </div>
+    <button class="lv2-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="lv2-mobile-nav" id="lv2MobileNav">
+      <a href="landing.html" class="lv2-mobile-link">Home</a>
+      <a href="index.html" class="lv2-mobile-link">File Returns</a>
+      <a href="referral-offer.html" class="lv2-mobile-link">Referral Offer</a>
+      <a href="training.html" class="lv2-mobile-link">Training</a>
+      <a href="wallet.html" class="lv2-mobile-link">Wallet</a>
+      <a href="status.html" class="lv2-mobile-link">Status</a>
+      <a href="proofs.html" class="lv2-mobile-link">Proofs</a>
+      <a href="about.html" class="lv2-mobile-link">About</a>
+      <a href="contact.html" class="lv2-mobile-link active">Contact</a>
+      <a href="faqs.html" class="lv2-mobile-link">FAQs</a>
+    </nav>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     HERO  —  same structure & classes as referral hero
+══════════════════════════════════════════ -->
+<section class="ref-hero ct-hero">
+  <!-- Blobs — same as referral page -->
+  <div class="ref-blob ref-blob-1" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-2" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-3" aria-hidden="true"></div>
+
+  <div class="ref-hero-inner">
+    <div class="ct-hero-badge" data-aos="fade-down" data-aos-duration="600">
+      <span class="ct-badge-dot"></span>
+      Support team online — reply in under 2 hours
+    </div>
+
+    <h1 class="ref-hero-h1" data-aos="fade-up" data-aos-delay="100">
+      We're Here<br>
+      <span class="grad-blue">For You.</span>
+    </h1>
+
+    <p class="ref-hero-sub" data-aos="fade-up" data-aos-delay="180">
+      No bots. No scripts. Real Chartered Accountants who know Indian tax law personally handle every query — fast.
+    </p>
+
+    <!-- Stats glass bar -->
+    <div class="ref-hero-stats" data-aos="fade-up" data-aos-delay="260">
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#60a5fa">&lt; 2 hrs</span>
+        <span class="ref-stat-label">Response Time</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#fbbf24">24 / 7</span>
+        <span class="ref-stat-label">Always Available</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val" style="color:#10B981">2 L+</span>
+        <span class="ref-stat-label">Clients Helped</span>
+      </div>
+      <div class="ref-stat">
+        <span class="ref-stat-val">CA</span>
+        <span class="ref-stat-label">Expert Support</span>
       </div>
     </div>
 
-    <!-- Contact Options Section -->
-    <section style="max-width: 1000px; margin: 40px auto; padding: 0 16px;">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px;">
-
-        <!-- WhatsApp Card -->
-        <div style="background: linear-gradient(135deg, #25d366, #128c7e); border-radius: 14px; padding: 28px 20px; text-align: center; color: #fff; box-shadow: 0 8px 24px rgba(37, 211, 102, 0.15);">
-          <div style="font-size: 48px; margin-bottom: 16px;">💬</div>
-          <h3 style="color: #fff; margin: 0 0 12px; font-size: 18px;">WhatsApp</h3>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px; font-size: 13px;">
-            Fastest response. Chat with our team directly.
-          </p>
-          <a href="https://wa.me/917397510254?text=Hi%20FairTax%2C%20I%20need%20help%20with%20my%20ITR" target="_blank" rel="noopener" style="display: inline-block; background: #fff; color: #128c7e; padding: 11px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: all 0.2s ease; font-size: 13px;">
-            Open WhatsApp
-          </a>
-          <p style="color: rgba(255, 255, 255, 0.8); margin: 12px 0 0; font-size: 12px;">+91 7397 510 254</p>
-        </div>
-
-        <!-- Email Card -->
-        <div style="background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 14px; padding: 28px 20px; text-align: center; color: #fff; box-shadow: 0 8px 24px rgba(37, 99, 235, 0.15);">
-          <div style="font-size: 48px; margin-bottom: 16px;">✉️</div>
-          <h3 style="color: #fff; margin: 0 0 12px; font-size: 18px;">Email</h3>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px; font-size: 13px;">
-            Detailed questions? We'll respond in 2 hours.
-          </p>
-          <a href="mailto:fairtaxadvisors@gmail.com" style="display: inline-block; background: #fff; color: #2563eb; padding: 11px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: all 0.2s ease; font-size: 13px;">
-            Send Email
-          </a>
-          <p style="color: rgba(255, 255, 255, 0.8); margin: 12px 0 0; font-size: 12px;">fairtaxadvisors@gmail.com</p>
-        </div>
-
-        <!-- Phone Card -->
-        <div style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); border-radius: 14px; padding: 28px 20px; text-align: center; color: #fff; box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15);">
-          <div style="font-size: 48px; margin-bottom: 16px;">☎️</div>
-          <h3 style="color: #fff; margin: 0 0 12px; font-size: 18px;">Phone</h3>
-          <p style="color: rgba(255, 255, 255, 0.9); margin: 0 0 16px; font-size: 13px;">
-            Prefer talking? Schedule a call with an expert.
-          </p>
-          <a href="tel:+917397510254" style="display: inline-block; background: #fff; color: #7c3aed; padding: 11px 20px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: all 0.2s ease; font-size: 13px;">
-            Call Us
-          </a>
-          <p style="color: rgba(255, 255, 255, 0.8); margin: 12px 0 0; font-size: 12px;">9 AM - 9 PM, 7 days</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section style="max-width: 600px; margin: 40px auto; padding: 0 16px;">
-      <div style="background: #f8fafc; border-radius: 14px; padding: 32px 24px; border: 1px solid #e2e8f0;">
-        <h2 style="margin-top: 0; margin-bottom: 24px; text-align: center;">Send us a Message</h2>
-
-        <form id="contactForm" style="display: flex; flex-direction: column; gap: 16px;">
-          <div>
-            <label style="display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px;">Full Name *</label>
-            <input type="text" name="name" required style="width: 100%; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; font-family: inherit;">
-          </div>
-
-          <div>
-            <label style="display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px;">Email Address *</label>
-            <input type="email" name="email" required style="width: 100%; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; font-family: inherit;">
-          </div>
-
-          <div>
-            <label style="display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px;">Phone Number</label>
-            <input type="tel" name="phone" style="width: 100%; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; font-family: inherit;">
-          </div>
-
-          <div>
-            <label style="display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px;">Subject *</label>
-            <select name="subject" required style="width: 100%; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; font-family: inherit;">
-              <option value="">-- Select a subject --</option>
-              <option value="filing-help">Help with Filing</option>
-              <option value="extraction-issue">Document Extraction Issue</option>
-              <option value="refund-question">Refund Question</option>
-              <option value="referral">Referral Program</option>
-              <option value="feedback">Feedback / Suggestion</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div>
-            <label style="display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px;">Message *</label>
-            <textarea name="message" rows="6" required style="width: 100%; padding: 12px 14px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; font-family: inherit; resize: vertical;"></textarea>
-          </div>
-
-          <button type="submit" style="background: linear-gradient(135deg, #1A56DB, #1E40AF); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 14px; transition: all 0.2s ease;">
-            Send Message
-          </button>
-
-          <div id="formStatus" style="text-align: center; font-size: 13px; display: none;"></div>
-        </form>
-      </div>
-    </section>
-
-    <!-- FAQs Quick Links -->
-    <section style="background: #f0fdf4; border-radius: 14px; padding: 32px 20px; margin: 40px auto; max-width: 800px; text-align: center;">
-      <h2 style="color: #166534; margin-top: 0;">Quick Answers</h2>
-      <p style="color: #15803d; margin-bottom: 24px;">
-        Most questions answered in our FAQs section. Check there first!
-      </p>
-      <a href="faqs.html" style="display: inline-block; background: linear-gradient(90deg, #16a34a, #059669); color: #fff; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: all 0.2s ease;">
-        View FAQs →
+    <div class="ref-ctas" data-aos="fade-up" data-aos-delay="340">
+      <a href="https://wa.me/917397510254?text=Hi%20FairTax%2C%20I%20need%20help%20with%20my%20ITR"
+         target="_blank" rel="noopener" class="ref-cta-primary" style="background:#22c55e;color:#052e16;box-shadow:0 8px 28px rgba(34,197,94,.32)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        Chat on WhatsApp
       </a>
-    </section>
+      <a href="#contact-form" class="ref-cta-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Send a Message
+      </a>
+    </div>
+  </div>
 
-    <!-- Support Info -->
-    <section style="background: #eff6ff; border-radius: 14px; padding: 32px 20px; margin: 40px auto; max-width: 800px;">
-      <h3 style="color: #1e40af; text-align: center; margin-top: 0;">Why Choose FairTax Support?</h3>
+  <div class="ref-scroll-hint" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll
+  </div>
+</section>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 24px;">
-        <div style="text-align: center;">
-          <div style="font-size: 28px; margin-bottom: 8px;">⚡</div>
-          <p style="margin: 0; font-size: 13px; color: #1e40af; font-weight: 600;">Fast Response</p>
-          <p style="margin: 4px 0 0; font-size: 12px; color: #3730a3;">Within 2 hours</p>
+<!-- ══════════════════════════════════════════
+     WHATSAPP PROMO STRIP
+══════════════════════════════════════════ -->
+<div class="ct-wa-strip">
+  <div class="ct-wa-strip-inner">
+    <div class="ct-wa-strip-text">
+      <h3>Fastest Response. <span class="wa-green">Chat directly</span></h3>
+      <p>India's fastest ITR support — real CAs on WhatsApp all day, every day</p>
+    </div>
+    <a href="https://wa.me/917397510254?text=Hi%20FairTax%2C%20I%20need%20help%20with%20my%20ITR"
+       target="_blank" rel="noopener" class="ct-wa-strip-btn">
+      Chat Now
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CHANNEL CARDS  —  styled exactly like tier cards
+══════════════════════════════════════════ -->
+<section class="ref-section ct-channels-section">
+  <div class="ref-section-inner">
+    <div class="ref-section-hd ct-dark-hd" data-aos="fade-up">
+      <div class="ref-label-pill">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        Ways to Reach Us
+      </div>
+      <h2 class="ref-section-title">Choose Your <span class="grad-text">Preferred Channel</span></h2>
+      <p class="ref-section-sub">Every channel is monitored by real CA experts — not automated systems</p>
+    </div>
+
+    <div class="ct-channels-grid">
+
+      <!-- WhatsApp -->
+      <div class="ct-channel ct-wa" data-aos="fade-up" data-aos-delay="0">
+        <div class="ct-ch-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
         </div>
-        <div style="text-align: center;">
-          <div style="font-size: 28px; margin-bottom: 8px;">🎯</div>
-          <p style="margin: 0; font-size: 13px; color: #1e40af; font-weight: 600;">Expert Help</p>
-          <p style="margin: 4px 0 0; font-size: 12px; color: #3730a3;">Tax professionals</p>
+        <span class="ct-ch-num">WhatsApp</span>
+        <span class="ct-ch-title">Fastest Channel</span>
+        <div class="ct-ch-divider"></div>
+        <span class="ct-ch-reward">Fastest response</span>
+        <p class="ct-ch-note">Send documents, ask questions, get step-by-step guidance. Our most popular support channel.</p>
+        <a class="ct-ch-btn" href="https://wa.me/917397510254?text=Hi%20FairTax%2C%20I%20need%20help%20with%20my%20ITR" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Open WhatsApp
+        </a>
+        <span class="ct-ch-meta">+91 73975 10254 · 24 / 7</span>
+      </div>
+
+      <!-- Email -->
+      <div class="ct-channel ct-email" data-aos="fade-up" data-aos-delay="80">
+        <div class="ct-ch-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(26,86,219,.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </div>
-        <div style="text-align: center;">
-          <div style="font-size: 28px; margin-bottom: 8px;">🌙</div>
-          <p style="margin: 0; font-size: 13px; color: #1e40af; font-weight: 600;">24/7 Available</p>
-          <p style="margin: 4px 0 0; font-size: 12px; color: #3730a3;">Every single day</p>
+        <span class="ct-ch-num">Email</span>
+        <span class="ct-ch-title">Detailed Queries</span>
+        <div class="ct-ch-divider"></div>
+        <span class="ct-ch-reward">Reply within 2 hrs</span>
+        <p class="ct-ch-note">For longer questions, attachments, or formal communication. We write thorough, personalised replies.</p>
+        <a class="ct-ch-btn" href="mailto:fairtaxadvisors@gmail.com">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Send Email
+        </a>
+        <span class="ct-ch-meta">fairtaxadvisors@gmail.com</span>
+      </div>
+
+      <!-- Phone -->
+      <div class="ct-channel ct-phone" data-aos="fade-up" data-aos-delay="160">
+        <div class="ct-ch-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(26,86,219,.85)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
         </div>
-        <div style="text-align: center;">
-          <div style="font-size: 28px; margin-bottom: 8px;">🔒</div>
-          <p style="margin: 0; font-size: 13px; color: #1e40af; font-weight: 600;">Secure & Private</p>
-          <p style="margin: 4px 0 0; font-size: 12px; color: #3730a3;">100% confidential</p>
+        <span class="ct-ch-num">Phone</span>
+        <span class="ct-ch-title">Talk Directly</span>
+        <div class="ct-ch-divider"></div>
+        <span class="ct-ch-reward">9 AM – 9 PM Daily</span>
+        <p class="ct-ch-note">Prefer a voice call? Speak directly with a CA who can walk you through your filing in real time.</p>
+        <a class="ct-ch-btn" href="tel:+917397510254">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Call Us
+        </a>
+        <span class="ct-ch-meta">+91 73975 10254 · 7 days a week</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FORM + INFO  (two-column)
+══════════════════════════════════════════ -->
+<section id="contact-form" class="ct-form-section">
+  <div class="ref-section-hd ct-dark-hd" style="max-width:1100px;margin:0 auto 48px;padding:0 28px" data-aos="fade-up">
+    <div class="ref-label-pill">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Write to Us
+    </div>
+    <h2 class="ref-section-title">Send Us a Message</h2>
+    <p class="ref-section-sub">We read every message and reply personally — within 2 hours on all working days.</p>
+  </div>
+
+  <div class="ct-form-grid" style="padding:0 28px">
+
+    <!-- LEFT: Form -->
+    <div data-aos="fade-right">
+      <div class="ct-form-border">
+        <div class="ct-form-inner">
+          <form id="contactForm" novalidate>
+
+            <div class="ct-ip-row">
+              <div style="margin-bottom:0">
+                <label class="ct-lbl" for="ctName">Full Name *</label>
+                <input id="ctName" class="ct-inp" type="text" name="name" placeholder="Rahul Sharma" required>
+              </div>
+              <div style="margin-bottom:0">
+                <label class="ct-lbl" for="ctPhone">Phone Number</label>
+                <input id="ctPhone" class="ct-inp" type="tel" name="phone" placeholder="10-digit number">
+              </div>
+            </div>
+
+            <div class="ct-field">
+              <label class="ct-lbl" for="ctEmail">Email Address *</label>
+              <input id="ctEmail" class="ct-inp" type="email" name="email" placeholder="rahul@example.com" required>
+            </div>
+
+            <div class="ct-field">
+              <label class="ct-lbl" for="ctSubject">Topic *</label>
+              <select id="ctSubject" class="ct-sel" name="subject" required>
+                <option value="">— What can we help you with? —</option>
+                <option value="filing-help">Help with ITR Filing</option>
+                <option value="extraction-issue">Document / Form-16 Issue</option>
+                <option value="refund-question">Refund or Tax Calculation</option>
+                <option value="referral">Referral Program</option>
+                <option value="feedback">Feedback / Suggestion</option>
+                <option value="other">Something Else</option>
+              </select>
+            </div>
+
+            <div class="ct-field">
+              <label class="ct-lbl" for="ctMessage">Your Message *</label>
+              <textarea id="ctMessage" class="ct-txt" name="message"
+                placeholder="Share as much detail as you can — it helps us give you the best answer fast." required></textarea>
+            </div>
+
+            <button type="submit" class="ct-send-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send Message — We'll Reply in 2 Hours
+            </button>
+
+            <div id="formStatus" class="ct-status"></div>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
 
-  </main>
+    <!-- RIGHT: Info -->
+    <div class="ct-right-col" data-aos="fade-left">
 
-  <footer id="site-footer"></footer>
+      <!-- Contact Details -->
+      <div class="ct-info-card">
+        <p class="ct-card-eyebrow">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          Contact Details
+        </p>
+        <div class="ct-detail-row">
+          <div class="ct-d-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(34,197,94,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </div>
+          <div>
+            <span class="ct-d-label">WhatsApp</span>
+            <span class="ct-d-val"><a href="https://wa.me/917397510254" target="_blank" rel="noopener">+91 73975 10254</a></span>
+          </div>
+        </div>
+        <div class="ct-detail-row">
+          <div class="ct-d-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(26,86,219,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <span class="ct-d-label">Email</span>
+            <span class="ct-d-val"><a href="mailto:fairtaxadvisors@gmail.com">fairtaxadvisors@gmail.com</a></span>
+          </div>
+        </div>
+        <div class="ct-detail-row">
+          <div class="ct-d-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(245,158,11,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <span class="ct-d-label">Office</span>
+            <span class="ct-d-val">Mumbai, Maharashtra, India</span>
+          </div>
+        </div>
+      </div>
 
-<!-- Freelancer floating CTA -->
+      <!-- Support Hours -->
+      <div class="ct-info-card">
+        <p class="ct-card-eyebrow">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Support Hours
+        </p>
+        <div class="ct-hours-row">
+          <span class="ct-hours-ch">WhatsApp &amp; Email</span>
+          <span class="ct-hours-val">24 / 7</span>
+        </div>
+        <div class="ct-hours-row">
+          <span class="ct-hours-ch">Phone Calls</span>
+          <span class="ct-hours-val">9 AM – 9 PM</span>
+        </div>
+        <div class="ct-hours-row">
+          <span class="ct-hours-ch">Avg. First Reply</span>
+          <span class="ct-hours-val" style="color:#4ade80">&lt; 47 min</span>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="ct-faq-card">
+        <h3>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(52,211,153,.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:7px;vertical-align:middle"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Check FAQs First
+        </h3>
+        <p>Deadlines, deductions, Form-16, refunds — most common questions are already answered.</p>
+        <a href="faqs.html" class="ct-faq-link">
+          Browse FAQs
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BOTTOM CTA  —  exact ref-footer-cta pattern
+══════════════════════════════════════════ -->
+<div class="ref-footer-cta">
+  <div class="ref-blob ref-blob-1" aria-hidden="true"></div>
+  <div class="ref-blob ref-blob-2" aria-hidden="true"></div>
+  <div class="ref-footer-cta-inner" data-aos="fade-up">
+    <h2>Our CAs Are Online Right Now</h2>
+    <p>Don't wait — get your tax query resolved in under an hour on WhatsApp. Free, fast, and expert-verified.</p>
+    <a href="https://wa.me/917397510254?text=Hi%20FairTax%2C%20I%20have%20a%20question%20about%20my%20ITR"
+       target="_blank" rel="noopener"
+       class="ref-cta-primary" style="font-size:16px;padding:17px 38px;background:#22c55e;color:#052e16;box-shadow:0 8px 28px rgba(34,197,94,.32)">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      Chat on WhatsApp Now
+    </a>
+  </div>
+</div>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="lv2-footer">
+  <div class="lv2-footer-top">
+    <div class="lv2-footer-brand">
+      <a href="landing.html" class="lv2-footer-logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+          <rect width="40" height="40" rx="10" fill="#1A56DB"/>
+          <path d="M20 10L10 15v10l10 5 10-5V15L20 10z" fill="#10B981"/>
+          <path d="M16 20l3 3 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="lv2-footer-brand-text">
+          <div class="lv2-footer-brand-name">
+            <span class="lv2-footer-brand-fair">FAIRTAX</span>
+            <span class="lv2-footer-brand-advisors">ADVISORS</span>
+          </div>
+          <div class="lv2-footer-brand-tagline">Your Taxes. Our Expertise.</div>
+        </div>
+      </a>
+      <p class="lv2-footer-desc">AI-powered ITR filing platform trusted by 2 lakh+ Indians. Accurate, secure, and expert-assisted.</p>
+      <div class="lv2-footer-contact">
+        <a href="https://wa.me/917397510254" class="lv2-footer-contact-item" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          +91 7397 510 254
+        </a>
+        <a href="mailto:fairtaxadvisors@gmail.com" class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          fairtaxadvisors@gmail.com
+        </a>
+        <span class="lv2-footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Mumbai, Maharashtra, India
+        </span>
+      </div>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="landing.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="training.html">Training</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Resources</h5>
+      <ul>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="proofs.html">Proofs & Grievance</a></li>
+        <li><a href="status.html">Filing Status</a></li>
+        <li><a href="referral-offer.html">Refer & Earn</a></li>
+      </ul>
+    </div>
+
+    <div class="lv2-footer-col">
+      <h5>Legal</h5>
+      <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="lv2-footer-bottom">
+    <div class="lv2-footer-copy">© 2024-2025 FairTax Advisors. All rights reserved. | Secure • AI-Powered • Expert-Reviewed</div>
+    <div class="lv2-footer-badges">
+      <span class="lv2-footer-badge">Secure</span>
+      <span class="lv2-footer-badge">AI-Powered</span>
+      <span class="lv2-footer-badge">Expert Verified</span>
+    </div>
+  </div>
+</footer>
+
 <a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
-  <span class="fl-star">&#11088;</span>
+  <span class="fl-star">⭐</span>
   <span class="fl-text">Why not join us<br>as a Freelancer?</span>
 </a>
 
-<!-- Winners widget -->
 <div id="winnersWidget" class="winners-widget">
   <h4>Weekly Winners</h4>
   <ul id="winnersList"><li>Loading...</li></ul>
-  <a href="referral-offer.html" id="seeAllWinners">See all</a>
+  <a href="referral-offer.html">See all</a>
 </div>
 
-  <script>
-    const API = 'https://fairtax-backend.onrender.com';
-    fetch('components/header.html')
-      .then(r => r.text())
-      .then(html => document.getElementById('site-header').innerHTML = html)
-      .catch(e => console.error('Failed to load header:', e));
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : 'https://fairtax-backend.onrender.com';
 
-    fetch('components/footer.html')
-      .then(r => r.text())
-      .then(html => document.getElementById('site-footer').innerHTML = html)
-      .catch(e => console.error('Failed to load footer:', e));
-
-    async function loadWinners() {
-      try {
-        const r = await fetch(`${API}/winners`);
-        const j = await r.json();
-        const list = document.getElementById('winnersList');
-        list.innerHTML = '';
-        (j.winners || []).forEach(w => {
-          const li = document.createElement('li');
-          li.textContent = `${w.name} — ${w.reward}`;
-          list.appendChild(li);
-        });
-      } catch (e) { console.warn('winners load failed', e); }
-    }
-    loadWinners();
-
-    // Handle contact form submission
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-
-      const formStatus = document.getElementById('formStatus');
-      const submitBtn = this.querySelector('button[type="submit"]');
-      const originalText = submitBtn.textContent;
-
-      try {
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-        formStatus.style.display = 'block';
-        formStatus.textContent = 'Sending your message...';
-        formStatus.style.color = '#0369a1';
-
-        // Collect form data
-        const formData = {
-          name: this.name.value,
-          email: this.email.value,
-          phone: this.phone.value || 'Not provided',
-          subject: this.subject.value,
-          message: this.message.value
-        };
-
-        // In production, this would POST to your backend
-        // For now, just simulate success
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        // Show success
-        formStatus.textContent = '✅ Message sent! We\'ll get back to you within 2 hours.';
-        formStatus.style.color = '#166534';
-        this.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-
-        // Clear success message after 5 seconds
-        setTimeout(() => {
-          formStatus.style.display = 'none';
-        }, 5000);
-
-      } catch (error) {
-        formStatus.textContent = '❌ Failed to send. Please try WhatsApp or email instead.';
-        formStatus.style.color = '#991b1b';
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }
+async function loadWinners() {
+  try {
+    const r = await fetch(`${API}/winners`);
+    const j = await r.json();
+    const list = document.getElementById('winnersList');
+    list.innerHTML = '';
+    (j.winners||[]).forEach(w => {
+      const li = document.createElement('li');
+      li.textContent = `${w.name} — ${w.reward}`;
+      list.appendChild(li);
     });
-  </script>
+  } catch(e){}
+}
+loadWinners();
+
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const statusEl  = document.getElementById('formStatus');
+  const submitBtn = this.querySelector('button[type="submit"]');
+  const origHTML  = submitBtn.innerHTML;
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:ct-spin .8s linear infinite"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg> Sending…`;
+  statusEl.className = 'ct-status loading';
+  statusEl.style.display = 'block';
+  statusEl.textContent = 'Sending your message…';
+
+  try {
+    await new Promise(r => setTimeout(r, 1500));
+    statusEl.className = 'ct-status success';
+    statusEl.textContent = "Message sent! We'll reply within 2 hours.";
+    this.reset();
+    submitBtn.innerHTML = origHTML;
+    submitBtn.disabled = false;
+    setTimeout(()=>{ statusEl.style.display='none'; }, 7000);
+  } catch(err) {
+    statusEl.className = 'ct-status error';
+    statusEl.textContent = 'Failed to send. Please reach us on WhatsApp instead.';
+    submitBtn.innerHTML = origHTML;
+    submitBtn.disabled = false;
+  }
+});
+
+AOS.init({ duration:700, easing:'ease-out-cubic', once:true, offset:60 });
+
+(function(){
+  const btn = document.querySelector('.lv2-hamburger');
+  const nav = document.getElementById('lv2MobileNav');
+  if(!btn||!nav) return;
+  btn.addEventListener('click',function(){
+    const open = btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',String(!open));
+    btn.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('.lv2-mobile-link').forEach(l=>{
+    l.addEventListener('click',()=>{
+      btn.setAttribute('aria-expanded','false');
+      btn.classList.remove('open');
+      nav.classList.remove('open');
+    });
+  });
+})();
+</script>
+<style>@keyframes ct-spin { to { transform:rotate(360deg); } }</style>
 </body>
 </html>
+
