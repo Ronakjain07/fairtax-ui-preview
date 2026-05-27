@@ -1,0 +1,23 @@
+{
+  "rewrites": [
+    {
+      "source": "^/$",
+      "destination": "/landing.html"
+    },
+    {
+      "source": "^/(?!api/|uploads/|css/|assets/).*\\.html$",
+      "destination": "/$1.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
+  ]
+}
