@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>File Your ITR — FairTax Advisors (Regular Filing)</title>
+  <title>File Your ITR — FairTax Advisors</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -13,16 +13,9 @@
   <link rel="stylesheet" href="css/referral-v2.css">
   <link rel="stylesheet" href="css/index-v2.css">
   <link rel="stylesheet" href="css/index-filing-v2.css">
-  <link rel="stylesheet" href="css/filing-parity.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
-  <style>
-    body.if-page { background: #040d1a !important; color: #f1f5f9 !important; }
-  </style>
 </head>
-<body class="if-page">
-
-<div id="ft-banners-mount"></div>
-<script src="js/load-banners.js"></script>
+<body class="ix-page">
 
 <!-- ═══════════════════ HEADER ═══════════════════ -->
 <header class="lv2-header">
@@ -91,7 +84,7 @@
 
     <div class="ix-hero-badge" data-aos="fade-down">
       <span class="ix-badge-dot"></span>
-      Regular ITR Filing — FY 2025–26
+      AI-Powered ITR Filing — FY 2025–26
     </div>
 
     <h1 class="ix-hero-h1" data-aos="fade-up" data-aos-delay="60"
@@ -160,7 +153,7 @@
             <label>Full Name <input name="name" placeholder="Your full name" required></label>
             <label>Phone <input name="phone" placeholder="Phone" pattern="\d{10}" required></label>
             <label>Email <input name="email" placeholder="Your email" type="email" required></label>
-            <label>PAN <input name="pan" placeholder="PAN (e.g., ABCDE1234F)" pattern="[A-Z]{5}[0-9]{4}[A-Z]" style="text-transform:uppercase" oninput="this.value = this.value.toUpperCase()" required></label>
+            <label>PAN <input name="pan" placeholder="PAN (e.g., ABCDE1234F)" pattern="[A-Z]{5}[0-9]{4}[A-Z]" style="text-transform:uppercase" required></label>
             <label style="grid-column: 1 / -1">City Type (for HRA calculation)
               <select name="city_type" required>
                 <option value="">-- Select City Type --</option>
@@ -225,18 +218,6 @@
       </div>
 
       <div id="extractStatus" class="status"></div>
-
-      <!-- PREMIUM EXTRACTION LOADER -->
-      <div id="extractionLoader" style="display:none;margin-top:16px">
-        <div class="premium-loader">
-          <span class="loader-text">🤖 Extracting data...</span>
-          <div class="loader-dots">
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-            <div class="loader-dot"></div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- STEP 3 — Investment Proofs (upload + details combined) -->
@@ -412,7 +393,13 @@
       <h2>Review Your Details</h2>
       <p class="hint">AI pre-filled from your uploaded documents. Confirm and correct all figures before submitting.</p>
 
-      <h3 class="section-subtitle">Income Details</h3>
+      <h3 class="section-subtitle" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+        Income Details
+        <span style="display:flex;gap:6px;flex-wrap:wrap;">
+          <button type="button" class="dv-verify-btn" onclick="openDocVerify('form16')">📄 Verify Form 16</button>
+          <button type="button" class="dv-verify-btn" onclick="openDocVerify('payslips')">📄 Verify Payslip</button>
+        </span>
+      </h3>
       <div class="grid">
         <label>Gross Salary / CTC (Annual) <input name="gross_salary" type="number" step="0.01" placeholder="₹"></label>
         <label>Basic Salary (Annual) <input name="basic_salary" type="number" placeholder="₹"></label>
@@ -443,27 +430,27 @@
       <div style="margin-top:12px">
         <h4 style="margin:6px 0 10px">Uploaded proofs & detailed entries</h4>
         <div class="proof-list">
-          <h5>Home Loans</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Home Loans <button type="button" class="dv-verify-btn" onclick="openDocVerify('docHome')">📄 Verify</button></h5>
           <div id="homeLoanList"></div>
           <button type="button" class="add-btn" onclick="addHomeLoan()">+ Add Home Loan</button>
         </div>
         <div class="proof-list">
-          <h5>Life Insurance</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Life Insurance <button type="button" class="dv-verify-btn" onclick="openDocVerify('docInsLife')">📄 Verify</button></h5>
           <div id="lifeInsList"></div>
           <button type="button" class="add-btn" onclick="addInsurance('lifeInsList','life')">+ Add Policy</button>
         </div>
         <div class="proof-list">
-          <h5>Health Insurance — Self</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Health Insurance — Self <button type="button" class="dv-verify-btn" onclick="openDocVerify('docInsHealth')">📄 Verify</button></h5>
           <div id="healthSelfList"></div>
           <button type="button" class="add-btn" onclick="addInsurance('healthSelfList','health_self')">+ Add Policy</button>
         </div>
         <div class="proof-list">
-          <h5>Health Insurance — Parents</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Health Insurance — Parents <button type="button" class="dv-verify-btn" onclick="openDocVerify('docInsHealth')">📄 Verify</button></h5>
           <div id="healthParentList"></div>
           <button type="button" class="add-btn" onclick="addInsurance('healthParentList','health_parent')">+ Add Policy</button>
         </div>
         <div class="proof-list">
-          <h5>Donations (80G)</h5>
+          <h5 style="display:flex;align-items:center;justify-content:space-between;">Donations (80G) <button type="button" class="dv-verify-btn" onclick="openDocVerify('docDon')">📄 Verify</button></h5>
           <div id="donationList"></div>
           <button type="button" class="add-btn" onclick="addDonation()">+ Add Donation</button>
         </div>
@@ -527,7 +514,7 @@
       </ul>
 
       <div class="consent-row">
-        <label class="consent-row"><input type="checkbox" id="consent" name="consent" required> <span>I consent to data processing & WhatsApp communication.</span></label>
+        <label class="consent-row"><input type="checkbox" id="consent" required> <span>I consent to data processing & WhatsApp communication.</span></label>
       </div>
     </section>
 
@@ -542,7 +529,7 @@
         <p>Personal Guidance and Tax awareness Campaign will be conducted by our Authorised experts in your community / Society / Corporate / etc for larger audiences (50+).</p>
       </div>
 
-      <div class="quote-section" id="quoteSection" style="margin-top:24px">
+      <div class="quote-section" id="quoteSection" style="display:none;margin-top:24px">
         <h3>Your Tax Refund Options</h3>
         <p class="hint">Select how you'd like to receive your refund:</p>
 
@@ -591,7 +578,7 @@
           <div class="offer-badge">ITR filing fees for your spouse: 20% off</div>
           <div class="grid" style="margin-top:16px">
             <label>Spouse Full Name <input name="spouse_name" placeholder="Full Name"></label>
-            <label>Spouse PAN <input name="spouse_pan" placeholder="ABCDE1234F" style="text-transform:uppercase" maxlength="10" oninput="this.value = this.value.toUpperCase()"></label>
+            <label>Spouse PAN <input name="spouse_pan" placeholder="ABCDE1234F" style="text-transform:uppercase" maxlength="10"></label>
           </div>
           <label>Spouse Phone (10 digits) <input name="spouse_phone" placeholder="10-digit mobile" pattern="\d{10}"></label>
           <button type="button" id="submitSpouse">Submit Spouse Details →</button>
@@ -600,6 +587,18 @@
       </div>
     </section>
 
+    <!-- GLOBAL EXTRACTION LOADER — visible across all steps -->
+    <div id="extractionLoader" style="display:none;margin-bottom:16px">
+      <div class="premium-loader">
+        <span class="loader-text">🤖 Extracting data...</span>
+        <div class="loader-dots">
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+        </div>
+      </div>
+    </div>
+
     <div class="nav">
       <button type="button" id="prev">Back</button>
       <button type="button" id="next">Next</button>
@@ -607,6 +606,29 @@
     </div>
   </form>
 </main>
+
+<!-- ═══════════════════ DOCUMENT VERIFY MODAL ═══════════════════ -->
+<div id="docVerifyModal" style="display:none">
+  <div class="dv-overlay" onclick="closeDocVerify()"></div>
+  <div class="dv-panel">
+    <div class="dv-header">
+      <span class="dv-title">📄 Verify Extracted Data</span>
+      <button class="dv-close" onclick="closeDocVerify()">✕</button>
+    </div>
+    <div class="dv-body">
+      <!-- Left: file viewer -->
+      <div class="dv-viewer">
+        <div class="dv-tabs" id="dvTabs"></div>
+        <div class="dv-frame" id="dvFrame"></div>
+      </div>
+      <!-- Right: extracted fields -->
+      <div class="dv-fields">
+        <div class="dv-fields-title">Extracted Values</div>
+        <div id="dvFieldsInner"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer class="lv2-footer">
@@ -722,65 +744,11 @@
 
 <script src="app.js?v=5"></script>
 
-<!-- Override filing type to REGULAR for this page (or FREE if coming from referral) -->
+<!-- Override filing type to REGULAR for this page -->
 <script>
-(function() {
-  var params = new URLSearchParams(window.location.search);
-  var handoffRaw = sessionStorage.getItem('referral_handoff');
-  var isReferral = params.get('from') === 'referral' && handoffRaw;
-
-  if (isReferral) {
-    /* ── REFERRAL HANDOFF: User completed Step 1 on referral-filing.html ── */
-    var handoff = JSON.parse(handoffRaw);
-
-    // Set filing type to FREE
-    filingType = 'free';
-    var ftHidden = document.querySelector('[name="filing_type"]');
-    if (ftHidden) ftHidden.value = 'free';
-
-    // Set referral code from localStorage (already saved by revealReferralCode)
-    var rcHidden = document.querySelector('[name="referral_code"]');
-    if (rcHidden) rcHidden.value = referralCode || localStorage.getItem('referral_code') || '';
-
-    // Pre-fill Step 1 fields with referral user's data
-    // (needed because submit collects ALL steps — empty fields would overwrite backend data)
-    var fieldMap = {
-      'name': handoff.referrer_name || '',
-      'phone': handoff.referrer_phone || '',
-      'email': handoff.email || '',
-      'pan': handoff.pan || '',
-      'city_type': handoff.city_type || ''
-    };
-    for (var key in fieldMap) {
-      var el = document.querySelector('[name="' + key + '"]');
-      if (el) el.value = fieldMap[key];
-    }
-
-    // Skip to Step 2 (document upload) — Step 1 already done on referral page
-    currentStep = 2;
-    showStep(2);
-
-    // Override Back button at Step 2: go back to referral page instead of regular Step 1
-    window._isReferralSession = true;
-    var origPrevFn = document.getElementById('prev').onclick;
-    document.getElementById('prev').onclick = function() {
-      if (window._isReferralSession && currentStep === 2) {
-        window.location.href = 'referral-filing.html';
-        return;
-      }
-      if (origPrevFn) origPrevFn();
-    };
-
-    // Clean up handoff (keep referral session flag for Back button)
-    sessionStorage.removeItem('referral_handoff');
-
-  } else {
-    // Normal regular filing
-    filingType = 'regular';
-    var ftHidden = document.querySelector('[name="filing_type"]');
-    if (ftHidden) ftHidden.value = 'regular';
-  }
-})();
+filingType = 'regular';
+var ftHidden = document.querySelector('[name="filing_type"]');
+if (ftHidden) ftHidden.value = 'regular';
 </script>
 
 <!-- Mobile hamburger -->
@@ -805,24 +773,24 @@
   })();
 </script>
 
-<!-- AOS + Winners -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({ once: true, duration: 600 });</script>
+
 <script>
-  AOS.init({ once: true, duration: 600 });
-  (function loadWinners() {
-    fetch('https://fairtax-backend.onrender.com/api/winners')
-      .then(r => r.json())
-      .then(j => {
-        const list = document.getElementById('winnersList');
-        if (!list) return;
-        list.innerHTML = '';
-        (j.winners || []).forEach(w => {
-          const li = document.createElement('li');
-          li.textContent = w.name + ' — ' + w.reward;
-          list.appendChild(li);
-        });
-      }).catch(() => {});
-  })();
+async function loadWinners() {
+  try {
+    const r = await fetch('https://fairtax-backend.onrender.com/api/winners');
+    const j = await r.json();
+    const list = document.getElementById('winnersList');
+    list.innerHTML = '';
+    (j.winners || []).forEach(w => {
+      const li = document.createElement('li');
+      li.textContent = `${w.name} — ${w.reward}`;
+      list.appendChild(li);
+    });
+  } catch(e) { /* ignore */ }
+}
+loadWinners();
 </script>
 
 </body>

@@ -1,797 +1,1593 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>File Your ITR — FairTax Advisors</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/shared-components.css">
-  <link rel="stylesheet" href="style.css?v=12">
-  <link rel="stylesheet" href="css/landing-v2.css">
-  <link rel="stylesheet" href="css/referral-v2.css">
-  <link rel="stylesheet" href="css/index-v2.css">
-  <link rel="stylesheet" href="css/index-filing-v2.css">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
-</head>
-<body class="ix-page">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FairTax Advisors — AI-Powered ITR Filing in 5 Minutes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/shared-components.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/landing-v2.css" />
+  </head>
+  <body>
+    <!-- ═══════════════════ HEADER ═══════════════════ -->
+    <header class="lv2-header">
+      <div class="lv2-header-inner">
+        <a href="index.html" class="lv2-logo">
+          <div class="lv2-logo-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="9" fill="#0B2545" />
+              <path
+                d="M20 9L12 14v8c0 6 4 10 8 11.5C24 21.5 28 17.5 28 12V14L20 9z"
+                fill="white"
+                opacity="0.92"
+              />
+              <path
+                d="M17 20.5l2.5 2.5 4-5"
+                stroke="#0B2545"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="lv2-logo-text">
+            <div class="lv2-logo-name">
+              <span class="lv2-logo-fair">FAIRTAX</span>
+              <span class="lv2-logo-advisors">ADVISORS</span>
+            </div>
+            <div class="lv2-logo-tagline">
+              Your Taxes. Our Expertise. Your Peace of Mind.
+            </div>
+          </div>
+        </a>
 
-<!-- ═══════════════════ HEADER ═══════════════════ -->
-<header class="lv2-header">
-  <div class="lv2-header-inner">
+        <nav class="lv2-nav">
+          <a href="index.html" class="lv2-nav-link active">Home</a>
+          <a href="filing.html" class="lv2-nav-link">File Returns</a>
+          <a href="referral-offer.html" class="lv2-nav-link">Referral Offer</a>
+          <a href="training.html" class="lv2-nav-link">Training</a>
+          <a href="wallet.html" class="lv2-nav-link">Wallet</a>
+          <a href="status.html" class="lv2-nav-link">Status</a>
+          <a href="proofs.html" class="lv2-nav-link">Proofs</a>
+          <a href="about.html" class="lv2-nav-link">About</a>
+        </nav>
 
-    <a href="landing.html" class="lv2-logo">
-      <div class="lv2-logo-icon">
-        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-          <rect width="40" height="40" rx="9" fill="#0B2545"/>
-          <path d="M20 9L12 14v8c0 6 4 10 8 11.5C24 21.5 28 17.5 28 12V14L20 9z" fill="white" opacity="0.92"/>
-          <path d="M17 20.5l2.5 2.5 4-5" stroke="#0B2545" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <div class="lv2-logo-text">
-        <div class="lv2-logo-name">
-          <span class="lv2-logo-fair">FAIRTAX</span>
-          <span class="lv2-logo-advisors">ADVISORS</span>
+        <div class="lv2-header-right">
+          <a
+            href="https://wa.me/917397510254"
+            class="lv2-phone"
+            target="_blank"
+            rel="noopener"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"
+              />
+            </svg>
+            +91 73975 10254
+          </a>
+          <a href="choice.html" class="lv2-btn-started">Get Started</a>
         </div>
-        <div class="lv2-logo-tagline">Your Taxes. Our Expertise. Your Peace of Mind.</div>
+
+        <button
+          class="lv2-hamburger"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
       </div>
+
+      <nav class="lv2-mobile-nav" id="lv2MobileNav">
+        <a href="index.html" class="lv2-mobile-link active">Home</a>
+        <a href="filing.html" class="lv2-mobile-link">File Returns</a>
+        <a href="referral-offer.html" class="lv2-mobile-link">Referral Offer</a>
+        <a href="training.html" class="lv2-mobile-link">Training</a>
+        <a href="wallet.html" class="lv2-mobile-link">Wallet</a>
+        <a href="status.html" class="lv2-mobile-link">Status</a>
+        <a href="proofs.html" class="lv2-mobile-link">Proofs</a>
+        <a href="about.html" class="lv2-mobile-link">About</a>
+        <a href="contact.html" class="lv2-mobile-link">Contact</a>
+        <a href="faqs.html" class="lv2-mobile-link">FAQs</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ═══════════════════ HERO ═══════════════════ -->
+      <section class="lv2-hero">
+        <div class="lv2-hero-container">
+          <!-- Left: Copy -->
+          <div class="lv2-hero-left">
+            <h1 class="lv2-hero-headline">
+              Filing ITR got<br />
+              easier this year<br />
+              with our <span class="blue">AI Tax Assistant</span>
+            </h1>
+            <p class="lv2-hero-sub">
+              Smart. Accurate. Secure. Get your taxes done quickly and maximize
+              your savings.
+            </p>
+
+            <!-- Trust Icons -->
+            <div class="lv2-trust-grid">
+              <div class="lv2-trust-item">
+                <div class="lv2-trust-icon">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1A56DB"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <path d="M9 12l2 2 4-4" stroke-width="2.5" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="lv2-trust-label">100% Accurate</div>
+                  <div class="lv2-trust-sub">Error-free filing</div>
+                </div>
+              </div>
+              <div class="lv2-trust-item">
+                <div class="lv2-trust-icon">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1A56DB"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0110 0v4" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="lv2-trust-label">Secure &amp; Confidential</div>
+                  <div class="lv2-trust-sub">Your data is safe with us</div>
+                </div>
+              </div>
+              <div class="lv2-trust-item">
+                <div class="lv2-trust-icon">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1A56DB"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="lv2-trust-label">On-Time Filing</div>
+                  <div class="lv2-trust-sub">Always on time, every time</div>
+                </div>
+              </div>
+              <div class="lv2-trust-item">
+                <div class="lv2-trust-icon">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#1A56DB"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="lv2-trust-label">Expert Support</div>
+                  <div class="lv2-trust-sub">We're here to help</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Referral Hook -->
+            <a href="referral-offer.html" class="lv2-referral-hook">
+              <span class="lv2-referral-hook-icon">🎁</span>
+              Refer <strong>5 friends</strong> → File ITR
+              <strong>FREE</strong> + Earn <strong>₹5,000</strong>
+              <span class="lv2-referral-hook-arrow">→</span>
+            </a>
+
+            <!-- CTA Buttons -->
+            <div class="lv2-ctas">
+              <a href="choice.html" class="lv2-btn-primary">
+                File Your ITR Now
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+              <a href="referral-offer.html" class="lv2-btn-secondary">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="4" y="2" width="16" height="20" rx="2" />
+                  <path d="M8 6h8M8 10h8M8 14h4" />
+                </svg>
+                Calculate Tax Savings
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Photo + Floating Badges -->
+          <div class="lv2-hero-right">
+            <div class="ft-img-outer">
+
+              <!-- Badge 1: top-centre — Free Filing -->
+              <div class="ft-badge ft-badge-3">
+                <div class="ft-brand"><span class="ft-brand-icon">🛡️</span> FAIRTAX</div>
+                <div class="ft-headline">Great Opportunity!</div>
+                <div class="ft-subhead">File your ITR for <span class="ft-green ft-big">FREE!</span> 🎁</div>
+                <ul class="ft-checks">
+                  <li>100% Free Filing</li>
+                  <li>Easy &amp; Secure</li>
+                  <li>Instant Processing</li>
+                  <li>Maximum Refund</li>
+                </ul>
+                <a href="proofs.html" class="ft-btn ft-btn-green">File for FREE Now!</a>
+              </div>
+
+              <!-- Badge 2: top-right — Freelancer -->
+              <div class="ft-badge ft-badge-2">
+                <div class="ft-brand"><span class="ft-brand-icon">🛡️</span> FAIRTAX</div>
+                <div class="ft-headline">Earn in Lakhs<br>as a Freelancer! 🚀</div>
+                <div class="ft-subhead">Earn big with FairTax.</div>
+                <ul class="ft-checks">
+                  <li>Work from Anywhere</li>
+                  <li>Flexible Hours</li>
+                  <li>High Earnings</li>
+                  <li>Be Your Own Boss</li>
+                </ul>
+                <a href="training.html" class="ft-btn ft-btn-blue">Join as Freelancer →</a>
+              </div>
+
+              <!-- Badge 3: top-left — Refer & Earn -->
+              <div class="ft-badge ft-badge-1">
+                <div class="ft-brand"><span class="ft-brand-icon">🛡️</span> FAIRTAX</div>
+                <div class="ft-headline">Refer &amp; Earn 🤝</div>
+                <div class="ft-subhead">Share FairTax, <span class="ft-green">Earn Rewards!</span></div>
+                <ul class="ft-checks">
+                  <li>Refer your friends</li>
+                  <li>They file with FairTax</li>
+                  <li>You earn exciting rewards</li>
+                </ul>
+                <a href="referral-offer.html" class="ft-btn ft-btn-green">Refer Now &amp; Earn!</a>
+              </div>
+
+              <!-- Badge 4: bottom-right — We Care -->
+              <div class="ft-badge ft-badge-4">
+                <div class="ft-care-title">We Care. We Support.</div>
+                <div class="ft-care-sub">We give preference to</div>
+                <ul class="ft-care-list">
+                  <li>Handicapped</li>
+                  <li>Widow</li>
+                  <li>Single Parents</li>
+                </ul>
+                <a href="choice.html" class="ft-care-bar">File for Free →</a>
+              </div>
+
+              <!-- Badge 5: bottom-left — Refund -->
+              <div class="ft-badge ft-badge-5">
+                <div class="ft-refund-label">Your Refund is<br>Estimated at</div>
+                <div class="ft-refund-row">
+                  <span class="ft-refund-amt">₹95,000</span>
+                  <span class="ft-refund-emoji">💰</span>
+                </div>
+                <a href="choice.html" class="ft-btn ft-btn-green">Claim Your Refund Now!</a>
+              </div>
+
+              <!-- Hero Image (desktop: family photo, mobile: mobile-img) -->
+              <a href="choice.html" class="ft-img-link">
+                <picture>
+                  <source media="(max-width: 768px)" srcset="images/mobile-img.png" />
+                  <img
+                    src="images/hero-composite.png"
+                    alt="Happy Indian family filing taxes with FairTax"
+                    class="ft-hero-img"
+                  />
+                </picture>
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ STATS BAR ═══════════════════ -->
+      <section class="lv2-stats-wrap">
+        <div class="lv2-stats-bar">
+          <div class="lv2-stat">
+            <div class="lv2-stat-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1A56DB"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+              </svg>
+            </div>
+            <div>
+              <div class="lv2-stat-num">8,000</div>
+              <div class="lv2-stat-label">Happy Families</div>
+            </div>
+          </div>
+          <div class="lv2-stat">
+            <div class="lv2-stat-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1A56DB"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M9 12l2 2 4-4" stroke-width="2.5" />
+              </svg>
+            </div>
+            <div>
+              <div class="lv2-stat-num">100%</div>
+              <div class="lv2-stat-label">Regulatory Compliant</div>
+            </div>
+          </div>
+          <div class="lv2-stat">
+            <div class="lv2-stat-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1A56DB"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"
+                />
+                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+              </svg>
+            </div>
+            <div>
+              <div class="lv2-stat-num">75K</div>
+              <div class="lv2-stat-label">ITRs Filed</div>
+            </div>
+          </div>
+          <div class="lv2-stat">
+            <div class="lv2-stat-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#1A56DB"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                />
+              </svg>
+            </div>
+            <div>
+              <div class="lv2-stat-num">4.9/5</div>
+              <div class="lv2-stat-label">Customer Rating</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ WINNERS TICKER ═══════════════════ -->
+      <div class="lv2-winners-strip">
+        <div class="lv2-winners-inner">
+          <div class="lv2-winners-badge">
+            <span class="lv2-winners-live-dot"></span>
+            Live Winners
+          </div>
+          <div class="lv2-winners-overflow">
+            <div class="lv2-winners-track" id="winnersTrack">
+              <!-- populated by JS, fallback shown instantly -->
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Asha R.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">₹2,500 cashback</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Kumar S.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">Free Filing</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Ritu M.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">₹1,000 cashback</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Priya K.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">₹5,000 reward</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Amit T.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">Free Filing</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Sunita V.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">₹250 cashback</span>
+              </div>
+              <!-- duplicated for seamless loop -->
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Asha R.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">₹2,500 cashback</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Kumar S.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">Free Filing</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Ritu M.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">₹1,000 cashback</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Priya K.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">₹5,000 reward</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Amit T.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">Free Filing</span>
+              </div>
+              <div class="lv2-winner-item">
+                <span>🏆</span><span class="lv2-winner-name">Sunita V.</span
+                ><span>—</span
+                ><span class="lv2-winner-reward">₹250 cashback</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ DARK FEATURES ═══════════════════ -->
+      <section class="lv2-features-dark">
+        <div class="lv2-features-dark-inner">
+          <div class="lv2-features-dark-left">
+            <h2>
+              We make tax filing <span class="lv2-green">simple</span><br />so
+              you can focus on <span class="lv2-green">life.</span>
+            </h2>
+            <p>
+              Trusted by thousands of individuals and businesses across India.
+            </p>
+          </div>
+          <div class="lv2-features-dark-right">
+            <div class="lv2-feat-item">
+              <div class="lv2-feat-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"
+                  />
+                  <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                </svg>
+              </div>
+              <div>
+                <div class="lv2-feat-title">All Types of ITR Filing</div>
+                <div class="lv2-feat-sub">
+                  Salary, Business, Freelancers, NRI &amp; more
+                </div>
+              </div>
+            </div>
+            <div class="lv2-feat-item">
+              <div class="lv2-feat-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="12" y1="1" x2="12" y2="23" />
+                  <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                </svg>
+              </div>
+              <div>
+                <div class="lv2-feat-title">Maximize Deductions</div>
+                <div class="lv2-feat-sub">
+                  We help you claim every deduction you deserve
+                </div>
+              </div>
+            </div>
+            <div class="lv2-feat-item">
+              <div class="lv2-feat-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="lv2-feat-title">Personalized Support</div>
+                <div class="lv2-feat-sub">
+                  One-on-one assistance whenever you need
+                </div>
+              </div>
+            </div>
+            <div class="lv2-feat-item">
+              <div class="lv2-feat-icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div>
+                <div class="lv2-feat-title">100% Compliant</div>
+                <div class="lv2-feat-sub">
+                  We follow the latest tax laws &amp; regulations
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ TRUST STRIP ═══════════════════ -->
+      <div class="lv2-trust-strip">
+        <div class="lv2-trust-strip-inner">
+          <div class="lv2-ts-item">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1A56DB"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0110 0v4" />
+            </svg>
+            <div>
+              <div class="lv2-ts-title">Secure &amp; Confidential</div>
+              <div class="lv2-ts-sub">Your data is 100% safe with us</div>
+            </div>
+          </div>
+          <div class="lv2-ts-item">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1A56DB"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+            </svg>
+            <div>
+              <div class="lv2-ts-title">Expert Tax Professionals</div>
+              <div class="lv2-ts-sub">Experienced. Reliable. Trusted.</div>
+            </div>
+          </div>
+          <div class="lv2-ts-item">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1A56DB"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+            <div>
+              <div class="lv2-ts-title">On-Time Guarantee</div>
+              <div class="lv2-ts-sub">We value your time and deadlines</div>
+            </div>
+          </div>
+          <div class="lv2-ts-item">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1A56DB"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"
+              />
+            </svg>
+            <div>
+              <div class="lv2-ts-title">Need Help?</div>
+              <div class="lv2-ts-sub">+91 73975 10254</div>
+            </div>
+          </div>
+          <div class="lv2-ts-item">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1A56DB"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <div>
+              <div class="lv2-ts-title">Our Office</div>
+              <div class="lv2-ts-sub">Mumbai, India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════ HOW IT WORKS ═══════════════════ -->
+      <section class="lv2-hiw">
+        <div class="lv2-hiw-inner">
+          <div class="lv2-eyebrow center">HOW IT WORKS</div>
+          <h2 class="lv2-section-title center">
+            File your ITR in 4 simple steps
+          </h2>
+          <p class="lv2-section-sub center">
+            Our AI-powered platform makes tax filing effortless. From document
+            upload to ITR submission — we handle everything.
+          </p>
+
+          <div class="lv2-steps">
+            <div class="lv2-step">
+              <div class="lv2-step-circle">
+                <span class="lv2-step-num-label">1</span>
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#64748b"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                  <polyline points="17 8 12 3 7 8" />
+                  <line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+              </div>
+              <div class="lv2-step-title">Upload Documents</div>
+              <div class="lv2-step-desc">
+                Upload Form 16, salary slips, bank statements or any other
+                income documents.
+              </div>
+            </div>
+
+            <div class="lv2-step">
+              <div class="lv2-step-circle active">
+                <span class="lv2-step-num-label">2</span>
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#1A56DB"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 2a10 10 0 110 20 10 10 0 010-20z" />
+                  <path d="M12 8v4l3 3" />
+                  <circle cx="12" cy="12" r="3" fill="rgba(26,86,219,0.12)" />
+                </svg>
+              </div>
+              <div class="lv2-step-title">AI Extracts Data</div>
+              <div class="lv2-step-desc">
+                Our AI reads your documents and extracts salary, HRA, deductions
+                and investments automatically.
+              </div>
+            </div>
+
+            <div class="lv2-step">
+              <div class="lv2-step-circle active">
+                <span class="lv2-step-num-label">3</span>
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#1A56DB"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="4" y="2" width="16" height="20" rx="2" />
+                  <path d="M8 6h8M8 10h8M8 14h4" />
+                  <path d="M14 17l1.5 1.5L18 16" />
+                </svg>
+              </div>
+              <div class="lv2-step-title">Tax Calculation</div>
+              <div class="lv2-step-desc">
+                We compare old vs new regime and suggest which saves you more.
+                Review and confirm your details.
+              </div>
+            </div>
+
+            <div class="lv2-step">
+              <div class="lv2-step-circle done">
+                <span class="lv2-step-num-label" style="background: #059669"
+                  >4</span
+                >
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#059669"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="M9 12l2 2 4-4" stroke-width="2.2" />
+                </svg>
+              </div>
+              <div class="lv2-step-title">Expert Files ITR</div>
+              <div class="lv2-step-desc">
+                Our CA team reviews and files your ITR on the Income Tax portal.
+                Done!
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ SERVICES ═══════════════════ -->
+      <section class="lv2-services">
+        <div class="lv2-services-inner">
+          <div class="lv2-eyebrow">OUR SERVICES</div>
+          <h2 class="lv2-section-title">Built for every Indian taxpayer</h2>
+          <p class="lv2-section-sub">
+            Whether you're salaried, a freelancer, business owner or senior
+            citizen — we have the right plan for you.
+          </p>
+
+          <div class="lv2-services-grid">
+            <div class="lv2-svc-card">
+              <div class="lv2-svc-icon">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#1A56DB"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                </svg>
+              </div>
+              <div class="lv2-svc-title">Salaried Employees</div>
+              <ul class="lv2-svc-list">
+                <li>ITR-1 &amp; ITR-2 Filing</li>
+                <li>Form 16 processing</li>
+                <li>HRA, LTA &amp; deductions</li>
+                <li>Old vs New regime advice</li>
+                <li>Refund tracking</li>
+              </ul>
+              <a href="choice.html" class="lv2-svc-link">Get Started →</a>
+            </div>
+
+            <div class="lv2-svc-card">
+              <div class="lv2-svc-icon">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#1A56DB"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                </svg>
+              </div>
+              <div class="lv2-svc-title">Freelancers &amp; Consultants</div>
+              <ul class="lv2-svc-list">
+                <li>ITR-3 &amp; ITR-4 Filing</li>
+                <li>Presumptive taxation 44ADA</li>
+                <li>Business income &amp; expenses</li>
+                <li>TDS reconciliation</li>
+                <li>Advance tax planning</li>
+              </ul>
+              <a href="choice.html" class="lv2-svc-link">Get Started →</a>
+            </div>
+
+            <div class="lv2-svc-card">
+              <div class="lv2-svc-icon">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#1A56DB"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <div class="lv2-svc-title">Business Owners</div>
+              <ul class="lv2-svc-list">
+                <li>Proprietorship &amp; Partnership</li>
+                <li>P&amp;L &amp; Balance Sheet</li>
+                <li>GST compliance support</li>
+                <li>Tax audit assistance</li>
+                <li>Capital gains filing</li>
+              </ul>
+              <a href="choice.html" class="lv2-svc-link">Get Started →</a>
+            </div>
+
+            <div class="lv2-svc-card">
+              <div class="lv2-svc-icon">
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#1A56DB"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M6 20v-1a6 6 0 0112 0v1" />
+                  <path d="M16 3.5A4 4 0 0120 7" />
+                </svg>
+              </div>
+              <div class="lv2-svc-title">Senior Citizens</div>
+              <ul class="lv2-svc-list">
+                <li>Pension &amp; interest income</li>
+                <li>80D medical deductions</li>
+                <li>Higher exemption benefits</li>
+                <li>FD &amp; savings interest</li>
+                <li>Priority support</li>
+              </ul>
+              <a href="choice.html" class="lv2-svc-link">Get Started →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ REFERRAL & EARN ═══════════════════ -->
+      <section class="lv2-referral">
+        <div class="lv2-referral-inner">
+          <div class="lv2-referral-eyebrow">REFER &amp; EARN</div>
+          <h2 class="lv2-section-title white center">
+            Earn real money by referring friends
+          </h2>
+          <p class="lv2-section-sub white center">
+            Share FairTax with your network and unlock cashback rewards at every
+            milestone. No limits — keep referring, keep earning.
+          </p>
+
+          <div class="lv2-tiers">
+            <div class="lv2-tier">
+              <div class="lv2-tier-count">1</div>
+              <div class="lv2-tier-refs">Referral</div>
+              <div class="lv2-tier-reward">₹250 Cashback</div>
+            </div>
+
+            <div class="lv2-tier">
+              <div class="lv2-tier-count">3</div>
+              <div class="lv2-tier-refs">Referrals</div>
+              <div class="lv2-tier-reward">₹1,000 Cashback</div>
+            </div>
+
+            <div class="lv2-tier featured">
+              <div class="lv2-tier-badge">MOST POPULAR</div>
+              <div class="lv2-tier-count">5</div>
+              <div class="lv2-tier-refs">Referrals</div>
+              <div class="lv2-tier-reward">FREE Filing<br />+ ₹5,000</div>
+            </div>
+
+            <div class="lv2-tier">
+              <div class="lv2-tier-count">10</div>
+              <div class="lv2-tier-refs">Referrals</div>
+              <div class="lv2-tier-reward">₹15,000<br />Premium Reward</div>
+            </div>
+          </div>
+
+          <div class="lv2-referral-footer">
+            <div class="lv2-payout-badge">
+              <span class="lv2-payout-dot"></span>
+              Direct bank transfer within 7 working days
+            </div>
+            <a href="referral-offer.html" class="lv2-btn-referral">
+              <svg
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8" />
+                <polyline points="16 6 12 2 8 6" />
+                <line x1="12" y1="2" x2="12" y2="15" />
+              </svg>
+              Start Referring Now
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ WE CARE ═══════════════════ -->
+      <section class="lv2-wecare">
+        <div class="lv2-wecare-inner">
+          <div class="lv2-eyebrow center" style="color: #10b981">
+            OUR COMMITMENT
+          </div>
+          <h2 class="lv2-wecare-title">We Care. We Support.</h2>
+          <p class="lv2-wecare-sub">
+            We give priority assistance to those who need it most.
+          </p>
+
+          <div class="lv2-wecare-grid">
+            <div class="lv2-wecare-card">
+              <div
+                class="lv2-wecare-card-icon"
+                style="
+                  background: rgba(96, 165, 250, 0.12);
+                  border: 1.5px solid rgba(96, 165, 250, 0.25);
+                "
+              >
+                <svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#60a5fa"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="5" r="2" />
+                  <path d="M12 7v6" />
+                  <path d="M8 17l4-4 4 4" />
+                  <circle cx="7" cy="19" r="2" />
+                  <circle cx="17" cy="19" r="2" />
+                  <path d="M7 17v-2h10v2" />
+                </svg>
+              </div>
+              <div class="lv2-wecare-card-label">Differently Abled</div>
+              <div class="lv2-wecare-card-desc">
+                Priority filing support with dedicated CA assistance and extra
+                deduction guidance under Section 80U.
+              </div>
+            </div>
+
+            <div class="lv2-wecare-card">
+              <div
+                class="lv2-wecare-card-icon"
+                style="
+                  background: rgba(251, 191, 36, 0.1);
+                  border: 1.5px solid rgba(251, 191, 36, 0.25);
+                "
+              >
+                <svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#fbbf24"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                  />
+                </svg>
+              </div>
+              <div class="lv2-wecare-card-label">Widows &amp; Single Women</div>
+              <div class="lv2-wecare-card-desc">
+                Compassionate support for widows navigating taxes alone. We
+                guide you through every step with patience.
+              </div>
+            </div>
+
+            <div class="lv2-wecare-card">
+              <div
+                class="lv2-wecare-card-icon"
+                style="
+                  background: rgba(52, 211, 153, 0.1);
+                  border: 1.5px solid rgba(52, 211, 153, 0.25);
+                "
+              >
+                <svg
+                  width="34"
+                  height="34"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#10B981"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                  <path d="M16 3.13a4 4 0 010 7.75" />
+                </svg>
+              </div>
+              <div class="lv2-wecare-card-label">Single Parents</div>
+              <div class="lv2-wecare-card-desc">
+                Special deductions and maximum refund optimization for single
+                parents raising families on their own.
+              </div>
+            </div>
+          </div>
+
+          <div class="lv2-wecare-tagline">
+            <span class="lv2-wecare-heart">♥</span>
+            Because everyone deserves support, respect, and a fair chance.
+            <span class="lv2-wecare-heart">♥</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ FAQ ═══════════════════ -->
+      <section class="lv2-faq">
+        <div class="lv2-faq-inner">
+          <div class="lv2-eyebrow center">FAQ</div>
+          <h2 class="lv2-section-title center">
+            Got questions? We have answers.
+          </h2>
+          <p class="lv2-section-sub center">
+            Everything you need to know about filing your ITR with FairTax.
+          </p>
+
+          <div class="lv2-faq-list">
+            <div class="lv2-faq-item">
+              <button class="lv2-faq-q" type="button">
+                What documents do I need to file my ITR?
+                <span class="lv2-faq-icon">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                </span>
+              </button>
+              <div class="lv2-faq-a">
+                <div class="lv2-faq-a-inner">
+                  For salaried individuals, you need Form 16 from your employer,
+                  PAN card, Aadhaar card, bank account details, and investment
+                  proofs (Section 80C, 80D, etc.). Our AI can extract most
+                  details automatically from Form 16.
+                </div>
+              </div>
+            </div>
+
+            <div class="lv2-faq-item">
+              <button class="lv2-faq-q" type="button">
+                What is the difference between Old and New Tax Regime?
+                <span class="lv2-faq-icon">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                </span>
+              </button>
+              <div class="lv2-faq-a">
+                <div class="lv2-faq-a-inner">
+                  The Old Regime allows various deductions (80C, HRA, etc.)
+                  reducing your taxable income. The New Regime offers lower slab
+                  rates but most deductions are not available. FairTax
+                  automatically compares both and tells you which saves you more
+                  money.
+                </div>
+              </div>
+            </div>
+
+            <div class="lv2-faq-item">
+              <button class="lv2-faq-q" type="button">
+                How long does it take to file my ITR?
+                <span class="lv2-faq-icon">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                </span>
+              </button>
+              <div class="lv2-faq-a">
+                <div class="lv2-faq-a-inner">
+                  For most salaried individuals, the process takes as little as
+                  5 minutes. Our AI extracts your data from Form 16, calculates
+                  your tax, and our CA team reviews and files within 24 hours.
+                  Complex cases (business income, capital gains) may take 2–3
+                  days.
+                </div>
+              </div>
+            </div>
+
+            <div class="lv2-faq-item">
+              <button class="lv2-faq-q" type="button">
+                Is my financial data safe with FairTax?
+                <span class="lv2-faq-icon">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                </span>
+              </button>
+              <div class="lv2-faq-a">
+                <div class="lv2-faq-a-inner">
+                  Absolutely. We use 256-bit encryption for all data, HTTPS on
+                  every connection, and your documents are never shared with
+                  third parties. Our platform complies with all Indian data
+                  protection guidelines. Your financial information is 100%
+                  confidential.
+                </div>
+              </div>
+            </div>
+
+            <div class="lv2-faq-item">
+              <button class="lv2-faq-q" type="button">
+                How does the Refer &amp; Earn program work?
+                <span class="lv2-faq-icon">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                </span>
+              </button>
+              <div class="lv2-faq-a">
+                <div class="lv2-faq-a-inner">
+                  After signing up, you get a unique referral code. Share it
+                  with friends and family. When they file their ITR through your
+                  link, you earn cashback — starting from ₹250 for 1 referral,
+                  going up to ₹15,000 for 10 referrals. Refer 5 friends and your
+                  own filing is FREE!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lv2-faq-footer">
+            <a href="faqs.html" class="lv2-faq-link">
+              View all FAQs
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ FINAL CTA BANNER ═══════════════════ -->
+      <section class="lv2-cta-banner">
+        <div class="lv2-cta-panel">
+          <div class="lv2-cta-panel-inner">
+            <h2 class="lv2-cta-title">
+              Start filing your ITR today,<br />maximize your
+              <span>refund.</span>
+            </h2>
+            <p class="lv2-cta-sub">
+              Join 2 lakh+ Indians who trust FairTax for accurate, on-time,
+              expert-assisted tax filing.
+            </p>
+            <div class="lv2-cta-btns">
+              <a href="choice.html" class="lv2-btn-cta-white">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"
+                  />
+                  <path d="M14 2v6h6" />
+                  <path d="M9 13l2 2 4-4" />
+                </svg>
+                File Your ITR Now
+              </a>
+              <a
+                href="https://wa.me/917397510254"
+                target="_blank"
+                rel="noopener"
+                class="lv2-btn-cta-outline"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"
+                  />
+                </svg>
+                Talk to an Expert
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="lv2-footer">
+      <div class="lv2-footer-top">
+        <div class="lv2-footer-brand">
+          <a href="index.html" class="lv2-footer-logo">
+            <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="10" fill="#1A56DB" />
+              <path d="M20 10L10 15v10l10 5 10-5V15L20 10z" fill="#10B981" />
+              <path
+                d="M16 20l3 3 6-6"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <div class="lv2-footer-brand-text">
+              <div class="lv2-footer-brand-name">
+                <span class="lv2-footer-brand-fair">FAIRTAX</span>
+                <span class="lv2-footer-brand-advisors">ADVISORS</span>
+              </div>
+              <div class="lv2-footer-brand-tagline">
+                Your Taxes. Our Expertise.
+              </div>
+            </div>
+          </a>
+          <p class="lv2-footer-desc">
+            AI-powered ITR filing platform trusted by 2 lakh+ Indians. Accurate,
+            secure, and expert-assisted.
+          </p>
+          <div class="lv2-footer-contact">
+            <a
+              href="https://wa.me/917397510254"
+              class="lv2-footer-contact-item"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"
+                />
+              </svg>
+              +91 7397 510 254
+            </a>
+            <a
+              href="mailto:fairtaxadvisors@gmail.com"
+              class="lv2-footer-contact-item"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              fairtaxadvisors@gmail.com
+            </a>
+            <span class="lv2-footer-contact-item">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Mumbai, Maharashtra, India
+            </span>
+          </div>
+        </div>
+
+        <div class="lv2-footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="training.html">Training</a></li>
+          </ul>
+        </div>
+
+        <div class="lv2-footer-col">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="proofs.html">Proofs & Grievance</a></li>
+            <li><a href="status.html">Filing Status</a></li>
+            <li><a href="referral-offer.html">Refer & Earn</a></li>
+          </ul>
+        </div>
+
+        <div class="lv2-footer-col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lv2-footer-bottom">
+        <div class="lv2-footer-copy">
+          © 2024-2025 FairTax Advisors. All rights reserved. | Secure •
+          AI-Powered • Expert-Reviewed
+        </div>
+        <div class="lv2-footer-badges">
+          <span class="lv2-footer-badge">Secure</span>
+          <span class="lv2-footer-badge">AI-Powered</span>
+          <span class="lv2-footer-badge">Expert Verified</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Freelancer CTA -->
+    <a
+      class="freelancer-cta"
+      href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!"
+      target="_blank"
+      rel="noopener"
+    >
+      <span class="fl-star">⭐</span>
+      <span class="fl-text">Why not join us<br />as a Freelancer?</span>
     </a>
 
-    <nav class="lv2-nav">
-        <a href="landing.html" class="lv2-nav-link">Home</a>
-        <a href="index.html" class="lv2-nav-link active">File Returns</a>
-        <a href="referral-offer.html" class="lv2-nav-link">Referral Offer</a>
-        <a href="training.html" class="lv2-nav-link">Training</a>
-        <a href="wallet.html" class="lv2-nav-link">Wallet</a>
-        <a href="status.html" class="lv2-nav-link">Status</a>
-        <a href="proofs.html" class="lv2-nav-link">Proofs</a>
-        <a href="about.html" class="lv2-nav-link">About</a>
-      </nav>
+    <script>
+      // Winners ticker — fetch live data and replace fallback
+      (async function () {
+        try {
+          const r = await fetch(
+            "https://fairtax-backend.onrender.com/api/winners",
+          );
+          const j = await r.json();
+          const winners = j.winners || [];
+          if (!winners.length) return;
+          const track = document.getElementById("winnersTrack");
+          if (!track) return;
+          const doubled = [...winners, ...winners];
+          track.innerHTML = doubled
+            .map(
+              (w) =>
+                `<div class="lv2-winner-item"><span>🏆</span><span class="lv2-winner-name">${w.name}</span><span>—</span><span class="lv2-winner-reward">${w.reward}</span></div>`,
+            )
+            .join("");
+        } catch (e) {}
+      })();
 
-    <div class="lv2-header-right">
-      <a href="https://wa.me/917397510254" class="lv2-phone" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-        +91 73975 10254
-      </a>
-      <a href="choice.html" class="lv2-btn-started">Get Started</a>
-    </div>
+      // Mobile hamburger
+      (function () {
+        const btn = document.querySelector(".lv2-hamburger");
+        const nav = document.getElementById("lv2MobileNav");
+        if (!btn || !nav) return;
+        btn.addEventListener("click", function () {
+          const open = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", String(!open));
+          btn.classList.toggle("open");
+          nav.classList.toggle("open");
+        });
+        nav.querySelectorAll(".lv2-mobile-link").forEach((l) => {
+          l.addEventListener("click", () => {
+            btn.setAttribute("aria-expanded", "false");
+            btn.classList.remove("open");
+            nav.classList.remove("open");
+          });
+        });
+      })();
 
-    <button class="lv2-hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-
-  <nav class="lv2-mobile-nav" id="lv2MobileNav">
-      <a href="landing.html" class="lv2-mobile-link">Home</a>
-      <a href="index.html" class="lv2-mobile-link active">File Returns</a>
-      <a href="referral-offer.html" class="lv2-mobile-link">Referral Offer</a>
-      <a href="training.html" class="lv2-mobile-link">Training</a>
-      <a href="wallet.html" class="lv2-mobile-link">Wallet</a>
-      <a href="status.html" class="lv2-mobile-link">Status</a>
-      <a href="proofs.html" class="lv2-mobile-link">Proofs</a>
-      <a href="about.html" class="lv2-mobile-link">About</a>
-      <a href="contact.html" class="lv2-mobile-link">Contact</a>
-      <a href="faqs.html" class="lv2-mobile-link">FAQs</a>
-    </nav>
-</header>
-
-<main>
-
-<!-- ═══════════════════ HERO ═══════════════════ -->
-<section class="ix-hero" style="padding: 72px 24px 60px; text-align: center; background: #040d1a;">
-  <div style="max-width: 820px; margin: 0 auto;">
-
-    <div class="ix-hero-badge" data-aos="fade-down">
-      <span class="ix-badge-dot"></span>
-      AI-Powered ITR Filing — FY 2025–26
-    </div>
-
-    <h1 class="ix-hero-h1" data-aos="fade-up" data-aos-delay="60"
-        style="font-size: clamp(2.2rem, 5.5vw, 3.8rem); font-weight: 900; color: #fff; margin: 0 0 18px; letter-spacing: -2px; line-height: 1.06;">
-      File Your ITR Today.<br>
-      <span class="grad-blue">Secure. Accurate. Expert-Reviewed.</span>
-    </h1>
-
-    <p data-aos="fade-up" data-aos-delay="100"
-       style="font-size: 17px; color: rgba(255,255,255,.5); max-width: 560px; margin: 0 auto 36px; line-height: 1.7;">
-      Upload your documents, let our AI extract everything, and get a personalised expert quote on WhatsApp in under 24 hours.
-    </p>
-
-    <div data-aos="fade-up" data-aos-delay="140"
-         style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 50px;">
-      <a href="#taxForm" style="display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1A56DB, #0B2545); border-radius: 14px; color: #fff; font-size: 15px; font-weight: 800; padding: 15px 32px; text-decoration: none; box-shadow: 0 4px 24px rgba(26,86,219,.38); transition: transform .18s, box-shadow .18s;"
-         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 32px rgba(26,86,219,.52)'"
-         onmouseout="this.style.transform='';this.style.boxShadow='0 4px 24px rgba(26,86,219,.38)'">
-        Start Filing Now
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="referral-filing.html" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(26,86,219,.1); border: 1px solid rgba(26,86,219,.28); border-radius: 14px; color: #93c5fd; font-size: 15px; font-weight: 700; padding: 15px 28px; text-decoration: none; transition: background .2s;"
-         onmouseover="this.style.background='rgba(26,86,219,.18)'"
-         onmouseout="this.style.background='rgba(26,86,219,.1)'">
-        Refer 5 friends — File FREE
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-
-    <!-- Stats strip -->
-    <div data-aos="fade-up" data-aos-delay="180"
-         style="display: flex; gap: 0; justify-content: center; max-width: 680px; margin: 0 auto; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 20px; overflow: hidden;">
-      <div style="flex: 1; padding: 22px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.06);">
-        <div style="font-size: 22px; font-weight: 900; color: #93c5fd; line-height: 1;">8,000</div>
-        <div style="font-size: 10.5px; color: rgba(255,255,255,.38); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;">Happy Families</div>
-      </div>
-      <div style="flex: 1; padding: 22px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.06);">
-        <div style="font-size: 22px; font-weight: 900; color: #93c5fd; line-height: 1;">100%</div>
-        <div style="font-size: 10.5px; color: rgba(255,255,255,.38); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;">Regulatory Compliant</div>
-      </div>
-      <div style="flex: 1; padding: 22px 8px; text-align: center; border-right: 1px solid rgba(255,255,255,.06);">
-        <div style="font-size: 22px; font-weight: 900; color: #93c5fd; line-height: 1;">75K</div>
-        <div style="font-size: 10.5px; color: rgba(255,255,255,.38); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;">ITRs Filed</div>
-      </div>
-      <div style="flex: 1; padding: 22px 8px; text-align: center;">
-        <div style="font-size: 22px; font-weight: 900; color: #93c5fd; line-height: 1;">4.9/5</div>
-        <div style="font-size: 10.5px; color: rgba(255,255,255,.38); margin-top: 5px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px;">Customer Rating</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-  <div class="progress"><div id="bar"></div></div>
-  <div class="step-label" id="stepLabel">Step 1 of 7</div>
-  <form id="taxForm">
-    <!-- STEP 1 — Basic Info (Regular Tax Only) -->
-    <section class="step active" data-step="1">
-      <h2>Regular Tax Filing</h2>
-      <p style="color:#6b7280;margin-bottom:20px">File your ITR now. Want to get free filing? <a href="referral-filing.html" style="color:#1A56DB;font-weight:600">Refer 5 friends →</a></p>
-
-      <div id="regularForm">
-        <div class="user-details">
-          <h3 style="margin-bottom:14px">Your Personal Details</h3>
-          <div class="grid">
-            <label>Full Name <input name="name" placeholder="Your full name" required></label>
-            <label>Phone <input name="phone" placeholder="Phone" pattern="\d{10}" required></label>
-            <label>Email <input name="email" placeholder="Your email" type="email" required></label>
-            <label>PAN <input name="pan" placeholder="PAN (e.g., ABCDE1234F)" pattern="[A-Z]{5}[0-9]{4}[A-Z]" style="text-transform:uppercase" required></label>
-            <label style="grid-column: 1 / -1">City Type (for HRA calculation)
-              <select name="city_type" required>
-                <option value="">-- Select City Type --</option>
-                <option value="metro">Metro</option>
-                <option value="non-metro">Non-Metro</option>
-              </select>
-            </label>
-          </div>
-        </div>
-
-        <div class="eligibility-box">
-          <p class="eligibility-label">FairTax does not charge fees for eligible individuals</p>
-          <p class="eligibility-sub">Single Parent &nbsp;·&nbsp; Widow / Widower &nbsp;·&nbsp; Senior Citizen &nbsp;·&nbsp; Differently Abled</p>
-          <label class="eligibility-check">
-            <input type="checkbox" id="freeEligibility" name="free_eligibility" style="width:auto;margin:0">
-            <span>I qualify — tick to upload proof &amp; avail free filing</span>
-          </label>
-          <div id="eligibilityProof" style="display:none;margin-top:12px">
-            <p style="margin-bottom:8px">If you need to upload proof or raise a grievance for free filing, please <a href="proofs.html">open the Proofs &amp; Grievance page</a> to submit your documents.</p>
-            <label class="file">
-              <span>Upload proof document</span>
-              <input type="file" id="eligibilityProofDoc" name="eligibility_proof_doc" accept="*/*" multiple>
-              <button type="button" class="camera-btn" data-target="eligibilityProofDoc">Use Camera</button>
-            </label>
-          </div>
-        </div>
-        <p class="hint">If you believe you are eligible for free filing, please <a href="proofs.html">click here</a> to upload proof or raise a grievance.</p>
-        <label class="file" id="proofUploadBox" style="display:none">
-          <span>Upload proof document</span>
-          <input type="file" id="freeFilingProof" accept="*/*" capture="environment" multiple>
-          <button type="button" class="camera-btn" data-target="freeFilingProof">Use Camera</button>
-        </label>
-        <input type="hidden" name="filing_type" value="">
-        <input type="hidden" name="referral_code" value="">
-      </div>
-    </section>
-
-    <!-- STEP 2 — Form 16 Yes/No -->
-    <section class="step" data-step="2">
-      <h2>Do you have Form 16?</h2>
-      <div class="choice-buttons">
-        <button type="button" class="choice" data-form16="yes">Yes, I have Form 16</button>
-        <button type="button" class="choice" data-form16="no">No, only Payslip</button>
-      </div>
-      <input type="hidden" name="has_form16">
-
-      <div id="form16Section" style="display:none;margin-top:20px">
-        <label class="file">
-          <span>Form 16 — multiple files allowed</span>
-          <input type="file" id="form16" accept="*/*" capture="environment" multiple>
-          <button type="button" class="camera-btn" data-target="form16">Use Camera</button>
-        </label>
-      </div>
-
-      <div id="payslipSection" style="display:none;margin-top:20px">
-        <label class="file">
-          <span>March 2026 YTD Payslip (mandatory)</span>
-          <input type="file" id="payslips" accept="*/*" capture="environment" multiple required>
-          <button type="button" class="camera-btn" data-target="payslips">Use Camera</button>
-        </label>
-        <p class="hint">Please upload your March 2026 Year-To-Date payslip.</p>
-      </div>
-
-      <div id="extractStatus" class="status"></div>
-    </section>
-
-    <!-- STEP 3 — Investment Proofs (upload + details combined) -->
-    <section class="step" data-step="3">
-      <h2>All the applicable investment documents</h2>
-      <p class="hint">Toggle <b>Yes</b> for applicable items and upload the document. Extraction runs automatically when you click <b>Next</b>; then verify.</p>
-
-      <input type="hidden" name="home_loans_json" id="homeLoansJson" value="[]">
-      <input type="hidden" name="insurance_policies_json" id="insurancePoliciesJson" value="[]">
-      <input type="hidden" name="donations_json" id="donationsJson" value="[]">
-
-      <!-- House Rent -->
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>House Rent Paid</span>
-          <select class="proof-toggle" onchange="toggleSection('houseRentBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="houseRentBody" style="display:none;margin-top:10px">
-          <label>Monthly Rental Amount (with proof)
-            <input name="rent_paid" type="number" placeholder="e.g. 15000">
-          </label>
-        </div>
-      </div>
-
-      <!-- Home Loan -->
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>Home Loan</span>
-          <select class="proof-toggle" onchange="toggleSection('homeLoanBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="homeLoanBody" style="display:none;margin-top:10px">
-          <label class="file"><span>Home Loan Interest Certificate</span>
-            <input type="file" id="docHome" accept="*/*" multiple>
-            <button type="button" class="camera-btn" data-target="docHome">Use Camera</button>
-          </label>
-          <div id="homeLoanStatus" class="status" style="display:none;margin-bottom:8px"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Life Insurance -->
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>Life Insurance (LIC / ULIP)</span>
-          <select class="proof-toggle" onchange="toggleSection('lifeInsBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="lifeInsBody" style="display:none;margin-top:10px">
-          <label class="file"><span>Insurance Premium Receipt</span>
-            <input type="file" id="docInsLife" accept="*/*" multiple>
-            <button type="button" class="camera-btn" data-target="docInsLife">Use Camera</button>
-          </label>
-          <div id="lifeInsStatus" class="status" style="display:none;margin-bottom:8px"></div>
-        </div>
-        </div>
-      </div>
-
-      <!-- Health Insurance - Self -->
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>Health Insurance — Self &amp; Family</span>
-          <select class="proof-toggle" onchange="toggleSection('healthSelfBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="healthSelfBody" style="display:none;margin-top:10px">
-          <label class="file"><span>Health Insurance Document</span>
-            <input type="file" id="docInsHealth" accept="*/*" multiple>
-            <button type="button" class="camera-btn" data-target="docInsHealth">Use Camera</button>
-          </label>
-          <div id="healthSelfStatus" class="status" style="display:none;margin-bottom:8px"></div>
-        </div>
-        </div>
-      </div>
-
-      <!-- Health Insurance - Parents -->
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>Health Insurance — Parents</span>
-          <select class="proof-toggle" onchange="toggleSection('healthParentBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="healthParentBody" style="display:none;margin-top:10px">
-          <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-            <input type="checkbox" name="parents_senior" value="1" style="width:auto;margin:0">
-            <span>Parents are Senior Citizens (higher 80D limit applies)</span>
-          </label>
-        </div>
-        </div>
-      </div>
-
-      <!-- NPS -->
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>NPS (National Pension Scheme)</span>
-          <select class="proof-toggle" onchange="toggleSection('npsBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="npsBody" style="display:none;margin-top:10px">
-          <label class="file"><span>NPS Statement</span>
-            <input type="file" id="docNps" accept="*/*" multiple>
-            <button type="button" class="camera-btn" data-target="docNps">Use Camera</button>
-          </label>
-          <div id="npsStatus" class="status" style="display:none;margin-bottom:8px"></div>
-        </div>
-      </div>
-
-      <!-- School Fees -->
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>School / Tuition Fees (80C)</span>
-          <select class="proof-toggle" onchange="toggleSection('schoolFeesBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="schoolFeesBody" style="display:none;margin-top:10px">
-          <label class="file"><span>Fee Receipt</span>
-            <input type="file" id="docSchool" accept="*/*" multiple>
-            <button type="button" class="camera-btn" data-target="docSchool">Use Camera</button>
-          </label>
-          <div id="schoolStatus" class="status" style="display:none;margin-bottom:8px"></div>
-        </div>
-      </div>
-
-      <!-- Donations -->
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>Donations (Section 80G)</span>
-          <select class="proof-toggle" onchange="toggleSection('donationsBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="donationsBody" style="display:none;margin-top:10px">
-          <label class="file"><span>Donation Receipt / 80G Certificate</span>
-            <input type="file" id="docDon" accept="*/*" multiple>
-            <button type="button" class="camera-btn" data-target="docDon">Use Camera</button>
-          </label>
-          <div id="donationStatus" class="status" style="display:none;margin-bottom:8px"></div>
-        </div>
-        </div>
-      </div>
-
-      <!-- Other Deductions -->
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>Other Deductions</span>
-          <select class="proof-toggle" onchange="toggleSection('otherDeductBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="otherDeductBody" style="display:none;margin-top:10px">
-          <div class="grid">
-            <label>80E — Education Loan Interest <input name="sec_80e" type="number" placeholder="₹ annual"></label>
-            <label>80EEB — EV Loan Interest <input name="sec_80eeb" type="number" placeholder="₹ annual"></label>
-            <label>80TTA — Savings Bank Interest <input name="savings_interest" type="number" placeholder="₹ annual"></label>
-            <label>80DDB — Specified Disease <input name="sec_80db" type="number" placeholder="₹ annual"></label>
-            <label>80G Donations Total <input name="sec_80g" type="number" placeholder="Auto-calculated"></label>
-            <label>Others — specify <input name="other_deductions_misc" placeholder="Description + amount"></label>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STEP 4 — Review All Details (income + investment, AI pre-filled) -->
-    <section class="step" data-step="4">
-      <h2>Review Your Details</h2>
-      <p class="hint">AI pre-filled from your uploaded documents. Confirm and correct all figures before submitting.</p>
-
-      <h3 class="section-subtitle" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-        Income Details
-        <span style="display:flex;gap:6px;flex-wrap:wrap;">
-          <button type="button" class="dv-verify-btn" onclick="openDocVerify('form16')">📄 Verify Form 16</button>
-          <button type="button" class="dv-verify-btn" onclick="openDocVerify('payslips')">📄 Verify Payslip</button>
-        </span>
-      </h3>
-      <div class="grid">
-        <label>Gross Salary / CTC (Annual) <input name="gross_salary" type="number" step="0.01" placeholder="₹"></label>
-        <label>Basic Salary (Annual) <input name="basic_salary" type="number" placeholder="₹"></label>
-        <label>HRA Received (Annual) <input name="hra_received" type="number" placeholder="₹"></label>
-        <label>PF — Employee Contribution (Annual) <input name="pf_employee" type="number" placeholder="₹"></label>
-        <label>TDS Deducted (Annual) <input name="tds_paid" type="number" placeholder="₹"></label>
-        <label>Professional Tax (Annual) <input name="professional_tax" type="number" placeholder="₹"></label>
-      </div>
-
-      <h3 class="section-subtitle">Salary Allowances (Section 10 Exempt)</h3>
-      <p class="hint">Enter allowances that are tax-exempt under Section 10(14). Leave blank if not applicable.</p>
-      <div class="grid">
-        <label>LTA — Leave Travel Allowance (Annual) <input name="lta" type="number" placeholder="₹ (exempt portion)"></label>
-        <label>Car Lease / Vehicle Allowance (Annual) <input name="car_lease_allowance" type="number" placeholder="₹ (Section 10(14)(i))"></label>
-        <label>Uniform Allowance (Annual) <input name="uniform_allowance" type="number" placeholder="₹ (Section 10(14)(ii))"></label>
-      </div>
-
-      <h3 class="section-subtitle">Investment Details (from uploaded documents)</h3>
-      <div class="grid">
-        <label>Home Loan Interest (Annual) <input name="home_loan_interest" type="number" placeholder="₹ (from certificate)"></label>
-        <label>Home Loan Principal (Annual) <input name="home_loan_principal" type="number" placeholder="₹ (from certificate)"></label>
-        <label>Monthly Rent Paid <input name="monthly_rent" type="number" placeholder="₹ (for HRA calculation)"></label>
-        <label>School / Tuition Fees (Annual) <input name="school_fees" type="number" placeholder="₹ (from receipt)"></label>
-        <label>PRAN Number (NPS) <input name="nps_pran" placeholder="Enter your PRAN"></label>
-        <label>NPS — Employee Contribution (Annual) <input name="nps_self" type="number" placeholder="₹ (from statement)"></label>
-        <label>NPS — Employer Contribution (Annual) <input name="nps_employer" type="number" placeholder="₹ (from statement)"></label>
-      </div>
-      <div style="margin-top:12px">
-        <h4 style="margin:6px 0 10px">Uploaded proofs & detailed entries</h4>
-        <div class="proof-list">
-          <h5 style="display:flex;align-items:center;justify-content:space-between;">Home Loans <button type="button" class="dv-verify-btn" onclick="openDocVerify('docHome')">📄 Verify</button></h5>
-          <div id="homeLoanList"></div>
-          <button type="button" class="add-btn" onclick="addHomeLoan()">+ Add Home Loan</button>
-        </div>
-        <div class="proof-list">
-          <h5 style="display:flex;align-items:center;justify-content:space-between;">Life Insurance <button type="button" class="dv-verify-btn" onclick="openDocVerify('docInsLife')">📄 Verify</button></h5>
-          <div id="lifeInsList"></div>
-          <button type="button" class="add-btn" onclick="addInsurance('lifeInsList','life')">+ Add Policy</button>
-        </div>
-        <div class="proof-list">
-          <h5 style="display:flex;align-items:center;justify-content:space-between;">Health Insurance — Self <button type="button" class="dv-verify-btn" onclick="openDocVerify('docInsHealth')">📄 Verify</button></h5>
-          <div id="healthSelfList"></div>
-          <button type="button" class="add-btn" onclick="addInsurance('healthSelfList','health_self')">+ Add Policy</button>
-        </div>
-        <div class="proof-list">
-          <h5 style="display:flex;align-items:center;justify-content:space-between;">Health Insurance — Parents <button type="button" class="dv-verify-btn" onclick="openDocVerify('docInsHealth')">📄 Verify</button></h5>
-          <div id="healthParentList"></div>
-          <button type="button" class="add-btn" onclick="addInsurance('healthParentList','health_parent')">+ Add Policy</button>
-        </div>
-        <div class="proof-list">
-          <h5 style="display:flex;align-items:center;justify-content:space-between;">Donations (80G) <button type="button" class="dv-verify-btn" onclick="openDocVerify('docDon')">📄 Verify</button></h5>
-          <div id="donationList"></div>
-          <button type="button" class="add-btn" onclick="addDonation()">+ Add Donation</button>
-        </div>
-      </div>
-      <p class="hint" style="margin-top:12px">Note: If any field looks wrong, go back and re-upload the document or edit directly here.</p>
-    </section>
-
-    <!-- STEP 5 — Other Income + Notices + Referral -->
-    <section class="step" data-step="5">
-      <h2>Other Income & Final Details</h2>
-
-      <div class="proof-section">
-        <div class="proof-header">
-          <span>Additional Income</span>
-          <select class="proof-toggle" onchange="toggleSection('additionalIncomeBody',this.value)">
-            <option value="na">N/A</option><option value="yes">Yes</option>
-          </select>
-        </div>
-        <div id="additionalIncomeBody" style="display:none;margin-top:12px">
-          <div class="grid">
-            <label>Rental Income (Monthly) <input name="rental_income_monthly" type="number"></label>
-            <label>F&amp;O Trading P/L <input name="fno_pl" type="number"></label>
-            <label>Securities Income <input name="securities_income" type="number"></label>
-            <label>Business Nature <input name="business_nature" placeholder="e.g. Freelance design"></label>
-            <label>Business Income <input name="business_income" type="number"></label>
-            <label>Other Income <input name="other_income_misc" type="number"></label>
-            <label>FD Interest <input name="fd_interest" type="number"></label>
-            <label>Dividend <input name="dividend" type="number"></label>
-            <label>Tax Refund Interest <input name="refund_interest" type="number"></label>
-          </div>
-        </div>
-      </div>
-
-      <fieldset>
-        <legend>Pending Notices / Scrutiny</legend>
-        <select name="pending_notices">
-          <option value="no">No</option>
-          <option value="yes">Yes</option>
-        </select>
-        <input name="pending_notices_detail" placeholder="If Yes, specify details">
-      </fieldset>
-
-      <fieldset>
-        <legend>Referral & Payout</legend>
-        <input name="referred_by" placeholder="Referral code (if any)" style="text-transform:uppercase">
-        <input name="upi_id" placeholder="Your UPI / GPay ID (for cashback)">
-      </fieldset>
-    </section>
-
-    <!-- STEP 6 — Submit -->
-    <section class="step" data-step="6">
-      <h2>Confirm & Submit</h2>
-        <div class="mega-offer">
-      Refer 5 friends or family members to qualify for a full fee waiver
-        </div>
-      <p>Our experts will review your filing and send your <b>3-option Quote</b> on WhatsApp within 24 hours.</p>
-      <ul class="bullets">
-        <li>Personalized refund analysis</li>
-        <li>Best regime recommendation</li>
-        <li>50% upfront + 50% after refund credited</li>
-      </ul>
-
-      <div class="consent-row">
-        <label class="consent-row"><input type="checkbox" id="consent" required> <span>I consent to data processing & WhatsApp communication.</span></label>
-      </div>
-    </section>
-
-    <!-- STEP 7 — Thank You & Quote Options -->
-    <section class="step" data-step="7">
-      <h2>Your Filing — Refund Options</h2>
-      <div class="success-box">
-        <p>Congratulations — your application is under expert review.</p>
-        <p>Your personal referral code:</p>
-        <div class="code" id="refCode">—</div>
-        <p>Share this and earn up to <b>₹15,000</b> cashback!</p>
-        <p>Personal Guidance and Tax awareness Campaign will be conducted by our Authorised experts in your community / Society / Corporate / etc for larger audiences (50+).</p>
-      </div>
-
-      <div class="quote-section" id="quoteSection" style="display:none;margin-top:24px">
-        <h3>Your Tax Refund Options</h3>
-        <p class="hint">Select how you'd like to receive your refund:</p>
-
-        <div class="options-grid" id="refundOptionsGrid">
-          <div class="option-card" data-option="A">
-            <h4>Option A — Standard</h4>
-            <div class="option-amount">₹<span id="optionA-amount">—</span></div>
-            <p class="option-description">Direct bank transfer within 7-10 working days</p>
-            <button type="button" class="btn-option" onclick="selectRefundOption('A')">Select Option A</button>
-          </div>
-
-          <div class="option-card" data-option="B">
-            <h4>Option B — Fast Track</h4>
-            <div class="option-amount">₹<span id="optionB-amount">—</span></div>
-            <p class="option-description">Expedited processing within 3-5 working days</p>
-            <p class="fee-note">(₹500 processing fee applicable)</p>
-            <button type="button" class="btn-option" onclick="selectRefundOption('B')">Select Option B</button>
-          </div>
-
-          <div class="option-card" data-option="C">
-            <h4>Option C — Savings</h4>
-            <div class="option-amount">₹<span id="optionC-amount">—</span></div>
-            <p class="option-description">Invest for 6 months @ 7.5% and earn interest</p>
-            <button type="button" class="btn-option" onclick="selectRefundOption('C')">Select Option C</button>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top:18px;text-align:center">
-        <button type="button" id="checkQuote" class="btn btn-primary">Check Quote Status</button>
-      </div>
-      <div id="quoteResult" style="margin-top:20px"></div>
-
-      <p style="margin-top:20px;text-align:center;font-size:13px;color:#6b7280">
-        You will receive final confirmation on WhatsApp once approved.<br>
-        <span class="contact">Contact: +91 7397 510 254 · fairtaxadvisors@gmail.com</span>
-      </p>
-    </section>
-
-      <!-- Spouse family package -->
-      <div class="spouse-section">
-        <h3>Instant Family Package — 20% off for your spouse</h3>
-        <p>Would you like to avail the family package discount by filing for your spouse too?</p>
-        <button type="button" class="spouse-yes-btn" id="showSpouseForm">Yes, Add My Spouse</button>
-        <div id="spouseForm" style="display:none;margin-top:20px;text-align:left">
-          <div class="offer-badge">ITR filing fees for your spouse: 20% off</div>
-          <div class="grid" style="margin-top:16px">
-            <label>Spouse Full Name <input name="spouse_name" placeholder="Full Name"></label>
-            <label>Spouse PAN <input name="spouse_pan" placeholder="ABCDE1234F" style="text-transform:uppercase" maxlength="10"></label>
-          </div>
-          <label>Spouse Phone (10 digits) <input name="spouse_phone" placeholder="10-digit mobile" pattern="\d{10}"></label>
-          <button type="button" id="submitSpouse">Submit Spouse Details →</button>
-          <div id="spouseStatus" class="status" style="display:none"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GLOBAL EXTRACTION LOADER — visible across all steps -->
-    <div id="extractionLoader" style="display:none;margin-bottom:16px">
-      <div class="premium-loader">
-        <span class="loader-text">🤖 Extracting data...</span>
-        <div class="loader-dots">
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="nav">
-      <button type="button" id="prev">Back</button>
-      <button type="button" id="next">Next</button>
-      <button type="button" id="submit" style="display:none">Submit</button>
-    </div>
-  </form>
-</main>
-
-<!-- ═══════════════════ DOCUMENT VERIFY MODAL ═══════════════════ -->
-<div id="docVerifyModal" style="display:none">
-  <div class="dv-overlay" onclick="closeDocVerify()"></div>
-  <div class="dv-panel">
-    <div class="dv-header">
-      <span class="dv-title">📄 Verify Extracted Data</span>
-      <button class="dv-close" onclick="closeDocVerify()">✕</button>
-    </div>
-    <div class="dv-body">
-      <!-- Left: file viewer -->
-      <div class="dv-viewer">
-        <div class="dv-tabs" id="dvTabs"></div>
-        <div class="dv-frame" id="dvFrame"></div>
-      </div>
-      <!-- Right: extracted fields -->
-      <div class="dv-fields">
-        <div class="dv-fields-title">Extracted Values</div>
-        <div id="dvFieldsInner"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
-<footer class="lv2-footer">
-  <div class="lv2-footer-top">
-    <div class="lv2-footer-brand">
-      <a href="landing.html" class="lv2-footer-logo">
-        <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
-          <rect width="40" height="40" rx="10" fill="#1A56DB"/>
-          <path d="M20 10L10 15v10l10 5 10-5V15L20 10z" fill="#10B981"/>
-          <path d="M16 20l3 3 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div class="lv2-footer-brand-text">
-          <div class="lv2-footer-brand-name">
-            <span class="lv2-footer-brand-fair">FAIRTAX</span>
-            <span class="lv2-footer-brand-advisors">ADVISORS</span>
-          </div>
-          <div class="lv2-footer-brand-tagline">Your Taxes. Our Expertise.</div>
-        </div>
-      </a>
-      <p class="lv2-footer-desc">AI-powered ITR filing platform trusted by 2 lakh+ Indians. Accurate, secure, and expert-assisted.</p>
-      <div class="lv2-footer-contact">
-        <a href="https://wa.me/917397510254" class="lv2-footer-contact-item" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.64A2 2 0 012 .27 2 2 0 013.86.27H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-          +91 7397 510 254
-        </a>
-        <a href="mailto:fairtaxadvisors@gmail.com" class="lv2-footer-contact-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          fairtaxadvisors@gmail.com
-        </a>
-        <span class="lv2-footer-contact-item">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Mumbai, Maharashtra, India
-        </span>
-      </div>
-    </div>
-
-    <div class="lv2-footer-col">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="landing.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-        <li><a href="training.html">Training</a></li>
-      </ul>
-    </div>
-
-    <div class="lv2-footer-col">
-      <h5>Resources</h5>
-      <ul>
-        <li><a href="faqs.html">FAQs</a></li>
-        <li><a href="proofs.html">Proofs & Grievance</a></li>
-        <li><a href="status.html">Filing Status</a></li>
-        <li><a href="referral-offer.html">Refer & Earn</a></li>
-      </ul>
-    </div>
-
-    <div class="lv2-footer-col">
-      <h5>Legal</h5>
-      <ul>
-        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-        <li><a href="terms-of-service.html">Terms of Service</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="lv2-footer-bottom">
-    <div class="lv2-footer-copy">© 2024-2025 FairTax Advisors. All rights reserved. | Secure • AI-Powered • Expert-Reviewed</div>
-    <div class="lv2-footer-badges">
-      <span class="lv2-footer-badge">Secure</span>
-      <span class="lv2-footer-badge">AI-Powered</span>
-      <span class="lv2-footer-badge">Expert Verified</span>
-    </div>
-  </div>
-</footer>
-
-<!-- Camera modal for capturing photos into file inputs -->
-<div id="cameraModal" class="modal" style="display:none">
-  <div class="modal-content">
-    <video id="cameraVideo" autoplay playsinline></video>
-    <canvas id="cameraCanvas" style="display:none"></canvas>
-    <div class="modal-actions">
-      <button id="captureBtn">Capture</button>
-      <button id="closeCamera">Close</button>
-    </div>
-  </div>
-</div>
-
-<!-- Joker reveal modal -->
-<div id="jokerModal" class="joker-modal" style="display:none">
-  <div class="joker-modal-content">
-    <span class="joker-face"></span>
-    <h2 class="joker-title">CONGRATULATIONS!</h2>
-    <p class="joker-msg">You are the <b>6th Person</b> — your fees is <b>absolutely FREE!</b></p>
-    <div class="joker-code" id="jokerRevealCode">—</div>
-    <p style="color:#93C5FD;margin:10px 0;font-size:13px">Share your referral code and earn up to <b>₹15,000</b> cashback!</p>
-    <button class="joker-close-btn" onclick="document.getElementById('jokerModal').style.display='none'">Claim My Free Filing</button>
-    <button onclick="localStorage.removeItem('referral_code');localStorage.removeItem('submission_id');localStorage.removeItem('session_active');document.getElementById('jokerModal').style.display='none';window.location.reload();" style="background:none;border:none;color:rgba(255,255,255,.4);font-size:12px;cursor:pointer;margin-top:10px;text-decoration:underline;">Not you? Start a fresh filing →</button>
-  </div>
-</div>
-
-<!-- Freelancer floating CTA -->
-<a class="freelancer-cta" href="https://wa.me/917397510254?text=I+want+to+join+as+a+FairTax+Freelancer+and+earn+more!" target="_blank" rel="noopener">
-  <span class="fl-star">⭐</span>
-  <span class="fl-text">Why not join us<br>as a Freelancer?</span>
-</a>
-
-<!-- Winners widget -->
-<div id="winnersWidget" class="winners-widget">
-  <h4>Weekly Winners</h4>
-  <ul id="winnersList"><li>Loading...</li></ul>
-  <a href="referral-offer.html">See all</a>
-</div>
-
-<script src="app.js?v=5"></script>
-
-<!-- Override filing type to REGULAR for this page -->
-<script>
-filingType = 'regular';
-var ftHidden = document.querySelector('[name="filing_type"]');
-if (ftHidden) ftHidden.value = 'regular';
-</script>
-
-<!-- Mobile hamburger -->
-<script>
-  (function() {
-    const btn = document.querySelector('.lv2-hamburger');
-    const nav = document.getElementById('lv2MobileNav');
-    if (!btn || !nav) return;
-    btn.addEventListener('click', function() {
-      const open = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!open));
-      btn.classList.toggle('open');
-      nav.classList.toggle('open');
-    });
-    nav.querySelectorAll('.lv2-mobile-link').forEach(l => {
-      l.addEventListener('click', () => {
-        btn.setAttribute('aria-expanded', 'false');
-        btn.classList.remove('open');
-        nav.classList.remove('open');
+      // FAQ accordion
+      document.querySelectorAll(".lv2-faq-q").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const isOpen = btn.classList.contains("open");
+          document.querySelectorAll(".lv2-faq-q.open").forEach(function (b) {
+            b.classList.remove("open");
+            b.nextElementSibling.classList.remove("open");
+          });
+          if (!isOpen) {
+            btn.classList.add("open");
+            btn.nextElementSibling.classList.add("open");
+          }
+        });
       });
-    });
-  })();
-</script>
-
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>AOS.init({ once: true, duration: 600 });</script>
-
-<script>
-async function loadWinners() {
-  try {
-    const r = await fetch('https://fairtax-backend.onrender.com/api/winners');
-    const j = await r.json();
-    const list = document.getElementById('winnersList');
-    list.innerHTML = '';
-    (j.winners || []).forEach(w => {
-      const li = document.createElement('li');
-      li.textContent = `${w.name} — ${w.reward}`;
-      list.appendChild(li);
-    });
-  } catch(e) { /* ignore */ }
-}
-loadWinners();
-</script>
-
-</body>
+    </script>
+  </body>
 </html>

@@ -1,4 +1,4 @@
-const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+﻿const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://localhost:5000/api'
   : 'https://fairtax-backend.onrender.com/api';
 
@@ -270,8 +270,8 @@ async function savePhase(extraData) {
 }
 
 // Filing type (Regular / Free) and referral flow
-// index.html is for regular tax filing only
-let filingType = "regular"; // Pre-set to regular filing on index.html
+// filing.html is for regular tax filing only
+let filingType = "regular"; // Pre-set to regular filing on filing.html
 let referralCode = localStorage.getItem("referral_code") || "";
 let cameraStream = null;
 let cameraTargetInput = null;

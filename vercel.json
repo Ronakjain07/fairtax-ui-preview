@@ -1,14 +1,4 @@
 {
-  "rewrites": [
-    {
-      "source": "^/$",
-      "destination": "/landing.html"
-    },
-    {
-      "source": "^/(?!api/|uploads/|css/|assets/).*\\.html$",
-      "destination": "/$1.html"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
